@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1" 
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical" >
+
+        <TextView
+            android:id="@+id/textViewq3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PID"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtpid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" >
+        </EditText>
+        
+         <TextView
+            android:id="@+id/textViewq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HH"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtHHID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+        
+                <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Father"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtfather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mother"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtmother"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        
+        
+        		
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"   
+          	android:gravity="left"     	
+        	android:weightSum="1.0"
+        	android:orientation="horizontal"
+        	android:layout_marginTop="25dp"
+        	android:layout_marginBottom="25dp"
+        	android:scrollbars="horizontal" >
+        
+	        <TextView
+	            android:id="@+id/textView212"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.18"
+	            android:text="Age"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	        <EditText
+	            android:id="@+id/txtagefrom"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.32"
+	            android:ems="10"
+	            android:inputType="number" >
+
+	        </EditText>
+	
+	        <TextView
+	            android:id="@+id/textView312"
+	            android:layout_width="0dp"
+	            android:layout_weight=".10"
+	            android:layout_height="wrap_content"
+	            android:text="To"
+	            android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+	        <EditText
+	            android:id="@+id/txtageto"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.36"
+	            android:ems="10"
+	            android:inputType="number" />
+
+		</LinearLayout>
+        <TextView
+            android:id="@+id/textView412"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upz"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtupz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/textView612"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dist"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:id="@+id/spdist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sex"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:id="@+id/spsex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        
+         <TextView
+            android:id="@+id/textView499"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/txtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+        
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dip" >
+
+            <Button
+                android:id="@+id/btnSearch"                
+                android:layout_height="wrap_content"
+                android:layout_width="100dip"
+                android:text="Search" />
+
+            <Button
+                android:id="@+id/btnExit"
+                android:layout_width="100dip"                
+                android:layout_height="wrap_content"
+                android:text="Exit"  android:visibility="invisible"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

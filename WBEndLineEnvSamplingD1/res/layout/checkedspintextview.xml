@@ -1,0 +1,10 @@
+<com.icddrb.app.wbendLineenvsamplingd1.TextViewBangla xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bngspin="http://schemas.android.com/apk/res/com.icddrb.app.wbendLineenvsamplingd1"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:ellipsize="marquee"
+    android:singleLine="true"
+     bngspin:customFont="Siyam Rupali ANSI.ttf" />
+<!-- bngspin:customFont="Siyam Rupali ANSI.ttf" -->

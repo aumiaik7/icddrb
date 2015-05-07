@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:id="@+id/rootView">
+  <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayoutMain" android:orientation="vertical" android:layout_weight="1">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_weight="1">
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/qqq" android:layout_width="fill_parent" android:gravity="center" android:text="Heading" android:layout_marginBottom="50dip"></TextView>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayoutInner" android:orientation="horizontal" android:layout_weight="1">
+    
+    <LinearLayout android:layout_width="150dip" android:layout_height="wrap_content" android:id="@+id/linearLayoutInner" android:orientation="vertical" android:layout_weight="1" android:weightSum="1">
+    <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblhlabel" android:layout_width="fill_parent" android:gravity="center" android:text="" android:layout_marginTop="10dip" android:layout_weight="0.04"> ></TextView>
+		<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lbla" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="20dip"> ></TextView>
+			<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblb" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="23dip"></TextView>
+				<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblc" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="23dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lbld" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="23dip"></TextView> 	
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lble" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="23dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblf" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="23dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblg" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="20dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblh" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="20dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lbli" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="20dip"></TextView>
+					<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblj" android:layout_width="fill_parent" android:gravity="center" android:text="1st" android:layout_marginBottom="20dip"></TextView>
+					
+ 	</LinearLayout>   
+ 	
+ 	<LinearLayout android:layout_width="20dip" android:layout_height="wrap_content" android:id="@+id/linearLayoutR1" android:orientation="vertical" android:layout_weight="1">
+ 	<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblh" android:layout_width="fill_parent" android:gravity="left" android:text="1st" android:layout_marginTop="10dip" android:layout_weight="0.04"> ></TextView>
+ 		<CheckBox android:text="" android:id="@+id/chka1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip" ></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkb1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkc1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkd1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chke1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkf1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkg1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkh1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chki1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkj1" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		 		
+ 		
+ 	</LinearLayout>
+ 	<LinearLayout android:layout_width="20dip" android:layout_height="wrap_content" android:id="@+id/linearLayoutR2" android:orientation="vertical" android:layout_weight="1">
+ 	<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblhh" android:layout_width="fill_parent" android:gravity="left" android:text="2nd" android:layout_marginTop="10dip" android:layout_weight="0.04"> ></TextView>
+ 	<CheckBox android:text="" android:id="@+id/chka2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkb2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkc2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkd2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chke2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkf2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkg2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkh2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chki2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkj2" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		 	
+ 	</LinearLayout>
+ 	<LinearLayout android:layout_width="20dip" android:layout_height="wrap_content" android:id="@+id/linearLayoutR3" android:orientation="vertical" android:layout_weight="1">
+ 		<TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/lblhhh" android:layout_width="fill_parent" android:gravity="left" android:text="3rd" android:layout_marginTop="10dip" android:layout_weight="0.04"> ></TextView>
+ 		<CheckBox android:text="" android:id="@+id/chka3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkb3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkc3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkd3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chke3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkf3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkg3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkh3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chki3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		<CheckBox android:text="" android:id="@+id/chkj3" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="21dip"></CheckBox>
+ 		 		
+ 	</LinearLayout>
+    
+    </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+     <LinearLayout android:layout_marginBottom="10dip" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:weightSum="1" android:layout_height="30dp" android:layout_weight="0.03">
+         <Button  android:id="@+id/btnNote" android:text="Add Note" android:layout_width="match_parent" android:layout_weight="0.96" android:layout_height="match_parent"></Button>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout4" android:orientation="horizontal" android:weightSum="6" android:gravity="center_horizontal">
+        <Button android:layout_weight="2" android:layout_marginRight="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/prevButton" android:text="Previous"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2" android:text="Clear" android:id="@+id/clButton"></Button>
+        <Button android:layout_weight="2" android:layout_marginLeft="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Save &amp; Next" android:id="@+id/saveNxtButton"></Button>
+    </LinearLayout>
+</LinearLayout>
+

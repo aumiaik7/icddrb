@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="100" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dip"
+                android:gravity="center"
+                android:text="dada"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+				<TextView
+                    android:id="@+id/lbl1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Child no"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" android:paddingLeft="40dp">
+                </TextView>
+
+                 <Spinner
+                    android:id="@+id/spchildno"
+                    android:layout_width="500dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" android:paddingLeft="40dp">
+                </Spinner>
+            <CheckBox
+                android:id="@+id/chk1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Soft drinks"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln1"
+                android:layout_width="684dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="2" >
+
+                <ListView
+                    android:id="@+id/list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="187dp" />
+
+                <Spinner
+                    android:id="@+id/sp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Fruit juice"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="258dp" />
+
+                <Spinner
+                    android:id="@+id/sp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Bottled or canned milk"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="135dp" />
+
+                <Spinner
+                    android:id="@+id/sp3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Milk products"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="243dp" />
+
+                <Spinner
+                    android:id="@+id/sp4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Sweet snacks/ sweet meat"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln5"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="643dp" />
+
+                <Spinner
+                    android:id="@+id/sp5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk6"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Savory snacks"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln6"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="317dp" />
+
+                <Spinner
+                    android:id="@+id/sp6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/chk7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green"
+                android:paddingLeft="40dp"
+                android:text="Pickles"
+                android:textSize="16dip" />
+
+            <LinearLayout
+                android:id="@+id/ln7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="60dp"
+                android:weightSum="50" >
+
+                <ListView
+                    android:id="@+id/list7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="261dp" />
+
+                <Spinner
+                    android:id="@+id/sp7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dip"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/btnNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.96"
+            android:text="Add Note" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/clButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Clear" >
+        </Button>
+
+        <Button
+            android:id="@+id/saveNxtButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Save &amp; Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

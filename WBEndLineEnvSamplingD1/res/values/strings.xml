@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, LoginActivity!</string>
+    <string name="app_name">Environmental Sampling Day 1</string>
+    
+    <string name="lblMmberIDBN">µwgK bs</string>
+    <string name="lblMemeberBN">bvg</string>
+    <string name="lblAgeBN">eQi </string><string name="lblSexBN">wj½</string>
+    <string name="lblRelationBN">LvbvcÖav‡bi mv‡_ m¤úK©</string>
+    <string name="lblStatusBN">eZ©gvb Ae¯’v</string>
+    <string name="lblSicknessBN">M‡Zv 7 w`‡b †Kv‡bv Amy¯’Zv</string>
+    <string name="lblVisitedHealthCareBN"></string>
+    <string name="lblHospitalizedBN"></string>
+    <string name="q109bn">109: GB gwnjvi eqm wK 10 †_‡K 49 eQ‡ii g‡a¨ Ges eZ©gv‡b 0-35 gvm eqmx RxweZ wkïi gv?  (1=n¨v, 2=bv, 03=cÖ‡hvR¨ bq)</string>
+    <string name="q110bn">110: GB gwnjvi eqm wK 10 †_‡K 49 eQ‡ii g‡a¨ Ges eZ©gv‡b ey‡Ki `ya Lvq Ggb wkïi gv?(0=bv, 1=n¨v)99=cÖ‡hvR¨ bq) </string>
+    <string name="q111bn">111: GB gwnjvi eqm wK 10 †_‡K 49 eQ‡ii g‡a¨ Ges eZ©gv‡b Mf©eZx?  (1=n¨v, 2=bv, 8=Rvwbbv, 9=cÖ‡hvR¨ bq)</string>
+     
+    <string name="q1001bn">wbev©wPZ gv/wkïi jvBb bs (†W‡gvMÖvwd †mKkb †_‡K wjLyb)</string>
+    <string name="q1002bn">gv/wkïi bvg</string>
+    <string name="q1003bn">Rb¥ ZvwiL</string>
+    <string name="q1004bn">wj½ ‡Q‡j...1 ‡g‡q...2</string>
+    <string name="q1005bn">kixie„wËq Ae¯’v Mf©eZx...1 j¨vK‡UwUs...2 cÖ‡hvR¨ bq...99 </string>
+    <string name="q1006bn">IRb (†KwR‡Z)</string>
+    <string name="q1007bn">D”PZv/•`N©¨ (†mw›UwgUv‡i) </string>
+    <string name="q1008bn">†gvqvK (†mw›UwgUv‡i) </string>
+    <string name="q1009bn">BwWgv (BwWgv-nv‡Z, cv‡q I gy‡L cvwb Avmv)  n¨uv...1 bv...2 Rvwbbv...88</string>
+    <string name="q1010bn">wn‡gv‡Møvweb, % (hw` Lvbv KZ©…K wkïi i‡³i Gwbwgqv cix¶v Ki‡Z ivwR bv nq Zvn‡j 888 †KvW Kiæb)</string>
+    <string name="q1011bn">gv‡qi IRb (†KwR‡Z) cÖ‡hvR¨ bq...99</string>
+    <string name="q1012bn">gv-mn wkïi IRb(†KwR‡Z) cÖ‡hvR¨ bq...99</string>
+    <string name="q1013bn">cwigvc cwigvcK…Z...1 cwigvcK…Z bq Abycw¯’Z...2 Amy¯’¨/cÖwZeÜx...3 Am¤§wZ...4</string>
+    <string name="q1014bn">wkïi mn‡hvwMZv mn‡hvMx...1 Amn‡hvMx ...2 LyeB Amn‡hvMx...3 cÖ‡hvR¨ bq...99</string>
+    
+    <string name="q413_1bn">ÓwfUvwgb wgbv‡i‡ji cvDWvi/cywó Kbv/gwbwg•Ó MÖn‡bi Kv‡W© D‡jøwLZ ZvwiLwU wjLyb</string>
+    <string name="q413_1_1bn">1g cÖvwß</string>
+    <string name="q413_1_2bn">2q cÖvwß</string>
+    <string name="q413_1_3bn">3q cÖvwß</string>
+    <string name="q413_2bn">†Kvb ZvwiL D‡jøwLZ bvB</string>
+    <string name="q413_3bn">KvW© †`Lv‡Z cv‡i bvB</string>
+    
+    
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="green">#006633</color>
+    <color name="blue">#0484f2</color>
+    <color name="gray">#edebe0</color>
+    <color name="fev">#4f81bc</color>
+    <color name="red">#ff0000</color>
+    <string name="lblaBN">fv‡jv wPwKrmv‡mev</string>
+    <string name="lblbBN">fv‡jv e¨envi</string>
+    <string name="lblcBN">mgq Ges ˆah©¨ wb‡q</string>
+    <string name="lbldBN">Rvbv †bB</string>
+    <string name="lbleBN">Ab¨vb¨ </string>
+    <string name="lblfBN">evmvi Kv‡Q</string>
+    <string name="lblgBN">LiP Kg</string>
+    <string name="lblhBN">Wv³vi _v‡Kb</string>
+    <string name="lbliBN">Jla cvIqv hvq</string>
+    <string name="lbljBN">cwiwPZ Wv³vi</string>
+    <string name="lblHoldingNoBN"></string>
+    <string name="lblParaBN">cvov</string>
+    <string name="lblVillageBN">MÖvg</string>
+    <string name="lblUnionBN">BDwbqb</string>
+    <string name="lblUpazillaBN">Dc‡Rjv/wgDwbwmcvjwU</string>
+    <string name="lblDistrictBN">‡Rjv</string>
+    <string name="lblPhoneBN">‡dvb bv¤^vi</string>
+    <string name="s">s</string>
+    <string name="lbl1stVisitBN">cÖ_g wPwKrmv`vZv</string>
+    <string name="lbl2ndVisitBN">wØZxq wPwKrmv`vZv</string>
+    <string name="lbl3rdVisitBN"> Z…Zxq wPwKrmv`vZv</string>
+    <string name="lbl4thVistBN">PZz©_/‡kl wPwKrmv`vZv</string>
+    <string name="lbl1stVBN">cÖ_g wPwKrmv`vZv</string>
+    <string name="lbl2VBN">wØZxq wPwKrmv`vZv</string>
+    <string name="lbl3VBN"> Z…Zxq wPwKrmv`vZv</string>
+    <string name="addcomment">Add Comment</string>
+    
+</resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dataidViewer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ViewFlipper
+        android:id="@+id/formFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            android:id="@+id/frmdataid"
+            layout="@layout/frmdataid" />
+
+        <include
+            android:id="@+id/frmchoiceone"
+            layout="@layout/frmchoiceone" />
+
+        <include
+            android:id="@+id/frmcombobox"
+            layout="@layout/frmcombobox" />
+
+        <include
+            android:id="@+id/frmdate"
+            layout="@layout/frmdate" />
+
+        <include
+            android:id="@+id/frmfamilymember"
+            layout="@layout/frmfamilymember" />
+
+        <include
+            android:id="@+id/frmhhid"
+            layout="@layout/frmhhid" />
+
+        <include
+            android:id="@+id/frmmessage"
+            layout="@layout/frmmessage" />
+
+        <include
+            android:id="@+id/frmmultiplecheckcombo"
+            layout="@layout/frmmultiplecheckcombo" />
+
+        <include
+            android:id="@+id/frmmultiplechoice"
+            layout="@layout/frmmultiplechoice" />
+
+        <include
+            android:id="@+id/frmmultiplecombo"
+            layout="@layout/frmmultiplecombo" />
+
+        <include
+            android:id="@+id/frmnotes"
+            layout="@layout/frmnotes" />
+
+        <include
+            android:id="@+id/frmnumeric"
+            layout="@layout/frmnumeric" />
+
+        <include
+            android:id="@+id/frmnumericoption"
+            layout="@layout/frmnumericoption" />
+
+        <include
+            android:id="@+id/frmreasoning"
+            layout="@layout/frmreasoning" />
+
+        <include
+            android:id="@+id/frmsinglechoice"
+            layout="@layout/frmsinglechoice" />
+
+        <include
+            android:id="@+id/frmtext"
+            layout="@layout/frmtext" />
+
+        <include
+            android:id="@+id/frmtime"
+            layout="@layout/frmtime" />
+
+        <include
+            android:id="@+id/frmyeartomin"
+            layout="@layout/frmyeartomin" />
+
+        <include
+            android:id="@+id/gpsdatacollection"
+            layout="@layout/gpsdatacollection" />
+
+        <include
+            android:id="@+id/frmnumerictwo"
+            layout="@layout/frmnumerictwo" />
+
+        <include
+            android:id="@+id/frmnumericwithunknowndecline"
+            layout="@layout/frmnumericwithunknowndecline" />
+
+        <include
+            android:id="@+id/frmcomboswitheditspiner"
+            layout="@layout/frmcomboswitheditspiner" />
+
+        <include
+            android:id="@+id/frmmultiplecheckcombotwo"
+            layout="@layout/frmmultiplecheckcombotwo" />
+
+        <include
+            android:id="@+id/frmmultiplechoiceradio"
+            layout="@layout/frmmultiplechoiceradio" />
+
+        <include
+            android:id="@+id/frmmultiple"
+            layout="@layout/frmmultiple" />
+
+        <include
+            android:id="@+id/frmq124"
+            layout="@layout/frmq124" />
+
+        <include
+            android:id="@+id/frmmultiplechecknumeric"
+            layout="@layout/frmmultiplechecknumeric" />
+
+        <include
+            android:id="@+id/frmmultiplecheckdate"
+            layout="@layout/frmmultiplecheckdate" />
+
+        <include
+            android:id="@+id/frmbarcode"
+            layout="@layout/frmbarcode" />
+          <include
+            android:id="@+id/frmnumericwithrdbtn"
+            layout="@layout/frmnumericwithrdbtn" />
+    </ViewFlipper>
+
+</LinearLayout>

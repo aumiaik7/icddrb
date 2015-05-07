@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dip"
+    android:scrollbars="horizontal" >
+
+    <TableRow
+        android:id="@+id/TableRow01"
+        android:layout_width="wrap_content"
+        android:layout_height="180dip"
+        android:scrollbars="horizontal" >
+
+        <TextView
+            android:id="@+id/PID"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Hh"
+            android:layout_width="180dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Slno"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Sex"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Age"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/BDate"
+            android:layout_width="120dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Rth"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/MS"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Area"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/SecBlock"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Road"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/House"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Dist"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/UPZ"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Vill"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Phone1"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Phone2"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Phone3"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Phone4"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/GISID"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Ward"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Clust"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Block"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/FaSize"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/EnDate"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/MotherName"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/FatherName"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/HeadName"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/SpouseName"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Ucode"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/UnionName"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/VillK"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Vpart"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/VillName"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Mohalla"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Bari"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Khana"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Project"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+
+        <TextView
+            android:id="@+id/Location"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="none"
+            android:scrollHorizontally="false" />
+    </TableRow>
+
+</TableLayout>

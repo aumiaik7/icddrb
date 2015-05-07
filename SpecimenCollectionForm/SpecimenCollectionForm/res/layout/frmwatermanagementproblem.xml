@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="0px"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="akdals"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/checkBoxHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout111"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/LinearLayout112"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/lblcol1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Water related problem"
+                            android:textStyle="bold" >
+                        </TextView>
+
+                        <Spinner
+                            android:id="@+id/spcol1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/txtothercol1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text" >
+                        </EditText>
+
+                        <TextView
+                            android:id="@+id/lblcol2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="In the past 12 months was your household affected by"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spcol2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/lblcol3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In how many of the past 12 months did you experience"
+                        android:textStyle="bold" />
+
+                    
+                    <CheckBox
+                            android:id="@+id/txtcol3_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1 = January" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 = February" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="3 = March" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4 = April" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5 = May" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="6 = June" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="7 = July" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="8 = August" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="9 = September" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="10 = October" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol3_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="11= November" />
+                        
+                          <CheckBox
+                            android:id="@+id/txtcol3_12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="12= December" />
+                        
+                   <!--  <EditText
+                        android:id="@+id/txtcol3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="numberDecimal" /> -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ln0112"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/lblcol4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="In which season/months? (multiple answers possible)"
+                        android:textStyle="bold" >
+                    </TextView>
+
+                    <CheckBox
+                        android:id="@+id/txtcol4_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Aush" />
+
+                    <CheckBox
+                        android:id="@+id/txtcol4_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Amon" />
+
+                    <CheckBox
+                        android:id="@+id/txtcol4_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Boro" />
+
+                    <CheckBox
+                        android:id="@+id/txtcol4_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Robi" />
+
+                    <LinearLayout
+                        android:id="@+id/Ln0112"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/lblcol5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="What was the cause?"
+                            android:textStyle="bold" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1 = absence of (sufficient) water infrastructure" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 = deterioration of water infrastructure" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="3 = sabotage of water infrastructure" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4 = decision by water management group" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5 = drought" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="6 = (excessive) rainfall" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="7 =  no specific cause" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol5_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="8 = other" />
+
+                        <EditText
+                            android:id="@+id/txtcol5other"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text" />
+
+                        <TextView
+                            android:id="@+id/lblcol6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="What was the consequence?"
+                            android:textStyle="bold" >
+                        </TextView>
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="1 = crop yields were reduced" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="2 = (almost) all crops were totally destroyed" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="3 = crops were partially destroyed" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="4 = planting of crops was postponed" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5 = land could not be used for crop production for entire season" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="6 = land could not be used for crop production for (almost) the entire past year" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="7 = fishery/aquaculture production was affected" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="8 = livestock production was affected" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="9 = source of drinking water was affected" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="10 = no serious consequences" />
+
+                        <CheckBox
+                            android:id="@+id/txtcol6_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="11= other" />
+
+                        <EditText
+                            android:id="@+id/txtcol6other"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:inputType="text" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dip"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/btnNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.96"
+            android:text="Add Note" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/clButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Clear" >
+        </Button>
+
+        <Button
+            android:id="@+id/saveNxtButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Save &amp; Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

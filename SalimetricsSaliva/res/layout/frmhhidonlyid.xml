@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+   android:id="@+id/rootView">
+  <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1">
+  	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+  	  	
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal">
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/qqq"></TextView>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/LinearLayout03" android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="vertical" android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Poultry worker’s / Household member’s ID:"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="vertical">
+   
+	    <LinearLayout android:id="@+id/LinearLayout30" android:orientation="horizontal" android:layout_height="wrap_content" android:weightSum="1" android:layout_width="match_parent">
+	    </LinearLayout>
+	    <LinearLayout android:id="@+id/LinearLayout30" android:orientation="horizontal" android:layout_height="wrap_content" android:weightSum="1" android:layout_width="wrap_content"> 
+	        <EditText android:inputType="number" android:layout_height="wrap_content" android:id="@+id/txtMarketID" android:layout_width="98dp" android:maxLength="2"></EditText>
+	        <EditText android:inputType="number" android:layout_height="wrap_content" android:id="@+id/txtID" android:layout_width="98dp" android:maxLength="2"></EditText>  
+	    </LinearLayout>
+	    
+        
+   </LinearLayout>
+   
+   
+   <LinearLayout android:layout_width="match_parent" android:id="@+id/LinearLayout04" android:orientation="vertical" android:layout_height="56dp">
+    </LinearLayout>
+   
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+   
+    <LinearLayout android:id="@+id/LinearLayout06" android:orientation="vertical" android:layout_height="wrap_content" android:weightSum="1" android:layout_width="wrap_content">
+        <TextView android:layout_height="wrap_content" android:text="Mdeical ID: " android:id="@+id/TextView10" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content"></TextView>
+        <EditText android:inputType="number" android:layout_height="wrap_content" android:id="@+id/txtHC1" android:layout_width="fill_parent" android:maxLength="2"></EditText>
+          
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayout55" android:orientation="vertical" android:weightSum="1" android:layout_width="wrap_content">
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView11" android:text="Cluster ID: " android:layout_width="wrap_content"></TextView>    
+        <EditText android:inputType="number" android:layout_height="wrap_content" android:maxLength="3" android:layout_width="fill_parent" android:id="@+id/txtClusterID1"></EditText>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_height="wrap_content" android:id="@+id/LinearLayout45" android:orientation="vertical" android:weightSum="1" android:layout_width="wrap_content">
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/TextView12" android:text="HH ID: "></TextView>
+        <EditText android:layout_height="wrap_content" android:id="@+id/txtHHID1" android:inputType="number" android:maxLength="2" android:layout_width="fill_parent"></EditText>
+    </LinearLayout>
+        
+   </LinearLayout>
+   
+   
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/LinearLayout04" android:orientation="vertical">
+    </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout3" android:orientation="horizontal" android:weightSum="6" android:gravity="center_horizontal">
+        <Button android:layout_weight="2" android:layout_marginRight="10dip" android:layout_height="wrap_content" android:id="@+id/genButton" android:layout_width="wrap_content" android:text="Generate"></Button>
+        <Button android:layout_weight="2" android:layout_marginLeft="10dip" android:layout_height="wrap_content" android:id="@+id/confButton" android:layout_width="wrap_content" android:text="Save &amp; Next"></Button>
+    </LinearLayout>
+    
+</LinearLayout>

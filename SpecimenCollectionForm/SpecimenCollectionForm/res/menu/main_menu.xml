@@ -1,0 +1,4 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/AddMenuItem" android:title="Add Entry"></item>
+        <item android:id="@+id/EditMenuItem" android:title="Edit Entry"></item>
+</menu>

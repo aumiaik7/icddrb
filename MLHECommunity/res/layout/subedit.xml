@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/blue"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="Edit Sections"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/checkBoxHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/btnEAdults"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickbtnEAdults"
+                    android:text="Edit Pregnant Women and Adults Questionnaire" />
+
+                <Button
+                    android:id="@+id/btnEAdultsDischarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickbtnbtnEAdultsDischarge"
+                    android:text="Edit Pregnant Women and Adults Discharge Questionnaire" />
+
+                <Button
+                    android:id="@+id/btnENeonates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickbtnENeonates"
+                    android:text="Edit Neonates Questionnaire"
+                     />
+
+                <Button
+                    android:id="@+id/btnENeonatesDischarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickbtnENeonatesDischarge"
+                    android:text="Edit Neonates Discharge Questionnaire"
+                    />
+
+                <Button
+                    android:id="@+id/btnHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="ClickbtnHome"
+                    android:text="Home" />
+
+                <Button
+                    android:id="@+id/prevButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="previous"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/Theme.MyAppTheme.ActionBar</item>
+        <item name="android:button">@style/btnStyleOrange</item>
+    </style>
+
+    <style name="Theme.MyAppTheme.ActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#E8A317</item>
+     
+    </style>
+
+    <style name="btnStyleOrange" parent="@android:style/Widget.Button.Small">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#E8A317</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">#E8A317</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.6</item>
+        <item name="android:padding">10dip</item>
+    </style>
+
+    <style name="scroll_view">
+
+        <!-- <item name="android:fadeScrollbars">false</item> -->
+        <item name="android:scrollX">0dp</item>
+        <item name="android:scrollY">0dp</item>
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarSize">50dp</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:divider">#FFF</item>
+
+        <!--
+             <item name="android:scrollbarTrackVertical">@drawable/sc_bar</item>
+        <item name="android:scrollbarThumbVertical">@drawable/sc_bar</item>
+        -->
+
+    </style>
+
+</resources>

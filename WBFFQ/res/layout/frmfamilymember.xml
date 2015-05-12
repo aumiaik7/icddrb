@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+   android:id="@+id/rootView">
+  <ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1">
+  
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_weight="1">
+        					<LinearLayout android:focusable="true"
+						android:focusableInTouchMode="true" android:layout_width="0px"
+						android:layout_height="0px" />
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/qqq" android:layout_width="fill_parent" android:gravity="center" android:text="akdals" android:layout_marginBottom="20dip"></TextView>
+      <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:id="@+id/checkBoxHolder">
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout111">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" android:id="@+id/lblMemberID" android:textStyle="bold"></TextView>
+              <Spinner android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_weight="1" android:id="@+id/spinnerMember"></Spinner>
+          </LinearLayout>
+          <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="match_parent" android:id="@+id/LinearLayout13">
+          </LinearLayout>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout112">
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" android:id="@+id/lblMName" android:textStyle="bold"></TextView>
+              <EditText android:layout_height="wrap_content" android:id="@+id/txtMName" android:layout_width="fill_parent" android:inputType="text" android:layout_weight="1"></EditText>
+          </LinearLayout>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout113">
+
+              <LinearLayout
+                  android:id="@+id/LinearLayout114"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical" >
+
+                  <TextView
+                      android:id="@+id/lblAge"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="TextView"
+                      android:textStyle="bold" />
+
+                  <LinearLayout
+                      android:id="@+id/LinearLayout1141"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal" >
+
+                      <EditText
+                          android:id="@+id/txtMonth"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:inputType="number" >
+
+                          <requestFocus />
+                      </EditText>
+
+                      <EditText
+                          android:id="@+id/txtYear"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:inputType="number" />
+                  </LinearLayout>
+              </LinearLayout>
+
+              <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TextView" android:id="@+id/lblSex" android:textStyle="bold"></TextView>
+              <Spinner android:layout_weight="1" android:layout_height="wrap_content" android:id="@+id/spinnerSex" android:layout_width="fill_parent"></Spinner>
+          </LinearLayout>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout116">
+          </LinearLayout>
+          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout112">
+
+              <TextView
+                  android:id="@+id/lblRel"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="TextView"
+                  android:textStyle="bold" >
+</TextView>
+              <EditText android:layout_height="wrap_content" android:id="@+id/txtRel" android:layout_width="fill_parent" android:inputType="text" android:layout_weight="1"></EditText>
+    </LinearLayout>
+      </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+     <LinearLayout android:layout_marginBottom="10dip" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:weightSum="1" android:layout_height="30dp" android:layout_weight="0.03">
+
+         <Button
+             android:id="@+id/btnNote"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_weight="0.96"
+             android:text="Add Note" />
+
+    </LinearLayout>
+    
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout3" android:orientation="horizontal" android:weightSum="6" android:gravity="center_horizontal">
+        <Button android:layout_weight="2" android:layout_marginRight="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/prevButton" android:text="Previous"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2" android:text="Clear" android:id="@+id/clButton"></Button>
+        <Button android:layout_weight="2" android:layout_marginLeft="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Save &amp; Next" android:id="@+id/saveNxtButton"></Button>
+    </LinearLayout>
+    
+</LinearLayout>

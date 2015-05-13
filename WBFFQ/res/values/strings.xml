@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, LoginActivity!</string>
-    <string name="app_name">Food Frequency Questionnaire</string>
+    <string name="app_name">WB Food Frequency Questionnaire</string>
     
     <string name="lblMmberIDBN">µwgK bs</string>
     <string name="lblMemeberBN">bvg</string>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<ScrollView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1">
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:inputType="numberDecimal" android:maxLength="11" >
         </EditText>
     </LinearLayout>
-
+</ScrollView>
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"

@@ -6054,6 +6054,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						chk17_4, chk16_5, CommonStaticClass.dataId);
 
 		if (dbHelper.executeDMLQuery(sql)) {
+			this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 			CommonStaticClass.findOutNextSLNo(
 					qName,
 					CommonStaticClass.questionMap.get(
@@ -13210,15 +13211,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			monthText.setText("");
 			dayText.setText("");
 
-			if (CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar()
-					.equalsIgnoreCase("c606")) {
-
-				CommonStaticClass.findOutNextSLNo(CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar(), "c607a");
-				CommonStaticClass.nextQuestion(ParentActivity.this);
-				return;
-			}
+			
 
 			CommonStaticClass.findOutNextSLNo(
 					CommonStaticClass.questionMap.get(

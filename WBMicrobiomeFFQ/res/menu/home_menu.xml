@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/BNGMenuItem" android:title="Bangla"></item>
+        <item android:id="@+id/ENGMenuItem" android:title="English"></item>
+        <item android:id="@+id/StoreItem" android:title="Store Database To SDCARD"></item>
+        <item android:id="@+id/ExitItem" android:title="EXIT"></item>
+</menu>

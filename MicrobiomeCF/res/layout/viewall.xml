@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dip" >
+
+    <LinearLayout
+        style="@style/scroll_view"
+        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:orientation="vertical"
+        android:scrollbars="vertical" >
+
+        <TextView
+            android:id="@+id/DisplayCriteria"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dip"
+            android:ellipsize="none"
+            android:text=""
+            android:textColor="#0404B4"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <!--
+             <TextView
+            android:id="@+id/DisplayRowCount"
+            android:layout_width="1000dip"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dip"
+            android:ellipsize="none"
+            android:text=""
+            android:textColor="#0404B4"
+            android:textStyle="bold" />
+        -->
+
+        <TableLayout
+            android:id="@+id/TableLayout02"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dip"
+            android:scrollbars="horizontal" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="180dip"
+                android:background="@color/blue"
+                android:scrollbars="horizontal" >
+
+                <TextView
+                    android:id="@+id/PIDCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="dataid" />
+
+                <TextView
+                    android:id="@+id/HhCaption"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="HosCode" />
+
+                <!-- <TextView
+                    android:id="@+id/SlnoCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="PatientID" /> -->
+
+                <TextView
+                    android:id="@+id/NameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="HOSPID"
+                    />
+
+                <TextView
+                    android:id="@+id/SexCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="PatientTY" />
+
+                <TextView
+                    android:id="@+id/AgeCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="RegDate" />
+
+                <TextView
+                    android:id="@+id/BDateCaption"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="RegTime" />
+
+                <TextView
+                    android:id="@+id/RthCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/MSCaption"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="BDate" />
+
+                <TextView
+                    android:id="@+id/AreaCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Sex" />
+
+                <TextView
+                    android:id="@+id/SecBlockCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="AgeYr" />
+
+                <TextView
+                    android:id="@+id/RoadCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="AgeMo" />
+
+                <TextView
+                    android:id="@+id/HouseCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="AgeDa" />
+
+                <TextView
+                    android:id="@+id/DistCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="BDType" />
+
+                <TextView
+                    android:id="@+id/UPZCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="FaSpName" />
+
+                <TextView
+                    android:id="@+id/VillCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Ward" />
+
+                <TextView
+                    android:id="@+id/Phone1Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Area" />
+
+                <TextView
+                    android:id="@+id/Phone2Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="SecBlock" />
+
+                <TextView
+                    android:id="@+id/Phone3Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Road" />
+
+                <TextView
+                    android:id="@+id/Phone4Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="House" />
+
+                <TextView
+                    android:id="@+id/GISIDCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="HH" />
+
+                <TextView
+                    android:id="@+id/WardCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="SL" />
+
+                <TextView
+                    android:id="@+id/ClustCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="PID" />
+
+               
+    				<TextView
+                    android:id="@+id/MotherNameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Dist" />
+    
+    				<TextView
+                    android:id="@+id/EnDateCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="UPZ" />
+    				
+                
+                 <TextView
+                    android:id="@+id/BlockCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Phone" />
+
+                 
+                  
+                  
+                  
+            
+				<TextView
+                    android:id="@+id/FaSizeCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Vill" />
+
+
+                <TextView
+                    android:id="@+id/FatherNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="WT" />
+
+                <TextView
+                    android:id="@+id/HeadNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="HT" />
+
+                <TextView
+                    android:id="@+id/SpouseNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="MUAC" />
+
+                <TextView
+                    android:id="@+id/UcodeCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS17" />
+
+                <TextView
+                    android:id="@+id/UnionNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS18D" />
+
+                <TextView
+                    android:id="@+id/VillKCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS18H" />
+
+                <TextView
+                    android:id="@+id/VpartCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS19" />
+
+                <TextView
+                    android:id="@+id/VillNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS20" />
+
+                <TextView
+                    android:id="@+id/MohallaCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS21" />
+
+                <TextView
+                    android:id="@+id/BariCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS22" />
+
+                <TextView
+                    android:id="@+id/KhanaCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS23" />
+
+                <TextView
+                    android:id="@+id/ProjectCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS24" />
+
+                <TextView
+                    android:id="@+id/LocationCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS25" />
+
+                <TextView
+                    android:id="@+id/DS26"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS26" />
+
+                <TextView
+                    android:id="@+id/DS26a"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS26a" />
+
+                <TextView
+                    android:id="@+id/DS26b"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS26b" />
+
+                <TextView
+                    android:id="@+id/DS27"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS27" />
+
+                <TextView
+                    android:id="@+id/DS28D"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS28D" />
+
+                <TextView
+                    android:id="@+id/DS28H"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS28H" />
+
+                <TextView
+                    android:id="@+id/DS29"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS29" />
+
+                <TextView
+                    android:id="@+id/DS30"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS30" />
+
+                <TextView
+                    android:id="@+id/DS31"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS31" />
+
+                <TextView
+                    android:id="@+id/DS32D"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS32D" />
+
+                <TextView
+                    android:id="@+id/DS32H"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS32H" />
+
+                <TextView
+                    android:id="@+id/DS33"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS33" />
+
+                <TextView
+                    android:id="@+id/DS34"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS34" />
+
+                <TextView
+                    android:id="@+id/DS35D"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS35D" />
+
+                <TextView
+                    android:id="@+id/DS35H"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS35H" />
+
+                <TextView
+                    android:id="@+id/DS36"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS36" />
+
+                <TextView
+                    android:id="@+id/DS37"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS37" />
+
+                <TextView
+                    android:id="@+id/DS38"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS38" />
+
+                <TextView
+                    android:id="@+id/DS39"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS39" />
+
+                <TextView
+                    android:id="@+id/DS40"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS40" />
+
+                <TextView
+                    android:id="@+id/DS41"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS41" />
+
+                <TextView
+                    android:id="@+id/DS42"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS42" />
+
+                <TextView
+                    android:id="@+id/DS43"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS43" />
+
+                <TextView
+                    android:id="@+id/DS44"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS44" />
+
+                <TextView
+                    android:id="@+id/DS45"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS45" />
+
+                <TextView
+                    android:id="@+id/DS46"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS46" />
+
+                <TextView
+                    android:id="@+id/DS47"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS47" />
+
+                <TextView
+                    android:id="@+id/DS48"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS48" />
+
+                <TextView
+                    android:id="@+id/DS49"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS49" />
+
+                <TextView
+                    android:id="@+id/DS50"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS50" />
+
+                <TextView
+                    android:id="@+id/DS51"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS51" />
+
+                <TextView
+                    android:id="@+id/DS52"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS52" />
+
+                <TextView
+                    android:id="@+id/DS53"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS53" />
+
+                <TextView
+                    android:id="@+id/DS54"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS54" />
+
+                <TextView
+                    android:id="@+id/DS55"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS55" />
+
+                <TextView
+                    android:id="@+id/DS56"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS56" />
+
+                <TextView
+                    android:id="@+id/DS57"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS57" />
+
+                <TextView
+                    android:id="@+id/DS58"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS58" />
+
+                <TextView
+                    android:id="@+id/DS59C"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS59C" />
+
+                <TextView
+                    android:id="@+id/DS59P"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS59P" />
+
+                <TextView
+                    android:id="@+id/DS60"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS60" />
+
+                <TextView
+                    android:id="@+id/DS61"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS61" />
+
+                <TextView
+                    android:id="@+id/DS62"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS62" />
+
+                <TextView
+                    android:id="@+id/DS63"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS63" />
+
+                <TextView
+                    android:id="@+id/DS64"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS64" />
+
+                <TextView
+                    android:id="@+id/DS65"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS65" />
+
+                <TextView
+                    android:id="@+id/DS66"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS66" />
+
+                <TextView
+                    android:id="@+id/DS67"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS67" />
+
+                <TextView
+                    android:id="@+id/DS68"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS68" />
+
+                <TextView
+                    android:id="@+id/DS69"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="DS69" />
+
+                <TextView
+                    android:id="@+id/ENTRYBY"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="ENTRYBY" />
+
+                <TextView
+                    android:id="@+id/EntryDate"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="EntryDate" />
+
+                <TextView
+                    android:id="@+id/EditBy"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="EditBy" />
+
+                <TextView
+                    android:id="@+id/EditDate"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="EditDate" />
+            </TableRow>
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/gridview"
+            style="@style/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:clipChildren="true"
+            android:horizontalSpacing="5dip"
+            android:isScrollContainer="true"
+            android:numColumns="1"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dip"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</HorizontalScrollView>

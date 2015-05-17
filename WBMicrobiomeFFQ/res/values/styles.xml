@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="DialogAnimationOutUpInUp">
+        <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_up</item>
+    </style>
+    
+</resources>

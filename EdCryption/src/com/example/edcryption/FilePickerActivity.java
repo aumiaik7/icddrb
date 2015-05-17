@@ -7,17 +7,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import com.icddrb.app.edcryption.db.DatabaseHelper;
+
+
+import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,11 +43,22 @@ public class FilePickerActivity extends ListActivity {
     protected boolean mShowHiddenFiles = false;
     protected String[] acceptedFileExtensions;
     private static String DB_PATH = "/mnt/sdcard/";
+    DatabaseHelper dbHelper;
+	DatabaseHelper dbHelperBase;
+	private String password = "";
+	
+	File newFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (DatabaseHelper.getInstance() == null) {
+			dbHelper = new DatabaseHelper(this);
+			dbHelper.openDataBase();
+		} else {
+			dbHelper = DatabaseHelper.getInstance();
+		}
         // Set the view to be shown if the list is empty
         LayoutInflater inflator = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View emptyView = inflator.inflate(R.layout.file_picker_empty_view, null);
@@ -154,9 +172,11 @@ public class FilePickerActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        File newFile = (File)l.getItemAtPosition(position);
+        newFile = (File)l.getItemAtPosition(position);
 
         if(newFile.isFile()) {
+        	
+        	
       /*      // Set result
             Intent extra = new Intent();
             extra.putExtra(EXTRA_FILE_PATH, newFile.getAbsolutePath());
@@ -164,7 +184,17 @@ public class FilePickerActivity extends ListActivity {
             // Finish the activity
         	Toast.makeText(this, newFile.getAbsolutePath(), 1000).show();
             finish();*/
-        	encrypt(newFile.getAbsolutePath());
+        	//encrypt(newFile.getAbsolutePath());
+        	if(noPassword())
+        	{
+        		showPasswordDialog();
+        	}
+        	else
+        	{
+        		showMyAlert(this, "ALERT!!", "This Database is already Encrypted");
+        	}
+        		
+        	
         } else {
             mDirectory = newFile;
             // Update the files list
@@ -174,30 +204,7 @@ public class FilePickerActivity extends ListActivity {
         //super.onListItemClick(l, v, position, id);
     }
 
-    private void encrypt(String absolutePath) {
-		// TODO Auto-generated method stub
-    	File unencFile = new File(absolutePath);
-		
-		 
-		  File encFile = new File(DB_PATH +"enCIFHEVSurveillance.sqlite");
-		  encFile.delete();
-		  
-		  SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(unencFile, "", null); 
-		  if (database.isOpen()) {
-			  database.rawExecSQL(String.format("ATTACH DATABASE '%s' AS encrypted KEY '%s'",
-					  encFile.getAbsolutePath(), "test123"));
-		      database.rawExecSQL("select sqlcipher_export('encrypted')");
-		      database.rawExecSQL("DETACH DATABASE encrypted");
-		      database.close();
-		   
-		   database = SQLiteDatabase.openOrCreateDatabase(encFile, "test123",
-                 null);
-			
-			database.close();
-			
-		  }
-		
-	}
+    
 
 	private class FilePickerListAdapter extends ArrayAdapter<File> {
 
@@ -285,5 +292,82 @@ public class FilePickerActivity extends ListActivity {
             // No extensions has been set. Accept all file extensions.
             return true;
         }
+    }
+    
+    public boolean noPassword()
+    {
+    	Cursor cursor = null;
+    	String sql = "Select * from tableInfo where dbName='"+ newFile.getName() +"'";
+    	boolean noPassword = false;
+    	try
+    	{
+	    	cursor = dbHelper.getQueryCursor(sql);
+	    	if(cursor.getCount()>0)
+	    	{
+	    		noPassword = false;
+	    	}
+	    	else 
+	    		noPassword = true;
+    	}
+    	 catch (Exception e) {
+ 			// TODO: handle exception
+ 			e.printStackTrace();
+ 		} finally {
+ 			if (cursor != null)
+ 				cursor.close();
+ 		}
+    	
+    	return noPassword;
+    }
+    
+    public  void showMyAlert(Context con, String title,
+			CharSequence message) {
+		new AlertDialog.Builder(con).setTitle(title).setMessage(message)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						dialog.dismiss();
+					}
+				}).setCancelable(false).show();
+	}
+    public void showPasswordDialog()
+    {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    	builder.setTitle("SET PASSWORD");
+
+    	// Set up the input
+    	final EditText input = new EditText(this);
+    	// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+    	//input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    	builder.setView(input);
+
+    	// Set up the buttons
+    	builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
+    	    @Override
+    	    public void onClick(DialogInterface dialog, int which) {
+    	        password = input.getText().toString();
+    	        createRow();
+    	    }
+    	});
+    	builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+    	    @Override
+    	    public void onClick(DialogInterface dialog, int which) {
+    	        dialog.cancel();
+    	    }
+    	});
+
+    	builder.show();
+    }
+    
+    public void createRow()
+    {
+    	
+    	String sql = "insert into tableInfo (dbName,password) values ('"+fileName+"'" +
+    			",'"+password+"') ";
+    	
+    	if(dbHelper.executeDMLQuery(sql))
+    	{
+    		//Toast.makeText(this, "Inserted", 1000).show();
+    		EncryptOrDecrypt.encrypt(absolutePath, sql)
+    	}
     }
 }

@@ -6966,6 +6966,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		compids.add("2");
 		compids.add("3");
 		compids.add("4");
+		compids.add("5");
+		compids.add("6");
+
 
 		adapterSl = new ArrayAdapter(this,
 				android.R.layout.simple_spinner_item, compids);

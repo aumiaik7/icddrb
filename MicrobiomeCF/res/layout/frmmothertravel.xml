@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="heading"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/checkBoxHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/edtmt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 1."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 2."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 3."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 4."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 5."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 6."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 7."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 8."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 9."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 10."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 11."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 12."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 13."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 14."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 15."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 16."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 17."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 18."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 19."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/edtmt20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ems="10"
+                    android:hint="Serial no 20."
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dip"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/btnNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.96"
+            android:text="@string/addcomment" >
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/clButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Clear" >
+        </Button>
+
+        <Button
+            android:id="@+id/saveNxtButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Save &amp; Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

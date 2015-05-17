@@ -5621,6 +5621,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				changeOrientation();
 				userPressedPrevious(ParentActivity.this);
 			}
 
@@ -15245,4 +15246,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		userPressedPrevious(this);
 		// }
 	}
+	public void changeOrientation()
+	{
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+	}k
 }

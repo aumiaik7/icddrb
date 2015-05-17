@@ -20,11 +20,15 @@ public class MainActivity extends Activity implements OnClickListener {
     private Button mStartActivityButton,encryptButton,decryptButton;
     private File selectedFile;
     private int encordec = 0;
+    private static String APP_PATH = "/mnt/sdcard/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        createDirIfNotExists("EDCryption");
+        createDirIfNotExists("EDCryption/Encrypted DBs");
+        createDirIfNotExists("EDCryption/Decrypted DBs");
 
         // Set the views
 //        mFilePathTextView = (TextView)findViewById(R.id.file_path_text_view);
@@ -103,5 +107,18 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         }
+    }
+    
+    public void createDirIfNotExists(String path) {
+        
+
+        File folder = new File(APP_PATH+path);
+        //if (!folder.exists()) {
+        	folder.mkdirs();
+//                Log.e("TravellerLog :: ", "Problem creating Image folder");
+//                ret = false;
+           
+        //}
+        
     }
 }

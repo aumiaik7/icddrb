@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="akdals"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spcategory"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+            </Spinner>
+
+            <TextView
+                android:id="@+id/lblitem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Do NOT count small quantities (Less than 1 teaspoon/person)"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/spitemcolumn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+            </Spinner>
+
+            <TextView
+                android:id="@+id/lblcol2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In the past seven days, did members of your household eat [ item] 1= Yes 0= No>> next item"
+                android:textStyle="bold" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroupCol2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/lndata"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/lblCol3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unit of quantity"
+                    android:textStyle="bold" >
+                </TextView>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupCol3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radio0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Grams" />
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Centilitres" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/lblCol4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What is the current price per unit (see col. 3) for which you could buy this product? (in taka)"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etcol4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" android:maxLength="5" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/lblCol5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In the past 7 days, what quantity was consumed out of home production?"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etcol5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" android:inputType="number" android:maxLength="5" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/lblCol6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In the past 7 days, what quantity was consumed out of purchases?"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etcol6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" android:inputType="number" android:maxLength="5" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/lblCol7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="In the past 7 days, what quantity was consumed from other sources? (e.g. gifts)"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etcol7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" android:inputType="number" android:maxLength="5" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/lblcol8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Did any member of your household also consumed [item] yesterday?"
+                    android:textStyle="bold" >
+                </TextView>
+
+                <RadioGroup
+                    android:id="@+id/radioGroupCol8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radio0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+                </RadioGroup>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dip"
+        android:layout_weight="0.03"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <Button
+            android:id="@+id/btnNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.96"
+            android:text="Add Note" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/clButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Clear" >
+        </Button>
+
+        <Button
+            android:id="@+id/saveNxtButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Save &amp; Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

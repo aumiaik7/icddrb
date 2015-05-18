@@ -2,6 +2,7 @@ package com.icddrb.app.wbendLineenvsamplingd1;
 
 import java.util.ArrayList;
 
+
 import com.icddrb.app.wbendLineenvsamplingd1.R;
 
 import android.app.ProgressDialog;
@@ -60,7 +61,9 @@ public class EditEntry extends BaseActivity{
 				clearEveryThing();
 				
 				
-				String dataid = dID.get(pos);
+				//String dataid = dID.get(pos);
+				String parts[] = dID.get(pos).split("---");
+				String dataid = parts[0];
 				CommonStaticClass.dataId = dataid;
 				
 				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
@@ -180,14 +183,19 @@ public class EditEntry extends BaseActivity{
 		CommonStaticClass.isChecked = false;
 	}
 	private void loadDataToList(){
-		String sql = "Select dataid from tblMainQues";
-				
+		String sql = "Select dataid,EntryDate from tblMainQues ";			
 		Cursor mCursor = null;
-		try{
+		try{			
 			mCursor = dbHelper.getQueryCursor(sql);
 			if(mCursor.moveToFirst()){
 				do{
-					dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
+					CommonStaticClass.dataId = mCursor.getString((mCursor.getColumnIndex("dataid")));
+				//	if(IsComplete(mCursor.getString((mCursor.getColumnIndex("dataid"))), dbHelper))
+						dID.add(mCursor.getString((mCursor.getColumnIndex("dataid")))
+							+"--- Entry Date: "+ mCursor.getString((mCursor.getColumnIndex("EntryDate"))));
+				//	else
+					//	dID.add(mCursor.getString((mCursor.getColumnIndex("dataid")))+" : InComplete");
+					CommonStaticClass.dataId="";
 				}while(mCursor.moveToNext());
 			}
 		}catch (Exception e) {

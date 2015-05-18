@@ -7270,9 +7270,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				// TODO Auto-generated method stub
 				// updateTableData();
 
-				if (((EditText) vg.findViewById(R.id.txtid)).length() != 7) {
+				if (((EditText) vg.findViewById(R.id.txtid)).length() != 6) {
 					CommonStaticClass.showMyAlert(con, "Message",
-							"Id must be of 7 digits");
+							"Id must be of 6 digits");
 					return;
 				}
 				/*
@@ -7297,14 +7297,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				String first3 = Character.toString(CommonStaticClass.dataId.charAt(0)) + Character.toString(CommonStaticClass.dataId.charAt(1))
 								+ Character.toString(CommonStaticClass.dataId.charAt(2));
 				String last2 = Character.toString(CommonStaticClass.dataId.charAt(3)) + Character.toString(CommonStaticClass.dataId.charAt(4));
-				String spill = Character.toString(CommonStaticClass.dataId.charAt(5))
-						+Character.toString(CommonStaticClass.dataId.charAt(6));
+				String spill = Character.toString(CommonStaticClass.dataId.charAt(5));
 				
 				int first3Int = Integer.parseInt(first3);
 				int last2Int = Integer.parseInt(last2);
 				int spillInt = Integer.parseInt(spill);
 				
-				if (CommonStaticClass.dataId.length() == 7) {
+				if (CommonStaticClass.dataId.length() == 6) {
 					if((first3Int >=1 && first3Int <= 720) 
 							&& (last2Int >=1 && last2Int <= 8)
 							&& (spillInt >=1 && spillInt <= 3))
@@ -7355,7 +7354,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					{
 						CommonStaticClass.showMyAlert(con, "Alert", "First 3 digits Should be" +
 								" within 001-720 , middle two digits should be within 01-08 and" +
-								"last two digits should be within 01-03");
+								"last digit should be within 1-3");
 						return;
 					}
 					

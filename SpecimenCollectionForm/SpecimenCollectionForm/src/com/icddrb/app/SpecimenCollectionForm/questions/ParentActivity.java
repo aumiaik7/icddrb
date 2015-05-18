@@ -3208,12 +3208,25 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				Log.e("Current Member ID", CommonStaticClass.memberID);
 			}
 			sResCode = "";
-			CommonStaticClass.findOutNextSLNo(
-					CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getQvar(),
-					CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getQnext1());
-			CommonStaticClass.nextQuestion(ParentActivity.this);
+			
+			if(CommonStaticClass.childID.equalsIgnoreCase("O1")
+					|| CommonStaticClass.childID.equalsIgnoreCase("A1"))
+			{
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						"q6b");
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
+			else 
+			{	
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -15438,7 +15451,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							"Household ID is inconsistent");
 					return;
 				}*/
-				if (CommonStaticClass.spillHouse && mother.length() != 4) { // As if (Integer.valueOf(mother) >
+				if (CommonStaticClass.spillHouse && mother.length() != 3) { // As if (Integer.valueOf(mother) >
 											// 8) length cannot be 2 digit
 					CommonStaticClass.showFinalAlert(con,"Mother ID is inconsistent");
 					return;
@@ -15496,12 +15509,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				}
 				else if(CommonStaticClass.spillHouse)
 				{
-					if(mother.length() == 4)
+					if(mother.length() == 3)
 					{
 						String first2 = Character.toString(mother.charAt(0))
 								+Character.toString(mother.charAt(1));
-						String last1 = Character.toString(mother.charAt(2))
-								+Character.toString(mother.charAt(3));
+						String last1 = Character.toString(mother.charAt(2));
 	//							+Character.toString(CommonStaticClass.dataId.charAt(4))
 	//							+Character.toString(CommonStaticClass.dataId.charAt(4));
 						int first2Int = Integer.parseInt(first2);
@@ -18215,8 +18227,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			if (dbHelper.executeDMLQuery(sql)) {
 
 			
-
-
+				
+				
 						CommonStaticClass.findOutNextSLNo(
 								qName,
 								CommonStaticClass.questionMap.get(
@@ -33254,7 +33266,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	{
 		qName = CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar();
-		if(qName.equalsIgnoreCase("q7") || qName.equalsIgnoreCase("q8") 
+		if(qName.equalsIgnoreCase("q6b") || qName.equalsIgnoreCase("q7") || qName.equalsIgnoreCase("q8") 
 				)
 			return true;
 		

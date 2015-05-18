@@ -2530,6 +2530,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			userIDs = new ArrayList<String>();
 			userIDs.add("");
 			users.add(0+"");
+			userIDs.add(0+"");
 			for(int i = 1 ; i<= 10; i++)
 			{
 				users.add(i+"");
@@ -7305,9 +7306,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				// TODO Auto-generated method stub
 				// updateTableData();
 
-				if (((EditText) vg.findViewById(R.id.txtid)).length() != 7) {
+				if (((EditText) vg.findViewById(R.id.txtid)).length() != 6) {
 					CommonStaticClass.showMyAlert(con, "Message",
-							"ID must be of 7 digits");
+							"ID must be of 6 digits");
 					return;
 				}
 				/*
@@ -7336,13 +7337,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+Character.toString(CommonStaticClass.dataId.charAt(2));
 				String last2 = Character.toString(CommonStaticClass.dataId.charAt(3))
 						+Character.toString(CommonStaticClass.dataId.charAt(4));
-				String spill = Character.toString(CommonStaticClass.dataId.charAt(5))
-						+Character.toString(CommonStaticClass.dataId.charAt(6));
+				String spill = Character.toString(CommonStaticClass.dataId.charAt(5));
 				int first3Int = Integer.parseInt(first3);
 				int last2Int = Integer.parseInt(last2);
 				int spillInt = Integer.parseInt(spill);
 				
-				if (CommonStaticClass.dataId.length() == 7) {
+				if (CommonStaticClass.dataId.length() == 6) {
 					
 					if((first3Int >= 1 && first3Int <=720)
 							&& (last2Int >=1 && last2Int <= 8)
@@ -7395,7 +7395,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					{
 						CommonStaticClass.showMyAlert(con, "Alert", "First 3 digits Should be" +
 								" within 001-720 , middle two digits should be within 01-08 and" +
-								"last two digits should be within 01-03");
+								"last digit should be within 1-3");
 						return;
 					}
 				} else {
@@ -7731,7 +7731,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			else if(CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo).getQvar()
 					.equalsIgnoreCase("q414m"))
 			{
-				PID = "ডাব্লু."+CommonStaticClass.dataId;
+				PID = CommonStaticClass.dataId;
 				letterBng = "ডাব্লু.";
 				letterEng = "W.";
 			}
@@ -12738,7 +12738,29 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 						
 					}
-					else if(qName.equalsIgnoreCase("q5_0")
+					else if(CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_14")
+							&& getChoiceValue("q4_11_1") != 1
+							&& getChoiceValue("q4_11_2") != 1
+							&& getChoiceValue("q4_11_11") != 1
+							&& code == 2)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "sec05");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					} 
+					else if(CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_16")
+							&& getChoiceValue("q4_14") == 2
+							&& code == 2)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "sec05");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					} 
+					else if((qName.equalsIgnoreCase("q5_0"))
 							&& code == 2 && getChoiceValue("q4_16") != 1)
 					{
 						
@@ -12746,6 +12768,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 						
 					}
+					else if((qName.equalsIgnoreCase("q5_2") 
+							|| qName.equalsIgnoreCase("q5_3"))
+							&& code == 3 && getChoiceValue("q4_16") != 1)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "END");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					}
+					
 					else if(qName.equalsIgnoreCase("q5_18")
 							&& getChoiceValue("q4_16") != 1)
 					{
@@ -13517,7 +13549,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void updateTableDataFrmTime() {
 		// TODO Auto-generated method stub
 		String qAns = pickTime.getText().toString();
-		String currentQuestion = CommonStaticClass.questionMap.get(
+		String qName = CommonStaticClass.questionMap.get(
 				CommonStaticClass.currentSLNo).getQvar();
 		if (qAns.length() > 0) {
 
@@ -13532,13 +13564,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET " + currentQuestion + "='" + qAns
+						+ " SET " + qName + "='" + qAns
 						+ "' where dataid='" + CommonStaticClass.dataId + "'";
 			else
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET " + currentQuestion + "='" + qAns
+						+ " SET " + qName + "='" + qAns
 						+ "' where dataid='" + CommonStaticClass.dataId
 						+ "' and memberid=" + CommonStaticClass.memberID;
 
@@ -13551,6 +13583,15 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				{
 					
 					CommonStaticClass.findOutNextSLNo(qName, "q4_18");
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+					
+				} 
+				else if(CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_17")
+						&& getChoiceValue("q4_14") == 2)
+				{
+					
+					CommonStaticClass.findOutNextSLNo(qName, "sec05");
 					CommonStaticClass.nextQuestion(ParentActivity.this);
 					
 				} 

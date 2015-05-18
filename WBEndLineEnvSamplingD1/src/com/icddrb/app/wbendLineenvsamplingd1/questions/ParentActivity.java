@@ -7726,7 +7726,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			else if(CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo).getQvar()
 					.equalsIgnoreCase("q414m"))
 			{
-				PID = "ডাব্লু."+CommonStaticClass.dataId;
+				PID = CommonStaticClass.dataId;
 				letterBng = "ডাব্লু.";
 				letterEng = "W.";
 			}
@@ -12733,7 +12733,29 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 						
 					}
-					else if(qName.equalsIgnoreCase("q5_0")
+					else if(CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_14")
+							&& getChoiceValue("q4_11_1") != 1
+							&& getChoiceValue("q4_11_2") != 1
+							&& getChoiceValue("q4_11_11") != 1
+							&& code == 2)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "sec05");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					} 
+					else if(CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_16")
+							&& getChoiceValue("q4_14") == 2
+							&& code == 2)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "sec05");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					} 
+					else if((qName.equalsIgnoreCase("q5_0"))
 							&& code == 2 && getChoiceValue("q4_16") != 1)
 					{
 						
@@ -12741,6 +12763,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 						
 					}
+					else if((qName.equalsIgnoreCase("q5_2") 
+							|| qName.equalsIgnoreCase("q5_3"))
+							&& code == 3 && getChoiceValue("q4_16") != 1)
+					{
+						
+						CommonStaticClass.findOutNextSLNo(qName, "END");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+						
+					}
+					
 					else if(qName.equalsIgnoreCase("q5_18")
 							&& getChoiceValue("q4_16") != 1)
 					{
@@ -13546,6 +13578,15 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				{
 					
 					CommonStaticClass.findOutNextSLNo(qName, "q4_18");
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+					
+				} 
+				else if(CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q4_17")
+						&& getChoiceValue("q4_14") == 2)
+				{
+					
+					CommonStaticClass.findOutNextSLNo(qName, "sec05");
 					CommonStaticClass.nextQuestion(ParentActivity.this);
 					
 				} 

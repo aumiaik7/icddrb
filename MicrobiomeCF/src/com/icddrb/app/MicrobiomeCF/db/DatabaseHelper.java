@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	
 	private static String DB_PATH = "/mnt/sdcard/";
 	private static String SDDB_PATH = "/mnt/sdcard/external_sd/";
-	private static String DB_NAME = "scform.sqlite";
+	private static String DB_NAME = "EEmicrobiomecf.sqlite";
 
     private static SQLiteDatabase myDataBase = null; 
  

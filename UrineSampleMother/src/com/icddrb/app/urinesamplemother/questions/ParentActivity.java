@@ -13697,8 +13697,7 @@ else {
 			if (mCursor1.moveToFirst()) {
 				do {
 					String column = CommonStaticClass.questionMap
-							.get(CommonStaticClass.currentSLNo).getQvar()
-							.toLowerCase();
+							.get(CommonStaticClass.currentSLNo).getQvar();
 					if (mCursor1.getColumnIndex(column) != -1) {
 						String res = mCursor1.getString(mCursor1
 								.getColumnIndex(column));

@@ -7533,38 +7533,17 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		//code by imtiaz khan
 		if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q6_1"))
+				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q13"))
 		{
-			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EMU01"));
+			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EMJ01"));
 		}
 		
 		else if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q7_1"))
+				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q14"))
 		{
-			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EMU01")));
-		}
-		else if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q6_2"))
-		{
-			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EMU02"));
+			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EMJ01")));
 		}
 		
-		else if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q7_2"))
-		{
-			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EMU02")));
-		}
-		else if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q6_3"))
-		{
-			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EMU03"));
-		}
-		
-		else if(CommonStaticClass.questionMap
-				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q7_3"))
-		{
-			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EMU03")));
-		}
 		else if (CommonStaticClass.langBng) {
 			if (CommonStaticClass.questionMap
 					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {

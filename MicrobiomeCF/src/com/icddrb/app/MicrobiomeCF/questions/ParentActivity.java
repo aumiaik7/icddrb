@@ -2400,7 +2400,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		ln.addView(spinner, 0, layoutParamForSpin);
 		// added by imtiaz khan
 		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("q3") 
+				.getQvar().equalsIgnoreCase("q2") 
 				) {
 
 			// for Reading data from a specific table like user, member etc.
@@ -2415,7 +2415,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				
 				if (CommonStaticClass.questionMap
 						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("q3")
+						.equalsIgnoreCase("q2")
 
 						) {
 					sql = String.format("select * from tblUser");
@@ -2427,7 +2427,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					do {
 						if (CommonStaticClass.questionMap
 								.get(CommonStaticClass.currentSLNo).getQvar()
-								.equalsIgnoreCase("q3"))
+								.equalsIgnoreCase("q2"))
 
 						{
 							users.add(mCursor.getString(mCursor
@@ -2443,7 +2443,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						
 					} while (mCursor.moveToNext());
 				}
-				// Code: imtiaz khan (customize q3)
+				// Code: imtiaz khan (customize q2)
 
 				if (CommonStaticClass.langBng
 						&& (CommonStaticClass.questionMap
@@ -2481,7 +2481,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		} 
 		//code by imtiaz khan
 		else if  (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-		.getQvar().equalsIgnoreCase("q6"))
+		.getQvar().equalsIgnoreCase("antibioSerial"))
 		{
 			String sql1 = "", sql2 = "", sql3 = "";
 
@@ -2497,66 +2497,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			users.add("");
 			userIDs = new ArrayList<String>();
 			userIDs.add("");
-			try {
-				mCursor1 = dbHelper.getQueryCursor(sql1);
-				
-					if (mCursor1 != null && mCursor1.getCount() > 0) {
-						
-						int i = 1;
-						if (mCursor1.moveToFirst()) {
-							int checkedornot = 0;
-							do {
-								
-								
-									sql3 = "Select q5_"+i+" from tblMainQues where dataid='" + CommonStaticClass.dataId + "'";
-									try {
-										mCursor2 = dbHelper.getQueryCursor(sql3);
-										
-											if (mCursor2 != null && mCursor2.getCount() > 0)
-											{
-												mCursor2.moveToFirst();
-												checkedornot = Integer.parseInt
-														(mCursor2.getString((mCursor2
-														.getColumnIndex("q5_"+i))));
-												if(checkedornot!=-1)
-												{
-													
-													
-													
-													Log.e("",
-															mCursor1.getString(mCursor1.getColumnIndex("QID"))
-																	+ "");
-														
-													users.add(mCursor1.getString((mCursor1
-																.getColumnIndex("CaptionEng"))));
-													userIDs.add(mCursor1.getString((mCursor1
-															.getColumnIndex("CaptionEng"))));
-														
-													
-												}
-												i++;
-											}
-										}
-										catch (Exception e) {
-											// TODO: handle exception
-											e.printStackTrace();
-										}
-								
-							
-							} while (mCursor1.moveToNext());
-						}
-
-					} 
-					
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			} finally {
-				if (mCursor1 != null)
-					mCursor1.close();
-				if(mCursor2 != null)
-					mCursor2 = null;
+			
+			int totalAntibio = getChoiceValue("q26");
+			
+			for(int i = 1; i <= totalAntibio ; i++)
+			{
+				users.add(i+"");
+				userIDs.add(i+"");
 			}
 			
 
@@ -2715,7 +2662,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				if (parent.getItemAtPosition(pos).toString().length() > 0) {
 					if (CommonStaticClass.questionMap
 							.get(CommonStaticClass.currentSLNo).getQvar()
-							.equalsIgnoreCase("q3") 
+							.equalsIgnoreCase("q2") 
 							)
 						sResCode = parent
 								.getItemAtPosition(pos)
@@ -2727,7 +2674,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					
 					else if( CommonStaticClass.questionMap
 							.get(CommonStaticClass.currentSLNo).getQvar()
-							.equalsIgnoreCase("q6"))
+							.equalsIgnoreCase("antibioSerial"))
 					{
 						sResCode = userIDs.get(pos).toString();
 					}
@@ -2827,7 +2774,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									|| CommonStaticClass.questionMap
 											.get(CommonStaticClass.currentSLNo)
 											.getQvar()
-											.equalsIgnoreCase("q3")
+											.equalsIgnoreCase("q2")
 									|| CommonStaticClass.questionMap
 											.get(CommonStaticClass.currentSLNo)
 											.getQvar()
@@ -3114,58 +3061,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 //				CommonStaticClass.cropfishcode = Integer.parseInt(sResCode);
 //			}
 			//code by imtiaz khan
-			if( CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo)
-					.getQvar()
-					.equalsIgnoreCase("q6"))
-			{
-				Date d = new Date(System.currentTimeMillis());
-				String entryDate = "dd-mmm-yy";
-				entryDate = d.toLocaleString();
-				
-				sql = "Update "
-						+ CommonStaticClass
-								.GetTableName(CommonStaticClass.questionMap
-										.get(CommonStaticClass.currentSLNo)
-										.getQvar())
-						+ " set EditDate = '"
-						+ entryDate +"',"
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getQvar() + "='"
-						+ sResCode + "' Where DataID='"
-						+ CommonStaticClass.dataId + "'";
-					dbHelper.executeDMLQuery(sql);
-				
-					CommonStaticClass.childID = sResCode; 
-					String entryBy = CommonStaticClass.userSpecificId;
-					
-					
-					
-					sql = "Select * from  tblMainQuesL"						
-							+ " Where dataid='" + CommonStaticClass.dataId
-							+ "' and childid = '" + CommonStaticClass.childID + "'";
-					Selectcursor = dbHelper.getQueryCursor(sql);
-	
-					if (!(Selectcursor.getCount() > 0)) {
-						sql = "Insert into tblMainQuesL (dataid,childid, EntryBy, EntryDate, AssetId,VersionNo) values('"
-								+ CommonStaticClass.dataId
-								+ "','"
-								+ CommonStaticClass.childID
-								+ "','"
-								+ CommonStaticClass.userSpecificId
-								+ "','"
-								+ entryDate
-								+ "','"
-								+ CommonStaticClass.AssetID
-								+ "','"
-								+ CommonStaticClass.VersionNo + "')";
-					}
-				
-				
-			}
-
-			else
-			{
+			
+			
 				Date d = new Date(System.currentTimeMillis());
 				String editDate = "dd-mmm-yy";
 				editDate = d.toLocaleString();
@@ -3181,7 +3078,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								CommonStaticClass.currentSLNo).getQvar() + "='"
 						+ sResCode + "' Where DataID='"
 						+ CommonStaticClass.dataId + "'";
-			}
+			
 
 			dbHelper.executeDMLQuery(sql);
 
@@ -15688,12 +15585,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				entryDate = "dd-mmm-yyyy";
 				entryDate = d.toLocaleString();
 
-				int spill = 0;
-				if (CommonStaticClass.spillHouse)
-					spill = 1;
-				String sqlupdate = "Insert into tblMainQues (qSpil,dataid,EntryBy, EntryDate, AssetId,VersionNo) values('"
-						+ spill
-						+ "','"
+				
+				String sqlupdate = "Insert into tblMainQues (dataid,EntryBy, EntryDate, AssetId,VersionNo) values('"
+						
 						+ CommonStaticClass.dataId
 						+ "','"
 						+ CommonStaticClass.userSpecificId
@@ -15899,14 +15793,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				
 				String text = CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getQdescbng();
-				String sampleID = CommonStaticClass.dataId+"E"+CommonStaticClass.childID
-						+"S0";
-				
+				/*String sampleID = CommonStaticClass.dataId+"E"+CommonStaticClass.childID
+						+"S0";*/
+				/*
 				String randomID = getRandomId(sampleID);
 				if(CommonStaticClass.langBng)			
-					qqq.setText("নিশ�?চিত কর�?ন যে পায়খানার নম�?না পরীক�?ষা করার জন�?য আপনি ক�?যাটো-ক�?যাটজ �?লিকট তৈরী করেছেন" +
-							" �?বং ক�?যাটো-ক�?যাটজ �?লিকটের গায়ে লাগানো বারকোডের স�?যাম�?পল আইডি ও রেনডম আইডি সাথে নিন�?মোক�?ত স�?যাম�?পল আইডি ও " +
-							"রেনডম আইডি হ�?বহ�? মিল আছে। " +
+					qqq.setText("নিশ�?চিত কর�?ন যে পায়খানার নম�?না পরীক�?ষা করার জন�?য আপনি ক�?যাটো-ক�?যাটজ �?লিকট তৈরী করেছেন" +
+							" �?বং ক�?যাটো-ক�?যাটজ �?লিকটের গায়ে লাগানো বারকোডের স�?যাম�?পল আইডি ও রেনডম আইডি সাথে নিন�?মোক�?ত স�?যাম�?পল আইডি ও " +
+							"রেনডম আইডি হ�?বহ�? মিল আছে। " +
 					"\n\nSample ID: "+sampleID+ " \nRandom ID: " +
 							randomID);
 				else 
@@ -15914,14 +15808,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							"this individual and make sure that the sample ID and " +
 							"random ID of the barcode on the Kato-Katz aliquot match the following:"+
 					"\n\nSample ID: "+sampleID+ " \nRandom ID: " +
-							randomID);
+							randomID);*/
 				
 			}
 			else if(CommonStaticClass.questionMap
 					.get(CommonStaticClass.currentSLNo).getQvar()
 					.equalsIgnoreCase("msg04"))
 			{
-				String sampleID =CommonStaticClass.dataId+"E"+CommonStaticClass.childID
+				/*String sampleID =CommonStaticClass.dataId+"E"+CommonStaticClass.childID
 						+"P1";
 				String randomID = getRandomId(sampleID);
 				
@@ -15930,9 +15824,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				{
 					
 					
-					qqq.setText("নিশ�?চিত কর�?ন ব�?লাড স�?পট ফিল�?টার পেপারের গায়ে লাগানো " +
-							"বারকোডের স�?যাম�?পল আইডি ও রেনডম আইডি " +
-							"সাথে নিন�?মোক�?ত স�?যাম�?পল আইডি ও রেনডম আইডি হ�?বহ�? মিল আছে।‌‌"+
+					qqq.setText("নিশ�?চিত কর�?ন ব�?লাড স�?পট ফিল�?টার পেপারের গায়ে লাগানো " +
+							"বারকোডের স�?যাম�?পল আইডি ও রেনডম আইডি " +
+							"সাথে নিন�?মোক�?ত স�?যাম�?পল আইডি ও রেনডম আইডি হ�?বহ�? মিল আছে।‌‌"+
 					"\n\nSample ID: "+sampleID+ " \nRandom ID: " +
 							randomID);
 				}
@@ -15941,7 +15835,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							"random ID of the barcode on the blood spot " +
 							"filter paper match the following:"+
 					"\n\nSample ID: "+sampleID+ " \nRandom ID: " +
-							randomID);
+							randomID);*/
 			}
 		}
 		
@@ -16695,8 +16589,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and childno= '" + CommonStaticClass.childID + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "'";
+//					+ "' and childno= '" + CommonStaticClass.childID + "'";
 		else
 			sql = "Select "
 					+ inColumn
@@ -17014,7 +16908,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			 */
 			// else
 			// added later 7 aug 2012
-			if (qName.equalsIgnoreCase("c306")
+			/*if (qName.equalsIgnoreCase("c306")
 					|| qName.equalsIgnoreCase("c301a")
 					|| qName.equalsIgnoreCase("q201")
 					|| qName.equalsIgnoreCase("c615s")
@@ -17030,7 +16924,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					|| qName.equalsIgnoreCase("q212")) {
 				sql += "where dataid='" + CommonStaticClass.dataId
 						+ "' and childno= '" + CommonStaticClass.childID + "'";
-			} else
+			} else*/
 				sql += "where dataid='" + CommonStaticClass.dataId + "'";
 
 			if (checkIfSingleOptionIsCheckedFrmMultipleCheckCombo()) {
@@ -17190,7 +17084,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						}
 
-					} else if (qName.equalsIgnoreCase("q212")) {
+					} /*else if (qName.equalsIgnoreCase("q212")) {
 
 						String q202_1 = "";
 						String q202_2 = "";
@@ -17341,7 +17235,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											"qv");
 								CommonStaticClass
 										.nextQuestion(ParentActivity.this);
-								/*
+								
 								 * CommonStaticClass.findOutNextSLNo(qName,
 								 * "qv"); CommonStaticClass
 								 * .nextQuestion(ParentActivity.this);
@@ -17349,12 +17243,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								 * CommonStaticClass.findOutNextSLNo(qName,
 								 * "qv"); CommonStaticClass
 								 * .nextQuestion(ParentActivity.this);
-								 */
+								 
 							}
 						}
 
 					}
-
+*/
 					else {
 
 						CommonStaticClass.findOutNextSLNo(
@@ -17640,6 +17534,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			final LinearLayout ln = new LinearLayout(this);
 			ln.setOrientation(LinearLayout.HORIZONTAL);
 			final CheckBox checkButton = new CheckBox(this);
+			checkButton.setPadding(30, 5, 0, 0);
 			if (CommonStaticClass.langBng) {
 				checkButton.setTypeface(font);
 				checkButton
@@ -17656,6 +17551,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				ln.setWeightSum((float) 2.0);
 				final EditText edbox = new EditText(this);
 				edbox.setId(i);
+				if(qName.equalsIgnoreCase("q47_48") 
+						|| qName.equalsIgnoreCase("q33"))
+					edbox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				edList.put(i, edbox);
 				layoutParamForcheck.weight = 1;
 				layoutParamForTextBox.weight = 1;
@@ -17922,14 +17820,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			CheckBox checkButton, String inColumn) {
 		String sql = "";
 		
-		if (qName.equalsIgnoreCase("q5"))
-		{
-			if(getChoiceValue("qSpil") == 1 && inColumn.equalsIgnoreCase("q5_6"))
-			{
-				checkButton.setChecked(true);
-			}
-			
-		}
+		
 		if(loopQusetion())
 		{
 			sql = "Select "
@@ -17940,45 +17831,17 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " where dataid='" + CommonStaticClass.dataId
 					+ "' and childid='" + CommonStaticClass.childID + "'";
 		}
-		else if(loop2Qusetion())
-		{
-			sql = "Select "
-					+ inColumn
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and childid='" + CommonStaticClass.childID 
-					+ "' and sbid='" + CommonStaticClass.stoolBlood + "'";
-		}
 		
-		else if (!CommonStaticClass.isMember)
+		
+		else 
 			sql = "Select "
 					+ inColumn
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else if (qName.equalsIgnoreCase("g5117a")
-				|| qName.equalsIgnoreCase("g5118a")
-				|| qName.equalsIgnoreCase("g51212a")
-				|| qName.equalsIgnoreCase("g51213a"))
-			sql = "Select "
-					+ inColumn
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and cropfishcode=" + CommonStaticClass.cropfishcode;
 		
-		else
-			sql = "Select "
-					+ inColumn
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and childno=" + CommonStaticClass.memberID;
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -18042,42 +17905,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									+ "' where dataid='" + CommonStaticClass.dataId
 									+ "' and childid='" + CommonStaticClass.childID + "'";
 						}
-						else if(loop2Qusetion())
-						{
-							sq = "UPDATE "
-									+ CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo)
-											.getTablename() + " SET "
-									+ op.qnList.get(pairs.getKey()) + " = '"
-									+ pairs.getValue().getText().toString()
-									+ "' where dataid='" + CommonStaticClass.dataId
-									+ "' and childid='" + CommonStaticClass.childID 
-									+ "' and sbid='" + CommonStaticClass.stoolBlood + "'";
-						}
 						
 						
-						else if (!CommonStaticClass.isMember)
-							if (qName.equalsIgnoreCase("n1403d")
-							// || qName.equalsIgnoreCase("n1410")
-							// || qName.equalsIgnoreCase("n1413")
-							// || qName.equalsIgnoreCase("n1415")
-							// || qName.equalsIgnoreCase("n1416")
-							// || qName.equalsIgnoreCase("n1418")
-							// || qName.equalsIgnoreCase("n1419")
-
-							)
-								sq = "UPDATE "
-										+ CommonStaticClass.questionMap.get(
-												CommonStaticClass.currentSLNo)
-												.getTablename() + " SET "
-										+ op.qnList.get(pairs.getKey())
-										+ " = '"
-										+ pairs.getValue().getText().toString()
-										+ "' where dataid='"
-										+ CommonStaticClass.dataId
-										+ "' and childno="
-										+ CommonStaticClass.memberID;
-							else
+						else
 								sq = "UPDATE "
 										+ CommonStaticClass.questionMap.get(
 												CommonStaticClass.currentSLNo)
@@ -18087,36 +17917,6 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										+ pairs.getValue().getText().toString()
 										+ "' where dataid='"
 										+ CommonStaticClass.dataId + "'";
-						else if (qName.equalsIgnoreCase("n1403d")
-						// || qName.equalsIgnoreCase("n1410")
-						// || qName.equalsIgnoreCase("n1413")
-						// || qName.equalsIgnoreCase("n1415")
-						// || qName.equalsIgnoreCase("n1416")
-						// || qName.equalsIgnoreCase("n1418")
-						// || qName.equalsIgnoreCase("n1419")
-
-						)
-							sq = "UPDATE "
-									+ CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo)
-											.getTablename() + " SET "
-									+ op.qnList.get(pairs.getKey()) + " = '"
-									+ pairs.getValue().getText().toString()
-									+ "' where dataid='"
-									+ CommonStaticClass.dataId
-									+ "' and childno="
-									+ CommonStaticClass.memberID;
-						else
-							sq = "UPDATE "
-									+ CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo)
-											.getTablename() + " SET "
-									+ op.qnList.get(pairs.getKey()) + " = '"
-									+ pairs.getValue().getText().toString()
-									+ "' where dataid='"
-									+ CommonStaticClass.dataId
-									+ "' and childno="
-									+ CommonStaticClass.memberID;
 						dbHelper.executeDMLQuery(sq);
 					} /*
 					 * else { CommonStaticClass .showMyAlert(con,
@@ -18191,12 +17991,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				sql += " where dataid='" + CommonStaticClass.dataId
 									+ "' and childid='" + CommonStaticClass.childID + "'";
 			}
-			else if(loop2Qusetion())
-			{
-				sql += " where dataid='" + CommonStaticClass.dataId
-									+ "' and childid='" + CommonStaticClass.childID 
-									+ "' and sbid='" + CommonStaticClass.stoolBlood + "'";
-			}
+			
 			
 			else if (!CommonStaticClass.isMember)
 				sql += " where dataid='" + CommonStaticClass.dataId + "'";
@@ -18215,14 +18010,23 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			if (dbHelper.executeDMLQuery(sql)) {
 
 			
-
-
+				if (qName.equalsIgnoreCase("q47_48")
+						&& aaa.get(0) == 1) {
+					
 						CommonStaticClass.findOutNextSLNo(
-								qName,
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQnext1());
+								qName,"q47_48Other");
 						CommonStaticClass.nextQuestion(ParentActivity.this);
+					
+				}
+				else
+				{
+							CommonStaticClass.findOutNextSLNo(
+									qName,
+									CommonStaticClass.questionMap.get(
+											CommonStaticClass.currentSLNo)
+											.getQnext1());
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+				}
 
 					
 
@@ -20321,6 +20125,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void updateTableDataFrmNumeric() {
 		// TODO Auto-generated method stub
 
+		Cursor Selectcursor = null;
 		String qAns = infoText.getText().toString();
 		if (CommonStaticClass.isNullOrEmpty(qAns)) {
 			CommonStaticClass.showMyAlert(con, "Not Correct",
@@ -20489,9 +20294,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns + "' where dataid='"
-						+ CommonStaticClass.dataId + "' and childid='"
-						+ CommonStaticClass.childID+ "'";
+						+ CommonStaticClass.dataId + "' and antibioticid ='"
+						+ CommonStaticClass.antibioticID + "'";
 			}
+			
+
 			else if(loop2Qusetion())
 			{
 				sql = sql = "UPDATE "
@@ -22393,49 +22200,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				if(loopQusetion())
 				{
 					
-					if( CommonStaticClass.questionMap
-							.get(CommonStaticClass.currentSLNo)
-							.getQvar()
-							.equalsIgnoreCase("q8"))
-					{
-						
-						
-						
-							CommonStaticClass.stoolBlood = code; 
-							String entryBy = CommonStaticClass.userSpecificId;
-							Date d = new Date(System.currentTimeMillis());
-							String entryDate = "dd-mmm-yy";
-							entryDate = d.toLocaleString();
-							
-							
-							sql = "Select * from  tblMainQuesL2"						
-									+ " Where dataid='" + CommonStaticClass.dataId
-									+ "' and childid = '" + CommonStaticClass.childID 
-									+ "' and sbid = '" + CommonStaticClass.stoolBlood + "'";
-							Selectcursor = dbHelper.getQueryCursor(sql);
-			
-							if (!(Selectcursor.getCount() > 0)) {
-								sql = "Insert into tblMainQuesL2 (dataid,childid,sbid,EntryBy, EntryDate, AssetId,VersionNo) values('"
-										+ CommonStaticClass.dataId
-										+ "','"
-										+ CommonStaticClass.childID
-										+ "','"
-										+ CommonStaticClass.stoolBlood
-										+ "','"
-										+ CommonStaticClass.userSpecificId
-										+ "','"
-										+ entryDate
-										+ "','"
-										+ CommonStaticClass.AssetID
-										+ "','"
-										+ CommonStaticClass.VersionNo + "')";
-								
-								dbHelper.executeDMLQuery(sql);
-							}
-						
-						
-					}
-					
+				
 					sql = "UPDATE "
 							+ CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo)
@@ -22515,48 +22280,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							
 												
 					}
-					else if(qName.equalsIgnoreCase("q9") && code == 1)
-					{
-						
-						
-						if(CommonStaticClass.childID.equalsIgnoreCase("A1"))
-						{
-							nullifyWithInRange(qName, "q11");
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									"q11");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else if(whichone() == 1 && isSingleArmEE())
-						{
-							nullifyWithInRange(qName, "msg01");
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									"msg01");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else if(whichone() == 2 
-								|| CommonStaticClass.childID.equalsIgnoreCase("S1")
-								|| (whichone() == 1 && !isSingleArmEE()))
-						{
-							nullifyWithInRange(qName, "msg02");
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									"msg02");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else 
-						{
-							nullifyWithInRange(qName, nextToGo);
-							CommonStaticClass.findOutNextSLNo(qName, nextToGo);
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						
-						
-					}
+					
 					else if(qName.equalsIgnoreCase("q10") && code !=4)
 					{
 						
@@ -22578,7 +22302,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									"q20");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						}
-						else if((CommonStaticClass.childID.equalsIgnoreCase("S1")
+						/*else if((CommonStaticClass.childID.equalsIgnoreCase("S1")
 								||CommonStaticClass.childID.equalsIgnoreCase("A1"))
 								||
 								((whichone()==1 || whichone()==2) && getChoiceValueLoop("q8") == 1))
@@ -22596,7 +22320,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							{
 								showUserFinishDialogFrmText();
 							}
-						}
+						}*/
 						else
 						{
 							nullifyWithInRange(qName, "q11");
@@ -22609,7 +22333,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						
 					}
 					
-					else if(qName.equalsIgnoreCase("q19a"))
+					/*else if(qName.equalsIgnoreCase("q19a"))
 					{
 						if((CommonStaticClass.childID.equalsIgnoreCase("S1")
 								||CommonStaticClass.childID.equalsIgnoreCase("A1"))
@@ -22654,7 +22378,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 						
 						
-					}
+					}*/
 					
 					else if(qName.equalsIgnoreCase("q19b") && code == 2)
 					{
@@ -23057,7 +22781,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					/*
 					 * if (qName.equalsIgnoreCase("q1_3")) { if
 					 * (a.equalsIgnoreCase("null")) {
-					 * infoText.setText(dbHelper.GetSingleColumnData("q3")); }
+					 * infoText.setText(dbHelper.GetSingleColumnData("q2")); }
 					 * else { infoText.setText(dbHelper
 					 * .GetSingleColumnData("q1_3"));
 					 * 
@@ -23258,7 +22982,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				}*/
 				
 					// preserveState();
-				if(qName.equalsIgnoreCase("q7") 
+				/*if(qName.equalsIgnoreCase("q7") 
 						&& (CommonStaticClass.childID.equalsIgnoreCase("S1")
 								|| CommonStaticClass.childID.equalsIgnoreCase("A1")))
 				{
@@ -23339,13 +23063,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					
 				} 
 				else
-				{
+				{*/
 					CommonStaticClass.findOutNextSLNo(
 							qName,
 							CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
-				}
+//				}
 				
 			}
 		} else {
@@ -25895,7 +25619,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				LinearLayout.LayoutParams.WRAP_CONTENT);
 
 		LinearLayout.LayoutParams layoutParamForcheck = new LinearLayout.LayoutParams(
-				(dm.widthPixels / 5) * 2,
+				(dm.widthPixels / 5) * 3,
 				LinearLayout.LayoutParams.WRAP_CONTENT);
 
 		/*
@@ -25967,8 +25691,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			// mEditStrings3.add("-1");
 			// }
 		}
+		if(qName.equalsIgnoreCase("q42_3_4") )
+		{
+			TextView days = (TextView) v.findViewById(R.id.days);
+			TextView hours = (TextView) v.findViewById(R.id.hours);
+			
+			days.setText("Days");
+			hours.setText("Hours");
+			
+		}
 
-		for (int i = 0; i < op.codeList.size(); i++) {
+//		for (int i = 0; i < op.codeList.size(); i++) {
+		for (int i = op.codeList.size() - 1; i >=0 ; i--) {
 
 			Log.e("op.qidList.get(i)", op.qidList.get(i));
 			/*
@@ -25976,9 +25710,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			 * op.qidList.get(i).contains("_Options_2") ||
 			 * op.qidList.get(i).contains("_Options_3")) { continue; }
 			 */
+			
 			LinearLayout ln = new LinearLayout(this);
 			ln.setOrientation(LinearLayout.HORIZONTAL);
+			
+			
 			final CheckBox checkButton = new CheckBox(this);
+			checkButton.setPadding(30, 5, 0, 0);
 			if (CommonStaticClass.langBng) {
 				checkButton.setTypeface(font);
 				checkButton
@@ -26018,10 +25756,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			 */
 
 			// if (adjustForEdit) {
-			et1.setRawInputType(InputType.TYPE_CLASS_TEXT);
+			if(qName.equalsIgnoreCase("q42_3_4"))
+				et1.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			else 
+				et1.setRawInputType(InputType.TYPE_CLASS_TEXT);
 			ln.addView(et1, 0, layoutParamForEditOrSpinner1);
 
-			et2.setRawInputType(InputType.TYPE_CLASS_TEXT);
+			if(qName.equalsIgnoreCase("q42_3_4"))
+				et2.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			else 
+				et2.setRawInputType(InputType.TYPE_CLASS_TEXT);
 			ln.addView(et2, 0, layoutParamForEditOrSpinner2);
 
 			/*
@@ -26771,13 +26515,26 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				 */
 				// if (op.qidList.get(i + 1).contains("_Options")) {
 				// if (adjustEdit) {
-				sql += op.qidList.get(i) + "_1 = '"
-						+ (aaachecklist.get(i) == -1 ? 0 : 1) + "',";
-				sql += op.qidList.get(i) + "_2 = '" + mEditStrings.get(i)
-						+ "',";
-
-				sql += op.qidList.get(i) + "_3 = '" + mEditStrings2.get(i)
-						+ "',";
+				if(qName.equalsIgnoreCase("q42_3_4"))
+				{
+					sql += op.qidList.get(i) + " = '"
+							+ (aaachecklist.get(i) == -1 ? 0 : 1) + "',";
+					sql += op.qidList.get(i) + "days = '" + mEditStrings.get(i)
+							+ "',";
+	
+					sql += op.qidList.get(i) + "hours = '" + mEditStrings2.get(i)
+							+ "',";
+				}
+				else
+				{
+					sql += op.qidList.get(i) + "_1 = '"
+							+ (aaachecklist.get(i) == -1 ? 0 : 1) + "',";
+					sql += op.qidList.get(i) + "_2 = '" + mEditStrings.get(i)
+							+ "',";
+	
+					sql += op.qidList.get(i) + "_3 = '" + mEditStrings2.get(i)
+							+ "',";
+				}
 
 				/*
 				 * sql += op.qidList.get(i) + "_4 = '" + ((aaachecklist.get(i)
@@ -26831,12 +26588,24 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		if (dbHelper.executeDMLQuery(sql)) {
 			if (!gotoskip()) {
-				CommonStaticClass.findOutNextSLNo(
-						CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getQvar(),
-						CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getQnext1());
-				CommonStaticClass.nextQuestion(ParentActivity.this);
+			
+				if (qName.equalsIgnoreCase("q42_3_4")
+						&&  aaachecklist.get(6) == 1) {
+					
+						CommonStaticClass.findOutNextSLNo(
+								qName,"q42_3_4Other");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					
+				}	
+				else
+				{
+					CommonStaticClass.findOutNextSLNo(
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQvar(),
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQnext1());
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+				}
 			}
 		}
 		// } /*else {
@@ -28048,9 +27817,23 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private boolean doFillposMultipleCheckTextTwo(Cursor mCursor1,
 			String columnPrefix, CheckBox checkButton, EditText ed, EditText ed2) {
 		boolean dataOk = false;
-		String column1 = columnPrefix + "_1";
-		String column2 = columnPrefix + "_2";
-		String column3 = columnPrefix + "_3";
+		
+		
+		String column1 = "";
+		String column2 = "";
+		String column3 = "";
+		if(qName.equalsIgnoreCase("q42_3_4"))
+		{
+			column1 = columnPrefix ;
+			column2 = columnPrefix + "days";
+			column3 = columnPrefix + "hours";
+		}
+		else
+		{
+			column1 = columnPrefix + "_1";
+			column2 = columnPrefix + "_2";
+			column3 = columnPrefix + "_3";
+		}
 
 		if (mCursor1.moveToFirst()) {
 			do {
@@ -33254,7 +33037,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	{
 		qName = CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar();
-		if(qName.equalsIgnoreCase("q7") || qName.equalsIgnoreCase("q8") 
+		if(qName.equalsIgnoreCase("27") || qName.equalsIgnoreCase("28") 
 				)
 			return true;
 		
@@ -33264,7 +33047,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	}
 	public boolean loop2Qusetion()
 	{
-		qName = CommonStaticClass.questionMap
+		/*qName = CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar();
 		if( qName.equalsIgnoreCase("q9") 
 				|| qName.equalsIgnoreCase("q10") || qName.equalsIgnoreCase("q10_other") 
@@ -33281,7 +33064,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			return true;
 		
 			
-		else
+		else*/
 			return false;
 	}
 	public int whichone()
@@ -33427,53 +33210,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 		
 		
-	 public void createEntryforLoop2()
-	 {
-		 Cursor Selectcursor = null;
 	
-		 try
-		 {
-			 	CommonStaticClass.stoolBlood = 1; 
-				String entryBy = CommonStaticClass.userSpecificId;
-				Date d = new Date(System.currentTimeMillis());
-				String entryDate = "dd-mmm-yy";
-				entryDate = d.toLocaleString();
-				
-				
-				String sql = "Select * from  tblMainQuesL2"						
-						+ " Where dataid='" + CommonStaticClass.dataId
-						+ "' and childid = '" + CommonStaticClass.childID 
-						+ "' and sbid = '" + CommonStaticClass.stoolBlood + "'";
-				Selectcursor = dbHelper.getQueryCursor(sql);
-
-				if (!(Selectcursor.getCount() > 0)) {
-					sql = "Insert into tblMainQuesL2 (dataid,childid,sbid,EntryBy, EntryDate, AssetId,VersionNo) values('"
-							+ CommonStaticClass.dataId
-							+ "','"
-							+ CommonStaticClass.childID
-							+ "','"
-							+ CommonStaticClass.stoolBlood
-							+ "','"
-							+ CommonStaticClass.userSpecificId
-							+ "','"
-							+ entryDate
-							+ "','"
-							+ CommonStaticClass.AssetID
-							+ "','"
-							+ CommonStaticClass.VersionNo + "')";
-					
-					dbHelper.executeDMLQuery(sql);
-		 }
-	 }
-		 catch (Exception ex) {
-				 CommonStaticClass.showMyAlert(con, "Exception", ex.getMessage().toString());
-			}
-			finally {
-				if (Selectcursor != null)
-					Selectcursor.close();
-				
-			}
-	 }
 	
 
 }

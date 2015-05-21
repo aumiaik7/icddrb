@@ -26,6 +26,34 @@
                 android:text="akdals"
                 android:textAppearance="?android:attr/textAppearanceLarge" >
             </TextView>
+            <LinearLayout 
+                  	android:id="@+id/linearLayoutdays_hours"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:gravity="right"
+			        android:orientation="horizontal"
+			        android:weightSum="5">
+            <TextView
+                android:id="@+id/days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="150dip"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text=" "
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+            <TextView
+                android:id="@+id/hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lncustom"

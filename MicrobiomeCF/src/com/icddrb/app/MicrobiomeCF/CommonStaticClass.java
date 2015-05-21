@@ -67,7 +67,7 @@ public class CommonStaticClass {
 	public static int numberofchildren = 0;
 	public static int cropfishcode=0;
     public static int g5113a=0;
-    public static String childID = "";
+    public static String antibioticID = "";
     public static int stoolBlood = 0;
     public static String spilloverID = "";
     public static boolean spillHouse = false;

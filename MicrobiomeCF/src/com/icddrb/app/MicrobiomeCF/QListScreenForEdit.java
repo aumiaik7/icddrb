@@ -445,9 +445,8 @@ public class QListScreenForEdit extends BaseActivity {
 	private void loadDataToList() {
 		String sql = "";
 		if (!CommonStaticClass.isMember)
-			sql = "Select * from tblQuestion";
-//		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where Qvar not in('qdir','q201','q202','q203','q204','q205','q206','q207','q208','q209','q210','q211','q212','q213'"
-//				+ ",'q62_6a','q62_6b','q62_6c','q62_6d','q62_6e','q62_6f','q62_7phy','q62_7phyOther','q62_8cog','q62_8cogOther') order by SLNo asc";
+			//sql = "Select * from tblQuestion";
+		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where Qvar not in('q27', 'q27other','q28') order by SLNo asc";
 
 		else
 			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where Qvar not in('qdir','q201','q202','q203','q204','q205','q206','q207','q208','q209','q210','q211','q212','q213'"

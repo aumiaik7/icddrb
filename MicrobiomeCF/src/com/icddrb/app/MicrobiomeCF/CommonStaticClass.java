@@ -70,6 +70,7 @@ public class CommonStaticClass {
     public static String antibioticID = "";
     public static int stoolBlood = 0;
     public static String spilloverID = "";
+    public static String childID = "";
     public static boolean spillHouse = false;
     static ArrayList<String> childIdList = new ArrayList<String>();
 

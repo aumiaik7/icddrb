@@ -79,8 +79,9 @@ public class EditEntry extends BaseActivity{
 				// TODO Auto-generated method stub
 				clearEveryThing();
 				
-				String parts[] = dID.get(pos).split("---");
-				String dataid = parts[0];
+				//String parts[] = dID.get(pos).split("---");
+				String dataid = dID.get(pos);
+						//parts[0];
 				CommonStaticClass.dataId = dataid;
 				
 				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
@@ -214,8 +215,7 @@ public class EditEntry extends BaseActivity{
 				do{
 					CommonStaticClass.dataId = mCursor.getString((mCursor.getColumnIndex("dataid")));
 				//	if(IsComplete(mCursor.getString((mCursor.getColumnIndex("dataid"))), dbHelper))
-						dID.add(mCursor.getString((mCursor.getColumnIndex("dataid")))
-							+"--- Last Edit: "+ mCursor.getString((mCursor.getColumnIndex("EditDate"))));
+						dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
 				//	else
 					//	dID.add(mCursor.getString((mCursor.getColumnIndex("dataid")))+" : InComplete");
 					CommonStaticClass.dataId="";

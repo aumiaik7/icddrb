@@ -7535,13 +7535,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		if(CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q14"))
 		{
-			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EMW01"));
+			qqq.setText( Html.fromHtml("Sample ID: "+ CommonStaticClass.dataId+"EFW01"));
 		}
 		
 		else if(CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q15"))
 		{
-			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EMW01")));
+			qqq.setText( Html.fromHtml("Random ID: "+ getRandomId(CommonStaticClass.dataId+"EFW01")));
 		}
 		else if (CommonStaticClass.langBng) {
 			if (CommonStaticClass.questionMap

@@ -87,7 +87,7 @@ public class BaseActivity extends Activity {
 
 	}
 
-	protected void setEveryThingBackToNormalState(MyListTracker ml) {
+	/*protected void setEveryThingBackToNormalState(MyListTracker ml) {
 		CommonStaticClass.pName = ml.pName;
 		CommonStaticClass.addCycleStarted = ml.addCycleStarted;
 		CommonStaticClass.userSpecificId = ml.userSpecificId;
@@ -113,7 +113,7 @@ public class BaseActivity extends Activity {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getFormname());
 		startActivity(i);
-	}
+	}*/
 
 	// protected void preserveState() {
 	// MyListTracker ml = new MyListTracker();
@@ -185,14 +185,11 @@ public class BaseActivity extends Activity {
 					.getQvar();
 			
 			String sql = "";
-			if (!CommonStaticClass.isMember)
+			
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(slNos.get(i))
 								.getTablename() + " SET " + qN + "= null where dataid='" + CommonStaticClass.dataId + "'";
-			else
-				sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(slNos.get(i))
-								.getTablename() + " SET " + qN + "= null and memberid=" + CommonStaticClass.memberID;
+			
 			Log.e("sqlllllllll", sql);
 			if (dbHelper.executeDMLQuery(sql)) {
 				Log.e("nullify", "done");
@@ -203,19 +200,13 @@ public class BaseActivity extends Activity {
 								.getQvar());
 				for (int i1 = 0; i1 < op1.qidList.size(); i1++) {
 					String sql1 = "";
-					if (!CommonStaticClass.isMember)
+					
 						sql1 = "UPDATE "
 								+ CommonStaticClass.questionMap.get(
 										slNos.get(i)).getTablename() + " SET "
 								+ op1.qidList.get(i1) + "= null where dataid='" + CommonStaticClass.dataId
 								+ "'";
-					else
-						sql1 = "UPDATE "
-								+ CommonStaticClass.questionMap.get(
-										slNos.get(i)).getTablename() + " SET "
-								+ op1.qidList.get(i1) + "= null where dataid='" + CommonStaticClass.dataId
-								+ "' and memberid="
-								+ CommonStaticClass.memberID;
+					
 					if (dbHelper.executeDMLQuery(sql1)) {
 						Log.e("nullify", "done");
 					}
@@ -226,7 +217,7 @@ public class BaseActivity extends Activity {
 
 	}
 
-	private void Nullifyq15family() {
+	/*private void Nullifyq15family() {
 		String sql = "";
 		if (!CommonStaticClass.isMember)
 			sql = "DELETE FROM tblFamilyInfo where dataid='"
@@ -234,17 +225,17 @@ public class BaseActivity extends Activity {
 
 		dbHelper.executeDMLQuery(sql);
 
-	}
+	}*/
 
-	public void nullifyq4_3() {
+	/*public void nullifyq4_3() {
 		String sql = "UPDATE tblMainQues SET q4_3_1 = '-1', q4_3_2 = '-1', q4_3_3 = '-1', q4_3_4 = '-1', q4_3_5 = '-1', q4_3_6 = '-1', q4_3_7 = '-1', q4_3_8 = '-1', q4_3_9 ='-1', q4_3_10 = '-1', q4_3_11 = '-1', q4_3_12 = '-1', q4_3_13 = '-1', q4_3_14 = '-1', q4_3_15 = '-1', q4_3_16 = '-1', q4_3_17 = '-1', q4_3_18 = '-1', q4_3_19 = '-1', q4_3_20 = '-1', q4_3_21 = '-1', q4_3_22 = '-1', q4_3_23 = '-1', q4_3_24 = '-1', q4_3_25 = '-1', q4_3_26 = '-1', q4_3_27 ='-1', q4_3_28 = '-1', q4_3_29 = '-1'  where dataid='"
 				+ CommonStaticClass.dataId + "'";
 
 		dbHelper.executeDMLQuery(sql);
 
-	}
+	}*/
 
-	protected int valueFromDB(int slno) {
+	/*protected int valueFromDB(int slno) {
 		int val = -1;
 		String sql = "Select * from "
 				+ CommonStaticClass.questionMap.get(slno).getTablename()
@@ -279,9 +270,9 @@ public class BaseActivity extends Activity {
 				mCursor1.close();
 		}
 		return val;
-	}
+	}*/
 
-	protected void checkDbHasPreviousDataForThisHouseHold() {
+	/*protected void checkDbHasPreviousDataForThisHouseHold() {
 		if (!CommonStaticClass.isChecked) {
 			CommonStaticClass.houseHoldToLook = CommonStaticClass.dataId
 					.substring(1, CommonStaticClass.dataId.length() - 2);
@@ -420,5 +411,5 @@ public class BaseActivity extends Activity {
 			}
 
 		}
-	}
+	}*/
 }

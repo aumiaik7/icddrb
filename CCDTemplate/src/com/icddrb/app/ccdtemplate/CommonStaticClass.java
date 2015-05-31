@@ -26,9 +26,9 @@ public class CommonStaticClass {
 	public static boolean addCycleStarted = false;
 	public static String userSpecificId = "";
 	public static String dataId = "";
-	public static String HosCode = "";
+//	public static String HosCode = "";
 
-	public static String LastPatientID = "";
+//	public static String LastPatientID = "";
 
 	public static String sampleid = "";
 	public static String randomid = "";
@@ -55,13 +55,13 @@ public class CommonStaticClass {
 	public static String VersionNo = "";
 	public static String ClusterId = "";
 	public static String MotherID = "";
-	public static int numberofchildren = 1;
+//	public static int numberofchildren = 1;
 	// ////////////////////////////////////////////////
 	// //sumon variable
-	public static String TabpageVar = "";
-	public static String HouseholdCode = "";
-	public static String dataid_store = "";
-	public static int TotalIndividual = 0;
+//	public static String TabpageVar = "";
+//	public static String HouseholdCode = "";
+//	public static String dataid_store = "";
+//	public static int TotalIndividual = 0;
 	public static String subEdit = "";
 
 	public static void nextQuestion(final ParentActivity activity) {

@@ -144,6 +144,10 @@
         <include
             android:id="@+id/frmneonatelinfo"
             layout="@layout/frmneonatelinfo" />
+        
+         <include
+            android:id="@+id/frmcamera"
+            layout="@layout/frmcamera" />
     </ViewFlipper>
 
 </LinearLayout>

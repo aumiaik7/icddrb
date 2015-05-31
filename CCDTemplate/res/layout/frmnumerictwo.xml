@@ -5,7 +5,10 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
    android:id="@+id/rootView">
-   
+   <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_weight="1">
         <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/qqq" android:layout_width="fill_parent" android:gravity="center" android:text="dada" android:layout_marginBottom="50dip"></TextView>
          <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/LinearLayout112">
@@ -25,6 +28,7 @@
           </LinearLayout>
        
     </LinearLayout>
+    </ScrollView>
     <LinearLayout android:layout_marginBottom="10dip" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:weightSum="1" android:layout_height="30dp" android:layout_weight="0.03">
          <Button  android:id="@+id/btnNote" android:text="@string/addcomment" android:layout_width="match_parent" android:layout_weight="0.96" android:layout_height="match_parent"></Button>
     </LinearLayout>

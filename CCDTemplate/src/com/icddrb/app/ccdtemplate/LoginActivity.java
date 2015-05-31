@@ -1678,7 +1678,7 @@ public class LoginActivity extends BaseActivity {
 		CommonStaticClass.userSpecificId = "";
 		CommonStaticClass.dataId = "";
 		// CommonStaticClass.currentHHMemberLine = 1;
-		CommonStaticClass.totalHHMember = 1;
+//		CommonStaticClass.totalHHMember = 1;
 		CommonStaticClass.SLNOSTACK.clear();
 		// CommonStaticClass.dataHashMap.clear();
 		CommonStaticClass.questionMap.clear();

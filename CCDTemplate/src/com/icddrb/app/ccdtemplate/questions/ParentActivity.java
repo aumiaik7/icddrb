@@ -26,15 +26,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputType;
@@ -62,6 +68,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -75,14 +82,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
-
-
 import com.icddrb.app.ccdtemplate.BaseActivity;
 import com.icddrb.app.ccdtemplate.CommonStaticClass;
 import com.icddrb.app.ccdtemplate.Options;
 import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.adapters.SpinAdapter;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
+
 
 public class ParentActivity extends BaseActivity implements FormListener {
 
@@ -101,6 +107,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private Button btnPrev, btnNext, btnClear, notesButton;
 	private String qName = "";
 	static Typeface font;
+	
 
 	// frmmultiplechecktext
 	private EditText editText1, editText2, editText3, editText4;
@@ -184,6 +191,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	
 	// frmmultiplechoice
 	private LinkedHashMap<Integer, EditText> edList = new LinkedHashMap<Integer, EditText>();
+	private static boolean datepickershow = false;
 
 	// frmmultiplecombo
 	private LinearLayout LinearLayout1, LinearLayout2, LinearLayout3;
@@ -240,8 +248,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	int code, qWhen;
 	String nextToGo;
 	private int idIfEdit = -1;
-	int eightA = 0;
-	int eightB = 0;
+	
 	
 	// frmtime
 	private EditText pickTime;
@@ -273,7 +280,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			frmcomboswitheditspiner, frmmultiplecheckcombotwo,
 			frmmultiplechoiceradio, frmmultiple, frmq124,
 			frmmultiplechecknumeric, frmmultiplecheckdate, frmbarcode,
-			frmnumericwithrdbtn, frmfindsection, frmneonatelinfo;
+			frmnumericwithrdbtn, frmfindsection, frmneonatelinfo,frmcamera;
 
 	private int lastIndexBeforeFraNotes;
 	private TextView dataidViewer;
@@ -304,6 +311,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			chk16_1 = "2", chk16_2 = "2", chk16_3 = "2", chk16_4 = "2",
 			chk16_5 = "2", chk17_1 = "2", chk17_2 = "2", chk17_3 = "2",
 			chk17_4 = "2", chk18_1 = "2", chk18_2 = "2", et19_1 = "";
+	
+	// frmcamera
+	private ImageView mImageView;
+	private static final int ACTION_TAKE_PHOTO_S = 2;
+	private String mCurrentPhotoPath;
+	private static final String JPEG_FILE_PREFIX = "IMG_";
+	private static final String JPEG_FILE_SUFFIX = ".jpg";
+	private Bitmap mImageBitmap;
+	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
+	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -451,6 +468,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		frmnumericwithrdbtn = (ViewGroup) findViewById(R.id.frmnumericwithrdbtn);
 		frmfindsection = (ViewGroup) findViewById(R.id.frmfindsection);
 		frmneonatelinfo = (ViewGroup) findViewById(R.id.frmneonatelinfo);
+		frmcamera = (ViewGroup) findViewById(R.id.frmcamera);
 	}
 
 	protected void FraNotes() {
@@ -459,9 +477,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	}
 
 	// FrmMultipleCheckText
-	public custom_class cls = new custom_class();
+
 	//This is a custom form
-	private void loadGuiFrmMultipleChoiceRadio(final ViewGroup v) {
+	/*private void loadGuiFrmMultipleChoiceRadio(final ViewGroup v) {
 
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		ArrayList<String> spinnervalues = new ArrayList<String>();
@@ -559,12 +577,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										.setText("");
 								((EditText) v.findViewById(R.id.day1))
 										.setVisibility(View.GONE);
-								/*
+								
 								 * ((EditText) v.findViewById(R.id.et1))
 								 * .setText(""); ((EditText)
 								 * v.findViewById(R.id.et1))
 								 * .setVisibility(View.GONE);
-								 */
+								 
 							}
 
 						}
@@ -584,12 +602,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 						if (parent.getItemAtPosition(pos).toString().length() > 0) {
 
-							/*
+							
 							 * ((EditText)
 							 * v.findViewById(R.id.day2)).setText("");
 							 * ((EditText) v.findViewById(R.id.day2))
 							 * .setVisibility(View.GONE);
-							 */
+							 
 
 							sResCode = parent
 									.getItemAtPosition(pos)
@@ -652,12 +670,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										.setText("");
 								((EditText) v.findViewById(R.id.day3))
 										.setVisibility(View.GONE);
-								/*
+								
 								 * ((EditText) v.findViewById(R.id.et3))
 								 * .setText(""); ((EditText)
 								 * v.findViewById(R.id.et3))
 								 * .setVisibility(View.GONE);
-								 */
+								 
 							}
 
 						}
@@ -699,12 +717,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										.setText("");
 								((EditText) v.findViewById(R.id.day4))
 										.setVisibility(View.GONE);
-								/*
+								
 								 * ((EditText) v.findViewById(R.id.et4))
 								 * .setText(""); ((EditText)
 								 * v.findViewById(R.id.et4))
 								 * .setVisibility(View.GONE);
-								 */
+								 
 							}
 
 						}
@@ -1246,10 +1264,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			case 77:
 				((Spinner) v.findViewById(R.id.spinner3)).setSelection(5);
-				/*
+				
 				 * ((EditText) v.findViewById(R.id.et3)).setText(cls
 				 * .getq612_3_other());
-				 */
+				 
 				break;
 
 			default:
@@ -1358,10 +1376,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			case 77:
 				((Spinner) v.findViewById(R.id.spinner6)).setSelection(5);
-				/*
+				
 				 * ((EditText) v.findViewById(R.id.et6)).setText(cls
 				 * .getq612_6_other());
-				 */
+				 
 				break;
 
 			default:
@@ -1384,9 +1402,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			setfonttobangla(v);
 		}
 
-	}
+	}*/
 
-	private void setfonttobangla(ViewGroup v) {
+	/*private void setfonttobangla(ViewGroup v) {
 		((CheckBox) findViewById(R.id.chk1))
 				.setText("wkÃ¯ Lv`Â¨ â€ hgb jÂ¨vKâ€¡Uvâ€¡Rb A_ev bvb A_ev evâ€¡qvwgj,gvBeq AbÂ¨vbÂ¨?");
 		((CheckBox) findViewById(R.id.chk1)).setTypeface(font);
@@ -1411,9 +1429,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				.setText("AbÂ¨ â€¡h â€ Kvb (Gj Gb Gm) ev mÂ¤Ãº~iK cywÃ³/cywÃ³ cÂ¨vâ€¡KU?");
 		((CheckBox) findViewById(R.id.chk6)).setTypeface(font);
 
-	}
+	}*/
 
-	private void updateTableDataFrmMultipleChoiceRadio(custom_class c) {
+	/*private void updateTableDataFrmMultipleChoiceRadio(custom_class c) {
 
 		if (c.save(c)) {
 			CommonStaticClass.findOutNextSLNo(
@@ -1424,7 +1442,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			CommonStaticClass.nextQuestion(ParentActivity.this);
 		}
 
-	}
+	}*/
 
 	/*
 	 * private boolean ValidActivity(View v) {
@@ -2394,9 +2412,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			dateDay = dayOfMonth;
 			//updateDisplay("date");
 			
-			/*if (pickDate != null) {
-				pickDate.setText(dateDay+"/"+dateMonth+"/"+dateYear);
-			}*/
+			if (pickDate != null) {
+				pickDate.setText((((dateDay < 10) ? "0" : "") + dateDay)+"/"+
+						(((dateMonth+1 < 10) ? "0" : "") + (dateMonth+1))+"/"+dateYear);
+			}
 			
 		}
 	};
@@ -4166,6 +4185,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			}
 		});
 
+		Load_DataFrmGPSDataCollection();
 		prevButton = (Button) v.findViewById(R.id.prevButton);
 		prevButton.setOnClickListener(new View.OnClickListener() {
 
@@ -4243,9 +4263,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			String sql = "UPDATE "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " SET Longitude='" + sLongitude + "',Latitude='"
-					+ sLatitude + "' where dataid='" + CommonStaticClass.dataId
-					+ "'";
+					+ " SET " + qName + "Lon='" + sLongitude + "'," + qName
+					+ "Lat='" + sLatitude + "' where dataid='"
+					+ CommonStaticClass.dataId + "'";
 
 			if (dbHelper.executeDMLQuery(sql)) {
 
@@ -4312,8 +4332,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			mCursor1 = dbHelper.getQueryCursor(sql);
 			if (mCursor1.moveToFirst()) {
 				do {
-					String column1 = "Longitude";
-					String column2 = "Latitude";
+					String column1 = qName+"Lon";
+					String column2 = qName+"Lat";
 
 					if (mCursor1.getColumnIndex(column1) != -1) {
 						String a = mCursor1.getString(mCursor1
@@ -7019,16 +7039,6 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				if (CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("Nmsg01")
-						|| CommonStaticClass.questionMap
-								.get(CommonStaticClass.currentSLNo).getQvar()
-								.equalsIgnoreCase("NDmsg01")) {
-					CommonStaticClass.dataId = CommonStaticClass.HouseholdCode;
-					CommonStaticClass.HouseholdCode = "";
-				}
-
 				userPressedPrevious(ParentActivity.this);
 			}
 
@@ -8134,7 +8144,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				LinearLayout.LayoutParams.FILL_PARENT,
 				LinearLayout.LayoutParams.WRAP_CONTENT);
 		LinearLayout.LayoutParams layoutParamForcheck = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.WRAP_CONTENT,
+				(dm.widthPixels / 5) * 3,
 				LinearLayout.LayoutParams.WRAP_CONTENT);
 
 		for (int i = 0; i < op.codeList.size(); i++) {
@@ -8142,12 +8152,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 
 		LinearLayout.LayoutParams layoutParamForTextBox = new LinearLayout.LayoutParams(
-				(dm.widthPixels / 3), LinearLayout.LayoutParams.WRAP_CONTENT);
+				(dm.widthPixels / 5) * 2, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 		for (int i = 0; i < op.codeList.size(); i++) {
 			final LinearLayout ln = new LinearLayout(this);
 			ln.setOrientation(LinearLayout.HORIZONTAL);
 			final CheckBox checkButton = new CheckBox(this);
+			checkButton.setPadding(30, 5, 0, 0);
 			if (CommonStaticClass.langBng) {
 				checkButton.setTypeface(font);
 				checkButton
@@ -8170,36 +8181,72 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				if(qName.equalsIgnoreCase(""))
 					edbox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				//date
-				else if(qName.equalsIgnoreCase("q7"))
+				else if(qName.equalsIgnoreCase(""))
 				{
-					edbox.setOnTouchListener(new View.OnTouchListener() {
-				
-						public boolean onTouch(View v, MotionEvent event) {
+					edbox.setFocusable(false);
+					
+					edbox.setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
 							// TODO Auto-generated method stub
 							final Calendar c = Calendar.getInstance();
-							dateYear = c.get(Calendar.YEAR);
-							dateMonth = c.get(Calendar.MONTH);
-							dateDay = c.get(Calendar.DAY_OF_MONTH);
-							//showDialog(DATE_DIALOG);
-							Calendar mcurrentDate=Calendar.getInstance();
-				            mYear=mcurrentDate.get(Calendar.YEAR);
-				            mMonth=mcurrentDate.get(Calendar.MONTH);
-				            mDay=mcurrentDate.get(Calendar.DAY_OF_MONTH);
+				            mYear = c.get(Calendar.YEAR);
+				            mMonth = c.get(Calendar.MONTH);
+				            mDay = c.get(Calendar.DAY_OF_MONTH);
 
-				            DatePickerDialog mDatePicker=new DatePickerDialog(this, new OnDateSetListener() {                  
-				                public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-				                    // TODO Auto-generated method stub                      
-				                    /*      Your code   to get date and time    */
-				                }
-				            },mYear, mMonth, mDay);
-				            mDatePicker.setTitle("Select date");                
-				            mDatePicker.show();  }
+				            // Launch Date Picker Dialog
+				            DatePickerDialog dpd = new DatePickerDialog(ParentActivity.this,
+				                    new DatePickerDialog.OnDateSetListener() {
+
+				                        public void onDateSet(DatePicker view, int year,
+				                                int monthOfYear, int dayOfMonth) {
+				                            // Display Selected date in textbox
+				                        	edbox.setText((((dayOfMonth < 10) ? "0" : "") + dayOfMonth) + "/"
+				                                    + ((((monthOfYear+1) < 10) ? "0" : "") + (monthOfYear+1)) + "/" + year);
+				                        	
+
+				                        }
+				                        
+				                    }, mYear, mMonth, mDay);
+				            
+				            	dpd.setTitle("Select Date");
+				            	dpd.show();
+				          
 							
-							return false;
 						}
 					});
+				}
+				//time
+				else if(qName.equalsIgnoreCase(""))
+				{
+					edbox.setFocusable(false);
 					
 					
+					edbox.setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							
+
+				            // Launch time Picker Dialog
+							Calendar c = Calendar.getInstance();
+				            int hour = c.get(Calendar.HOUR_OF_DAY);
+				            int minute = c.get(Calendar.MINUTE);
+				            TimePickerDialog mTimePicker;
+				            mTimePicker = new TimePickerDialog(ParentActivity.this, new TimePickerDialog.OnTimeSetListener() {
+				                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+				                    edbox.setText( (((selectedHour<10)? "0" :"")+ selectedHour) + ":" + 
+				                    		(((selectedMinute<10)? "0" : "") + selectedMinute));
+				                }
+				            }, hour, minute, true);//Yes 24 hour time
+				            mTimePicker.setTitle("Select Time");
+				            mTimePicker.show();
+				        
+				       
+				          
+							
+						}
+					});
 				}
 				edList.put(i, edbox);
 				layoutParamForcheck.weight = 1;
@@ -8229,11 +8276,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								if (edList.containsKey(ln.getId())) {
 									edList.get(ln.getId()).setVisibility(
 											View.VISIBLE);
+									
 								}
+								edList.get(ln.getId()).setFocusable(true);
 								aaa.set(ln.getId(), checkButton.getId());
 						} 
 								else {
-								aaa.set(ln.getId(), -1);
+								aaa.set(ln.getId(), 0);
 								if (edList.containsKey(ln.getId())) {
 									edList.get(ln.getId()).setVisibility(
 											View.INVISIBLE);
@@ -8365,21 +8414,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void checkEdboxHasDataFrmMultipleChoice(EditText edbox,
 			String inColumn) {
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select "
 					+ inColumn
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select "
-					+ inColumn
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+		
 		Cursor c = null;
 		try {
 
@@ -8403,7 +8445,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		boolean dataOk = false;
 		if (c.moveToFirst()) {
 			do {
-				if (c.getColumnIndex(inColumn) != 0) {
+				if (c.getColumnIndex(inColumn) != -1) {
 					String a = c.getString(c.getColumnIndex(inColumn));
 					if (a != null && a.length() > 0) {
 						edbox.setText(a);
@@ -8418,21 +8460,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void checkIfChckButtonShouldBeCheckedFrmMultipleChoice(
 			CheckBox checkButton, String inColumn) {
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select "
 					+ inColumn
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select "
-					+ inColumn
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -8487,7 +8522,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					else{
 						if (pairs.getValue().getText().toString().length() > 0) {
 							String sq = "";
-							if (!CommonStaticClass.isMember)
+							
 							
 								sq = "UPDATE "
 										+ CommonStaticClass.questionMap.get(
@@ -8497,41 +8532,28 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										+ pairs.getValue().getText().toString()
 										+ "' where dataid='"
 										+ CommonStaticClass.dataId + "'";
-							else
-								sq = "UPDATE "
-										+ CommonStaticClass.questionMap.get(
-												CommonStaticClass.currentSLNo)
-												.getTablename() + " SET "
-										+ op.qnList.get(pairs.getKey()) + " = '"
-										+ pairs.getValue().getText().toString()
-										+ "' where dataid='"
-										+ CommonStaticClass.dataId
-										+ "' and memberid="
-										+ CommonStaticClass.memberID;
+							
 							dbHelper.executeDMLQuery(sq);
 						}
-					} /*
-					 * else { CommonStaticClass .showMyAlert(con,
-					 * "Field is empty",
-					 * "Please put correct information in field to proceed");
-					 * return; }
-					 */
+					} 
+				}
+				else
+				{
+					String sq = "";
+					
+					
+					sq = "UPDATE "
+							+ CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo)
+									.getTablename() + " SET "
+							+ op.qnList.get(pairs.getKey()) + " = null where dataid='"
+							+ CommonStaticClass.dataId + "'";
+				
+					dbHelper.executeDMLQuery(sq);
 				}
 			}
 			
-			if(qName.equalsIgnoreCase("q_813"))
-			{
-				
-							
-				if(aaa.get(6) == 1 && (aaa.get(0) == 1 || 
-						aaa.get(1) == 1 || aaa.get(2) == 1 || 
-						aaa.get(3) == 1 || aaa.get(4) == 1 || aaa.get(5) == 1))
-				{
-					CommonStaticClass.showMyAlert(con, "Alert!!!",
-							"If \"No One\" is checked other options cannot be checked");
-					return;
-				}
-			}
+			
 
 			String sql = "UPDATE "
 					+ CommonStaticClass.questionMap.get(
@@ -8547,11 +8569,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				
 				sql += op.qidList.get(i) + " = '" + aaa.get(i) + "',";
 			}
-			if (!CommonStaticClass.isMember)
+			
 				sql += " where dataid='" + CommonStaticClass.dataId + "'";
-			else
-				sql += " where dataid='" + CommonStaticClass.dataId
-						+ "' and memberid=" + CommonStaticClass.memberID;
+			
 
 			if (dbHelper.executeDMLQuery(sql)) {
 
@@ -8563,18 +8583,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					CommonStaticClass.nextQuestion(ParentActivity.this);
 				
 		
-}
+			}
 
-else {
-	CommonStaticClass
-			.showMyAlert(con, "Please check one!!!",
-					"You didn't checked any answer please select one to preceed");
-}
+		else {
+			CommonStaticClass
+					.showMyAlert(con, "Please check one!!!",
+							"You didn't checked any answer please select one to preceed");
+		}
 		}
 
 	}
 
-	private boolean IfCompletedAllMembersFrmMultipleChoice() {
+	/*private boolean IfCompletedAllMembersFrmMultipleChoice() {
 		boolean IsCompleted = true;
 		String sql1 = "Select * from tblMainQues  where dataid='"
 				+ CommonStaticClass.dataId + "'";
@@ -8607,7 +8627,7 @@ else {
 		}
 
 		return IsCompleted;
-	}
+	}*/
 
 	private void showUserFinishDialogFrmMultipleChoice() {
 		// get prompts.xml view
@@ -8654,7 +8674,7 @@ else {
 
 	private boolean checkIfSingleOptionIsCheckedFrmMultipleChoice() {
 		for (int i = 0; i < aaa.size(); i++) {
-			if (!(aaa.get(i) == -1)) {
+			if (!(aaa.get(i) == 0)) {
 				return true;
 			}
 		}
@@ -8662,7 +8682,7 @@ else {
 		return false;
 	}
 
-	// FrmMultipleCombo part
+	/*// FrmMultipleCombo part
 	private void Load_UIFrmMultipleCombo(final ViewGroup v) {
 		// TODO Auto-generated method stub
 		loadAllUiViewsFrmMultipleCombo(v);
@@ -8758,9 +8778,9 @@ else {
 			}
 
 		});
-	}
+	}*/
 
-	private void filllAllSpinnerDataFrmMultipleCombo() {
+	/*private void filllAllSpinnerDataFrmMultipleCombo() {
 		// TODO Auto-generated method stub
 		if (CommonStaticClass.langBng) {
 			adapter1st = new SpinAdapter(this, op1st.capBngList, true);
@@ -8797,9 +8817,9 @@ else {
 		spinner3rd
 				.setOnItemSelectedListener(new spinItemSelectListenerFrmMultipleCombo());
 
-	}
+	}*/
 
-	class spinItemSelectListenerFrmMultipleCombo implements
+	/*class spinItemSelectListenerFrmMultipleCombo implements
 			OnItemSelectedListener {
 
 		public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
@@ -8902,9 +8922,9 @@ else {
 
 		}
 
-	}
+	}*/
 
-	private void updateTableDataFrmMultipleCombo() {
+	/*private void updateTableDataFrmMultipleCombo() {
 		if (!IsValidFrmMultipleCombo())
 			return;
 		else {
@@ -8963,9 +8983,9 @@ else {
 			} catch (Exception e) {
 			}
 		}
-	}
+	}*/
 
-	private void CheckNUpdateFrmMultipleCombo() {
+	/*private void CheckNUpdateFrmMultipleCombo() {
 		IsInfomationMismatchingFrmMultipleCombo();
 
 		if (IsMismatch_1_1_8) {
@@ -8988,9 +9008,9 @@ else {
 
 		}
 
-	}
+	}*/
 
-	private void AddSkipFrmMultipleCombo() {
+	/*private void AddSkipFrmMultipleCombo() {
 		IsVisited1st = true;
 		IsVisited2nd = true;
 		IsVisited3rd = true;
@@ -9081,9 +9101,9 @@ else {
 			}
 		}
 
-	}
+	}*/
 
-	private void UpdatePreviousDataFrmMultipleCombo(String QVar) {
+	/*private void UpdatePreviousDataFrmMultipleCombo(String QVar) {
 		try {
 			String sql = "";
 
@@ -9100,9 +9120,9 @@ else {
 		} catch (Exception e) {
 
 		}
-	}
+	}*/
 
-	private void promptUserForInputFrmMultipleCombo(final Spinner spinner,
+	/*private void promptUserForInputFrmMultipleCombo(final Spinner spinner,
 			String ColumnName) {
 		// get prompts.xml view
 
@@ -9164,9 +9184,9 @@ else {
 
 		// show it
 		alertDialog.show();
-	}
+	}*/
 
-	private String getOtherDataFrmMultipleCombo(String column) {
+	/*private String getOtherDataFrmMultipleCombo(String column) {
 		String sql = "";
 		if (!CommonStaticClass.isMember)
 			sql = "Select "
@@ -9204,8 +9224,8 @@ else {
 		}
 		return data;
 	}
-
-	public void LoadDataFrmMultipleCombo() {
+*/
+	/*public void LoadDataFrmMultipleCombo() {
 		// TODO Auto-generated method stub
 		String sql = "";
 		if (!CommonStaticClass.isMember)
@@ -9232,9 +9252,9 @@ else {
 			if (mCursor1 != null)
 				mCursor1.close();
 		}
-	}
+	}*/
 
-	private void doFillFrmMultipleCombo(Cursor mCursor1) {
+	/*private void doFillFrmMultipleCombo(Cursor mCursor1) {
 		// TODO Auto-generated method stub
 		if (mCursor1.moveToFirst()) {
 			do {
@@ -9250,16 +9270,16 @@ else {
 
 			} while (mCursor1.moveToNext());
 		}
-	}
+	}*/
 
-	private void resetViewsFrmMultipleCombo() {
+	/*private void resetViewsFrmMultipleCombo() {
 		spinner1st.setSelection(0);
 		spinner2nd.setSelection(0);
 		spinner3rd.setSelection(0);
 
-	}
+	}*/
 
-	private boolean IsValidFrmMultipleCombo() {
+	/*private boolean IsValidFrmMultipleCombo() {
 		boolean IsValid = false;
 
 		res1st = op1st.codeList.get(spinner1st.getSelectedItemPosition())
@@ -9311,9 +9331,9 @@ else {
 			return IsValid;
 		}
 		return true;
-	}
+	}*/
 
-	private void IsInfomationMismatchingFrmMultipleCombo() {
+	/*private void IsInfomationMismatchingFrmMultipleCombo() {
 		String sql = "";
 		IsMismatch_1_1_8 = false;
 		IsMismatch_1_1_9 = false;
@@ -9377,9 +9397,9 @@ else {
 				mCursor1.close();
 		}
 
-	}
+	}*/
 
-	private void loadAllUiViewsFrmMultipleCombo(ViewGroup v) {
+	/*private void loadAllUiViewsFrmMultipleCombo(ViewGroup v) {
 		// TODO Auto-generated method stub
 
 		qName = CommonStaticClass.questionMap
@@ -9435,7 +9455,7 @@ else {
 					CommonStaticClass.currentSLNo).getQdesceng());
 		}
 
-	}
+	}*/
 
 	// FrmNotes part
 	private void loadGuiFrmNotes(ViewGroup v) {
@@ -9445,17 +9465,12 @@ else {
 
 		infoText = (EditText) v.findViewById(R.id.infoText);
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select notes from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select notes from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -9521,19 +9536,13 @@ else {
 		if (qAns.length() > 0) {
 
 			String sql = "";
-			if (!CommonStaticClass.isMember)
+			
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " set notes='" + qAns + "' where dataid='"
 						+ CommonStaticClass.dataId + "'";
-			else
-				sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
-						+ " set notes='" + qAns + "' where dataid='"
-						+ CommonStaticClass.dataId + "' and memeberid="
-						+ CommonStaticClass.memberID;
+			
 			dbHelper.executeDMLQuery(sql);
 
 		}
@@ -9712,12 +9721,10 @@ else {
 			}
 		});
 
-		if (qName.equalsIgnoreCase("q5")) {
-			((RadioButton) findViewById(R.id.radio2)).setVisibility(View.GONE);
-		} else {
+	
 			((RadioButton) findViewById(R.id.radio2))
 					.setVisibility(View.VISIBLE);
-		}
+		
 	}
 
 	private void updateTableDataFrmNumericwithunknowDecline() {
@@ -9746,33 +9753,8 @@ else {
 
 		if (qAns.length() > 0) {
 
-			if (qName.equalsIgnoreCase("q19") && Integer.parseInt(qAns) > 999) {
-				CommonStaticClass.showMyAlert(con, "Message", "Invalid");
-				return;
-			}
-
-			if (qName.equalsIgnoreCase("q29")) {
-				if (Integer.parseInt(qAns) > 0) {
-					if (Integer.parseInt(qAns) < 14) {
-
-					} else {
-						if (((EditText) findViewById(R.id.infoText)).getText()
-								.toString().length() > 0) {
-							CommonStaticClass.showMyAlert(con, "Message",
-									"Invalid Days(Valid value is 1 To 13)");
-							return;
-						}
-
-					}
-				} else {
-					if (((EditText) findViewById(R.id.infoText)).getText()
-							.toString().length() > 0) {
-						CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Days(Valid value is 1 To 13)");
-						return;
-					}
-				}
-			}
+			
+			
 
 			// Validation & skip definition
 			String sql = "";
@@ -9792,7 +9774,8 @@ else {
 								CommonStaticClass.currentSLNo).getQnext1());
 				resetViewGroup((ViewGroup) (findViewById(R.id.linearLayout1)));
 
-				if (qName.equalsIgnoreCase("q3_28")) {
+				//example code if other is checked
+				/*if (qName.equalsIgnoreCase("q3_28")) {
 					if (qAns.equalsIgnoreCase("777")) {
 						CommonStaticClass.findOutNextSLNo(
 								CommonStaticClass.questionMap.get(
@@ -9800,14 +9783,7 @@ else {
 										.getQvar(), "q3_28_other");
 					}
 
-				} else if (qName.equalsIgnoreCase("q3_29")) {
-					if (qAns.equalsIgnoreCase("777")) {
-						CommonStaticClass.findOutNextSLNo(
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQvar(), "q3_29_other");
-					}
-				}
+				} */
 
 				CommonStaticClass.nextQuestion(ParentActivity.this);
 
@@ -9829,7 +9805,7 @@ else {
 		return daysBetween;
 	}
 
-	public Date getDate() {
+	/*public Date getDate() {
 
 		Date d = null;
 
@@ -9862,9 +9838,9 @@ else {
 		}
 		return d;
 
-	}
+	}*/
 
-	private int GetMonth(String month) {
+	/*private int GetMonth(String month) {
 		int sMonth = 0;
 
 		if (month.equalsIgnoreCase("Jan")) {
@@ -9895,7 +9871,7 @@ else {
 
 		return sMonth;
 
-	}
+	}*/
 
 	// FrmNumeric part
 
@@ -9934,17 +9910,6 @@ else {
 			//check for numeric entries for app maternal health
 			public void afterTextChanged(Editable s) {
 				
-				
-
-				/*
-				 * if (qName.equalsIgnoreCase("c610a")) { String lineNumber =
-				 * s.toString(); if (lineNumber.length() > 2) {
-				 * 
-				 * CommonStaticClass.showMyAlert(con, "Message",
-				 * "Number should be in two digit"); return;
-				 * 
-				 * } }
-				 */
 
 			}
 
@@ -9958,21 +9923,14 @@ else {
 		});
 
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select "
 					+ qName
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select "
-					+ qName
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -10046,29 +10004,10 @@ else {
 				if (mCursor1.getColumnIndex(qName) != -1) {
 					String a = mCursor1.getString(mCursor1
 							.getColumnIndex(qName)) + "";
-					// infoText.setText((a.length() > 0 &&
-					// (!a.equalsIgnoreCase("-1")) &&
-					// (!a.equalsIgnoreCase("null"))) ? a : "");
+					
 					infoText.setText((a.length() > 0
 							&& (!a.equalsIgnoreCase("-1")) && (!a
 							.equalsIgnoreCase("null"))) ? a : "");
-
-					if (qName.equalsIgnoreCase("q8")) {
-						if ((a.length() > 0 && (!a.equalsIgnoreCase("-1")) && (!a
-								.equalsIgnoreCase("null")))) {
-							infoText.setText(a);
-						} else {
-							Calendar dobCalender = Calendar.getInstance();
-
-							Date d = getDate();
-							dobCalender.set(d.getYear(), d.getMonth(),
-									d.getDate());
-							infoText.setText(String.valueOf(daysBetween(dsDate,
-									dobCalender)));
-
-						}
-
-					}
 
 				}
 			} while (mCursor1.moveToNext());
@@ -10416,306 +10355,45 @@ else {
 		
 		String qAns = infoText.getText().toString();
 		String currentQuestion = qName;
-		if (!IsValidFrmNumeric()) {
+		/*if (!IsValidFrmNumeric()) {
 			CommonStaticClass.showMyAlert(con, "Not Correct",
 					"Data Mismatching");
 			return;
-		}
+		}*/
 		
 		if (qAns.length() > 0)
 		{
-		    if ((qName.equalsIgnoreCase("q_105")
-		    		||qName.equalsIgnoreCase("q_1118_b")
-		    		||qName.equalsIgnoreCase("q_1124")) 
-		    	&& Integer.parseInt(qAns) >100) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Age should be less than 100 years");
-					
-				return;
-						
-			}
-			else if (qName.equalsIgnoreCase("q_106") && (Integer.parseInt(qAns) >50 
-					&& Integer.parseInt(qAns) !=95) ) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input either 95 or not more than 50");
-				return;
-					
-			}
-			else if (( qName.equalsIgnoreCase("q_110") ) 
-					&& Integer.parseInt(qAns) >18) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 18");
-					
-				return;
-						
-			}
-			else if ((qName.equalsIgnoreCase("q_122") || qName.equalsIgnoreCase("q_123"))
-					&& Integer.parseInt(qAns) >10 
-					&& Integer.parseInt(qAns) !=98 ) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input either 98 or not more than 10");
-				return;
-					
-			}
-			else if (qName.equalsIgnoreCase("q_704")
-					&& Integer.parseInt(qAns) >18 
-					&& Integer.parseInt(qAns) !=88 ) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input either 88 or not more than 18");
-				return;
-					
-			}
-			else if ((qName.equalsIgnoreCase("q_301") || qName.equalsIgnoreCase("q_302")
-					|| qName.equalsIgnoreCase("q_304_a") || qName.equalsIgnoreCase("q_304_b")
-					|| qName.equalsIgnoreCase("q_305_a") || qName.equalsIgnoreCase("q_305_b") || qName.equalsIgnoreCase("q_305_c")
-					) 
-					&& Integer.parseInt(qAns) >20) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 20");
-					
-				return;
-						
-			}
-			else if ((qName.equalsIgnoreCase("q_306_a") || qName.equalsIgnoreCase("q_306_b") 
-						|| qName.equalsIgnoreCase("q_306_c") || qName.equalsIgnoreCase("q_306_d")
-						|| qName.equalsIgnoreCase("q_407")
-						|| qName.equalsIgnoreCase("q_408_a")
-						|| qName.equalsIgnoreCase("q_408_b")
-						|| qName.equalsIgnoreCase("q_409_a")
-						|| qName.equalsIgnoreCase("q_409_b")
-						|| qName.equalsIgnoreCase("q_411_a")
-						|| qName.equalsIgnoreCase("q_411_b")
-						|| qName.equalsIgnoreCase("q_412_a")
-						|| qName.equalsIgnoreCase("q_412_b"))
-					&& Integer.parseInt(qAns) >20) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 20");
-					
-				return;
-						
-			}
-			else if ((qName.equalsIgnoreCase("q_511")
-					  || qName.equalsIgnoreCase("q_512")
-					  || qName.equalsIgnoreCase("q_513")
-					  || qName.equalsIgnoreCase("q_514")
-					  || qName.equalsIgnoreCase("q_515")
-					  || qName.equalsIgnoreCase("q_516")
-					  || qName.equalsIgnoreCase("q_517")
-					  || qName.equalsIgnoreCase("q_518")
-					  || qName.equalsIgnoreCase("q_519")
-					  || qName.equalsIgnoreCase("q_520")
-					  || qName.equalsIgnoreCase("q_521")
-					  || qName.equalsIgnoreCase("q_522")
-					  || qName.equalsIgnoreCase("q_523")
-					  || qName.equalsIgnoreCase("q_524")
-					  || qName.equalsIgnoreCase("q_525")
-					  || qName.equalsIgnoreCase("q_526")
-					  || qName.equalsIgnoreCase("q_527")
-					  || qName.equalsIgnoreCase("q_528")
-					  || qName.equalsIgnoreCase("q_529")
-					  || qName.equalsIgnoreCase("q_530")) 
-					&& Integer.parseInt(qAns) >7) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 7");
-					
-				return;
-						
-			}
-			else if (qName.equalsIgnoreCase("q_536") && Integer.parseInt(qAns) >365) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 365");
-					
-				return;
-						
-			}
-			else if ((qName.equalsIgnoreCase("q_701")
-						|| qName.equalsIgnoreCase("q_1116_b")) 
-					&& Integer.parseInt(qAns) >100) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 100");
-					
-				return;
-						
-			}
-			else if (qName.equalsIgnoreCase("q_702") 
-					&& 
-					((Integer.parseInt(qAns) > 2015 && Integer.parseInt(qAns) != 9998) ||  Integer.parseInt(qAns) < 1900 )) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input");
-					
-				return;
-						
-			}
-			else if (qName.equalsIgnoreCase("q_811") 
-					&& Integer.parseInt(qAns) >10 ) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input not more than 10");
-				return;
-					
-			}
+		    
+			//if you want to validate something do it here
 			
-		   else if (qName.equalsIgnoreCase("q_905_a_time") 
-				   	
-				   && 
-				   (Integer.parseInt(qAns) >50 && Integer.parseInt(qAns) != 99)) 
-		   {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input either 99 or not more than 50");
-					
-				return;
-						
-			}
-		   else if (qName.equalsIgnoreCase("q_1016_day") && Integer.parseInt(qAns) >31) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 31");
-					
-				return;
-						
-		   }
-		   else if (qName.equalsIgnoreCase("q_1016_month") && Integer.parseInt(qAns) >24) {
-				
-		    	CommonStaticClass.showMyAlert(con, "Message",
-							"Invalid Input Please give input not more than 24");
-					
-				return;
-						
-		   }
-		   else if ((qName.equalsIgnoreCase("q_1116_a")
-				   		|| qName.equalsIgnoreCase("q_1118_a")
-				   		||  qName.equalsIgnoreCase("q_1013_time")
-				   		) 
-				   	&& Integer.parseInt(qAns) >100) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input not more than 100");
-				return;
-					
-			}
-		   else if ((qName.equalsIgnoreCase("q_1116_e")
-				   		||qName.equalsIgnoreCase("q_1118_e")
-				   		||qName.equalsIgnoreCase("q_1122")) 
-				   	&& Integer.parseInt(qAns) >60) {
-				
-				CommonStaticClass.showMyAlert(con, "Message",
-								"Invalid Input Please give input not more than 60");
-				return;
-					
-			}
-	}
-	    
-	    
-//		if (qName.equalsIgnoreCase("Q1_9")
-//				&& ((Integer.valueOf(qAns) < 14) || (Integer.valueOf(qAns) > 100))) {
-//			CommonStaticClass.showMyAlert(con, "Not Correct",
-//					"Age should be more than 14 and less than 100");
-//			return;
-//		}
-//		if (qName.equalsIgnoreCase("Q1_14") && (Integer.valueOf(qAns) > 100)) {
-//			CommonStaticClass.showMyAlert(con, "Not Correct",
-//					"Number of member should be less than 100");
-//			return;
-//		}
-		/*if (qName.equalsIgnoreCase("Q4_2") && (Integer.valueOf(qAns) > 100)) {
-			CommonStaticClass.showMyAlert(con, "Not Correct",
-					"Number of member should be less than 100");
-			return;
+			
 		}
-		if (qName.equalsIgnoreCase("Q5_3") && (Integer.valueOf(qAns) > 100)) {
-			CommonStaticClass.showMyAlert(con, "Not Correct",
-					"Number of member should be less than 100");
-			return;
-		}*/
+	    
+	    
+
 		if (qAns.length() > 0) {
 			// Validation & skip definition
 			
 			String sql = "";
-			if (!CommonStaticClass.isMember)
+			
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns
 						+ "' where dataid='" + CommonStaticClass.dataId + "'";
-			else
-				sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET " + currentQuestion + "='" + qAns
-						+ "' where dataid='" + CommonStaticClass.dataId
-						+ "' and memberid=" + CommonStaticClass.memberID;
+			
 
-			//Check numeric values for maternal health app 
-			if((qName.equalsIgnoreCase("q_409_a") && (Integer.valueOf(qAns) == 0)) || 
-					qName.equalsIgnoreCase("q_412_a") && (Integer.valueOf(qAns) == 0))
-			{
-				q_children = 0;
-			}
-			
-			
+							
 			if (dbHelper.executeDMLQuery(sql)) {
 				
-				if(qName.equalsIgnoreCase("q_122") && (Integer.valueOf(qAns) == 98) )
-				{
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							"q_124");
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-					
-				}
-				//Check For 0 -Do you have any children aged between 5 and 12 years?  How many? (include 5-year-old and 12-year-old children)
-				else if(qName.equalsIgnoreCase("q_407") && (Integer.valueOf(qAns) == 0) )
-				{
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							"msg501");
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-					
-				}
-				else if(qName.equalsIgnoreCase("q_409_b") && (Integer.valueOf(qAns) == 0) && q_children == 0)
-				{
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							"msg501");
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-					q_children = 1;
-					
-				}
-				//If q_412_b and q_412_a are both 0
- 				else if(qName.equalsIgnoreCase("q_412_b") && (Integer.valueOf(qAns) == 0) && q_children == 0)
-				{
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							"msg501");
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-					
-					
-				}
-				else
-				{
+				
 					CommonStaticClass.findOutNextSLNo(
 							CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo).getQvar(),
 							CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
-				}
+				
 			}
 		} else {
 			CommonStaticClass.showMyAlert(con, "Not Correct",
@@ -10732,36 +10410,7 @@ else {
 			if (!ClusterID.equalsIgnoreCase(infoText.getText().toString()))
 				return false;
 		}
-		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("q29")
-				|| CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("q30")) {
-			sql = "select * from tblMainQues where dataid='"
-					+ CommonStaticClass.dataId + "'";
-			mCursor1 = dbHelper.getQueryCursor(sql);
-			if (CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar()
-					.equalsIgnoreCase("q30")) {
-				if (Integer.parseInt(infoText.getText().toString()) >= Integer
-						.parseInt(mCursor1.getString(mCursor1
-								.getColumnIndex("q12")))) {
-					CommonStaticClass.showMyAlert(con, "Not Correct",
-							"Wrong year, must be less than worker/member age.");
-					return false;
-				}
-			} else if (CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar()
-					.equalsIgnoreCase("q29")) {
-				if (Integer.parseInt(infoText.getText().toString()) >= Integer
-						.parseInt(mCursor1.getString(mCursor1
-								.getColumnIndex("q12")))) {
-					CommonStaticClass.showMyAlert(con, "Not Correct",
-							"Wrong year, must be less than qustion 29.");
-					return false;
-				}
-			}
-		}
+		
 
 		return true;
 	}
@@ -10804,60 +10453,31 @@ else {
 					.get(CommonStaticClass.currentSLNo).getQdescbng()
 					: CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getQdesceng());
-			if (qName.equalsIgnoreCase("q401")
+			//set bangla text to the labels of the text field
+			if (qName.equalsIgnoreCase("q9")
 					|| qName.equalsIgnoreCase("q402")) {
 				num1.setText("wbw`Â©Ã³ Lvbv ");
 				num2.setText("AbÂ¨vbÂ¨ Lvbv ");
-			} else if (qName.equalsIgnoreCase("q310")) {
-				num1.setText("cÃ–wZw`b Lvevi cvwb msMÃ–n Kivi msLÂ¨v ");
-				num2.setText("cÃ–wZw`b GKzqvUÂ¨ve eÂ¨envi Kivi msLÂ¨v ");
-			} else if (qName.equalsIgnoreCase("q621")
-					|| qName.equalsIgnoreCase("q622")) {
-				num1.setText("wbw`Â©Ã³ Lvbv");
-				num2.setText("AbÂ¨vbÂ¨ Lvbv ");
-			} else if (qName.equalsIgnoreCase("q615")) {
-				num1.setText("cÃ–wZw`b Lvevi cvwb msMÃ–n Kivi msLÂ¨v ");
-				num2.setText("cÃ–wZw`b GKzqvUÂ¨ve eÂ¨envi Kivi msLÂ¨v ");
-			}
-			if (qName.equalsIgnoreCase("q1_12_1")
-					|| qName.equalsIgnoreCase("q1_12_2")) {
-				num1.setText("QvÃŽ");
-				num2.setText("QvÃŽx");
-			}
-			if (qName.equalsIgnoreCase("q1_12_3")) {
-				num1.setText("wkÂ¶K");
-				num2.setText("wkwÂ¶Kv");
-			}
+			} 
 
 		} else {
+			qqq.setTypeface(null);
+			num1.setTypeface(null);
+			num2.setTypeface(null);
 			qqq.setText(CommonStaticClass.questionMap.get(
 					CommonStaticClass.currentSLNo).getQdesceng());
-			if (qName == "q401" || qName.equalsIgnoreCase("q622")
-					|| qName.equalsIgnoreCase("q621")) {
+			//set english text to the labels of the text field
+			if (qName.equalsIgnoreCase("q9")) {
 				num1.setText("Index hh");
 				num2.setText("Non Index hh");
-			} else if (qName.equalsIgnoreCase("q310")
-					|| qName.equalsIgnoreCase("q615")) {
-				num1.setText("collect drinking water daily");
-				num2.setText("Use aquatab daily");
-			} else {
-				if (qName.equalsIgnoreCase("q1_12_1")
-						|| qName.equalsIgnoreCase("q1_12_2")) {
-					num1.setText("Boy");
-					num2.setText("Girls");
-				}
-				if (qName.equalsIgnoreCase("q1_12_3")) {
-					num1.setText("Male");
-					num2.setText("Female");
-				}
-			}
+			} 
 		}
 
 		infoText1 = (EditText) v.findViewById(R.id.txtNum1);
 		infoText2 = (EditText) v.findViewById(R.id.txtNum2);
 
-		qName1 = qName + "_a";
-		qName2 = qName + "_b";
+		qName1 = qName + "_1";
+		qName2 = qName + "_2";
 
 		String sql = "Select "
 				+ qName1
@@ -10968,7 +10588,7 @@ else {
 		}
 	}
 
-	protected boolean checkForNoneFrmNumericTwo(String lineNumber) {
+	/*protected boolean checkForNoneFrmNumericTwo(String lineNumber) {
 		String sql = "Select q101,q101a from tblHousehold where dataid='"
 				+ CommonStaticClass.dataId + "'";
 		Cursor mCursor1 = null;
@@ -10995,9 +10615,9 @@ else {
 				mCursor1.close();
 		}
 		return false;
-	}
+	}*/
 
-	private void setDataFromFrmNumericTwo(EditText infoText, String qq,
+	/*private void setDataFromFrmNumericTwo(EditText infoText, String qq,
 			String table) {
 		// TODO Auto-generated method stub
 		String sql = "Select " + qq + "_Years from " + table
@@ -11032,9 +10652,9 @@ else {
 				mCursor1.close();
 		}
 
-	}
+	}*/
 
-	private void setDataFromFrmNumericTwo(EditText infoText, String q3_4,
+	/*private void setDataFromFrmNumericTwo(EditText infoText, String q3_4,
 			String q2, String table) {
 		// TODO Auto-generated method stub
 		String sql1 = "Select " + q3_4 + " from " + table + " where dataid='"
@@ -11045,11 +10665,11 @@ else {
 				- dataFromFrmNumericTwo(sql2, q2);
 		infoText.setText(value + "");
 
-	}
+	}*/
 
 	// Get specific column value corresponding to SQL Query
 
-	private float dataFromFrmNumericTwo(String sql, String columnName) {
+	/*private float dataFromFrmNumericTwo(String sql, String columnName) {
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -11077,7 +10697,7 @@ else {
 				mCursor1.close();
 		}
 		return 0;
-	}
+	}*/
 
 	private void updateTableDataFrmNumericTwo() {
 		// TODO Auto-generated method stub
@@ -11136,7 +10756,7 @@ else {
 
 	// end-frmNumericTwo
 
-	// FrmReasoning part
+	/*// FrmReasoning part
 	private void Load_UIFrmReasoning(final ViewGroup v) {
 		// TODO Auto-generated method stub
 
@@ -11562,8 +11182,8 @@ else {
 
 		});
 	}
-
-	private void Load_ControlsFrmReasoning(ViewGroup v) {
+*/
+	/*private void Load_ControlsFrmReasoning(ViewGroup v) {
 		LinearLayout1 = (LinearLayout) v.findViewById(R.id.linearLayoutR1);
 		LinearLayout2 = (LinearLayout) v.findViewById(R.id.linearLayoutR2);
 		LinearLayout3 = (LinearLayout) v.findViewById(R.id.linearLayoutR3);
@@ -11706,9 +11326,9 @@ else {
 			mCursor = null;
 		}
 
-	}
+	}*/
 
-	private void updateTableDataFrmReasoning() {
+	/*private void updateTableDataFrmReasoning() {
 		try {
 			if (chke1.isChecked() && other1 == "") {
 				other1 = dbHelper.GetSingleColumnData("p1_11v1other");
@@ -11755,9 +11375,9 @@ else {
 
 		}
 
-	}
+	}*/
 
-	private boolean IsValidFrmReasoning() {
+	/*private boolean IsValidFrmReasoning() {
 		boolean vaild = false;
 		if (IsVisited1st) {
 			if (!chka1.isChecked() && !chkb1.isChecked() && !chkc1.isChecked()
@@ -11794,9 +11414,9 @@ else {
 
 		return true;
 
-	}
+	}*/
 
-	private void Load_DataFrmReasoning() {
+	/*private void Load_DataFrmReasoning() {
 
 		String sql = "Select * from tblMainQues where dataid='"
 				+ CommonStaticClass.dataId + "' and memberid='"
@@ -11920,9 +11540,9 @@ else {
 			// TODO: handle exception
 		}
 
-	}
+	}*/
 
-	private void promptUserForInputFrmReasoning(final CheckBox checkbox,
+	/*private void promptUserForInputFrmReasoning(final CheckBox checkbox,
 			String ColumnName) {
 		// get prompts.xml view
 
@@ -11984,12 +11604,12 @@ else {
 
 		// show it
 		alertDialog.show();
-	}
+	}*/
 
 	// frmsinglechoice part
 	private void Load_UIFrmSingleChoice(final ViewGroup v) {
 		// TODO Auto-generated method stub
-		code = -1;
+		code = 0;
 		qqq = (TextView) v.findViewById(R.id.qqq);
 
 		// checkDbHasPreviousDataForThisHouseHold();
@@ -12056,21 +11676,14 @@ else {
 		});
 
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select "
 					+ qName
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select "
-					+ qName
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid='" + CommonStaticClass.memberID + "'";
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -12161,7 +11774,7 @@ else {
 
 			public void onClick(View vv) {
 				// TODO Auto-generated method stub
-				code = -1;
+				code = 0;
 				resetViewGroup((ViewGroup) v);
 			}
 
@@ -12189,7 +11802,7 @@ else {
 							.getColumnIndex(qName)) + "";
 					Log.e("aaaa", a + "");
 					idIfEdit = (a.length() > 0 && !a.equalsIgnoreCase("null")) ? Integer
-							.parseInt(a) : -1;
+							.parseInt(a) : 0;
 					if (op.codeList.contains(idIfEdit)) {
 						dataOk = true;
 					}
@@ -12199,7 +11812,7 @@ else {
 		return dataOk;
 	}
 
-	private void SaveFamilyInfoFrmSingleChoice() {
+	/*private void SaveFamilyInfoFrmSingleChoice() {
 		String entryBy = CommonStaticClass.userSpecificId;
 		Date d = new Date(System.currentTimeMillis());
 		String entryDate = "dd-mmm-yy";
@@ -12236,7 +11849,7 @@ else {
 				}
 			}
 		}
-	}
+	}*/
 
 	private void updateTableDataFrmSingleChoice() {
 		// TODO Auto-generated method stub
@@ -12256,7 +11869,7 @@ else {
 		try {
 
 			if (code != -1) {
-				if (!CommonStaticClass.isMember)
+				
 					sql = "UPDATE "
 							+ CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo)
@@ -12266,243 +11879,24 @@ else {
 									CommonStaticClass.currentSLNo).getQvar()
 							+ "='" + code + "' where dataid='"
 							+ CommonStaticClass.dataId + "'";
-				else
-					sql = "UPDATE "
-							+ CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo)
-									.getTablename()
-							+ " SET "
-							+ CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar()
-							+ "='" + code + "' where dataid='"
-							+ CommonStaticClass.dataId + "' and memberid='"
-							+ CommonStaticClass.memberID + "'";
 				
-				
-				
-				
-//				if(qName.equalsIgnoreCase("q_806_a") || qName.equalsIgnoreCase("q_806_b")
-//						|| qName.equalsIgnoreCase("q_806_c") || qName.equalsIgnoreCase("q_806_d")
-//						|| qName.equalsIgnoreCase("q_806_e") || qName.equalsIgnoreCase("q_806_f") )
-//				{
-//					
-//					eightA += code;
-//					
-//				}
-//				
-//				if(qName.equalsIgnoreCase("q_807_a") || qName.equalsIgnoreCase("q_807_b")
-//						|| qName.equalsIgnoreCase("q_807_c"))
-//				{
-//					
-//					eightB += code;
-//				}
 
 
 				if (dbHelper.executeDMLQuery(sql)) {
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q2_3")
-//							&& code != 1) {
-//						String updatesql = "UPDATE tblMainQues set Q2_4years = null ,Q2_4months = null, Q2_5 = null, Q2_6_1 = null ,Q2_6_2 = null, Q2_6_3 = null, Q2_6_4 = null ,Q2_6_7 = null, Q2_6_8 = null ,Q2_6Other = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q2_5")
-//							&& code != 1) {
-//						String updatesql = "UPDATE tblMainQues set Q2_6_1 = null ,Q2_6_2 = null, Q2_6_3 = null, Q2_6_4 = null ,Q2_6_7 = null, Q2_6_8 = null ,Q2_6Other = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q4_1")
-//							&& (code == 3 || code == 7)) {
-//
-//						String updatesql = "UPDATE tblMainQues set Q4_2 = null ,Q4_3 = null,Q4_4 = null,Q5_1 = null ,Q5_1Other = null,Q5_2 = null,Q5_3 = null ,Q5_4 = null,Q5_5 = null,Q5_6 = null ,Q5_7 = null,Q5_8 = null,Q5_9 = null ,Q5_10 = null,Q5_11 = null ,Q5_12 = null,Q5_13 = null,Q5_14 = null  where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q5_1")
-//							&& (code == 5 || code == 6)) {
-//
-//						String updatesql = "UPDATE tblMainQues set Q5_1Other = null,Q5_2 = null,Q5_3 = null ,Q5_4 = null,Q5_5 = null,Q5_6 = null ,Q5_7 = null,Q5_8 = null,Q5_9 = null ,Q5_10 = null,Q5_11 = null ,Q5_12 = null,Q5_13 = null,Q5_14 = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q5_12")
-//							&& code != 1) {
-//						String updatesql = "UPDATE tblMainQues set Q5_13 = null,Q5_14 = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("Q5_13")
-//							&& code != 1) {
-//
-//						String updatesql = "UPDATE tblMainQues set Q5_14 = null  where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("QN2_10")
-//							&& code != 1) {
-//
-//						String updatesql = "UPDATE tblNeonate set QN2_11 = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-//					if (CommonStaticClass.questionMap
-//							.get(CommonStaticClass.currentSLNo).getQvar()
-//							.equalsIgnoreCase("QN1_17")
-//							&& code != 1) {
-//
-//						String updatesql = "UPDATE tblNeonate set QN2_1 = null, QN2_2 = null, QN2_3 = null, QN2_4 = null, QN2_5 = null, QN2_6 = null, QN2_7 = null, QN2_8 = null, QN2_9 = null, QN2_10 = null, QN2_11 = null where dataid='"
-//								+ CommonStaticClass.dataId + "'";
-//						if (dbHelper.executeDMLQuery(updatesql)) {
-//
-//						}
-//					}
-					if((qName.equalsIgnoreCase("q_1009_x") && code ==2) )
-					{
-						if(CommonStaticClass.checkFor10BallNotChecked(dbHelper) )
-						{
-							nullifyWithInRange(qName, "q_1011");
-							CommonStaticClass.findOutNextSLNo(qName, "q_1011");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else
-						{
-							
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQnext1());
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						
-					}
-					else if((qName.equalsIgnoreCase("q_1101_d") && code ==2) )
-					{
-						if(CommonStaticClass.checkFor11AallNotChecked(dbHelper) )
-						{
-							//nullifyWithInRange(qName, "q_1103");
-							CommonStaticClass.findOutNextSLNo(qName, "q_1103");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else
-						{
-							
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQnext1());
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						
-					}
-					else if((qName.equalsIgnoreCase("q_1106_c") && code ==2) )
-					{
-						if(CommonStaticClass.checkFor11BallNotChecked(dbHelper) )
-						{
-							//nullifyWithInRange(qName, "q_1108");
-							CommonStaticClass.findOutNextSLNo(qName, "q_1108");
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else
-						{
-							
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQnext1());
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						
-					}
-					else if((qName.equalsIgnoreCase("q_307") ) )
-					{
-						int currentlyPregnant = 0;
-						if(code == 1)
-							currentlyPregnant = 1;
-						if(CommonStaticClass.checkFor307(dbHelper,currentlyPregnant) )
-						{
-							CommonStaticClass.findOutNextSLNo(
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQvar(),
-									CommonStaticClass.questionMap.get(
-											CommonStaticClass.currentSLNo).getQnext1());
-							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
-						else
-						{
-							
-							CommonStaticClass.showMyAlert(con, "Error",
-									"Incorrect Sum. Please recheck entries for Question Nos. " +
-									"301, 306a,b,c,d and 305a,b,c");
-						}
-						
-					}
-					
-					
-					else if (qtoGo != null && qtoGo != ""
-							&& !nextToGo.equalsIgnoreCase("END")) {
-						CommonStaticClass.currentSLNo = CommonStaticClass
-								.giveTheSLNo(qtoGo) - 1;
-						CommonStaticClass.findOutNextSLNo(
-								qName,
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQnext1());
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-						return;
-					}
-					// End Angsuman
-					else if (nextToGo.equalsIgnoreCase("END")) {
+
+					if (nextToGo.equalsIgnoreCase("END")) {
 						Message msg = new Message();
 						msg.what = UPDATEDONE;
 						handler.sendMessage(msg);
-						if (IfCompletedAllMembersFrmSingleChoice())
+					/*	if (IfCompletedAllMembersFrmSingleChoice())
 							showUserFinishDialogFrmSingleChoice();
-						else {
+						else {*/
 							CommonStaticClass.currentSLNo = 31;
 							CommonStaticClass.nextQuestion(ParentActivity.this);
-						}
+//						}
 					}
-					else if(qName.equalsIgnoreCase("qVisit"))
-					{
-						CommonStaticClass.findOutNextSLNo(qName, nextToGo);
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-					}
-
 					else {
-						if(!(qName.equalsIgnoreCase("q_1112")
-								||qName.equalsIgnoreCase("q_1113") 
-								||  qName.equalsIgnoreCase("q_1125")
-								||  qName.equalsIgnoreCase("q_1123")))
+						
 						nullifyWithInRange(qName, nextToGo);
 						CommonStaticClass.findOutNextSLNo(qName, nextToGo);
 						CommonStaticClass.nextQuestion(ParentActivity.this);
@@ -12516,7 +11910,7 @@ else {
 
 	}
 
-	private void updateq7() {
+	/*private void updateq7() {
 
 		try {
 
@@ -12540,13 +11934,13 @@ else {
 			Log.e("updateq7", e.toString());
 		}
 
-	}
+	}*/
 
-	private void Load_DataFrmSingleChoice() {
+/*	private void Load_DataFrmSingleChoice() {
 
-	}
+	}*/
 
-	private boolean IfCompletedAllMembersFrmSingleChoice() {
+	/*private boolean IfCompletedAllMembersFrmSingleChoice() {
 		boolean IsCompleted = true;
 		String sql1 = "Select * from tblMainQues  where dataid='"
 				+ CommonStaticClass.dataId + "'";
@@ -12579,7 +11973,7 @@ else {
 		}
 
 		return IsCompleted;
-	}
+	}*/
 
 	private void showUserFinishDialogFrmSingleChoice() {
 		// get prompts.xml view
@@ -12605,9 +11999,6 @@ else {
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						Log.e("qName: ", "qName: " + qName);
-						if (qName.equalsIgnoreCase("q4_2")) {
-							nullifyq4_3();
-						}
 						CommonStaticClass.findOutNextSLNo(qName, "END");
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 
@@ -12671,21 +12062,14 @@ else {
 		infoText = (EditText) v.findViewById(R.id.infoText);
 		infoText.requestFocus();
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+	
 			sql = "Select "
 					+ qName
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select "
-					+ qName
-					+ " from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -12850,12 +12234,18 @@ else {
 
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// retrieve result of scanning - instantiate ZXing object
 		IntentResult scanningResult = IntentIntegrator.parseActivityResult(
-				requestCode, resultCode, intent);
+				requestCode, resultCode, data);
+		if(requestCode == ACTION_TAKE_PHOTO_S)
+		{
+			if (resultCode == RESULT_OK) {
+				handleSmallCameraPhoto(data);
+			}
+		}
 		// check we have a valid result
-		if (scanningResult != null) {
+		else if (scanningResult != null) {
 			// get content from Intent Result
 			String scanContent = scanningResult.getContents();
 			// get format name of data scanned
@@ -12906,116 +12296,29 @@ else {
 		String qAns = infoText.getText().toString().trim();
 		if (qAns.length() > 0) {
 
-			if (qName.equalsIgnoreCase("c1_2"))
-				setTitle("Child Name :: " + qAns);
-
+			
 			String sql = "";
-			if (!CommonStaticClass.isMember)
+			
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + qName + "='" + qAns + "' where dataid='"
 						+ CommonStaticClass.dataId + "'";
-			else
-				sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET " + qName + "='" + qAns + "' where dataid='"
-						+ CommonStaticClass.dataId + "' and memberid="
-						+ CommonStaticClass.memberID;
+			
 			if (dbHelper.executeDMLQuery(sql)) {
-				if (CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("physician")
-						|| CommonStaticClass.questionMap
-								.get(CommonStaticClass.currentSLNo).getQvar()
-								.equalsIgnoreCase("comments")) {
-
-					int index = CommonStaticClass.SLNOSTACK.indexOf(2);
-					int siz = CommonStaticClass.SLNOSTACK.size();
-					if (siz > index + 1) {
-						CommonStaticClass.SLNOSTACK.subList(index + 1, siz)
-								.clear();
-					}
-
-					CommonStaticClass.findOutNextSLNo(
-							qName,
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQnext1());
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-
-				} else if (CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("Nphysician")
-						|| CommonStaticClass.questionMap
-								.get(CommonStaticClass.currentSLNo).getQvar()
-								.equalsIgnoreCase("Ncomments")) {
-					CommonStaticClass.dataId = CommonStaticClass.HouseholdCode;
-					CommonStaticClass.HouseholdCode = "";
-					int index = CommonStaticClass.SLNOSTACK.indexOf(2);
-					int siz = CommonStaticClass.SLNOSTACK.size();
-					if (siz > index + 1) {
-						CommonStaticClass.SLNOSTACK.subList(index + 1, siz)
-								.clear();
-					}
-					CommonStaticClass.findOutNextSLNo(
-							qName,
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQnext1());
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-
-				} else if (CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQnext1()
-						.equalsIgnoreCase("END")) {
-					showUserFinishDialogFrmText();
-				} 
 				
-					else {
-					// preserveState();
+					
 					CommonStaticClass.findOutNextSLNo(
 							qName,
 							CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
-				}
+				
 			}
 		}
 	}
 
-	private boolean IfCompletedAllMembersFrmText() {
-		boolean IsCompleted = true;
-		String sql1 = "Select * from tblMainQues  where dataid='"
-				+ CommonStaticClass.dataId + "'";
-		String sql2 = "Select * from tblFamilyMember  where dataid='"
-				+ CommonStaticClass.dataId
-				+ "' and (anysick=1 or visitdoc=1 or hospitalized=1)";
-		Cursor mCursor1 = null;
-		Cursor mCursor2 = null;
-		try {
-
-			mCursor1 = dbHelper.getQueryCursor(sql1);
-			mCursor2 = dbHelper.getQueryCursor(sql2);
-
-			int a = mCursor1.getCount();
-			int b = mCursor2.getCount();
-			String x = Integer.toString(a);
-			String y = Integer.toString(b);
-			if (x.equalsIgnoreCase(y))
-				IsCompleted = true;
-			else
-				IsCompleted = false;
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-
-		} finally {
-			if (mCursor1 != null)
-				mCursor1.close();
-		}
-
-		return IsCompleted;
-	}
+	
 
 	private void showUserFinishDialogFrmText() {
 		// get prompts.xml view
@@ -13095,10 +12398,6 @@ else {
 			DatePickerDialog datePickerDialog = this.customDatePicker();
 			return datePickerDialog;
 
-			/*
-			 * return new DatePickerDialog(this, dateSetListener, dateYear,
-			 * dateMonth, dateDay);
-			 */
 
 		}
 
@@ -13158,17 +12457,9 @@ else {
 		public void onTimeSet(TimePicker view, int hour, int minute) {
 			TimeHour = hour;
 			TimeMinute = minute;
-			if (qName.length() > 0) {
-				if (qName.equalsIgnoreCase("q17hmd1")
-						|| qName.equalsIgnoreCase("q18md1")
-						|| qName.equalsIgnoreCase("q17hmd2")
-						|| qName.equalsIgnoreCase("q18md2")) {
-					// updateDisplayfrmfamily("time");
-					return;
-				}
-			}
-
-			updateDisplay("time");
+			pickTime.setText( (((TimeHour<10)? "0" :"")+ TimeHour) + ":" + 
+            		(((minute<10)? "0" : "") + minute));
+		
 		}
 	};
 
@@ -13213,22 +12504,14 @@ else {
 
 		});
 
-		// if(CommonStaticClass.mode.equalsIgnoreCase(CommonStaticClass.EDITMODE)){
-		// String sql =
-		// "Select "+CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo).getQvar()+" from "+CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo).getTablename()+" where dataid='"+CommonStaticClass.dataId+"'";
+		
 		String sql = "";
-		if (!CommonStaticClass.isMember)
+		
 			sql = "Select * from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		else
-			sql = "Select * from "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
-
+		
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -13252,7 +12535,7 @@ else {
 			if (mCursor1 != null)
 				mCursor1.close();
 		}
-		// }
+	
 
 		pickTime.setOnTouchListener(new View.OnTouchListener() {
 
@@ -13270,7 +12553,7 @@ else {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				updateTableDataFrmTime();
-				// preserveState();
+				
 			}
 		});
 		clButton = (Button) v.findViewById(R.id.clButton);
@@ -13298,91 +12581,26 @@ else {
 				CommonStaticClass.currentSLNo).getQvar();
 		if (qAns.length() > 0) {
 
-			// if(futureDateValidator(dateYear, dateMonth, dateDay)){
-			// CommonStaticClass.showMyAlert(con, "Not Correct",
-			// "You are putting future date which is not acceptable");
-			// return;
-			// }
 
 			String sql = "";
-			if (!CommonStaticClass.isMember)
+			
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns
 						+ "' where dataid='" + CommonStaticClass.dataId + "'";
-			else
-				sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET " + currentQuestion + "='" + qAns
-						+ "' where dataid='" + CommonStaticClass.dataId
-						+ "' and memberid=" + CommonStaticClass.memberID;
+			
 
 			if (dbHelper.executeDMLQuery(sql)) {
-				if (CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("q4_21")) {
-					String vName1 = "";
-					String vName2 = "";
-					String vName3 = "";
+					
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
 
-					sql = "Select q4_17_1,q4_17_2,q4_17_11 from tblMainQues where dataid='"
-							+ CommonStaticClass.dataId + "'";
-					Cursor mCursor1 = null;
-					try {
-						mCursor1 = dbHelper.getQueryCursor(sql);
-						if (mCursor1.getCount() > 0) {
-							if (mCursor1.moveToFirst()) {
-								do {
-									vName1 = mCursor1.getString(mCursor1
-											.getColumnIndex("q4_17_1"));
-									vName2 = mCursor1.getString(mCursor1
-											.getColumnIndex("q4_17_2"));
-									vName3 = mCursor1.getString(mCursor1
-											.getColumnIndex("q4_17_11"));
-								} while (mCursor1.moveToNext());
-							}
-						}
-
-					} catch (Exception e) {
-
-					} finally {
-						if (mCursor1 != null)
-							mCursor1.close();
-					}
-					if (vName1.equalsIgnoreCase("1")
-							|| vName2.equalsIgnoreCase("1")
-							|| vName3.equalsIgnoreCase("1")) {
-						nextToGo = "q423m";
-					} else {
-						nextToGo = "q4_24";
-					}
-					nullifyWithInRange(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							nextToGo);
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQnext1());
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-
-				} else {
-					nullifyWithInRange(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQnext1());
-					CommonStaticClass.findOutNextSLNo(
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar(),
-							CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQnext1());
-
-					CommonStaticClass.nextQuestion(ParentActivity.this);
-				}
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+				
 			}
 		}
 	}
@@ -13655,230 +12873,10 @@ else {
 			}
 		}
 
-		// c606
-
-		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("q4")) {
-			monthBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					if (s.length() > 0) {
-						if (s.toString() != "") {
-							yearBox.setText("");
-						}
-					}
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) { // TODO Auto-generated method
-												// stub
-
-				}
-
-				public void afterTextChanged(Editable s) { // TODO
-															// Auto-generated
-
-				}
-			});
-
-			yearBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					if (s.length() > 0) {
-						if (s.toString() != "") {
-							monthBox.setText("");
-						}
-					}
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) { // TODO Auto-generated method
-												// stub
-
-				}
-
-				public void afterTextChanged(Editable s) { // TODO
-															// Auto-generated
-
-				}
-			});
-
-		}
-
-		//
-		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("c607b")) {
-			monthBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					if (s.length() > 0) {
-						if (s.toString() != "") {
-							dayBox.setText("");
-						}
-					}
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-					// TODO Auto-generated method stub
-
-				}
-
-				public void afterTextChanged(Editable s) {
-					// TODO Auto-generated method stub
-
-				}
-			});
-
-			dayBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					if (s.length() > 0) {
-						if (s.toString() != "") {
-							monthBox.setText("");
-						}
-					}
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-					// TODO Auto-generated method stub
-
-				}
-
-				public void afterTextChanged(Editable s) {
-					// TODO Auto-generated method stub
-
-				}
-			});
-
-		}
-
-		// q1_3
-		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("c1_3")) {
-			monthBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					/*
-					 * if (s.length() > 0) { if (s.toString() != "") {
-					 * dayBox.setText(""); if(Integer.parseInt(s.toString())>=1
-					 * && Integer.parseInt(s.toString())<=36) {
-					 * 
-					 * } else { if(s.toString().length()==2) {
-					 * CommonStaticClass.showMyAlert(con, "Message",
-					 * "Month should be between 1 to 36"); monthBox.setText("");
-					 * monthBox.requestFocus(); return; } } } }
-					 */
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-					// TODO Auto-generated method stub
-
-				}
-
-				public void afterTextChanged(Editable s) {
-
-				}
-			});
-
-			dayBox.addTextChangedListener(new TextWatcher() {
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-
-					/*
-					 * if (s.length() > 0) { if (s.toString() != "") {
-					 * monthBox.setText("");
-					 * 
-					 * if(Integer.parseInt(s.toString())>=1 &&
-					 * Integer.parseInt(s.toString())<=30) {
-					 * 
-					 * } else { if(s.toString().length()==2) {
-					 * CommonStaticClass.showMyAlert(con, "Message",
-					 * "Day should be between 1 to 30"); dayBox.setText("");
-					 * dayBox.requestFocus(); return; } }
-					 * 
-					 * } }
-					 */
-
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-					// TODO Auto-generated method stub
-
-				}
-
-				public void afterTextChanged(Editable s) {
-
-				}
-			});
-
-		}
+		
 	}
 
-	private boolean IsValidFrmYearToMin() {
-		String sql = "";
-		Cursor mCursor1 = null;
-
-		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
-				.getQvar().equalsIgnoreCase("q29")
-				|| CommonStaticClass.questionMap
-						.get(CommonStaticClass.currentSLNo).getQvar()
-						.equalsIgnoreCase("q30")) {
-
-			if (CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar()
-					.equalsIgnoreCase("q29")) {
-				sql = "select * from tblMainQues where dataid='"
-						+ CommonStaticClass.dataId + "'";
-				mCursor1 = dbHelper.getQueryCursor(sql);
-				CommonStaticClass
-						.showMyAlert(
-								con,
-								"Not Correct",
-								""
-										+ mCursor1.getString(mCursor1
-												.getColumnIndex("q12")));
-
-			} else if (CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar()
-					.equalsIgnoreCase("q30")) {
-				sql = "select * from tblMainQuesMc where dataid='"
-						+ CommonStaticClass.dataId + "'";
-				mCursor1 = dbHelper.getQueryCursor(sql);
-				// CommonStaticClass.showMyAlert(con, "Not Correct",
-				// "Wrong year, must be less than qustion 29."+
-				// yearBox.getText().toString());
-				if (Integer.parseInt(yearBox.getText().toString()) >= Integer
-						.parseInt(mCursor1.getString(mCursor1
-								.getColumnIndex("q29years")))) {
-					CommonStaticClass.showMyAlert(con, "Not Correct",
-							"Wrong year, must be less than qustion 29.");
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
+	
 
 	private void updateTableDataFrmYearToMin() {
 		Cursor mCursor = null;
@@ -13974,9 +12972,7 @@ else {
 		}
 		if (monthHolder.getVisibility() == View.VISIBLE) {
 			month = monthBox.getText().toString();
-			if (month.equalsIgnoreCase("88") && qName.equalsIgnoreCase("q221")) {
-				CommonStaticClass.qskipList.add("q1003");
-			}
+			
 			sql += (i > 0 ? "," : "")
 
 			+ monthColumn + " = '" + month + "'";
@@ -14014,8 +13010,6 @@ else {
 
 		if (dbHelper.executeDMLQuery(sql)) {
 
-			monthText.setText("");
-			dayText.setText("");
 			CommonStaticClass.findOutNextSLNo(
 					CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getQvar(),
@@ -14096,6 +13090,7 @@ else {
 		}
 	}
 
+	//frmmultiplecheckcombotwo
 	private void loadGuiMultipleCheckCombotwo(final ViewGroup v) {
 		// TODO Auto-generated method stub
 		// checkDbHasPreviousDataForThisHouseHold();
@@ -14120,15 +13115,18 @@ else {
 
 		qName = CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar();
-		if (qName.equalsIgnoreCase("p87b") || qName.equalsIgnoreCase("p87c")
-				|| qName.equalsIgnoreCase("p87d")
-				|| qName.equalsIgnoreCase("p87e")) {// put the name of question
-													// from
-			// qvar
+		if (qName.equalsIgnoreCase("q14")) {// put
+																				// the
+																				// name
+																				// of
+																				// question
+																				// from
+																				// qvar
 			adjustForEdit = true;
+
 		}
-		if (qName.equalsIgnoreCase("")) { // put the name of question from
-											// qvar
+		if (qName.equalsIgnoreCase("q3_4")) { // put the name of question from
+												// qvar
 			adjustForSpinner = true;
 		} else {
 			adjustForSpinner = false;
@@ -14138,7 +13136,7 @@ else {
 					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
 				qqq.setTypeface(font);
 			}
-
+			;
 			qqq.setText(CommonStaticClass.questionMap
 					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
 					.get(CommonStaticClass.currentSLNo).getQdescbng()
@@ -14148,7 +13146,6 @@ else {
 		} else {
 			qqq.setText(CommonStaticClass.questionMap.get(
 					CommonStaticClass.currentSLNo).getQdesceng());
-			qqq.setTypeface(null);
 		}
 
 		checkBoxHolder = (LinearLayout) v.findViewById(R.id.checkBoxHolder);
@@ -14158,34 +13155,45 @@ else {
 						.get(CommonStaticClass.currentSLNo).getQvar());
 
 		LinearLayout.LayoutParams lnlParams = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT);
+				LinearLayout.LayoutParams.MATCH_PARENT, 50);
+
+		/*
+		 * LinearLayout.LayoutParams lnlParams = new LinearLayout.LayoutParams(
+		 * LinearLayout.LayoutParams.MATCH_PARENT,
+		 * LinearLayout.LayoutParams.MATCH_PARENT);
+		 */
+
 		LinearLayout.LayoutParams layoutParamForcheck = new LinearLayout.LayoutParams(
 				(dm.widthPixels / 4) * 2,
 				LinearLayout.LayoutParams.WRAP_CONTENT);
 		LinearLayout.LayoutParams layoutParamForSpin1 = new LinearLayout.LayoutParams(
 				(dm.widthPixels / 4), LinearLayout.LayoutParams.WRAP_CONTENT);
 
-		LinearLayout.LayoutParams layoutParamForSpin2 = new LinearLayout.LayoutParams(
-				(dm.widthPixels / 4), LinearLayout.LayoutParams.WRAP_CONTENT);
+		/*
+		 * LinearLayout.LayoutParams layoutParamForSpin2 = new
+		 * LinearLayout.LayoutParams( (dm.widthPixels / 4),
+		 * LinearLayout.LayoutParams.WRAP_CONTENT);
+		 */
 
 		LinearLayout.LayoutParams layoutParamForEditOrSpinner = new LinearLayout.LayoutParams(
 				(dm.widthPixels / 4), LinearLayout.LayoutParams.WRAP_CONTENT);
 
-		CreateMultipleCheckCombotwoHeader(v);
-
 		optionList1.add("");
-		optionCodeList1.add(-1);
+		optionCodeList1.add(0);
 
 		optionList2.add("");
-		optionCodeList2.add(-1);
+		optionCodeList2.add(0);
 
 		optionList3.add("");
-		optionCodeList3.add(-1);
+		optionCodeList3.add(0);
 
 		for (int i = 0; i < op.codeList.size(); i++) {
 
-			if (op.qidList.get(i).contains("_Options_1")) {
+			if (op.qidList.get(i).contains("_Options")
+					|| op.qidList.get(i).contains("_Option")
+					|| op.qidList.get(i).contains("_options")
+					|| op.qidList.get(i).contains("_option")
+					) {
 				Log.e("op.qidList.get(i)", op.qidList.get(i));
 				if (CommonStaticClass.langBng) {
 					optionList1.add(op.capBngList.get(i));
@@ -14194,40 +13202,24 @@ else {
 				}
 				optionCodeList1.add(op.codeList.get(i));
 				continue;
-			} else if (op.qidList.get(i).contains("_Options_2")) {
+			} 
 
-				if (CommonStaticClass.langBng) {
-					optionList2.add(op.capBngList.get(i));
-				} else {
-					optionList2.add(op.capEngList.get(i));
-				}
-				optionCodeList2.add(op.codeList.get(i));
-				continue;
-			} else if (op.qidList.get(i).contains("_Options_3")) {
-
-				if (CommonStaticClass.langBng) {
-					optionList3.add(op.capBngList.get(i));
-				} else {
-					optionList3.add(op.capEngList.get(i));
-				}
-				optionCodeList3.add(op.codeList.get(i));
-				continue;
-			}
-
-			aaa1.add(-1);
-			aaa2.add(-1);
-			aaa3.add(-1);
-			aaachecklist.add(-1);
+			aaa1.add(0);
+			aaa2.add(0);
+			aaa3.add(0);
+			aaachecklist.add(0);
 			if (adjustForEdit)
-				mEditStrings.add("-1");
+				mEditStrings.add("");
 		}
 
-		for (int i = 0; i < op.codeList.size(); i++) {
+		for (int i = op.codeList.size() - 1; i >=0 ; i--) {
 
 			Log.e("op.qidList.get(i)", op.qidList.get(i));
-			if (op.qidList.get(i).contains("_Options_1")
-					|| op.qidList.get(i).contains("_Options_2")
-					|| op.qidList.get(i).contains("_Options_3")) {
+			if (op.qidList.get(i).contains("_Options")
+					|| op.qidList.get(i).contains("_Option")
+					|| op.qidList.get(i).contains("_options")
+					|| op.qidList.get(i).contains("_option")
+					) {
 				continue;
 			}
 			LinearLayout ln = new LinearLayout(this);
@@ -14243,8 +13235,7 @@ else {
 			}
 			checkButton.setId(i);
 			final Spinner spinner1 = new Spinner(this);
-			final Spinner spinner2 = new Spinner(this);
-			final Spinner spinner3 = new Spinner(this);
+			
 			final EditText editforwater = new EditText(this);
 			editforwater.setTag(i);
 			layoutParamForSpin1.weight = 1;
@@ -14254,20 +13245,85 @@ else {
 			if (adjustForSpinner) {
 				layoutParamForEditOrSpinner.weight = 1;
 			}
-			layoutParamForSpin2.weight = 1;
-			if (adjustForSpinner) {
-				ln.addView(spinner3, 0, layoutParamForEditOrSpinner);
-			}
-
-			if (!qName.equalsIgnoreCase("p87b"))
-				ln.addView(spinner2, 0, layoutParamForSpin2);
-
+			
 			if (adjustForEdit) {
-				editforwater.setRawInputType(InputType.TYPE_CLASS_TEXT);
+				//make the text box either date, time or numeric type
+				//date
+				if(qName.equalsIgnoreCase("q14"))
+				{
+					editforwater.setFocusable(false);
+					
+					editforwater.setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							final Calendar c = Calendar.getInstance();
+				            mYear = c.get(Calendar.YEAR);
+				            mMonth = c.get(Calendar.MONTH);
+				            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+				            // Launch Date Picker Dialog
+				            DatePickerDialog dpd = new DatePickerDialog(ParentActivity.this,
+				                    new DatePickerDialog.OnDateSetListener() {
+
+				                        public void onDateSet(DatePicker view, int year,
+				                                int monthOfYear, int dayOfMonth) {
+				                            // Display Selected date in textbox
+				                        	editforwater.setText((((dayOfMonth < 10) ? "0" : "") + dayOfMonth) + "/"
+				                                    + ((((monthOfYear+1) < 10) ? "0" : "") + (monthOfYear+1)) + "/" + year);
+				                        	
+
+				                        }
+				                        
+				                    }, mYear, mMonth, mDay);
+				            
+				            	dpd.setTitle("Select Date");
+				            	dpd.show();
+				          
+							
+						}
+					});
+				}
+				//time
+				else if(qName.equalsIgnoreCase(""))
+				{
+					editforwater.setFocusable(false);
+					
+					
+					editforwater.setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							
+
+				            // Launch time Picker Dialog
+							Calendar c = Calendar.getInstance();
+				            int hour = c.get(Calendar.HOUR_OF_DAY);
+				            int minute = c.get(Calendar.MINUTE);
+				            TimePickerDialog mTimePicker;
+				            mTimePicker = new TimePickerDialog(ParentActivity.this, new TimePickerDialog.OnTimeSetListener() {
+				                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+				                	editforwater.setText( (((selectedHour<10)? "0" :"")+ selectedHour) + ":" + 
+				                    		(((selectedMinute<10)? "0" : "") + selectedMinute));
+				                }
+				            }, hour, minute, true);//Yes 24 hour time
+				            mTimePicker.setTitle("Select Time");
+				            mTimePicker.show();
+				        
+				       
+				          
+							
+						}
+					});
+				}
+				//number
+				else 
+				editforwater.setRawInputType(InputType.TYPE_CLASS_NUMBER);
+				
+				
 				ln.addView(editforwater, 0, layoutParamForEditOrSpinner);
 
 			}
-
 			ln.addView(spinner1, 0, layoutParamForSpin1);
 
 			ln.addView(checkButton, 0, layoutParamForcheck);
@@ -14300,7 +13356,7 @@ else {
 				adapter3.setDropDownViewResource(CommonStaticClass.langBng ? R.layout.checkedspintextview
 						: android.R.layout.simple_spinner_dropdown_item);
 			}
-
+			editforwater.setVisibility(View.GONE);
 			spinner1.setAdapter(adapter1);
 			spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -14310,6 +13366,12 @@ else {
 					if (optionCodeList1.size() > pos)
 						aaa1.set(checkButton.getId(), optionCodeList1.get(pos));
 
+					if (pos == 1) {
+						editforwater.setVisibility(View.VISIBLE);
+					} else {
+						editforwater.setText("");
+						editforwater.setVisibility(View.GONE);
+					}
 				}
 
 				public void onNothingSelected(AdapterView<?> arg0) {
@@ -14319,47 +13381,7 @@ else {
 
 			});
 
-			if (spinner2.getVisibility() == View.VISIBLE) {
-				spinner2.setAdapter(adapter2);
-				spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-					public void onItemSelected(AdapterView<?> parent,
-							View view, int pos, long id) {
-						// TODO Auto-generated method stub
-						if (optionCodeList2.size() > pos)
-							aaa2.set(checkButton.getId(),
-									optionCodeList2.get(pos));
-
-					}
-
-					public void onNothingSelected(AdapterView<?> arg0) {
-						// TODO Auto-generated method stub
-						// aaa.set(checkButton.getId(), -1);
-					}
-
-				});
-			}
-
-			if (adjustForSpinner) {
-				spinner3.setAdapter(adapter3);
-				spinner3.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-					public void onItemSelected(AdapterView<?> parent,
-							View view, int pos, long id) {
-						// TODO Auto-generated method stub
-						if (optionCodeList3.size() > pos)
-							aaa3.set(checkButton.getId(),
-									optionCodeList3.get(pos));
-
-					}
-
-					public void onNothingSelected(AdapterView<?> arg0) {
-						// TODO Auto-generated method stub
-						// aaa.set(checkButton.getId(), -1);
-					}
-
-				});
-			}
+			
 			if (adjustForEdit) {
 				editforwater.addTextChangedListener(new TextWatcher() {
 
@@ -14384,7 +13406,7 @@ else {
 			}
 
 			checkBoxHolder.addView(ln, 0, lnlParams);
-
+			editforwater.setVisibility(View.GONE);
 			checkButton
 					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -14394,61 +13416,55 @@ else {
 							if (isChecked) {
 								Log.e("id :", "" + checkButton.getId());
 								aaachecklist.set(checkButton.getId(), 1);
+								editforwater.setVisibility(View.GONE);
 								// allchecked = allchecked+1;
 								spinner1.setVisibility(View.VISIBLE);
-								if (!qName.equalsIgnoreCase("p87b")) {
-									spinner2.setVisibility(View.VISIBLE);
-								}
-
+								// spinner2.setVisibility(View.VISIBLE);
 								if (adjustForSpinner) {
-									spinner3.setVisibility(View.VISIBLE);
+									// spinner3.setVisibility(View.VISIBLE);
 								}
 								if (adjustForEdit) {
-									editforwater.setVisibility(View.VISIBLE);
+									// editforwater.setVisibility(View.VISIBLE);
 									mEditStrings.set(
 											(Integer) editforwater.getTag(),
 											"::");
 								}
 
 							} else {
-								aaachecklist.set(checkButton.getId(), -1);
+								aaachecklist.set(checkButton.getId(), 0);
 								spinner1.setVisibility(View.INVISIBLE);
-								if (!qName.equalsIgnoreCase("p87b")) {
-									spinner2.setVisibility(View.INVISIBLE);
-								}
+								// spinner2.setVisibility(View.INVISIBLE);
 								if (adjustForSpinner) {
-									spinner3.setVisibility(View.INVISIBLE);
+									// spinner3.setVisibility(View.INVISIBLE);
 								}
 								if (adjustForEdit) {
-									editforwater.setVisibility(View.INVISIBLE);
+									// editforwater.setVisibility(View.INVISIBLE);
 									mEditStrings.set(
 											(Integer) editforwater.getTag(),
-											"-1");
+											"");
 								}
 							}
 						}
 					});
 
 			spinner1.setVisibility(View.INVISIBLE);
-			if (!qName.equalsIgnoreCase("p87b")) {
-				spinner2.setVisibility(View.INVISIBLE);
-			}
+			// spinner2.setVisibility(View.INVISIBLE);
 			if (adjustForSpinner) {
-				spinner3.setVisibility(View.INVISIBLE);
+				// spinner3.setVisibility(View.INVISIBLE);
 			}
 			if (adjustForEdit) {
-				editforwater.setVisibility(View.INVISIBLE);
+				// editforwater.setVisibility(View.INVISIBLE);
 			}
 			if (adjustForEdit) {
 				selectCheckAndCombo(op.qidList.get(i), checkButton, spinner1,
-						editforwater, spinner2);
+						editforwater);
 			} else {
 				if (adjustForSpinner) {
 					selectCheckAndCombo(op.qidList.get(i), checkButton,
-							spinner1, spinner2, spinner3);
+							spinner1);
 				} else {
 					selectCheckAndCombo(op.qidList.get(i), checkButton,
-							spinner1, spinner2);
+							spinner1);
 				}
 			}
 
@@ -14463,6 +13479,7 @@ else {
 			}
 
 		});
+
 		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
 
 		saveNxtButton.setOnClickListener(new View.OnClickListener() {
@@ -14515,14 +13532,7 @@ else {
 		}
 	}
 
-	// private boolean checkIfSingleOptionIsChecked() {
-	// for (int i = 0; i < aaachecklist.size(); i++) {
-	// if (!(aaachecklist.get(i) == -1)) {
-	// return true;
-	// }
-	// }
-	// return false;
-	// }
+
 	private boolean checkIfAllOptionIsChecked() {
 		// for (int i = 0; i < aaachecklist.size(); i++) {
 		// if ((aaachecklist.get(i) == -1)) {
@@ -14537,21 +13547,7 @@ else {
 		// }
 	}
 
-	// private Boolean CheckBoxNotSeletedFrmMultipleCheckCombotwo() {
-	// if(aaachecklist.size()!=allchecked)
-	// {
-	// return spinnerOK = false;
-	// }
-	// return spinnerOK;
-	// /*for (int i = 0; i < aaachecklist.size(); i++) {
-	// if (aaachecklist.get(i) == -1) {
-	// return spinnerOK = false;
-	//
-	// }
-	// }
-	// return spinnerOK;*/
-	//
-	// }
+	
 
 	private void updateTableMultipleCheckComboTwo(ViewGroup checkBoxHolder,
 			boolean adjustEdit, boolean adjustSpin) {
@@ -14566,160 +13562,307 @@ else {
 								"Blank value is not accepted,please put some value to proceed");
 				return;
 			}
+
+			
 		}
-		/*
-		 * if (CheckBoxNotSeletedFrmMultipleCheckCombotwo() == false) {
-		 * CommonStaticClass.showMyAlert(con, "Please Select",
-		 * "Please select all checkbox to proceed"); return; }
-		 */
+
+		CheckBoxNotSeletedFrmMultipleCheckCombotwo();
+		if (spinnerOK == false) {
+			CommonStaticClass.showMyAlert(con, "Please Select",
+					"Please select all checkbox to proceed");
+			return;
+		}
 
 		if (spinnerOK) {
-			// if (checkIfSingleOptionIsChecked()) {
-			if (checkIfAllOptionIsChecked()) {
-				String sql = "UPDATE "
-						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
-						+ " SET ";
-				for (int i = 0; i < op.codeList.size(); i++) {
-					if (op.qidList.get(i).contains("_Options")) {
-						continue;
-					}
-					if (op.qidList.get(i + 1).contains("_Options")) {
-						if (adjustEdit) {
-							sql += op.qidList.get(i) + "_1 = '"
-									+ (aaachecklist.get(i) == -1 ? 0 : 1)
-									+ "',";
-							sql += op.qidList.get(i) + "_2 = '"
-									+ mEditStrings.get(i) + "',";
+		
 
-							sql += op.qidList.get(i)
-									+ "_3 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa1.get(i))
-									+ "',";
-
-							sql += op.qidList.get(i)
-									+ "_4 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa2.get(i))
-									+ "' ";
-						} else {
-							if (adjustSpin) {
-								sql += op.qidList.get(i) + "_1 = '"
-										+ (aaachecklist.get(i) == -1 ? 0 : 1)
-										+ "',";
-								sql += op.qidList.get(i)
-										+ "_2 = '"
-										+ ((aaachecklist.get(i) == -1 || aaachecklist
-												.get(i) == 0) ? "" : aaa1
-												.get(i)) + "',";
-								sql += op.qidList.get(i)
-										+ "_3 = '"
-										+ ((aaachecklist.get(i) == -1 || aaachecklist
-												.get(i) == 0) ? "" : aaa2
-												.get(i)) + "',";
-								sql += op.qidList.get(i)
-										+ "_4 = '"
-										+ ((aaachecklist.get(i) == -1 || aaachecklist
-												.get(i) == 0) ? "" : aaa3
-												.get(i)) + "' ";
-							} else {
-								sql += op.qidList.get(i) + "_1 = '"
-										+ (aaachecklist.get(i) == -1 ? 0 : 1)
-										+ "',";
-								sql += op.qidList.get(i)
-										+ "_2 = '"
-										+ ((aaachecklist.get(i) == -1 || aaachecklist
-												.get(i) == 0) ? "" : aaa1
-												.get(i)) + "',";
-								sql += op.qidList.get(i)
-										+ "_3 = '"
-										+ ((aaachecklist.get(i) == -1 || aaachecklist
-												.get(i) == 0) ? "" : aaa2
-												.get(i)) + "' ";
-							}
-						}
-
-						break;
-					}
+			String sql = "UPDATE "
+					+ CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getTablename()
+					+ " SET ";
+			for (int i = 0; i < op.codeList.size(); i++) {
+				if (op.qidList.get(i).contains("_Options")
+						|| op.qidList.get(i).contains("_Option")
+						|| op.qidList.get(i).contains("_options")
+						|| op.qidList.get(i).contains("_option")) {
+					continue;
+				}
+				if (op.qidList.get(i + 1).contains("_Options")
+						|| op.qidList.get(i + 1).contains("_Option")
+						|| op.qidList.get(i + 1).contains("_options")
+						|| op.qidList.get(i + 1).contains("_option")) {
 					if (adjustEdit) {
-						sql += op.qidList.get(i) + "_1 = '"
-								+ (aaachecklist.get(i) == -1 ? 0 : 1) + "',";
+						sql += op.qidList.get(i) + " = '"
+								+ (aaachecklist.get(i) == 0 ? 0 : 1) + "',";
+						sql += op.qidList.get(i)
+								+ "_1 = '"
+								+ ((aaachecklist.get(i) == 0 || aaachecklist
+										.get(i) == 0) ? 0 : aaa1.get(i))
+								+ "',";
 						sql += op.qidList.get(i) + "_2 = '"
 								+ mEditStrings.get(i) + "',";
-						sql += op.qidList.get(i)
-								+ "_3 = '"
-								+ ((aaachecklist.get(i) == -1 || aaachecklist
-										.get(i) == 0) ? "" : aaa1.get(i))
-								+ "',";
-						sql += op.qidList.get(i)
-								+ "_4 = '"
-								+ ((aaachecklist.get(i) == -1 || aaachecklist
-										.get(i) == 0) ? "" : aaa2.get(i))
-								+ "',";
+						
+						
 					} else {
 						if (adjustSpin) {
-							sql += op.qidList.get(i) + "_1 = '"
-									+ (aaachecklist.get(i) == -1 ? 0 : 1)
+							sql += op.qidList.get(i) + " = '"
+									+ (aaachecklist.get(i) == 0 ? 0 : 1)
 									+ "',";
+							sql += op.qidList.get(i)
+									+ "_1 = '"
+									+ ((aaachecklist.get(i) == 0 || aaachecklist
+											.get(i) == 0) ? 0 : aaa1.get(i))
+									+ "'";
 							sql += op.qidList.get(i)
 									+ "_2 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa1.get(i))
+									+ ((aaachecklist.get(i) == 0 || aaachecklist
+											.get(i) == 0) ? 0 : aaa2.get(i))
 									+ "',";
-							sql += op.qidList.get(i)
-									+ "_3 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa2.get(i))
-									+ "',";
-							sql += op.qidList.get(i)
-									+ "_4 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa3.get(i))
-									+ "',";
+							
+							
+							/*
+							 * sql += op.qidList.get(i) + "_4 = '" +
+							 * ((aaachecklist.get(i) == -1 || aaachecklist
+							 * .get(i) == 0) ? "" : aaa3 .get(i)) + "' ";
+							 */
 						} else {
-							sql += op.qidList.get(i) + "_1 = '"
-									+ (aaachecklist.get(i) == -1 ? 0 : 1)
+							sql += op.qidList.get(i) + " = '"
+									+ (aaachecklist.get(i) == 0 ? 0 : 1)
 									+ "',";
+							sql += op.qidList.get(i)
+									+ "_1 = '"
+									+ ((aaachecklist.get(i) == 0 || aaachecklist
+											.get(i) == 0) ? 0 : aaa2.get(i))
+									+ "' ";
 							sql += op.qidList.get(i)
 									+ "_2 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa1.get(i))
+									+ ((aaachecklist.get(i) == 0 || aaachecklist
+											.get(i) == 0) ? 0 : aaa1.get(i))
 									+ "',";
-							sql += op.qidList.get(i)
-									+ "_3 = '"
-									+ ((aaachecklist.get(i) == -1 || aaachecklist
-											.get(i) == 0) ? "" : aaa2.get(i))
-									+ "',";
+							
 						}
-
 					}
-				}
-				sql += "where dataid='" + CommonStaticClass.dataId + "'";
 
-				if (dbHelper.executeDMLQuery(sql)) {
-					
-						CommonStaticClass.findOutNextSLNo(
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQvar(),
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQnext1());
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-					
+					break;
 				}
-			} else {
-				CommonStaticClass
-						.showMyAlert(con, "Please check one!!!",
-								"You didn't check any answer please select one to preceed");
+				if (adjustEdit) {
+					sql += op.qidList.get(i) + " = '"
+							+ (aaachecklist.get(i) == 0 ? 0 : 1) + "',";
+					sql += op.qidList.get(i)
+							+ "_1 = '"
+							+ ((aaachecklist.get(i) == 0 || aaachecklist
+									.get(i) == 0) ? 0 : aaa1.get(i)) + "',";
+					sql += op.qidList.get(i) + "_2 = '" + mEditStrings.get(i)
+							+ "',";
+					
+					/*
+					 * sql += op.qidList.get(i) + "_4 = '" +
+					 * ((aaachecklist.get(i) == -1 || aaachecklist .get(i) == 0)
+					 * ? "" : aaa2.get(i)) + "',";
+					 */
+				} else {
+					if (adjustSpin) {
+						sql += op.qidList.get(i) + " = '"
+								+ (aaachecklist.get(i) == 0 ? 0 : 1) + "',";
+						sql += op.qidList.get(i)
+								+ "_1 = '"
+								+ ((aaachecklist.get(i) == 0 || aaachecklist
+										.get(i) == 0) ? 0 : aaa2.get(i))
+								+ "',";
+						sql += op.qidList.get(i)
+								+ "_2 = '"
+								+ ((aaachecklist.get(i) == 0 || aaachecklist
+										.get(i) == 0) ? 0 : aaa1.get(i))
+								+ "',";
+						
+						/*
+						 * sql += op.qidList.get(i) + "_4 = '" +
+						 * ((aaachecklist.get(i) == -1 || aaachecklist .get(i)
+						 * == 0) ? "" : aaa3.get(i)) + "',";
+						 */
+					} else {
+						sql += op.qidList.get(i) + " = '"
+								+ (aaachecklist.get(i) == 0 ? 0 : 1) + "',";
+						sql += op.qidList.get(i)
+								+ "_1 = '"
+								+ ((aaachecklist.get(i) == 0 || aaachecklist
+										.get(i) == 0) ? 0 : aaa2.get(i))
+								+ "',";
+						sql += op.qidList.get(i)
+								+ "_2 = '"
+								+ ((aaachecklist.get(i) == 0 || aaachecklist
+										.get(i) == 0) ? 0 : aaa1.get(i))
+								+ "',";
+						
+					}
+
+				}
+			}
+			sql = sql.subSequence(0, sql.length() - 1).toString();
+
+			sql += " where dataid='" + CommonStaticClass.dataId + "'";
+
+			if (dbHelper.executeDMLQuery(sql)) {
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
 			}
 		} else {
-			CommonStaticClass
-					.showMyAlert(con, "Please select item!!!",
-							"You didn't select any item from list, Please select one to proceed");
+			CommonStaticClass.showMyAlert(con, "Please check one!!!",
+					"You didn't check any answer please select one to preceed");
+		}
+		// }
+		/*
+		 * else { CommonStaticClass .showMyAlert(con, "Please select item!!!",
+		 * "You didn't select any item from list, Please select one to proceed"
+		 * ); }
+		 */
+
+	}
+	
+	private void selectCheckAndCombo(String inColumn, CheckBox checkButton,
+			Spinner spinner1, EditText ed) {
+		// TODO Auto-generated method stub
+		Log.e("inColumn: ", "" + inColumn);
+		String sql = "";
+
+		sql = "Select * "
+				+ " from "
+				+ CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getTablename()
+				+ " where dataid='" + CommonStaticClass.dataId + "'";
+
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			boolean a = false;
+			if (mCursor1.getCount() > 0) {
+				doFillpos(mCursor1, inColumn, checkButton, spinner1, ed);
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
 		}
 
+	}
+	
+	private void selectCheckAndCombo(String inColumn, CheckBox checkButton,
+			Spinner spinner1) {
+		// TODO Auto-generated method stub
+		Log.e("inColumn: ", "" + inColumn);
+		String sql = "";
+
+		sql = "Select * "
+				+ " from "
+				+ CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getTablename()
+				+ " where dataid='" + CommonStaticClass.dataId + "'";
+
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			boolean a = false;
+			if (mCursor1.getCount() > 0) {
+				doFillpos(mCursor1, inColumn, checkButton, spinner1);
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+		}
+
+	}
+	
+	
+	
+	private boolean doFillpos(Cursor mCursor1, String columnPrefix,
+			CheckBox checkButton, Spinner spinner1, EditText ed) {
+		boolean dataOk = false;
+		String column1 = columnPrefix ;
+		String column2 = columnPrefix + "_1";
+		String column3 = columnPrefix + "_2";
+		/* String column4 = columnPrefix + "_4"; */
+		if (mCursor1.moveToFirst()) {
+			do {
+				if (mCursor1.getColumnIndexOrThrow(column1) != -1
+						&& mCursor1.getColumnIndexOrThrow(column2) != -1
+				/*
+				 * && mCursor1.getColumnIndexOrThrow(column3) != -1 &&
+				 * mCursor1.getColumnIndexOrThrow(column4) != -1
+				 */
+				) {
+					try {
+
+						String a = mCursor1.getString(mCursor1
+								.getColumnIndex(column1));
+						String b = mCursor1.getString(mCursor1
+								.getColumnIndex(column2));
+						String c = mCursor1.getString(mCursor1
+								.getColumnIndex(column3));
+						/*
+						 * String d = mCursor1.getString(mCursor1
+						 * .getColumnIndex(column4));
+						 */
+						if (Integer.parseInt(a) == 1) {
+							checkButton.setChecked(true);
+						} else if (Integer.parseInt(a) == 0) {
+							checkButton.setChecked(false);
+						}
+						if (optionCodeList1.contains(Integer.parseInt(b))) {
+							int pos = optionCodeList1.indexOf(Integer
+									.parseInt(b));
+
+							spinner1.setSelection(pos);
+							dataOk = true;
+						}
+						if (c != null && c.length() > 0
+								&& !c.equalsIgnoreCase("")) {
+							ed.setText(c);
+						}
+						
+						/*
+						 * if (optionCodeList2.contains(Integer.parseInt(d))) {
+						 * int pos = optionCodeList2.indexOf(Integer
+						 * .parseInt(d));
+						 * 
+						 * spinner2.setSelection(pos); dataOk = true; }
+						 */
+
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+
+				}
+
+			} while (mCursor1.moveToNext());
+		}
+
+		return dataOk;
+	}
+	
+	private void CheckBoxNotSeletedFrmMultipleCheckCombotwo() {
+		// if (qName.equalsIgnoreCase("q612") || qName.equalsIgnoreCase("q611"))
+		// {
+		for (int i = 0; i < aaa1.size(); i++) {
+			if (aaa1.get(i) != 0) {
+				spinnerOK = true;
+				return;
+			} else {
+				spinnerOK = false;
+			}
+		}
 	}
 
 	
@@ -14751,25 +13894,6 @@ else {
 		Log.e("inColumn: ", "" + inColumn);
 		String sql = "";
 
-		// if (!CommonStaticClass.isMember)
-		// sql = "Select "
-		// + inColumn
-		// + ","
-		// + inColumn
-		// + " from "
-		// + CommonStaticClass.questionMap.get(
-		// CommonStaticClass.currentSLNo).getTablename()
-		// + " where dataid='" + CommonStaticClass.dataId + "'";
-		// else
-		// sql = "Select "
-		// + inColumn
-		// + "_1,"
-		// + inColumn
-		// + "_2 from "
-		// + CommonStaticClass.questionMap.get(
-		// CommonStaticClass.currentSLNo).getTablename()
-		// + " where dataid='" + CommonStaticClass.dataId
-		// + "' and memberid=" + CommonStaticClass.memberID;
 		sql = "Select * "
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
@@ -14832,25 +13956,7 @@ else {
 		Log.e("inColumn: ", "" + inColumn);
 		String sql = "";
 
-		// if (!CommonStaticClass.isMember)
-		// sql = "Select "
-		// + inColumn
-		// + ","
-		// + inColumn
-		// + " from "
-		// + CommonStaticClass.questionMap.get(
-		// CommonStaticClass.currentSLNo).getTablename()
-		// + " where dataid='" + CommonStaticClass.dataId + "'";
-		// else
-		// sql = "Select "
-		// + inColumn
-		// + "_1,"
-		// + inColumn
-		// + "_2 from "
-		// + CommonStaticClass.questionMap.get(
-		// CommonStaticClass.currentSLNo).getTablename()
-		// + " where dataid='" + CommonStaticClass.dataId
-		// + "' and memberid=" + CommonStaticClass.memberID;
+		 
 		sql = "Select * "
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
@@ -15052,9 +14158,9 @@ else {
 	private boolean doFillpos(Cursor mCursor1, String columnPrefix,
 			CheckBox checkButton, Spinner spinner1) {
 		boolean dataOk = false;
-		String column1 = columnPrefix + "_1";
-		String column2 = columnPrefix + "_2";
-		String column3 = columnPrefix + "_3";
+		String column1 = columnPrefix ;
+		String column2 = columnPrefix + "_1";
+		String column3 = columnPrefix + "_2";
 		if (mCursor1.moveToFirst()) {
 			do {
 				if (mCursor1.getColumnIndexOrThrow(column1) != -1
@@ -15211,6 +14317,10 @@ else {
 		if (formname.equalsIgnoreCase("frmneonatelinfo")) {
 			index = 31;
 		}
+		
+		if (formname.equalsIgnoreCase("frmcamera")) {
+			index = 32;
+		}
 
 		return index;
 	}
@@ -15270,7 +14380,7 @@ else {
 			loadGuiFrmNumeric(frmnumeric);
 			break;
 		case 13:
-			Load_UIFrmReasoning(frmreasoning);
+			//Load_UIFrmReasoning(frmreasoning);
 			break;
 		case 14:
 			Load_UIFrmSingleChoice(frmsinglechoice);
@@ -15303,7 +14413,7 @@ else {
 			break;
 
 		case 23:
-			loadGuiFrmMultipleChoiceRadio(frmmultiplechoiceradio);
+			//loadGuiFrmMultipleChoiceRadio(frmmultiplechoiceradio);
 			break;
 
 		case 24:
@@ -15319,20 +14429,24 @@ else {
 			break;
 
 		case 27:
-			loadguifrmmultiplecheckdate(frmmultiplecheckdate);
+			//loadguifrmmultiplecheckdate(frmmultiplecheckdate);
 			break;
 
 		case 28:
 			loadGuiFrmBarcode(frmbarcode);
 			break;
 		case 29:
-			loadGuifrmnumericwithrdbtn(frmnumericwithrdbtn);
+//			loadGuifrmnumericwithrdbtn(frmnumericwithrdbtn);
 			break;
 		case 30:
-			loadGuifrmfindsection(frmfindsection);
+			//loadGuifrmfindsection(frmfindsection);
 			break;
 		case 31:
-			loadGuifrmneonatelinfo(frmneonatelinfo);
+			//loadGuifrmneonatelinfo(frmneonatelinfo);
+			break;
+			
+		case 32:
+			loadGuifrmcamera(frmcamera);
 			break;
 
 		default:
@@ -15341,7 +14455,7 @@ else {
 		}
 	}
 
-	private ArrayList<String> optionList = null;
+	/*private ArrayList<String> optionList = null;
 	private ArrayList<Integer> optionCodeList = null;
 	private EditText touchedBox;
 
@@ -15506,9 +14620,9 @@ else {
 
 		});
 
-	}
+	}*/
 
-	private boolean doFillFrmMultipleCheckDate(Cursor mCursor1,
+	/*private boolean doFillFrmMultipleCheckDate(Cursor mCursor1,
 			String inColumn, CheckBox checkButton, EditText spinner) {
 		boolean dataOk = false;
 		if (mCursor1.moveToFirst()) {
@@ -15542,9 +14656,9 @@ else {
 		}
 
 		return dataOk;
-	}
+	}*/
 
-	private void spinnerVisibleButNotSeletedFrmMultipleCheckDate(
+	/*private void spinnerVisibleButNotSeletedFrmMultipleCheckDate(
 			ViewGroup viewGroup) {
 		int nrOfChildren = viewGroup.getChildCount();
 		for (int i = 0; i < nrOfChildren; i++) {
@@ -15560,9 +14674,9 @@ else {
 				spinnerVisibleButNotSeletedFrmMultipleCheckDate((ViewGroup) view);
 			}
 		}
-	}
+	}*/
 
-	private boolean checkIfSingleOptionIsCheckedFrmMultipleCheckDate() {
+	/*private boolean checkIfSingleOptionIsCheckedFrmMultipleCheckDate() {
 		for (int i = 0; i < listvalues.size(); i++) {
 			if (!(listvalues.get(i).equalsIgnoreCase("-1"))) {
 				return true;
@@ -15570,7 +14684,7 @@ else {
 
 		}
 		return false;
-	}
+	}*/
 
 	/*
 	 * private void selectCheckAndDateFrmMultipleCheckDate(String inColumn,
@@ -15599,7 +14713,7 @@ else {
 	 * }
 	 */
 
-	private void selectCheckAndDateFrmMultipleCheckDate(String inColumn,
+	/*private void selectCheckAndDateFrmMultipleCheckDate(String inColumn,
 			CheckBox checkButton, EditText et) {
 		// TODO Auto-generated method stub
 		String sql = "";
@@ -15635,9 +14749,9 @@ else {
 				mCursor1.close();
 		}
 
-	}
+	}*/
 
-	private void updateTableDataFrmMultipleCheckDate() {
+	/*private void updateTableDataFrmMultipleCheckDate() {
 		// TODO Auto-generated method stub
 		spinnerOK = true;
 		spinnerVisibleButNotSeletedFrmMultipleCheckDate((ViewGroup) findViewById(R.id.rootView));
@@ -15667,7 +14781,7 @@ else {
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
 
-					/*
+					
 					 * preserveState();
 					 * CommonStaticClass.findOutNextSLNo(CommonStaticClass
 					 * .questionMap
@@ -15675,7 +14789,7 @@ else {
 					 * CommonStaticClass
 					 * .questionMap.get(CommonStaticClass.currentSLNo
 					 * ).getQnext1()); CommonStaticClass.nextQuestion(con);
-					 */
+					 
 				}
 
 			} else {
@@ -15689,9 +14803,9 @@ else {
 							"You didn't select any item from list, Please select one to proceed");
 		}
 
-	}
+	}*/
 
-	TextView Slno;
+	/*TextView Slno;
 	Spinner spinnerc1;
 	TextView lblc2;
 	Spinner spinnerc2;
@@ -15710,7 +14824,7 @@ else {
 	EditText etc5_4;
 	TextView lblc6;
 	EditText etc6;
-	EditText etother;
+	EditText etother;*/
 
 	/*private void loadGuiFrmq124(ViewGroup vg) {
 
@@ -15867,7 +14981,7 @@ else {
 
 	}*/
 
-	private void loadGuifrmnumericwithrdbtn(final ViewGroup v) {
+	/*private void loadGuifrmnumericwithrdbtn(final ViewGroup v) {
 		// TODO Auto-generated method stub
 		RadioGroup rgButton = (RadioGroup) v.findViewById(R.id.radioGroup1);
 		rgButton.clearCheck();
@@ -16083,12 +15197,152 @@ else {
 
 		});
 
+	}*/
+	
+
+	//frmcamera
+	private void loadGuifrmcamera(final ViewGroup v) {
+		// TODO Auto-generated method stub
+		mImageView = (ImageView) findViewById(R.id.imageView1);
+		Button picSBtn = (Button) findViewById(R.id.btnIntendS);
+		
+		
+		setBtnListenerOrDisable( 
+				picSBtn, 
+				mTakePicSOnClickListener,
+				MediaStore.ACTION_IMAGE_CAPTURE
+		);
+		
+		
 	}
+	Button.OnClickListener mTakePicSOnClickListener = 
+			new Button.OnClickListener() {
+			
+			public void onClick(View v) {
+				dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
+			}
+		};
+	
+	
+		private void handleSmallCameraPhoto(Intent intent) {
+			Bundle extras = intent.getExtras();
+			mImageBitmap = (Bitmap) extras.get("data");
+			mImageView.setImageBitmap(mImageBitmap);
+			
+			mImageView.setVisibility(View.VISIBLE);
+			
+		}
+		public static boolean isIntentAvailable(Context context, String action) {
+			final PackageManager packageManager = context.getPackageManager();
+			final Intent intent = new Intent(action);
+			List<ResolveInfo> list =
+				packageManager.queryIntentActivities(intent,
+						PackageManager.MATCH_DEFAULT_ONLY);
+			return list.size() > 0;
+		}
+		private void setBtnListenerOrDisable( 
+				Button btn, 
+				Button.OnClickListener onClickListener,
+				String intentName
+		) {
+			if (isIntentAvailable(thisactivity, intentName)) {
+				btn.setOnClickListener(onClickListener);        	
+			} else {
+				btn.setText( "Cannot " + btn.getText());
+				btn.setClickable(false);
+			}
+		}
+		
+		private File getAlbumDir() {
+			File storageDir = null;
+
+			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+				storageDir=Environment.getExternalStorageDirectory().getAbsoluteFile();
+				if (storageDir != null) {
+					if (! storageDir.mkdirs()) {
+						if (! storageDir.exists()){
+							Log.d("CameraSample", "failed to create directory");
+							return null;
+						}
+					}
+				}
+				
+			} else {
+				Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
+			}
+			
+			return storageDir;
+		}
+		
+		private File createImageFile() throws IOException {
+			// Create an image file name
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+			File albumF = getAlbumDir();
+			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+			return imageF;
+		}
+		private File setUpPhotoFile() throws IOException {
+			
+			File f = createImageFile();
+			mCurrentPhotoPath = f.getAbsolutePath();
+			
+			return f;
+		}
+
+		private void dispatchTakePictureIntent(int actionCode) {
+
+			Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+			/*switch(actionCode) {
+			case ACTION_TAKE_PHOTO_B:
+				File f = null;
+				
+				try {
+					f = setUpPhotoFile();
+					mCurrentPhotoPath = f.getAbsolutePath();
+					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+				} catch (IOException e) {
+					e.printStackTrace();
+					f = null;
+					mCurrentPhotoPath = null;
+				}
+				break;
+
+			default:
+				break;			
+			} // switch
+*/
+			startActivityForResult(takePictureIntent, actionCode);
+		}
+	
+		@Override
+		protected void onSaveInstanceState(Bundle outState) {
+			outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
+		
+			outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
+			
+			super.onSaveInstanceState(outState);
+		}
+
+		@Override
+		protected void onRestoreInstanceState(Bundle savedInstanceState) {
+			super.onRestoreInstanceState(savedInstanceState);
+			mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
+			
+			mImageView.setImageBitmap(mImageBitmap);
+			mImageView.setVisibility(
+					savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
+							ImageView.VISIBLE : ImageView.INVISIBLE
+			);
+			
+		}
+
 
 	Button btnAdults, btnAdultsDischarge, btnNeonates, btnNeonatesDischarge,
 			btnHome;
 
-	private void loadGuifrmfindsection(final ViewGroup v) {
+	/*private void loadGuifrmfindsection(final ViewGroup v) {
 		resetViewGroup(v);
 
 		if (CommonStaticClass.langBng) {
@@ -16129,7 +15383,7 @@ else {
 			CommonStaticClass.SLNOSTACK.subList(index + 1, siz).clear();
 		}
 
-		/*
+		
 		 * String sqlD = "select comments from tblMainQues where dataid= '" +
 		 * CommonStaticClass.dataId + "'"; String cmnts = ""; Cursor dCursor =
 		 * dbHelper.getQueryCursor(sqlD); if (dCursor.moveToFirst()) { do {
@@ -16138,20 +15392,20 @@ else {
 		 * 
 		 * if (!CommonStaticClass.isNullOrEmpty(cmnts)) { if
 		 * (!cmnts.trim().equalsIgnoreCase("")) { txtcomnt.setText(cmnts); } }
-		 */
+		 
 		btnAdults = (Button) v.findViewById(R.id.btnAdults);
 		btnAdults.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 
 				CommonStaticClass.currentSLNo = 3;
-				/*
+				
 				 * CommonStaticClass.findOutNextSLNo(
 				 * CommonStaticClass.questionMap.get(
 				 * CommonStaticClass.currentSLNo).getQvar(),
 				 * CommonStaticClass.questionMap.get(
 				 * CommonStaticClass.currentSLNo).getQnext1());
-				 */
+				 
 				CommonStaticClass.nextQuestion(ParentActivity.this);
 			}
 		});
@@ -16190,7 +15444,7 @@ else {
 			}
 		});
 
-		/*
+		
 		 * btncmnt = (Button) v.findViewById(R.id.btncmnt);
 		 * btncmnt.setOnClickListener(new View.OnClickListener() {
 		 * 
@@ -16204,11 +15458,11 @@ else {
 		 * if (dbHelper.executeDMLQuery(cmntSQL)) {
 		 * CommonStaticClass.showMyAlert(con, "Message",
 		 * "Note saved successfully"); } } } } });
-		 */
+		 
 
 	}
-
-	TextView txtname, txtSlno;
+*/
+	/*TextView txtname, txtSlno;
 	Spinner cobslno;
 	ArrayList<String> IDList;
 	ArrayAdapter<String> LKadapter;
@@ -16262,20 +15516,20 @@ else {
 			}
 		}
 
-		/*
+		
 		 * int index = CommonStaticClass.SLNOSTACK.indexOf(2); int siz =
 		 * CommonStaticClass.SLNOSTACK.size(); if (siz > index + 1) {
 		 * CommonStaticClass.SLNOSTACK.subList(index + 1, siz).clear(); }
-		 */
+		 
 
 		cobslno.setAdapter(null);
 		IDList = new ArrayList<String>();
 		IDList.add(".....Select Neonates ID.....");
-		/*
+		
 		 * String sqlD =
 		 * "select ParticipantID from tblParticipantInfo where dataid= '" +
 		 * CommonStaticClass.dataid_store + "'  and IndividualQ = 1";
-		 */
+		 
 
 		String sqlD = "select count (NeonateID) as totalID from tblNeonate where MotherID = '"
 				+ CommonStaticClass.dataid_store + "'";
@@ -16310,7 +15564,7 @@ else {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		cobslno.setAdapter(LKadapter);
 
-		/*
+		
 		 * cobslno.setOnItemSelectedListener(new
 		 * AdapterView.OnItemSelectedListener() { public void
 		 * onItemSelected(AdapterView<?> parent, View view, int i, long l) { if
@@ -16334,7 +15588,7 @@ else {
 		 * @Override public void onNothingSelected(AdapterView<?> parent) {
 		 * 
 		 * } })
-		 */;
+		 ;
 		//
 		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
 
@@ -16427,7 +15681,7 @@ else {
 					}
 				}.start();
 
-				/*
+				
 				 * String PID = cobslno.getSelectedItem().toString(); String
 				 * DataID = CommonStaticClass.dataId + "-" + PID;
 				 * 
@@ -16489,7 +15743,7 @@ else {
 				 * CommonStaticClass.questionMap.get(
 				 * CommonStaticClass.currentSLNo).getQnext1());
 				 * CommonStaticClass.nextQuestion(ParentActivity.this); }
-				 */}
+				 }
 
 		});
 
@@ -16499,10 +15753,10 @@ else {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				/*
+				
 				 * CommonStaticClass.dataId = CommonStaticClass.HouseholdCode;
 				 * CommonStaticClass.HouseholdCode = "";
-				 */
+				 
 
 				userPressedPrevious(ParentActivity.this);
 			}
@@ -16516,7 +15770,7 @@ else {
 				resetViewGroup((ViewGroup) v);
 			}
 		});
-	}
+	}*/
 
 	@Override
 	public void onBackPressed() {
@@ -16528,41 +15782,6 @@ else {
 	public void FillSpinnerOther(String sql, Spinner spnr) {
 
 	}
-	// code by imtiaz khan
-		public int getChoiceValue(String quesName)
-		{
-			String sql1 = "";
-			int choiceValue = 0;
-			sql1 = "Select "+quesName+" from tblMainQuesSc where dataid='" + CommonStaticClass.dataId + "'";	
-			//sql1 = "Select q5_1,q5_2,q5_3,q5_4,q5_5,q5_6 from tblMainQues where dataid='" + CommonStaticClass.dataId + "'";
-
-			Cursor mCursor1 = null;
-			
-			
-			try {
-				mCursor1 = dbHelper.getQueryCursor(sql1);
-
-				if (mCursor1 != null && mCursor1.getCount() > 0) {
-					
-						mCursor1.moveToFirst();
-						
-						
-							
-								
-							choiceValue = Integer.parseInt(mCursor1.getString(mCursor1.getColumnIndex(quesName)));
-							
-					
-						
-					}	
-				} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			} finally {
-				if (mCursor1 != null)
-					mCursor1.close();
-				
-			}
-			return choiceValue;
-		}
+	/**/
 
 }

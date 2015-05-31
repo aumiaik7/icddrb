@@ -88,10 +88,10 @@ public class EditEntry extends BaseActivity{
 			public void onCreateContextMenu(ContextMenu menu, View v,
 					ContextMenuInfo menuInfo) {
 				// TODO Auto-generated method stub
-				if(CommonStaticClass.userSpecificId.equalsIgnoreCase("3")|| CommonStaticClass.userSpecificId.equalsIgnoreCase("5")){					
+				/*if(CommonStaticClass.userSpecificId.equalsIgnoreCase("3")|| CommonStaticClass.userSpecificId.equalsIgnoreCase("5")){					
 					menu.setHeaderTitle("Select");
 					menu.add(0, CONTEXTMENU_DELETE, 0, "Delete this ID");
-				}
+				}*/
 			}
 		});
 	}

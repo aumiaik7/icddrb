@@ -173,7 +173,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 	private void loadDataToList() {
 		String sql = "";
-		//load sections
+		//load sections 
 		/*if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
 		if (!CommonStaticClass.isMember)
 			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where (SLNo >= 2 and SLNo <= 44) order by SLNo asc";
@@ -344,115 +344,7 @@ public class QListScreenForEdit extends BaseActivity {
 		startActivity(i);
 	}
 
-	private void setSkipper() {
-		String sq = "Select q12 from tblMainQuesSC where dataid='"
-				+ CommonStaticClass.dataId + "'";
-		Cursor mCursor1 = null;
-		try {
-			mCursor1 = dbHelper.getQueryCursor(sq);
-			if (mCursor1.moveToFirst()) {
-				do {
-					String val = mCursor1.getString((mCursor1
-							.getColumnIndex("q12"))) + "";
-					if (val.length() > 0 && !val.contains("-1")
-							&& !val.equalsIgnoreCase("null")) {
-						int a = Integer.parseInt(val);
-						if (a == 1) {
-							CommonStaticClass.qskipList.add("q1005");
-							CommonStaticClass.qskipList.add("q1012");
-							CommonStaticClass.qskipList.add("sec8");
-							CommonStaticClass.qskipList.add("sec9");
-						} else if (a == 2) {
-							CommonStaticClass.qskipList.add("q1005");
-							CommonStaticClass.qskipList.add("sec8");
-							CommonStaticClass.qskipList.add("sec9");
-						} else if (a == 3) {
-							CommonStaticClass.qskipList.add("q1003");
-							CommonStaticClass.qskipList.add("q1006");
-							CommonStaticClass.qskipList.add("q1007");
-							CommonStaticClass.qskipList.add("q1008");
-							CommonStaticClass.qskipList.add("q1009");
-							CommonStaticClass.qskipList.add("q1010");
-							CommonStaticClass.qskipList.add("q1014");
-
-							CommonStaticClass.qskipList.add("q1015");
-
-							CommonStaticClass.qskipList.add("sec2");
-							CommonStaticClass.qskipList.add("sec2_1");
-							CommonStaticClass.qskipList.add("sec3");
-							CommonStaticClass.qskipList.add("sec4");
-							CommonStaticClass.qskipList.add("sec9");
-
-						} else if (a == 4) {
-							CommonStaticClass.qskipList.add("q1003");
-							CommonStaticClass.qskipList.add("q1006");
-							CommonStaticClass.qskipList.add("q1007");
-							CommonStaticClass.qskipList.add("q1008");
-							CommonStaticClass.qskipList.add("q1009");
-							CommonStaticClass.qskipList.add("q1010");
-							CommonStaticClass.qskipList.add("q1014");
-
-							CommonStaticClass.qskipList.add("q1015");
-
-							CommonStaticClass.qskipList.add("sec2");
-							CommonStaticClass.qskipList.add("sec2_1");
-							CommonStaticClass.qskipList.add("sec3");
-							CommonStaticClass.qskipList.add("sec4");
-							CommonStaticClass.qskipList.add("sec8");
-						}
-					}
-				} while (mCursor1.moveToNext());
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-
-		} finally {
-			if (mCursor1 != null)
-				mCursor1.close();
-		}
-		String sql = "Select q204a from tblMainQues where dataid='"
-				+ CommonStaticClass.dataId + "'";
-		mCursor1 = null;
-		try {
-			mCursor1 = dbHelper.getQueryCursor(sql);
-			if (mCursor1.moveToFirst()) {
-				do {
-					String val = mCursor1.getString((mCursor1
-							.getColumnIndex("q204a"))) + "";
-					if (val.length() > 0 && !val.contains("-1")
-							&& !val.equalsIgnoreCase("null")) {
-						int a = Integer.parseInt(val);
-						if (a >= 6 && a < 12) {
-							CommonStaticClass.qskipList.add("q301");
-						}
-
-						if (a < 6) {
-							CommonStaticClass.qskipList.add("q301");
-							CommonStaticClass.qskipList.add("q302");
-							CommonStaticClass.qskipList.add("q406");
-							CommonStaticClass.qskipList.add("q407");
-							CommonStaticClass.qskipList.add("q408");
-							CommonStaticClass.qskipList.add("q409");
-							CommonStaticClass.qskipList.add("q412");
-							CommonStaticClass.qskipList.add("q413");
-							CommonStaticClass.qskipList.add("q414");
-							CommonStaticClass.qskipList.add("q415");
-							CommonStaticClass.qskipList.add("q416");
-							CommonStaticClass.qskipList.add("q416a");
-						}
-					}
-				} while (mCursor1.moveToNext());
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-
-		} finally {
-			if (mCursor1 != null)
-				mCursor1.close();
-		}
-	}
+	
 
 	@Override
 	public void onBackPressed() {

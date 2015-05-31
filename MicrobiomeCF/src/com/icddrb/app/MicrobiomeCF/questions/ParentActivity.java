@@ -20262,6 +20262,17 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			
 			}
 			
+			if (qName.equalsIgnoreCase("q26") && 
+					(Integer.parseInt(qAns)>3 
+							&& Integer.parseInt(qAns) != 88
+							&& Integer.parseInt(qAns) != 99) ) {
+				
+				CommonStaticClass.showMyAlert(con, "Message",
+						"Input must not be > 3");
+				return;
+			
+			}
+			
 			if (qName.equalsIgnoreCase("q4") && (qAns.length() != 2 
 					|| Integer.parseInt(qAns)>13)) {
 				
@@ -22530,6 +22541,29 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 					
 					}
+					else if((qName.equalsIgnoreCase("q10_6") 
+							&& getChoiceValue("q10_1") == 1
+							&& getChoiceValue("q10_2") == 1
+							&& getChoiceValue("q10_3") == 1
+							&& getChoiceValue("q10_4") == 1
+							&& getChoiceValue("q10_5") == 1
+							&& getChoiceValue("q10_6") == 1))
+					{
+						CommonStaticClass.findOutNextSLNo(qName, "q12");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
+					
+					else if((qName.equalsIgnoreCase("q11") && code !=6  
+							&& (getChoiceValue("q10_1") == 3
+							|| getChoiceValue("q10_2") == 3
+							|| getChoiceValue("q10_3") == 3
+							|| getChoiceValue("q10_4") == 3
+							|| getChoiceValue("q10_5") == 3
+							|| getChoiceValue("q10_6") == 3)))
+					{
+						CommonStaticClass.findOutNextSLNo(qName, "END");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
 					
 					//
 					else{
@@ -22792,7 +22826,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				//code by imtiaz khan
-				if(!qName.equalsIgnoreCase("q8"))
+				
 					updateTableDataFrmText();
 
 			}
@@ -23085,33 +23119,26 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								"q11");
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 					}
-				}
-				else if(qName.equalsIgnoreCase("q21_other") )
-						
+				}*/
+				if((qName.equalsIgnoreCase("q11other") 
+						&& (getChoiceValue("q10_1") == 3
+						|| getChoiceValue("q10_2") == 3
+						|| getChoiceValue("q10_3") == 3
+						|| getChoiceValue("q10_4") == 3
+						|| getChoiceValue("q10_5") == 3
+						|| getChoiceValue("q10_6") == 3)))
 				{
-					if(chekForNextLoopQues())
-					{
-						CommonStaticClass.showMyAlert(con, "Message", "You are redirected to " +
-								"the beginning of the loop");
-						CommonStaticClass.findOutNextSLNo(
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo).getQvar(),"q6");
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-					}
-					else
-					{
-						showUserFinishDialogFrmText();
-					}
-					
-				} 
+					CommonStaticClass.findOutNextSLNo(qName, "END");
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+				}
 				else
-				{*/
+				{
 					CommonStaticClass.findOutNextSLNo(
 							qName,
 							CommonStaticClass.questionMap.get(
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
-//				}
+				}
 				
 			}
 		} else {

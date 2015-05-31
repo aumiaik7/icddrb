@@ -4,6 +4,10 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
+  <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
     
  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_weight="1">
         <LinearLayout android:layout_width="match_parent" android:id="@+id/linearLayout1" android:orientation="vertical" android:layout_height="wrap_content">
@@ -12,12 +16,13 @@
      <Button android:layout_marginRight="10dip" android:id="@+id/btnGetGPS" android:text="Get GPS Info" android:layout_height="wrap_content" android:layout_width="wrap_content"></Button>
        
     </LinearLayout>
-        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/longitude" android:layout_width="fill_parent" android:gravity="left" android:text="Longitude: dd mm ss" android:layout_marginBottom="10dip"></TextView>
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/longitude" android:layout_width="fill_parent" android:gravity="left" android:text="Longitude:" android:layout_marginBottom="10dip"></TextView>
           <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/txtLongitude" android:inputType="text"> </EditText>
-        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/longitude" android:layout_width="fill_parent" android:gravity="left" android:text="Latitude: dd mm ss " android:layout_marginBottom="10dip"></TextView>
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/longitude" android:layout_width="fill_parent" android:gravity="left" android:text="Latitude:" android:layout_marginBottom="10dip"></TextView>
         <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/txtLatitude" android:inputType="text">
         </EditText>
     </LinearLayout>
+    </ScrollView>
      <LinearLayout android:layout_marginBottom="10dip" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:weightSum="1" android:layout_height="30dp" android:layout_weight="0.03">
          <Button  android:id="@+id/btnNote" android:text="Add Note" android:layout_width="match_parent" android:layout_weight="0.96" android:layout_height="match_parent"></Button>
     </LinearLayout>

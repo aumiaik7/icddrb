@@ -2559,9 +2559,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							|| CommonStaticClass.questionMap
 									.get(CommonStaticClass.currentSLNo)
 									.getQvar().equalsIgnoreCase("Q19aa")
-							|| CommonStaticClass.questionMap
-									.get(CommonStaticClass.currentSLNo)
-									.getQvar().equalsIgnoreCase("q11_1")
+							
 							|| CommonStaticClass.questionMap
 									.get(CommonStaticClass.currentSLNo)
 									.getQvar().equalsIgnoreCase("q1_5aa")
@@ -2580,6 +2578,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 												.toString().lastIndexOf(":") - 1));
 					
 					else if(CommonStaticClass.questionMap
+							.get(CommonStaticClass.currentSLNo)
+							.getQvar().equalsIgnoreCase("q11_1")
+							||
+							CommonStaticClass.questionMap
 							.get(CommonStaticClass.currentSLNo)
 							.getQvar().equalsIgnoreCase("q11_2") )
 					{
@@ -2640,9 +2642,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											.getQvar()
 											.equalsIgnoreCase("Q17aa")
 
-									|| CommonStaticClass.questionMap
-											.get(CommonStaticClass.currentSLNo)
-											.getQvar().equalsIgnoreCase("q11_1")
+									
 									|| CommonStaticClass.questionMap
 										.get(CommonStaticClass.currentSLNo)
 										.getQvar().equalsIgnoreCase("q11_2")
@@ -2669,6 +2669,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 								index = CommonStaticClass
 										.GetIndexFromCollection(userIDs, a);
+							else if(CommonStaticClass.questionMap
+									.get(CommonStaticClass.currentSLNo)
+									.getQvar().equalsIgnoreCase("q11_1"))
+								index = CommonStaticClass
+									    .GetIndexFromCollection(users, a);
 							else
 								index = CommonStaticClass
 										.GetIndexFromCollection(op.codeList, a);

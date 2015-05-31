@@ -15249,5 +15249,5 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	public void changeOrientation()
 	{
 		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-	}k
+	}
 }

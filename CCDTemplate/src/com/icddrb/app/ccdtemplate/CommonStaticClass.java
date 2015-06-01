@@ -55,6 +55,8 @@ public class CommonStaticClass {
 	public static String VersionNo = "";
 	public static String ClusterId = "";
 	public static String MotherID = "";
+	
+	public static String DB = "";
 //	public static int numberofchildren = 1;
 	// ////////////////////////////////////////////////
 	// //sumon variable

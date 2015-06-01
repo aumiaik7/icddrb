@@ -30,6 +30,9 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.PointF;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
@@ -89,6 +92,7 @@ import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.adapters.SpinAdapter;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
 
+import com.icddrb.app.ccdtemplate.questions.TouchImageView.OnTouchImageViewListener;
 
 public class ParentActivity extends BaseActivity implements FormListener {
 
@@ -313,7 +317,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			chk17_4 = "2", chk18_1 = "2", chk18_2 = "2", et19_1 = "";
 	
 	// frmcamera
-	private ImageView mImageView;
+	private TouchImageView mImageView;
 	private static final int ACTION_TAKE_PHOTO_S = 2;
 	private String mCurrentPhotoPath;
 	private static final String JPEG_FILE_PREFIX = "IMG_";
@@ -15203,7 +15207,32 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	//frmcamera
 	private void loadGuifrmcamera(final ViewGroup v) {
 		// TODO Auto-generated method stub
-		mImageView = (ImageView) findViewById(R.id.imageView1);
+		qName = CommonStaticClass.questionMap
+				.get(CommonStaticClass.currentSLNo).getQvar();
+		qqq = (TextView) v.findViewById(R.id.qqq);
+		
+		mCurrentPhotoPath = "";
+
+		if (CommonStaticClass.langBng) {
+			if (CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
+				Typeface font = Typeface.createFromAsset(getAssets(),
+						"Siyam Rupali ANSI.ttf");
+				qqq.setTypeface(font);
+			}
+			;
+			qqq.setText(CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng()
+					: CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQdesceng());
+		} else {
+			qqq.setTypeface(null);
+			qqq.setText(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		}
+		
+		mImageView = (TouchImageView) findViewById(R.id.imageView1);
 		Button picSBtn = (Button) findViewById(R.id.btnIntendS);
 		
 		
@@ -15214,32 +15243,109 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		);
 		
 		
-	}
-	Button.OnClickListener mTakePicSOnClickListener = 
-			new Button.OnClickListener() {
-			
-			public void onClick(View v) {
-				dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
+		String sql = "";
+		
+		sql = "Select "
+				+ qName
+				+ " from "
+				+ CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getTablename()
+				+ " where dataid='" + CommonStaticClass.dataId + "'";
+	
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			if (mCursor1.getCount() > 0) {
+				mCursor1.moveToFirst();
+				mCurrentPhotoPath = mCursor1.getString(mCursor1.getColumnIndex(qName));
+				setPic();
 			}
-		};
 	
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+		}
 	
-		private void handleSmallCameraPhoto(Intent intent) {
-			Bundle extras = intent.getExtras();
-			mImageBitmap = (Bitmap) extras.get("data");
-			mImageView.setImageBitmap(mImageBitmap);
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+	
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+	
+		});
+		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
+	
+		saveNxtButton.setOnClickListener(new View.OnClickListener() {
+	
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+	
+				updateTableDataFrmCamera();
+			}
+	
+		});
+		clButton = (Button) v.findViewById(R.id.clButton);
+		clButton.setOnClickListener(new View.OnClickListener() {
+	
+			public void onClick(View vv) {
+				// TODO Auto-generated method stub
+				resetViewGroup((ViewGroup) v);
+			}
+	
+		});
+		notesButton = (Button) v.findViewById(R.id.btnNote);
+		notesButton.setOnClickListener(new OnClickListener() {
+	
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FraNotes();
+	
+			}
+	
+		});
+		
+		
+	}
+	private void updateTableDataFrmCamera() {
+		// TODO Auto-generated method stub
+
+		
+		
+			// Validation & skip definition
 			
-			mImageView.setVisibility(View.VISIBLE);
+			String sql = "";
 			
+				sql = "UPDATE "
+						+ CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getTablename()
+						+ " SET " + qName + "='" + mCurrentPhotoPath
+						+ "' where dataid='" + CommonStaticClass.dataId + "'";
+			
+
+							
+			if (dbHelper.executeDMLQuery(sql)) {
+				
+				
+					CommonStaticClass.findOutNextSLNo(
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQvar(),
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQnext1());
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+				
+			}
+		 else {
+			CommonStaticClass.showMyAlert(con, "Not Correct",
+					"Please put correct information in the field");
 		}
-		public static boolean isIntentAvailable(Context context, String action) {
-			final PackageManager packageManager = context.getPackageManager();
-			final Intent intent = new Intent(action);
-			List<ResolveInfo> list =
-				packageManager.queryIntentActivities(intent,
-						PackageManager.MATCH_DEFAULT_ONLY);
-			return list.size() > 0;
-		}
+	}
+	
+		
 		private void setBtnListenerOrDisable( 
 				Button btn, 
 				Button.OnClickListener onClickListener,
@@ -15253,11 +15359,120 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			}
 		}
 		
+		public static boolean isIntentAvailable(Context context, String action) {
+			final PackageManager packageManager = context.getPackageManager();
+			final Intent intent = new Intent(action);
+			List<ResolveInfo> list =
+				packageManager.queryIntentActivities(intent,
+						PackageManager.MATCH_DEFAULT_ONLY);
+			return list.size() > 0;
+		}
+		
+		Button.OnClickListener mTakePicSOnClickListener = 
+				new Button.OnClickListener() {
+				
+				public void onClick(View v) {
+					Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					
+					File f = null;
+					
+					try {
+						f = setUpPhotoFile();
+						mCurrentPhotoPath = f.getAbsolutePath();
+						takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+					} catch (IOException e) {
+						e.printStackTrace();
+						f = null;
+						mCurrentPhotoPath = null;
+					}
+
+					startActivityForResult(takePictureIntent, ACTION_TAKE_PHOTO_S);
+
+				}
+			};
+		
+		
+		private void handleSmallCameraPhoto(Intent intent) {
+				if (mCurrentPhotoPath != null) {
+					setPic();
+//					galleryAddPic();
+//					mCurrentPhotoPath = null;
+				}
+				
+		}
+			
+		private void setPic() {
+
+				/* There isn't enough memory to open up more than a couple camera photos */
+				/* So pre-scale the target bitmap into which the file is decoded */
+
+				/* Get the size of the ImageView */
+				int targetW = mImageView.getWidth();
+				int targetH = mImageView.getHeight();
+
+				/* Get the size of the image */
+				BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+				bmOptions.inJustDecodeBounds = true;
+				BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+				int photoW = bmOptions.outWidth;
+				int photoH = bmOptions.outHeight;
+				
+				/* Figure out which way needs to be reduced less */
+				int scaleFactor = 1;
+				if ((targetW > 0) || (targetH > 0)) {
+					scaleFactor = Math.min(photoW/targetW, photoH/targetH);	
+				}
+
+				/* Set bitmap options to scale the image decode target */
+				bmOptions.inJustDecodeBounds = false;
+				bmOptions.inSampleSize = scaleFactor;
+				bmOptions.inPurgeable = true;
+
+				/* Decode the JPEG file into a Bitmap */
+				Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+				
+//				ExifInterface exif;
+//				try {
+//					Cursor cur=managedQuery(Media.EXTERNAL_CONTENT_URI, null, "_data=?", new String[]{mCurrentPhotoPath}, null);
+//					cur.moveToPosition(0);
+//					int i=cur.getInt(cur.getColumnIndex(MediaStore.Images.Media.ORIENTATION));
+//					exif = new ExifInterface(mCurrentPhotoPath);
+//					String exifOrientation = exif.getAttribute(ExifInterface.TAG_ORIENTATION);
+//					int orientation=exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,-1);
+//					Log.i("Orientation", String.valueOf(orientation));
+////					exif.saveAttributes(ExifInterface.TAG_ORIENTATION,"90");
+//					Log.d("Photo", exifOrientation);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}     //Since API Level 5
+			
+
+				/* Associate the Bitmap to the ImageView */
+				mImageView.setImageBitmap(bitmap);
+				
+				mImageView.setVisibility(View.VISIBLE);
+				
+				mImageView.setOnTouchImageViewListener(new OnTouchImageViewListener() {
+					
+					public void onMove() {
+						PointF point = mImageView.getScrollPosition();
+						RectF rect = mImageView.getZoomedRect();
+						float currentZoom = mImageView.getCurrentZoom();
+						boolean isZoomed = mImageView.isZoomed();
+						
+					}
+				});
+				
+				
+			}	
+		
 		private File getAlbumDir() {
 			File storageDir = null;
+			String StroagePath = "";
 
 			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-				storageDir=Environment.getExternalStorageDirectory().getAbsoluteFile();
+				StroagePath = Environment.getExternalStorageDirectory().getAbsoluteFile().toString()+"/icddrb/"+CommonStaticClass.DB;
+				storageDir=new File(StroagePath);
 				if (storageDir != null) {
 					if (! storageDir.mkdirs()) {
 						if (! storageDir.exists()){
@@ -15276,10 +15491,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		
 		private File createImageFile() throws IOException {
 			// Create an image file name
-			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-			String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+			
+			String imageFileName = CommonStaticClass.dataId+ "_" + CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQvar();
 			File albumF = getAlbumDir();
-			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+			//File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+			File imageF = new File(albumF.getAbsolutePath()+"/"+imageFileName+JPEG_FILE_SUFFIX);
+			
 			return imageF;
 		}
 		private File setUpPhotoFile() throws IOException {
@@ -15290,53 +15508,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			return f;
 		}
 
-		private void dispatchTakePictureIntent(int actionCode) {
-
-			Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-			/*switch(actionCode) {
-			case ACTION_TAKE_PHOTO_B:
-				File f = null;
-				
-				try {
-					f = setUpPhotoFile();
-					mCurrentPhotoPath = f.getAbsolutePath();
-					takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-				} catch (IOException e) {
-					e.printStackTrace();
-					f = null;
-					mCurrentPhotoPath = null;
-				}
-				break;
-
-			default:
-				break;			
-			} // switch
-*/
-			startActivityForResult(takePictureIntent, actionCode);
-		}
-	
-		@Override
-		protected void onSaveInstanceState(Bundle outState) {
-			outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
 		
-			outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY, (mImageBitmap != null) );
-			
-			super.onSaveInstanceState(outState);
-		}
-
-		@Override
-		protected void onRestoreInstanceState(Bundle savedInstanceState) {
-			super.onRestoreInstanceState(savedInstanceState);
-			mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
-			
-			mImageView.setImageBitmap(mImageBitmap);
-			mImageView.setVisibility(
-					savedInstanceState.getBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY) ? 
-							ImageView.VISIBLE : ImageView.INVISIBLE
-			);
-			
-		}
+	
+	
 
 
 	Button btnAdults, btnAdultsDischarge, btnNeonates, btnNeonatesDischarge,

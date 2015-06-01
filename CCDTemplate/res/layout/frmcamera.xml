@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
+    
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -35,46 +32,45 @@
                 android:orientation="vertical" >
 
                <LinearLayout
-        android:layout_width="match_parent" android:gravity="center_vertical"
-        android:layout_height="wrap_content" android:layout_alignParentTop="true"
-        android:orientation="horizontal" android:id="@+id/top">
+			        android:layout_width="match_parent" android:gravity="center_vertical"
+			        android:layout_height="wrap_content" android:layout_alignParentTop="true"
+			        android:orientation="horizontal" android:id="@+id/top">
 
-       
-
-        <Button
-            android:id="@+id/btnIntendS"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Take Picture" />
+			        <Button
+			            android:id="@+id/btnIntendS"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="1"
+			            android:text="Take Picture" />
 
      
-    </LinearLayout>
-     <LinearLayout
-        android:id="@+id/middle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" android:layout_below="@id/top"
-        android:layout_above="@id/top" >
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
-            android:contentDescription="album"
-           />
+    		</LinearLayout>
+     		<LinearLayout
+			        android:id="@+id/middle"
+			        android:layout_width="wrap_content"
+			        android:layout_height="600dp"
+			        android:orientation="vertical" 
+			         >
+			        <com.icddrb.app.ccdtemplate.questions.TouchImageView
+			            android:id="@+id/imageView1"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content" 
+			            android:layout_marginTop="50dip"
+			          
+			            android:contentDescription="album"
+			           />
 
        
-    </LinearLayout>
-
-                    
+    		</LinearLayout>
+       
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+   
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="10dip"
         android:layout_weight="0.03"
         android:orientation="horizontal"

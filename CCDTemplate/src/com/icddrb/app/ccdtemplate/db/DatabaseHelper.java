@@ -45,6 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     	 
     	super(context, DB_NAME, null, 1);
     	dbHelper = this;
+    	String parts[] = DB_NAME.split(".sqlite");
+    	CommonStaticClass.DB = parts[0]; 
         this.myContext = context;
         try {
 			createDataBase();

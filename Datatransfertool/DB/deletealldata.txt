@@ -1,0 +1,21 @@
+DECLARE @Nombre NVARCHAR(MAX);
+DECLARE curso CURSOR FAST_FORWARD 
+FOR 
+Select Object_name(object_id) AS Nombre from sys.objects where type = 'U'
+
+OPEN curso
+FETCH NEXT FROM curso INTO @Nombre
+
+WHILE (@@FETCH_STATUS <> -1)
+BEGIN
+IF (@@FETCH_STATUS <> -2)
+BEGIN
+DECLARE @statement NVARCHAR(200);
+SET @statement = 'DELETE FROM ' + @Nombre;
+print @statement
+execute sp_executesql @statement;
+END
+FETCH NEXT FROM curso INTO @Nombre
+END
+CLOSE curso
+DEALLOCATE curso

@@ -15207,6 +15207,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	//frmcamera
 	private void loadGuifrmcamera(final ViewGroup v) {
 		// TODO Auto-generated method stub
+	
 		qName = CommonStaticClass.questionMap
 				.get(CommonStaticClass.currentSLNo).getQvar();
 		qqq = (TextView) v.findViewById(R.id.qqq);

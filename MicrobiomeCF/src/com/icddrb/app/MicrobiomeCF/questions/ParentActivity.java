@@ -22542,24 +22542,24 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					
 					}
 					else if((qName.equalsIgnoreCase("q10_6") 
-							&& getChoiceValue("q10_1") == 1
-							&& getChoiceValue("q10_2") == 1
-							&& getChoiceValue("q10_3") == 1
-							&& getChoiceValue("q10_4") == 1
-							&& getChoiceValue("q10_5") == 1
-							&& getChoiceValue("q10_6") == 1))
+							&& getChoiceValue("q10_1") == 3
+							&& getChoiceValue("q10_2") == 3
+							&& getChoiceValue("q10_3") == 3
+							&& getChoiceValue("q10_4") == 3
+							&& getChoiceValue("q10_5") == 3
+							&& getChoiceValue("q10_6") == 3))
 					{
 						CommonStaticClass.findOutNextSLNo(qName, "q12");
 						CommonStaticClass.nextQuestion(ParentActivity.this);
 					}
 					
 					else if((qName.equalsIgnoreCase("q11") && code !=6  
-							&& (getChoiceValue("q10_1") == 3
-							|| getChoiceValue("q10_2") == 3
-							|| getChoiceValue("q10_3") == 3
-							|| getChoiceValue("q10_4") == 3
-							|| getChoiceValue("q10_5") == 3
-							|| getChoiceValue("q10_6") == 3)))
+							&& (getChoiceValue("q10_1") == 1
+							|| getChoiceValue("q10_2") == 1
+							|| getChoiceValue("q10_3") == 1
+							|| getChoiceValue("q10_4") == 1
+							|| getChoiceValue("q10_5") == 1
+							|| getChoiceValue("q10_6") == 1)))
 					{
 						CommonStaticClass.findOutNextSLNo(qName, "END");
 						CommonStaticClass.nextQuestion(ParentActivity.this);
@@ -23121,12 +23121,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					}
 				}*/
 				if((qName.equalsIgnoreCase("q11other") 
-						&& (getChoiceValue("q10_1") == 3
-						|| getChoiceValue("q10_2") == 3
-						|| getChoiceValue("q10_3") == 3
-						|| getChoiceValue("q10_4") == 3
-						|| getChoiceValue("q10_5") == 3
-						|| getChoiceValue("q10_6") == 3)))
+						&& (getChoiceValue("q10_1") == 1
+						|| getChoiceValue("q10_2") == 1
+						|| getChoiceValue("q10_3") == 1
+						|| getChoiceValue("q10_4") == 1
+						|| getChoiceValue("q10_5") == 1
+						|| getChoiceValue("q10_6") == 1)))
 				{
 					CommonStaticClass.findOutNextSLNo(qName, "END");
 					CommonStaticClass.nextQuestion(ParentActivity.this);

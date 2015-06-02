@@ -1,0 +1,11 @@
+{
+	"files":[
+		[{"name": "AnthropometryM.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "bloodsampledbM.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "stoolsampledbM.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "ChildM.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "FFQ.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "Saliva.sqlite"},{"location":"/mnt/sdcard/"}],
+		[{"name": "urinesampledbM.sqlite"},{"location":"/mnt/sdcard/"}]
+	]
+}

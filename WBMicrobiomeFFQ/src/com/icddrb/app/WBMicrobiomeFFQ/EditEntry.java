@@ -2,7 +2,7 @@ package com.icddrb.app.WBMicrobiomeFFQ;
 
 import java.util.ArrayList;
 
-import com.icddrb.app.WBMicrobiomeFFQ.R;
+
 
 import android.app.ProgressDialog;
 import android.content.Context;

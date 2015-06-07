@@ -19,93 +19,254 @@
             android:orientation="vertical" >
 
             <LinearLayout
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
-
-            <TextView
-                android:id="@+id/qqq"
-                android:layout_width="fill_parent"
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dip"
+                android:layout_gravity="center"
+                android:layout_marginBottom="200dp"
                 android:gravity="center"
-                android:text="Cluster Id &amp; Mother"
-                android:textAppearance="?android:attr/textAppearanceMedium" >
-            </TextView>
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-
-                <EditText
-                    android:id="@+id/txtschoolID"
-                    android:layout_width="209dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="5" >
-
-                    <requestFocus>
-                    </requestFocus>
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:weightSum="1" >
+                android:weightSum="2" >
 
-                <TextView
-                    android:id="@+id/q11"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Cluster Id &amp; Mother Id "
-                    android:textAppearance="?android:attr/textAppearanceMedium" >
-                </TextView>
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Cluster ID and Mother ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <EditText
+                        android:id="@+id/txtclusterID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+                </LinearLayout>
+<!-- 
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Bari ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/txtbariID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".98"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Household ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/txthhID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+ -->
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.02"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView08"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Visit No."
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <Spinner
+                        android:id="@+id/spVisitNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <!-- <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1" >
+                android:weightSum="2" >
 
-                <!--
-                     <EditText android:text="2" android:id="@+id/txtschoolIDRe1" android:layout_height="wrap_content" 
-					android:maxLength="1" android:inputType="number" android:layout_width="wrap_content" 
-					android:enabled="false" android:editable="false"></EditText>
-                -->
-
-                <EditText
-                    android:id="@+id/txtschoolIDRe"
-                    android:layout_width="209dp"
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="5" >
-                </EditText>
-            </LinearLayout>
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Child ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <EditText
+                        android:id="@+id/txtclusterIDRe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Bari ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/txtbariIDRe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".98"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Household ID"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/txthhIDRe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="1"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.02"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView08"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Visit No."
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <Spinner
+                        android:id="@+id/txtmotherIDRe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+                </LinearLayout>
+            </LinearLayout> -->
         </LinearLayout>
     </ScrollView>
 

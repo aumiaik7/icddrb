@@ -14,7 +14,7 @@ import android.util.Log;
 import com.icddrb.app.WBMicrobiomeFFQ.CommonStaticClass;
 import com.icddrb.app.WBMicrobiomeFFQ.Options;
 import com.icddrb.app.WBMicrobiomeFFQ.QuestionData;
-import com.icddrb.app.WBMicrobiomeFFQ.R;
+
 import com.icddrb.app.WBMicrobiomeFFQ.db.DatabaseHelper;
 import com.icddrb.app.WBMicrobiomeFFQ.questions.FormListener;
 import com.icddrb.app.WBMicrobiomeFFQ.questions.ParentActivity;
@@ -50,6 +50,7 @@ public class CommonStaticClass {
 	public static String VersionNo = "";
 	public static String ClusterId = "";
 	public static String MotherID = "";
+	public static String visitNo = "";
 	
 
 	public static void nextQuestion(final ParentActivity activity) {

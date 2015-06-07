@@ -79,6 +79,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+
 import com.icddrb.app.WBMicrobiomeFFQ.BaseActivity;
 import com.icddrb.app.WBMicrobiomeFFQ.CommonStaticClass;
 import com.icddrb.app.WBMicrobiomeFFQ.Options;
@@ -101,7 +102,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	static Typeface font;
 
 	// frmmultiplechecktext
-	private EditText editText1, editText2, editText3, editText4;
+	private EditText editText1, editText2, editText3, editText4,txtclusterID;
 	private CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5,
 			checkBox6;
 	private int TotalCheck = 0;
@@ -130,7 +131,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			lblSickness, lblVisitdmedicare, lblHospitalized;
 	private Button btnsaveNxt;
 	private EditText txtMname, txtRel, txtYear, txtMonth;
-	private Spinner spinnerSL, spinnerSex, spinnerYear, spinnerMonth;
+	private Spinner spinnerSL, spinnerSex, spinnerYear, spinnerMonth,spVisitNo;
 	private String mName = "", sex = "", AgeMonth = "", AgeYear = "",
 			relation = "";
 	String mydata = "";
@@ -148,18 +149,20 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	protected EditText txtLongitute, txtLatitue;
 
 	// frmhhid part
+	ArrayList<String> visit;
 	private EditText txtschoolID, txtID, txtschoolIDRe, txtIDRe;
 	private ArrayList<String> divs, divindex, dis, disindex, upa, upaindex;
 	private ArrayAdapter adapter1, adapter2, adapter3, adapter4;
 	private String typeSelection, divSelection, divSelectionId, disSelection,
 			disSelectionId, upaSelection, upaSelectionId;
-	private String schoolid = "", id = "", schoolidre = "", idre = "";
+	private String schoolid = "", id = "", schoolidre = "", idre = "",cluster = "",visitno= "";
 	private Button genButton, confButton;
 	private ProgressDialog progressDialog;
 	private static final int UPDATEDONE = 900, FILEREADFAILED = 1000,
 			FILECONTENTMISSING = 1100;
 	private int aa;
 	private String line = "";
+	private int recordno;
 	// frommessage part
 
 	// frmmultiplecheckcombo
@@ -6073,25 +6076,95 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void loadGuiFrmHHID(ViewGroup v) {
 		// TODO Auto-generated method stub
 
-		// textView3 = (TextView)v.findViewById(R.id.textView3);
-
 		qqq = (TextView) v.findViewById(R.id.qqq);
 
 		if (CommonStaticClass.langBng) {
-			qqq.setText(CommonStaticClass.questionMap.get(
-					CommonStaticClass.currentSLNo).getQdescbng());
+			/*
+			 * qqq.setText(CommonStaticClass.questionMap.get(
+			 * CommonStaticClass.currentSLNo).getQdescbng()); /* ((TextView)
+			 * v.findViewById(R.id.q11))
+			 * .setText(CommonStaticClass.questionMap.get(
+			 * CommonStaticClass.currentSLNo).getQdescbng());
+			 */
 		} else {
-			qqq.setTypeface(null);
-			qqq.setText(CommonStaticClass.questionMap.get(
-					CommonStaticClass.currentSLNo).getQdesceng());
+			/*
+			 * qqq.setTypeface(null); ((TextView)
+			 * v.findViewById(R.id.q11)).setTypeface(null);
+			 * qqq.setText(CommonStaticClass.questionMap.get(
+			 * CommonStaticClass.currentSLNo).getQdesceng()); ((TextView)
+			 * v.findViewById(R.id.q11))
+			 * .setText(CommonStaticClass.questionMap.get(
+			 * CommonStaticClass.currentSLNo).getQdesceng());
+			 */
 		}
-
-		txtschoolID = (EditText) v.findViewById(R.id.txtschoolID);
-		txtschoolID.requestFocus();
+		
+		txtclusterID = (EditText) v.findViewById(R.id.txtclusterID);
+		txtclusterID.requestFocus();
 		// txtID = (EditText)v.findViewById(R.id.txtID);
 
-		txtschoolIDRe = (EditText) v.findViewById(R.id.txtschoolIDRe);
+		// txtbariID = (EditText) v.findViewById(R.id.txtbariID);
+		// txthhID = (EditText) v.findViewById(R.id.txthhID);
+//		txtmotherID = (EditText) v.findViewById(R.id.txtmotherID);
 		// txtIDRe = (EditText)v.findViewById(R.id.txtIDRe);
+
+		spVisitNo = (Spinner) v.findViewById(R.id.spVisitNo);
+		
+		// txtbariIDRe = (EditText) v.findViewById(R.id.txtbariIDRe);
+		// txthhIDRe = (EditText) v.findViewById(R.id.txthhIDRe);
+//		txtmotherIDRe = (EditText) v.findViewById(R.id.txtmotherIDRe);
+		
+		txtclusterID.addTextChangedListener(new TextWatcher() {
+			
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				// TODO Auto-generated method stub
+				if(txtclusterID.getText().toString().length()==5){
+					visit = new ArrayList<String>();
+					visit.add("");
+					String sqlD = "select count(visitno) as Total from tblMainQues where clusterid= '"
+							+ CommonStaticClass.ClusterId + 
+							"' and motherid = '"+CommonStaticClass.MotherID+"'" ;
+					Cursor dCursor = dbHelper.getQueryCursor(sqlD);
+					if (dCursor.moveToFirst()) {
+						do {
+							recordno = Integer.valueOf(dCursor
+									.getString(dCursor
+											.getColumnIndex("Total")));
+						} while (dCursor.moveToNext());
+					}
+					
+					int counti = recordno;
+					for(int i=1;i<=counti+1;i++){
+						visit.add(String.valueOf(i));
+					}
+					adapter1 = new ArrayAdapter(ParentActivity.this, android.R.layout.simple_spinner_item,visit);
+					adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					spVisitNo.setAdapter(adapter1);
+					spVisitNo.setOnItemSelectedListener(new spinItemSelectedListener());
+				}
+				else{
+					visit = new ArrayList<String>();
+					visit.add("");
+					adapter1 = new ArrayAdapter(ParentActivity.this, android.R.layout.simple_spinner_item,visit);
+					adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					spVisitNo.setAdapter(adapter1);
+					spVisitNo.setOnItemSelectedListener(new spinItemSelectedListener());
+				}
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		confButton = (Button) v.findViewById(R.id.confButton);
 		confButton.setOnClickListener(new View.OnClickListener() {
@@ -6100,53 +6173,124 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				// TODO Auto-generated method stub
 				// updateTableData();
 
-				schoolid = txtschoolID.getText().toString();
-				// id = txtID.getText().toString();
-
-				schoolidre = txtschoolIDRe.getText().toString();
+				
+				
+				if(txtclusterID.getText().length()!=5 || spVisitNo.getSelectedItemPosition()== 0){
+					CommonStaticClass
+					.showFinalAlert(con,
+							"Please select a valid Dataid no and visit no");
+					return;
+				}
+				// bari = txtbariID.getText().toString();
+				// hhID = txthhID.getText().toString();
+//				mother = txtmotherID.getText().toString();
 				// idre = txtIDRe.getText().toString();
 
+				cluster = txtclusterID.getText().toString();
+				visitno = spVisitNo.getSelectedItem().toString();
+				
 				// ValidateInput();
 
-				if ((schoolid.length() < 5 || !schoolid
-						.equalsIgnoreCase(schoolidre))) {
+				/*
+				 * if ((cluster.length() < 5 || !schoolid
+				 * .equalsIgnoreCase(schoolidre))) {
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "Data ID is inconsistent"); return; }
+				 */
+				if (cluster.length() < 5) {
 					CommonStaticClass.showFinalAlert(con,
 							"Data ID is inconsistent");
 					return;
 				}
+				/*
+				 * if (bari.length() < 1) {
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "Bari ID is inconsistent"); return; } if (hhID.length() < 1)
+				 * { CommonStaticClass.showFinalAlert(con,
+				 * "Household ID is inconsistent"); return; }
+				 */
+				/*if (mother.length() < 2) { // As if (Integer.valueOf(mother) >
+											// 8) length cannot be 2 digit
+					CommonStaticClass.showFinalAlert(con,
+							"Mother ID is inconsistent");
+					return;
+				}*/
+
+				// ///////////////
+				/*if (!cluster.equalsIgnoreCase(txtclusterIDRe.getText()
+						.toString())) {
+					CommonStaticClass.showFinalAlert(con,
+							"Cluster ID is inconsistent");
+					return;
+				}*//*
+				 * if (!bari.equalsIgnoreCase(txtbariIDRe.getText().toString()))
+				 * { CommonStaticClass.showFinalAlert(con,
+				 * "Bari ID is inconsistent"); return; } if
+				 * (!hhID.equalsIgnoreCase(txthhIDRe.getText().toString())) {
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "Household ID is inconsistent"); return; }
+				 */
+				/*if (!mother
+						.equalsIgnoreCase(txtmotherIDRe.getText().toString())) {
+					CommonStaticClass.showFinalAlert(con,
+							"Mother ID is inconsistent");
+					return;
+				}*/
+
+				// ////////
+				/*if (Integer.valueOf(cluster) > 720) {
+					CommonStaticClass.showFinalAlert(con,
+							"Cluster ID is inconsistent");
+					return;
+				}*//*
+				 * if (Integer.valueOf(bari) > 8) {
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "Bari ID is inconsistent"); return; } if
+				 * (Integer.valueOf(hhID) > 8) {
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "Household ID is inconsistent"); return; }
+				 */
+				/*if (Integer.valueOf(mother) > 8) {
+					CommonStaticClass.showFinalAlert(con,
+							"Mother ID is inconsistent");
+					return;
+				}*/
 
 				/*
-				 * if (CommonStaticClass.userSpecificId.length() == 0 ||
-				 * CommonStaticClass.AssetID.length() == 0) {
-				 * 
-				 * return; }
+				 * CommonStaticClass.ClusterId = schoolid.subSequence(0, 3)
+				 * .toString();
 				 */
-				CommonStaticClass.ClusterId = schoolid.subSequence(0, 3)
-						.toString();
-				CommonStaticClass.MotherID = schoolid.subSequence(3, 5)
-						.toString();
-				if (Integer.parseInt(CommonStaticClass.MotherID) > 8) {
-					CommonStaticClass.showMyAlert(con, "Invalid Mother ID",
-							"Mother ID can not be greater than 8.");
-					return;
-				}
 
-				if (CommonStaticClass.ClusterId.length() < 3) {
-					CommonStaticClass.showMyAlert(con, "Invalid Cluster ID",
-							"Invalid cluster id.");
-					return;
-				}
-				if (IsValidClusterID(CommonStaticClass.ClusterId)) {
-
-				} else {
-					CommonStaticClass.showMyAlert(con, "Invalid Cluster ID",
-							"Invalid cluster id.");
-					return;
-				}
-
-				CommonStaticClass.dataId = schoolid;
-
-				if (CommonStaticClass.dataId.length() > 0) {
+				/*
+				 * CommonStaticClass.ClusterId = schoolid.subSequence(0, 3)
+				 * .toString(); CommonStaticClass.MotherID =
+				 * schoolid.subSequence(3, 5) .toString(); if
+				 * (Integer.parseInt(CommonStaticClass.MotherID) > 8) {
+				 * CommonStaticClass.showMyAlert(con, "Invalid Mother ID",
+				 * "Mother ID can not be greater than 8."); return; }
+				 * 
+				 * if (CommonStaticClass.ClusterId.length() < 3) {
+				 * CommonStaticClass.showMyAlert(con, "Invalid Cluster ID",
+				 * "Invalid cluster id."); return; } if
+				 * (IsValidClusterID(CommonStaticClass.ClusterId)) {
+				 * 
+				 * } else { CommonStaticClass.showMyAlert(con,
+				 * "Invalid Cluster ID", "Invalid cluster id."); return; }
+				 */
+				CommonStaticClass.dataId = cluster + visitno ;
+				CommonStaticClass.visitNo = visitno ;
+				
+				
+				String first3 = Character.toString(CommonStaticClass.dataId.charAt(0))
+					      +Character.toString(CommonStaticClass.dataId.charAt(1))
+					      +Character.toString(CommonStaticClass.dataId.charAt(2));
+					    String last2 = Character.toString(CommonStaticClass.dataId.charAt(3))
+					      +Character.toString(CommonStaticClass.dataId.charAt(4));
+				
+				CommonStaticClass.ClusterId = first3 ;
+				CommonStaticClass.MotherID = last2;
+				
+				if(CommonStaticClass.dataId.length() > 0) {
 					progressDialog = ProgressDialog.show(con, "Wait",
 							"Please wait while processing next question");
 
@@ -6156,6 +6300,15 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							try {
 								Looper.prepare();
 								if (FileRead()) {
+
+									if (CommonStaticClass.userSpecificId
+											.length() == 0
+											|| CommonStaticClass.AssetID
+													.length() == 0) {
+
+										return;
+									}
+
 									updateTableDataFrmHHID();
 									// preserveState();
 									Message msg = new Message();
@@ -6189,6 +6342,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		});
 	}
 
+	public class spinItemSelectedListener implements OnItemSelectedListener {
+
+		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+		}
+
+		public void onNothingSelected(AdapterView parent) {
+		}
+	}
 	private boolean IsValidClusterID(String ClusterID) {
 		String id = "";
 		String sql = "Select * from tblSamplesinfo where clusterid='"
@@ -6217,6 +6378,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	private void updateTableDataFrmHHID() {
 		// TODO Auto-generated method stub
 		Cursor cursor = null;
+		Cursor Selectcursor = null;
 		try {
 			String sql = "Select * from  "
 					+ CommonStaticClass
@@ -6224,13 +6386,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									CommonStaticClass.currentSLNo).getQvar())
 					+ " Where dataid='" + CommonStaticClass.dataId
 					+ "' and AssetID = '" + CommonStaticClass.AssetID + "'";
-			String sqlSc, sqlMc;
+			Selectcursor = dbHelper.getQueryCursor(sql);
 
-			cursor = dbHelper.getQueryCursor(sql);
-
-			if (cursor.getCount() != 0) {
-				// CommonStaticClass.showMyAlert(con, "Id exist",
-				// "This id is already exist!");
+			if (Selectcursor.getCount() != 0) {
 				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
 				CommonStaticClass.findOutNextSLNo(
 						CommonStaticClass.questionMap.get(
@@ -6238,74 +6396,135 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getQnext1());
 				CommonStaticClass.nextQuestion(ParentActivity.this);
-
 			} else {
+				String sqlSc, sqlMc, sqlMod13, sqlMod61, sqlLNS, sqlHandwash, sqlvaccine;
 
 				String entryDate = "dd-mmm-yyyy";
 				Date d = new Date(System.currentTimeMillis());
 				entryDate = "dd-mmm-yyyy";
 				entryDate = d.toLocaleString();
 
-				sql = String
-						.format("Insert into %s (dataid,EntryBy,EntryDate,AssetID,VersionNo, Clusterid, mid) VALUES('%s','%s','%s','%s','%s','%s','%s')",
-								CommonStaticClass
-										.GetTableName(CommonStaticClass.questionMap
-												.get(CommonStaticClass.currentSLNo)
-												.getQvar()),
-								CommonStaticClass.dataId,
-								CommonStaticClass.userSpecificId, entryDate,
-								CommonStaticClass.AssetID,
-								CommonStaticClass.VersionNo,
-								CommonStaticClass.ClusterId,
-								CommonStaticClass.MotherID);
+				String sqlupdate = "Insert into tblMainQues (dataid, clusterid,motherid, visitno, EntryBy, EntryDate, AssetId,VersionNo) values('"
+						+ CommonStaticClass.dataId 
+						+ "','"
+						+ CommonStaticClass.ClusterId
+						+ "','"
+						+ CommonStaticClass.MotherID
+						+ "','"
+						+ CommonStaticClass.visitNo
+						+ "','"
+						+ CommonStaticClass.userSpecificId
+						+ "','"
+						+ entryDate
+						+ "','"
+						+ CommonStaticClass.AssetID
+						+ "','"
+						+ CommonStaticClass.VersionNo + "')";
 
-				sqlMc = "Insert into tblMainQuesMc (dataid,EntryBy,EntryDate) values('"
+				/*sqlSc = "Insert into tblMainQuesSc (dataid, EntryBy, EntryDate, AssetId) values('"
 						+ CommonStaticClass.dataId
 						+ "','"
 						+ CommonStaticClass.userSpecificId
 						+ "','"
 						+ entryDate
-						+ "')";
-				sqlSc = "Insert into tblMainQuesSc (dataid,EntryBy,EntryDate) values('"
-						+ CommonStaticClass.dataId
-						+ "','"
-						+ CommonStaticClass.userSpecificId
-						+ "','"
-						+ entryDate
-						+ "')";
+						+ "','" + CommonStaticClass.AssetID + "')";*/
 
-				if (dbHelper.executeDMLQuery(sql)) {
-					int hhidcheck;
-					hhidcheck = Integer.parseInt(schoolid.subSequence(3, 5)
-							.toString());
-					if (hhidcheck >= 1 && hhidcheck <= 9) {
-						CommonStaticClass.findOutNextSLNo(
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQvar(),
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQnext1());
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-						CommonStaticClass.addCycleStarted = true;
+				if (dbHelper.executeDMLQuery(sqlupdate)
+						/*&& dbHelper.executeDMLQuery(sqlSc)*/) {
+					
+					/*String Presql = "Select clusterno,motherid,hhid,district,upazilla,unionname,hhead,hheadfather,bariname,village,barino,address from tblHHInfo Where dataid ='"
+							+ CommonStaticClass.dataId + "'";
+					Cursor cur = null;
+					String clusterno = "", motherid = "", hhid = "", district = "", upazilla = "", unionname = "", hhead = "", hheadfather = "", bariname = "", village = "", barino = "", address = "";
+					try {
+						cur = dbHelper.getQueryCursor(Presql);
+
+						if (cur.getCount() > 0 && cur != null) {
+							if (cur.moveToFirst()) {
+								do {
+									clusterno = cur.getString(cur
+											.getColumnIndex("clusterno"));
+								
+									hhid = cur.getString(cur
+											.getColumnIndex("hhid"));
+									district = cur.getString(cur
+											.getColumnIndex("district"));
+									upazilla = cur.getString(cur
+											.getColumnIndex("upazilla"));
+									unionname = cur.getString(cur
+											.getColumnIndex("unionname"));
+									hhead = cur.getString(cur
+											.getColumnIndex("hhead"));
+									hheadfather = cur.getString(cur
+											.getColumnIndex("hheadfather"));
+									bariname = cur.getString(cur
+											.getColumnIndex("bariname"));
+									motherid = cur.getString(cur
+											.getColumnIndex("motherid"));
+									village = cur.getString(cur
+											.getColumnIndex("village"));
+									barino = cur.getString(cur
+											.getColumnIndex("barino"));
+									address = cur.getString(cur
+											.getColumnIndex("address"));
+
+								} while (cur.moveToNext());
+							}
+						}
+					} catch (Exception ex) {
+
+					} finally {
+						if (cur != null)
+							cur.close();
 					}
 
-					else {
-						CommonStaticClass.findOutNextSLNo(
-								CommonStaticClass.questionMap.get(
-										CommonStaticClass.currentSLNo)
-										.getQvar(), "END");
-						CommonStaticClass.nextQuestion(ParentActivity.this);
-						CommonStaticClass.addCycleStarted = true;
-					}
+					String presqlupdate = "update tblMainQues set q3 = '"
+							+ clusterno + "',q4 = '" + district + "', q5 = '"
+							+ upazilla + "', q6 = '" + unionname
+							+ "', q7 = '" + address + "', q11 = '" + hhead
+							+ "', q8 = '"
+							+ bariname + "', q9 = '" + village
+							+ "', q10 = '" + barino + "' Where dataid ='"
+							+ CommonStaticClass.dataId + "'";
 
+					if (dbHelper.executeDMLQuery(presqlupdate)) {
+
+					}*/
+
+					CommonStaticClass.mode = CommonStaticClass.EDITMODE;
+					CommonStaticClass.findOutNextSLNo(
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQvar(),
+							CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQnext1());
+					CommonStaticClass.nextQuestion(ParentActivity.this);
+
+					/*
+					 * CommonStaticClass.findOutNextSLNo(
+					 * CommonStaticClass.questionMap.get(
+					 * CommonStaticClass.currentSLNo).getQvar(),
+					 * CommonStaticClass.questionMap.get(
+					 * CommonStaticClass.currentSLNo).getQnext1());
+					 * CommonStaticClass.nextQuestion(ParentActivity.this);
+					 * CommonStaticClass.addCycleStarted = true;
+					 */
+
+				} else {
+					CommonStaticClass.showMyAlert(con, "Id does not exist",
+							"This id does not exist!");
+					return;
 				}
+
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (cursor != null)
 				cursor.close();
+			if (Selectcursor != null)
+				Selectcursor.close();
+
 		}
 	}
 

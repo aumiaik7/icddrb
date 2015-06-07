@@ -71,6 +71,7 @@ public class CommonStaticClass {
     public static int stoolBlood = 0;
     public static String spilloverID = "";
     public static String childID = "";
+    public static String visitNo = "";
     public static boolean spillHouse = false;
     static ArrayList<String> childIdList = new ArrayList<String>();
 

@@ -41,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Cluster ID"
+                        android:text="Cluster ID and Mother ID"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
                     <EditText
@@ -51,7 +51,7 @@
                         android:layout_gravity="center"
                         android:ems="10"
                         android:inputType="number"
-                        android:maxLength="3"
+                        android:maxLength="5"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
                 </LinearLayout>
 <!-- 
@@ -128,11 +128,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Mother ID"
+                        android:text="Visit No."
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
-                    <EditText
-                        android:id="@+id/txtmotherID"
+                    <Spinner
+                        android:id="@+id/spVisitNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -143,7 +143,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <!-- <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Cluster ID"
+                        android:text="Child ID"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
                     <EditText
@@ -179,7 +179,7 @@
                         android:maxLength="3"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
                 </LinearLayout>
-<!-- 
+
                 <LinearLayout
                     android:id="@+id/linearLayoutMain"
                     android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                         android:visibility="gone" />
 
                 </LinearLayout>
- -->
+
                 <LinearLayout
                     android:id="@+id/linearLayoutMain"
                     android:layout_width="match_parent"
@@ -253,10 +253,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Mother ID"
+                        android:text="Visit No."
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/txtmotherIDRe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
                         android:maxLength="2"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
                 </LinearLayout>
-            </LinearLayout>
+            </LinearLayout> -->
         </LinearLayout>
     </ScrollView>
 

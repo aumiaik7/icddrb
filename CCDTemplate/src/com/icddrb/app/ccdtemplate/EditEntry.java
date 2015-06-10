@@ -1,6 +1,9 @@
 package com.icddrb.app.ccdtemplate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 
@@ -161,10 +164,10 @@ public class EditEntry extends BaseActivity{
 		if(!CommonStaticClass.questionMap.isEmpty()){
 			CommonStaticClass.questionMap.clear();
 		}
-		if(!CommonStaticClass.secMap1.isEmpty()){
+		/*if(!CommonStaticClass.secMap1.isEmpty()){
 			CommonStaticClass.secMap1.clear();
 			CommonStaticClass.secMap2.clear();
-		}
+		}*/
 		if(!CommonStaticClass.qskipList.isEmpty()){
 			CommonStaticClass.qskipList.clear();
 		}
@@ -183,14 +186,38 @@ public class EditEntry extends BaseActivity{
 		CommonStaticClass.isChecked = false;
 	}
 	private void loadDataToList(){
-		String sql = "Select dataid from tblMainQues";
-				
+		String sql = "Select dataid,EntryBy,EntryDate from tblMainQues";
+	
 		Cursor mCursor = null;
+		Cursor mCursor2 = null;
 		try{
 			mCursor = dbHelper.getQueryCursor(sql);
 			if(mCursor.moveToFirst()){
 				do{
-					dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
+					String sql2 = "Select Name from tblUser " +
+									"where ID = '"+CommonStaticClass.userSpecificId+"'";
+					mCursor2 = dbHelper.getQueryCursor(sql2);
+					
+					if(mCursor2.moveToFirst() && 
+							mCursor2.getString(mCursor2.getColumnIndex("Name")).equalsIgnoreCase("admin"))
+					{
+						dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
+					}
+					else
+					{
+						String sDate1 = "";
+												
+						SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+						sDate1 = mCursor.getString((mCursor.getColumnIndex("EntryDate")));
+						Calendar c1 = Calendar.getInstance();
+						Date startDate = df.parse(sDate1);
+						c1.setTime(startDate);
+						
+						if((System.currentTimeMillis() - c1.getTimeInMillis()) < (5*24*60*60*1000))
+						{
+							dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
+						}
+					}
 				}while(mCursor.moveToNext());
 			}
 		}catch (Exception e) {
@@ -198,7 +225,9 @@ public class EditEntry extends BaseActivity{
 			CommonStaticClass.showFinalAlert(con,"A problem occured please try later");
 		}finally{
 			if(mCursor!=null)
-			mCursor.close();
+				mCursor.close();
+			if(mCursor2!=null)
+				mCursor2.close();
 			
 			myAdapter.notifyDataSetChanged();
 		}
@@ -262,33 +291,7 @@ public class EditEntry extends BaseActivity{
 			if (mCursor != null)
 				mCursor.close();
 
-			String sqlForSec = "Select SLNo,Qvar from tblQuestion where Qvar like 'sec%' order by SLNo";
-
-			Cursor mCursor1 = null;
-			try {
-				mCursor1 = dbHelper.getQueryCursor(sqlForSec);
-				if (mCursor1.moveToFirst()) {
-					do {
-						Log.e("secMap1 ", mCursor1.getString((mCursor1
-								.getColumnIndex("Qvar"))));
-						CommonStaticClass.secMap1.add(mCursor1
-								.getString((mCursor1.getColumnIndex("Qvar"))));
-						Log.e("secMap2 ",
-								mCursor1.getInt(mCursor1.getColumnIndex("SLNo"))
-										+ "");
-						CommonStaticClass.secMap2.add(mCursor1.getInt(mCursor1
-								.getColumnIndex("SLNo")));
-
-					} while (mCursor1.moveToNext());
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-
-			} finally {
-				if (mCursor1 != null)
-					mCursor1.close();
-			}
+			
 
 			Message msg = new Message();
 			msg.what = ALLQUESTIONLOADED;

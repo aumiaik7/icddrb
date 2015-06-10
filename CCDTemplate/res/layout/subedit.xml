@@ -29,11 +29,11 @@
             </TextView>
 
             <LinearLayout
-                android:id="@+id/checkBoxHolder"
+                android:id="@+id/buttonHolder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
-
+<!-- 
                 <Button
                     android:id="@+id/btnEsec01"
                     android:layout_width="match_parent"
@@ -147,7 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="previous"
-                    android:visibility="gone" />
+                    android:visibility="gone" /> 
+                    -->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

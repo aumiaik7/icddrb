@@ -174,6 +174,15 @@ public class QListScreenForEdit extends BaseActivity {
 	private void loadDataToList() {
 		String sql = "";
 		//load sections 
+		
+		if(CommonStaticClass.subEditMode == 1)
+		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where (SLNo >= '"+ CommonStaticClass.sectionStart+"' " +
+					"and SLNo <=" +
+					" '"+CommonStaticClass.sectionEnd+"') order by SLNo asc";
+		else
+		//load all
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  order by SLNo asc";
+		
 		/*if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
 		if (!CommonStaticClass.isMember)
 			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where (SLNo >= 2 and SLNo <= 44) order by SLNo asc";
@@ -261,8 +270,7 @@ public class QListScreenForEdit extends BaseActivity {
 			else
 				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where SLNo >=423 order by SLNo asc";
 			}*/
-		//load all
-		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  order by SLNo asc";
+		
 		Cursor mCursor = null;
 		try {
 			mCursor = dbHelper.getQueryCursor(sql);

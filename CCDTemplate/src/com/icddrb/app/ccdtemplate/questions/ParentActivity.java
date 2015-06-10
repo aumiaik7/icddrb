@@ -15492,9 +15492,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		
 		private File createImageFile() throws IOException {
 			// Create an image file name
-			
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 			String imageFileName = CommonStaticClass.dataId+ "_" + CommonStaticClass.questionMap
-					.get(CommonStaticClass.currentSLNo).getQvar();
+					.get(CommonStaticClass.currentSLNo).getQvar()+ "_"+ timeStamp;
 			File albumF = getAlbumDir();
 			//File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
 			File imageF = new File(albumF.getAbsolutePath()+"/"+imageFileName+JPEG_FILE_SUFFIX);

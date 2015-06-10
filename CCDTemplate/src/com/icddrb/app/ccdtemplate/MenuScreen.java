@@ -62,6 +62,8 @@ public class MenuScreen extends BaseActivity {
 		editButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				
+					
 				// TODO Auto-generated method stub
 				//CommonStaticClass.mode = CommonStaticClass.EDITMODE;
 //				Intent i = new Intent();
@@ -71,25 +73,31 @@ public class MenuScreen extends BaseActivity {
 //						+ ".EditEntry");
 //				startActivity(i);
 				
-				///prev flat mode
-				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
+				///Edit mode with all questions
+				/*CommonStaticClass.mode = CommonStaticClass.EDITMODE;
+				CommonStaticClass.subEditMode = 0;
 				Intent i = new Intent();
 				i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
 						+ ".EditEntry");
-				startActivity(i);
+				startActivity(i);*/
 				
 				
 				
 				//Edit mode with Sub section
-				/*Intent i = new Intent();
+				CommonStaticClass.subEditMode = 1;
+				clearEveryThing();
+				Intent i = new Intent();
 				i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
 						+ ".subedit");
-				startActivity(i);*/
+				startActivity(i);
 	
 			}
 
+			
+
 		});
 	}
+	
 
 	private void clearEveryThing() {
 		// TODO Auto-generated method stub

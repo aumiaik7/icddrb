@@ -1,0 +1,12 @@
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.dll.config
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.dll
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.pdb
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.dll
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.pdb
+D:\Sumon\My Source Code\WCF Application\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.csprojResolveAssemblyReference.cache
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.dll.config
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.dll
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\bin\Debug\DataTransferApp.pdb
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.csprojResolveAssemblyReference.cache
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.dll
+C:\Users\imtiaz.khan\Documents\Visual Studio 2013\Projects\DataTransferApp\DataTransferApp\obj\Debug\DataTransferApp.pdb

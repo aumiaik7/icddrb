@@ -90,6 +90,92 @@ public class DatabaseHelper extends SQLiteOpenHelper
     	}
  
     }
+    
+    public boolean IsDataExists(String s){	
+		String sql = "";	
+		
+		sql = s;
+		
+	
+		String data = "";
+			Cursor mCursor = null;
+			try {
+				mCursor = dbHelper.getQueryCursor(sql);
+				if(mCursor.getCount()>0){
+					if(mCursor.moveToFirst()){
+						do{
+							return true;
+						}while(mCursor.moveToNext());
+					}
+				}
+			} catch (Exception e) {
+				Log.e("ero", e.toString());
+			}
+			return false;
+	}
+	
+	
+	public Boolean IsDataExistsAndNotNull(String s){	
+		String sql = "";	
+		
+		sql = s;
+	
+		String data = "";
+			Cursor mCursor = null;
+			try {
+				mCursor = dbHelper.getQueryCursor(sql);
+				if(mCursor.getCount()>0){
+					if(mCursor.moveToFirst()){
+						do{
+							data = mCursor.getString(0);
+						}while(mCursor.moveToNext());
+					}
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			if(data.equalsIgnoreCase("0") || data.equalsIgnoreCase("null") || data.length()<=0)
+				return false;
+			else
+				return true;
+	}
+	
+	public Integer GatValueFromSql(String s){	
+		String sql = "";	
+		
+		sql = s;
+	
+		String data = "";
+			Cursor mCursor = null;
+			try {
+				mCursor = dbHelper.getQueryCursor(sql);
+				if(mCursor.getCount()>0){
+					if(mCursor.moveToFirst()){
+						do{
+							data = mCursor.getString(0);
+						}while(mCursor.moveToNext());
+					}
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			if(data.equalsIgnoreCase("null") || data.length()<=0)
+				return 0;
+			else
+				return Integer.parseInt(data);
+	}
+	
+	 public void openDataTransferToolDataBasesFrmList() throws SQLException{
+	   	 
+	    	//Open the database
+	    	//if(myDataBase==null){
+	            String myPath = DB_PATH + DB_NAME;
+	        	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+	        	//myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman	
+	    	//}
+	    	
+	    }
+	
     private boolean checkDataBase()
     {
     	boolean t = false;

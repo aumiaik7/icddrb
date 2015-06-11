@@ -1,0 +1,16 @@
+<publishData>
+  <publishTarget publishUrl="C:\inetpub\wwwroot\">
+    <file relUrl="bin/DataTransferApp.pdb" publishTime="06/11/2015 17:06:05" />
+    <file relUrl="bin/DataTransferApp.dll.config" publishTime="06/11/2015 16:08:41" />
+    <file relUrl="bin/DataTransferApp.dll" publishTime="06/11/2015 17:06:05" />
+    <file relUrl="DataTransferApp.DataTransService.svc" publishTime="06/11/2015 17:06:05" />
+    <file relUrl="Web.config" publishTime="06/11/2015 16:08:41" />
+  </publishTarget>
+  <publishTarget publishUrl="E:\Pub\">
+    <file relUrl="DataTransferApp.DataTransService.svc" publishTime="08/26/2014 12:19:09" />
+    <file relUrl="Web.config" publishTime="03/03/2014 16:22:48" />
+    <file relUrl="bin/DataTransferApp.dll" publishTime="08/26/2014 12:18:26" />
+    <file relUrl="bin/DataTransferApp.dll.config" publishTime="03/03/2014 16:22:48" />
+    <file relUrl="bin/DataTransferApp.pdb" publishTime="08/26/2014 12:18:26" />
+  </publishTarget>
+</publishData>

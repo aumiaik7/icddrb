@@ -15343,8 +15343,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// txtbariIDRe = (EditText) v.findViewById(R.id.txtbariIDRe);
 		// txthhIDRe = (EditText) v.findViewById(R.id.txthhIDRe);
 //		txtmotherIDRe = (EditText) v.findViewById(R.id.txtmotherIDRe);
-		
-		txtclusterID.addTextChangedListener(new TextWatcher() {
+		visit = new ArrayList<String>();
+		visit.add("");
+		for(int i=1;i<=30;i++){
+			visit.add(String.valueOf(i));
+		}
+		adapter1 = new ArrayAdapter(ParentActivity.this, android.R.layout.simple_spinner_item,visit);
+		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spVisitNo.setAdapter(adapter1);
+		spVisitNo.setOnItemSelectedListener(new spinItemSelectedListener());
+		/*txtclusterID.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -15395,7 +15403,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		});*/
 
 		confButton = (Button) v.findViewById(R.id.confButton);
 		confButton.setOnClickListener(new View.OnClickListener() {
@@ -15515,7 +15523,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				String first3 = Character.toString(CommonStaticClass.dataId.charAt(0))
 					      +Character.toString(CommonStaticClass.dataId.charAt(1))
 					      +Character.toString(CommonStaticClass.dataId.charAt(2));
-					    String last2 = Character.toString(CommonStaticClass.dataId.charAt(3))
+				
+				String last2 = Character.toString(CommonStaticClass.dataId.charAt(3))
 					      +Character.toString(CommonStaticClass.dataId.charAt(4));
 				
 				CommonStaticClass.ClusterId = first3 ;

@@ -80,6 +80,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 
+
 import com.icddrb.app.WBMicrobiomeFFQ.BaseActivity;
 import com.icddrb.app.WBMicrobiomeFFQ.CommonStaticClass;
 import com.icddrb.app.WBMicrobiomeFFQ.Options;
@@ -6113,7 +6114,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// txthhIDRe = (EditText) v.findViewById(R.id.txthhIDRe);
 //		txtmotherIDRe = (EditText) v.findViewById(R.id.txtmotherIDRe);
 		
-		txtclusterID.addTextChangedListener(new TextWatcher() {
+		visit = new ArrayList<String>();
+		visit.add("");
+		for(int i=1;i<=30;i++){
+			visit.add(String.valueOf(i));
+		}
+		adapter1 = new ArrayAdapter(ParentActivity.this, android.R.layout.simple_spinner_item,visit);
+		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spVisitNo.setAdapter(adapter1);
+		spVisitNo.setOnItemSelectedListener(new spinItemSelectedListener());
+		/*txtclusterID.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -6164,7 +6174,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		});*/
 
 		confButton = (Button) v.findViewById(R.id.confButton);
 		confButton.setOnClickListener(new View.OnClickListener() {

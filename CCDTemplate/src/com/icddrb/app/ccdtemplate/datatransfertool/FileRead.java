@@ -42,7 +42,7 @@ public class FileRead extends Activity {
 	private static String PATH = "/mnt/sdcard/";
 	private ProgressDialog pdg;
 
-	public List<String> GetListOfSqliteFiles() {
+	/*public List<String> GetListOfSqliteFiles() {
 
 		File files = new File(PATH);
 
@@ -67,7 +67,7 @@ public class FileRead extends Activity {
 		}
 
 		return list;
-	}
+	}*/
 
 	DatabaseHelper dbHelper = null;
 	// JSONObject InsertDataStrings = new JSONObject();
@@ -75,7 +75,7 @@ public class FileRead extends Activity {
 
 	ArrayList<TransData> _trans = new ArrayList<TransData>();
 
-	private String GetDataBaseID(String dbName, ArrayList<DatabaseID> dbList) {
+	/*private String GetDataBaseID(String dbName, ArrayList<DatabaseID> dbList) {
 		try {
 			for (int i = 0; i < dbList.size(); i++) {
 				if (dbList.get(i).getDatabaseName().equalsIgnoreCase(dbName)) {
@@ -107,7 +107,7 @@ public class FileRead extends Activity {
 
 		}
 		return "";
-	}
+	}*/
 
 	private ArrayList<DatabaseID> _DatabseList = null;
 	Context contxt = null;
@@ -143,7 +143,7 @@ public class FileRead extends Activity {
 						String table_name = mCursor.getString(mCursor
 								.getColumnIndex("tbl_name"));
 
-						
+							
 							if (table_name.startsWith("frmr")	
 									|| table_name
 											.equalsIgnoreCase("tblOptions")
@@ -159,7 +159,7 @@ public class FileRead extends Activity {
 						
 
 						_tran = new TransData();
-						_tran.setDatabaseNm(CommonStaticClass.DB+".sqlite");
+						_tran.setDatabaseNm(CommonStaticClass.DB);
 						_tran.setAssetId(CommonStaticClass.AssetID);
 						_tran.setTableNm(table_name);
 
@@ -182,6 +182,7 @@ public class FileRead extends Activity {
 							}
 
 							if (table_cursor.moveToFirst()) {
+							
 								StringBuilder IStatement = new StringBuilder();
 								IStatement.append(String.format(
 										"Insert Into %s (", table_name));
@@ -241,6 +242,8 @@ public class FileRead extends Activity {
 		return _trans;
 	}
 
+	
+
 	private ArrayList<String> primarykeycolumlist;
 
 	public ArrayList<InsertStatement> MakeValueString(String table_name,
@@ -263,11 +266,11 @@ public class FileRead extends Activity {
 
 			_primarykeyColumn = new ArrayList<PrimaryClm>();
 
-			// value_cursor =
-			// dbHelper.getQueryCursor(String.format("select * from '%s' where IsTransfered is not '1'",
-			// table_name));
-			value_cursor = dbHelper.getQueryCursor(String.format(
-					"select * from '%s'", table_name));
+			 value_cursor =
+			 dbHelper.getQueryCursor(String.format("select * from '%s' where IsTransferred is not '1'",
+			 table_name));
+			//value_cursor = dbHelper.getQueryCursor(String.format(
+			//		"select * from '%s'", table_name));
 
 			if (value_cursor != null) {
 				if (value_cursor.getCount() > 0) {
@@ -384,6 +387,7 @@ public class FileRead extends Activity {
 							value = "";
 							insertStatement = new InsertStatement();
 							Log.e("InsertStatementWithValue", value.toString());
+							CommonStaticClass.entryUdpated = CommonStaticClass.entryUdpated +1;
 
 						} while (value_cursor.moveToNext());
 
@@ -552,7 +556,8 @@ public class FileRead extends Activity {
 
 		// The live one
 
-		HttpPost request = new HttpPost("http://172.16.10.20:8732/datatransferapp.datatransservice.svc/CCDRDUpload");
+		//HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
+		HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
 
 		// HttpPost request = new HttpPost("http://172.16.8.221:8732/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
 		// Real IP
@@ -636,8 +641,9 @@ public class FileRead extends Activity {
 		try {
 			for (TransData transData : transactionData) {
 
-				String DatabaseName = this.GetDataBaseName(
-						transData.getDatabaseNm(), _DatabseList);
+				String DatabaseName = CommonStaticClass.DB+".sqlite";
+						
+						//this.GetDataBaseName(transData.getDatabaseNm(), _DatabseList);
 
 				String sql = "";
 
@@ -648,8 +654,7 @@ public class FileRead extends Activity {
 
 				for (InsertStatement insertStatement : iStatements) {
 					sql = "UPDATE " + transData.getTableNm()
-							+ " SET IsTransfered = '"
-							+ insertStatement.getStatement() + "' WHERE ";
+							+ " SET IsTransferred = '1' WHERE ";
 
 					List<PrimaryClm> primarykeycolumns = insertStatement
 							.getPrimaryClmList();
@@ -687,14 +692,12 @@ public class FileRead extends Activity {
 
 			dbHelper = DatabaseHelper.getInstance();*/
 
-			dbHelper.executeDMLQuery(SqlStatement);
+			dbHelper.executeDMLQueryIsTransferred(SqlStatement);
 		} catch (Exception e) {
 			CommonStaticClass.showMyAlert(contxt, "Error",
 					"Error Updating Databse");
 
-		} finally {
-			dbHelper.close();
-		}
+		} 
 
 	}
 

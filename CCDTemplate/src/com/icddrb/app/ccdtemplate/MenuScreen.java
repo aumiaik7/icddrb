@@ -214,16 +214,92 @@ public class MenuScreen extends BaseActivity {
 			{
 				/*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*/
 				
-				new hasInternet().execute("");
+//				new hasInternet().execute("");
+				showTransDialog();
 				
 			}
 			else
-				Toast.makeText(this, "Network No Has", Toast.LENGTH_LONG).show();
+			{
+				new AlertDialog.Builder(con).setTitle("Network Error!!!")
+				.setMessage("Network is not Available")
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						dialog.dismiss();
+					}
+				}).setCancelable(false).show();
+			}
 			return true;
 
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	public void showTransDialog()
+	{
+
+		String last_backup = app_preferences.getString("last_backup", "");
+		String message = "";
+		if (last_backup.length() > 0) {
+			final Calendar mCalendar = Calendar.getInstance();
+			mCalendar.setTimeInMillis(Long.parseLong(last_backup));
+			String backuptakenAt = mCalendar.getTime().toString();
+			message = "Last Data was sent at " + backuptakenAt
+					+ " , send again?";
+		} else {
+			message = "No Data was transfered yet do you want transfer data?";
+		}
+		AlertDialog.Builder builder = new AlertDialog.Builder(con);
+		builder.setMessage(message);
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+
+				progressDialog = new ProgressDialog(con);
+				progressDialog.setMax(5);
+				progressDialog
+						.setMessage("Sending data to CCD Data Server. Please wait.");
+				progressDialog.setTitle("Sending");
+				progressDialog
+						.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+				progressDialog.setCancelable(false);
+				//progressDialog.setIcon(R.drawable.waiting);
+
+				progressDialog.show();
+				mAvailable = true;
+				//TransferFile();
+				/*
+				 * progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				 * progressDialog = ProgressDialog .show(con, "Sending...",
+				 * "Please wait 5 to 10 minutes.", true, false);
+				 */
+
+				// progressDialog.setCancelable(true);
+				
+
+				new Thread() {
+
+					public void run() {
+
+						Looper.prepare();
+
+						TransferFile();
+						Looper.loop();
+					}
+
+				}.start();
+
+				dialog.dismiss();
+			}
+		});
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	
+		
 	}
 	
 	private class hasInternet extends AsyncTask<String, Void, String> {
@@ -235,8 +311,8 @@ public class MenuScreen extends BaseActivity {
 		        HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
 		        urlc.setRequestProperty("User-Agent", "Test");
 		        urlc.setRequestProperty("Connection", "close");
-		        urlc.setConnectTimeout(2000); //choose your own timeframe
-		        urlc.setReadTimeout(3000); //choose your own timeframe
+		        urlc.setConnectTimeout(3000); //choose your own timeframe
+		        urlc.setReadTimeout(4000); //choose your own timeframe
 		        urlc.connect();
 		        response = urlc.getResponseCode()+"";
 		        //int networkcode2 = urlc.getResponseCode();
@@ -281,7 +357,7 @@ public class MenuScreen extends BaseActivity {
 
 	    				progressDialog.show();
 	    				mAvailable = true;
-	    				TransferFile();
+	    				//TransferFile();
 	    				/*
 	    				 * progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	    				 * progressDialog = ProgressDialog .show(con, "Sending...",
@@ -291,17 +367,17 @@ public class MenuScreen extends BaseActivity {
 	    				// progressDialog.setCancelable(true);
 	    				
 
-	    				/*new Thread() {
+	    				new Thread() {
 
 	    					public void run() {
 
 	    						Looper.prepare();
 
-	    						//TransferFile();
+	    						TransferFile();
 	    						Looper.loop();
 	    					}
 
-	    				}.start();*/
+	    				}.start();
 
 	    				dialog.dismiss();
 	    			}
@@ -336,6 +412,7 @@ public class MenuScreen extends BaseActivity {
 		 * new Thread() {
 		 * 
 		 * @Override public void run() {
+		 * 
 		 */
 		SharedPreferences.Editor editor = app_preferences.edit();
 		editor.putString("last_backup", System.currentTimeMillis() + "");
@@ -357,6 +434,7 @@ public class MenuScreen extends BaseActivity {
 		}*/
 
 		try {
+			CommonStaticClass.entryUdpated = 0;
 			final FileRead file = new FileRead();
 			//ArrayList<TransData> trans = new ArrayList<TransData>();
 			ArrayList<TransData> trans = new ArrayList<TransData>();
@@ -366,8 +444,15 @@ public class MenuScreen extends BaseActivity {
 			// file.SendRequest(trans);
 			if (mAvailable == true) {
 				if (file.CallWebService(trans)) {
+					if(CommonStaticClass.entryUdpated==0)
+					{
+						CommonStaticClass.showMyAlert(con,"Message",
+								"No New Data Avaible For CCD Data Server");
+					}
+					else
 					CommonStaticClass.showMyAlert(con,"Message",
-							"Data Successfully Sent to CCD Data Server.");
+							"Data Successfully Sent To CCD Data Server. Total No. of Sent " +
+							"Entries: "+CommonStaticClass.entryUdpated);
 				} else {
 					CommonStaticClass.showMyAlert(con,"Message",
 							"Could not connect to server. Please try again.");

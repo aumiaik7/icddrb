@@ -58,6 +58,7 @@ public class CommonStaticClass {
 	public static int sectionStart = 0;
 	public static int sectionEnd = 0;
 	public static int subEditMode = 0;
+	public static int entryUdpated = 0;
 	
 	
 	public static String DB = "";

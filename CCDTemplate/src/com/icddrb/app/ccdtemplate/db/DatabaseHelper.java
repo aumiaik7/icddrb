@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -425,6 +427,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		Log.e("sql",sql);
 		try{
 			myDataBase.execSQL(sql);
+			updateIsTransferred(sql);
 			//Addition
 //			String myPath = SDDB_PATH + DB_NAME;
 //	   		SDcardDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
@@ -437,6 +440,58 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		return true;		
 	}
 	
+	public boolean executeDMLQueryIsTransferred(String sql)
+	{
+		//SQLiteDatabase SDcardDB = null;
+		Log.e("sql",sql);
+		try{
+			myDataBase.execSQL(sql);
+			
+			//Addition
+//			String myPath = SDDB_PATH + DB_NAME;
+//	   		SDcardDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+//	   		SDcardDB.execSQL(sql);
+	   		//end of Addition
+		}catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		return true;		
+	}
+	
+	
+	private void updateIsTransferred(String sql) {
+		// TODO Auto-generated method stub
+		String tableName = "";
+		
+			String parts[] = sql.split(" ");
+			if(parts[0].equalsIgnoreCase("insert"))
+				tableName = parts[2];
+			else if(parts[0].equalsIgnoreCase("update"))
+				tableName = parts[1];
+			
+		String editDate = "dd/mm/yyyy";
+		String editTime = "hh:mm";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date d = new Date(System.currentTimeMillis());
+		editDate = sdf.format(d);
+		sdf = new SimpleDateFormat("HH:mm");
+		editTime = sdf.format(d);
+		String sq = "UPDATE "
+					+ tableName + " SET EditBy = '"+CommonStaticClass.userSpecificId+"',EditDate='"+editDate+"', EditTime = '"+editTime+"'" 
+					+ ",IsTransferred = 0 where dataid='"
+					+ CommonStaticClass.dataId + "'";	
+		try{
+			myDataBase.execSQL(sq);
+			Log.e("sql",sq);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			
+		}
+		
+	}
+
 	public String GetSingleColumnData(String column){	
 		String sql = "";	
 		if(!CommonStaticClass.isMember)

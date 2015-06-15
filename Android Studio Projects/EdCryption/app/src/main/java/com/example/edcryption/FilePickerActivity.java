@@ -12,6 +12,7 @@ import com.icddrb.app.edcryption.db.DatabaseHelper;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,9 @@ import android.database.Cursor;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +50,8 @@ public class FilePickerActivity extends ListActivity {
     DatabaseHelper dbHelper;
 	DatabaseHelper dbHelperBase;
 	private String password = "";
+    private static final int UPDATEDONE = 900;
+    private ProgressDialog progressDialog;
 	
 	File newFile = null;
 
@@ -191,7 +197,7 @@ public class FilePickerActivity extends ListActivity {
         	}
         	else
         	{
-        		showMyAlert(this, "ALERT!!", "This Database is already Encrypted");
+        		showMyAlert(this, "ALERT!!", "This Database is already Encrypted. Do you want to set a new password?");
         	}
         		
         	
@@ -322,12 +328,34 @@ public class FilePickerActivity extends ListActivity {
     
     public  void showMyAlert(Context con, String title,
 			CharSequence message) {
-		new AlertDialog.Builder(con).setTitle(title).setMessage(message)
+	/*	new AlertDialog.Builder(con).setTitle(title).setMessage(message)
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						dialog.dismiss();
 					}
-				}).setCancelable(false).show();
+				}).setCancelable(false).show();*/
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+
+
+
+        // Set up the buttons
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               showPasswordDialog();
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
 	}
     public void showPasswordDialog()
     {
@@ -358,16 +386,59 @@ public class FilePickerActivity extends ListActivity {
     	builder.show();
     }
     
-    public void createRow()
-    {
-    	
-    	/*String sql = "insert into tableInfo (dbName,password) values ('"+fileName+"'" +
-    			",'"+password+"') ";
-    	
-    	if(dbHelper.executeDMLQuery(sql))
-    	{
-    		//Toast.makeText(this, "Inserted", 1000).show();
-    		EncryptOrDecrypt.encrypt(absolutePath, sql);
-    	}*/
+    public void createRow() {
+        progressDialog = ProgressDialog.show(this, "Wait",
+                "Please wait while encrypting database");
+
+        final boolean[] done = {false};
+        new Thread() {
+
+            public void run() {
+                Looper.prepare();
+                if (EncryptOrDecrypt.encrypt(newFile, password)) {
+                    String sql = "insert into tableInfo (dbName,password) values ('" + newFile.getName() + "'" +
+                            ",'" + password + "') ";
+
+                    if (dbHelper.executeDMLQuery(sql)) {
+
+                    }
+                }
+
+                Message msg = new Message();
+                msg.what = UPDATEDONE;
+                handler.sendMessage(msg);
+                Looper.loop();
+
+            }
+        }.start();
+
+
+
+
+
     }
+
+    public Handler handler = new Handler() {
+
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case UPDATEDONE:
+                    progressDialog.dismiss();
+                    /*runOnUiThread(new Runnable() {
+                        public void run() {
+
+                            new AlertDialog.Builder(getApplicationContext()).setTitle("Done").setMessage("Encryption Complete")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            dialog.dismiss();
+                                        }
+                                    }).setCancelable(false).show();
+
+                        }
+                    });*/
+                    break;
+            }
+
+        }
+    };
 }

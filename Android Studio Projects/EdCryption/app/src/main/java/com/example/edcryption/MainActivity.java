@@ -12,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import net.sqlcipher.database.SQLiteDatabase;
+
 public class MainActivity extends Activity implements OnClickListener {
 
     private static final int REQUEST_PICK_FILE = 1;
@@ -20,12 +22,13 @@ public class MainActivity extends Activity implements OnClickListener {
     private Button mStartActivityButton,encryptButton,decryptButton;
     private File selectedFile;
     private int encordec = 0;
-    private static String APP_PATH = "/mnt/sdcard/";
+    public static String APP_PATH = "/mnt/sdcard/";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        SQLiteDatabase.loadLibs(this);
         createDirIfNotExists("EDCryption");
         createDirIfNotExists("EDCryption/Encrypted DBs");
         createDirIfNotExists("EDCryption/Decrypted DBs");

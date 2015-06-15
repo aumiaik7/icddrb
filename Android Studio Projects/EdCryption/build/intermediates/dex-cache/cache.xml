@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\imtiaz.khan\StudioProjects\EdCryption\app\libs\sqlcipher.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ce76a34bb71db637e8b171d8a4df0e865463d786">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\EdCryption\app\build\intermediates\pre-dexed\debug\sqlcipher-150679e65abc3cb69cc1d31b8d45a694862010af.jar" />
+    </item>
+    <item
+        jar="C:\Users\imtiaz.khan\StudioProjects\EdCryption\app\libs\sqlcipher-javadoc.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e754969506d574afe10c35ab4bc3f48af3a58e62">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\EdCryption\app\build\intermediates\pre-dexed\debug\sqlcipher-javadoc-976768b7afcae9e9e5911da42ae758ce28254eaa.jar" />
+    </item>
+    <item
+        jar="C:\Users\imtiaz.khan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\EdCryption\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-b6cef2c3ef7d6ee6aef83a56693f37f61f5ca596.jar" />
+    </item>
+
+</items>

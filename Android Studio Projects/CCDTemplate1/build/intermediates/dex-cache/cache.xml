@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\imtiaz.khan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-b6cef2c3ef7d6ee6aef83a56693f37f61f5ca596.jar" />
+    </item>
+    <item
+        jar="C:\Users\imtiaz.khan\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\gson-2.3.1-9fde5d7287201d7b460af23315dc443deecc91cf.jar" />
+    </item>
+
+</items>

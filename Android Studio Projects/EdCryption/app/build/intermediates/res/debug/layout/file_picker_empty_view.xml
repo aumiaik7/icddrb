@@ -1,0 +1,8 @@
+<TextView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:text="No files or directories"
+android:background="@android:drawable/toast_frame"
+android:textSize="28sp"
+android:gravity="center_vertical|center_horizontal"/><!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/EdCryption/app/src/main/res/layout/file_picker_empty_view.xml -->

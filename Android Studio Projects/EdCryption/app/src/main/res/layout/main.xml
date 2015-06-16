@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FFFFCC"
     tools:context=".FileBrowser" >
 
    
@@ -14,25 +15,28 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/encButton"
-        android:layout_alignRight="@+id/encButton"
+        android:background="#FFFFCC"
+
         android:orientation="vertical" >
           <Button
-        android:id="@+id/encButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/decButton"
-        android:layout_alignTop="@+id/linearLayout1"
-        android:padding="5dp"
-        android:text="@string/encrypt" />
+            android:id="@+id/encButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/decButton"
+            android:layout_alignTop="@+id/linearLayout1"
+            android:padding="5dp"
+            android:text="@string/encrypt"
+            android:background="@drawable/encbutton"/>
          <Button
-        android:id="@+id/decButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:text="@string/decrypt" />
+            android:id="@+id/decButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button1"
+            android:layout_centerVertical="true"
+             android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="@string/decrypt"
+            android:background="@drawable/decbutton"/>
     </LinearLayout>
 
   

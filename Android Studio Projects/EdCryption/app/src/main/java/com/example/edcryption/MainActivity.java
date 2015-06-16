@@ -51,6 +51,7 @@ public class MainActivity extends Activity implements OnClickListener {
         case R.id.encButton:
         	encordec = 1;
         	  // Create a new Intent for the file picker activity
+            FilePickerActivity.encryptOrDecrypt = 1;
             intent = new Intent(this, FilePickerActivity.class);
 
             // Set the initial directory to be the sdcard
@@ -69,7 +70,22 @@ public class MainActivity extends Activity implements OnClickListener {
         	
         break;
         case R.id.decButton:
-        	
+            FilePickerActivity.encryptOrDecrypt = 2;
+            intent = new Intent(this, FilePickerActivity.class);
+
+            // Set the initial directory to be the sdcard
+            intent.putExtra(FilePickerActivity.EXTRA_FILE_PATH,APP_PATH+"EDCryption/Encrypted DBs/");
+
+            // Show hidden files
+            //intent.putExtra(FilePickerActivity.EXTRA_SHOW_HIDDEN_FILES, true);
+
+            //Only make .png files visible
+            extensions = new ArrayList<String>();
+            extensions.add(".sqlite");
+            intent.putExtra(FilePickerActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+
+            // Start the activity
+            startActivityForResult(intent, REQUEST_PICK_FILE);
         break;
 //        case R.id.start_file_picker_button:
 //            // Create a new Intent for the file picker activity

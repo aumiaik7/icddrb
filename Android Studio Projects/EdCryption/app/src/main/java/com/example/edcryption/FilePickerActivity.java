@@ -51,14 +51,19 @@ public class FilePickerActivity extends ListActivity {
 	DatabaseHelper dbHelperBase;
 	private String password = "";
     private static final int UPDATEDONE = 900;
+    private static final int UPDATEDONEDEC = 800;
+    public  static int encryptOrDecrypt = 0;
     private ProgressDialog progressDialog;
+    private boolean encryptionComplete = false;
+    private boolean decryptionComplete = false;
+    Context con;
 	
 	File newFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        con =this;
         if (DatabaseHelper.getInstance() == null) {
 			dbHelper = new DatabaseHelper(this);
 			dbHelper.openDataBase();
@@ -191,14 +196,17 @@ public class FilePickerActivity extends ListActivity {
         	Toast.makeText(this, newFile.getAbsolutePath(), 1000).show();
             finish();*/
         	//encrypt(newFile.getAbsolutePath());
-        	if(noPassword())
-        	{
-        		showPasswordDialog();
-        	}
-        	else
-        	{
-        		showMyAlert(this, "ALERT!!", "This Database is already Encrypted. Do you want to set a new password?");
-        	}
+            if(encryptOrDecrypt == 1) {
+                if (noPassword()) {
+                    showPasswordDialog("Set Password");
+                } else {
+                    showMyAlert(this, "ALERT!!", "This Database is already Encrypted. Do you want to set a new password?");
+                }
+            }
+            else if(encryptOrDecrypt == 2)
+            {
+                showPasswordDialog("Give Password");
+            }
         		
         	
         } else {
@@ -345,7 +353,8 @@ public class FilePickerActivity extends ListActivity {
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               showPasswordDialog();
+
+               showPasswordDialog("Set Password");
             }
         });
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -357,10 +366,10 @@ public class FilePickerActivity extends ListActivity {
 
         builder.show();
 	}
-    public void showPasswordDialog()
+    public void showPasswordDialog(String title)
     {
     	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setTitle("SET PASSWORD");
+    	builder.setTitle(title);
 
     	// Set up the input
     	final EditText input = new EditText(this);
@@ -373,7 +382,36 @@ public class FilePickerActivity extends ListActivity {
     	    @Override
     	    public void onClick(DialogInterface dialog, int which) {
     	        password = input.getText().toString();
-    	        createRow();
+                if(encryptOrDecrypt == 1) {
+                    String sql = "";
+                    if (noPassword()) {
+                        sql = "insert into tableInfo (dbName,password) values ('" + newFile.getName() + "'" +
+                                ",'" + password + "') ";
+                    } else {
+                        sql = "Update tableInfo set password = '" + password + "' where dbname = '" + newFile.getName() + "'";
+                    }
+                    createorUpdateRow(sql);
+                }
+                else if(encryptOrDecrypt == 2)
+                {
+                    progressDialog = ProgressDialog.show(con, "Wait",
+                            "Please wait while Decrypting database");
+                    new Thread() {
+
+                        public void run() {
+                            Looper.prepare();
+                            if (EncryptOrDecrypt.decrypt(newFile, password)) {
+                                decryptionComplete = true;
+                            }
+
+                            Message msg = new Message();
+                            msg.what = UPDATEDONEDEC;
+                            handler.sendMessage(msg);
+                            Looper.loop();
+
+                        }
+                    }.start();
+                }
     	    }
     	});
     	builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -385,22 +423,35 @@ public class FilePickerActivity extends ListActivity {
 
     	builder.show();
     }
-    
-    public void createRow() {
+    public void showMessage(String title,String message)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+    public void createorUpdateRow(final String sql) {
         progressDialog = ProgressDialog.show(this, "Wait",
                 "Please wait while encrypting database");
 
-        final boolean[] done = {false};
         new Thread() {
 
             public void run() {
                 Looper.prepare();
                 if (EncryptOrDecrypt.encrypt(newFile, password)) {
-                    String sql = "insert into tableInfo (dbName,password) values ('" + newFile.getName() + "'" +
-                            ",'" + password + "') ";
 
                     if (dbHelper.executeDMLQuery(sql)) {
-
+                        encryptionComplete = true;
                     }
                 }
 
@@ -418,24 +469,43 @@ public class FilePickerActivity extends ListActivity {
 
     }
 
+    private Runnable mMyRunnable = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            //Change state here
+        }
+    };
     public Handler handler = new Handler() {
 
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case UPDATEDONE:
                     progressDialog.dismiss();
-                    /*runOnUiThread(new Runnable() {
-                        public void run() {
 
-                            new AlertDialog.Builder(getApplicationContext()).setTitle("Done").setMessage("Encryption Complete")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            dialog.dismiss();
-                                        }
-                                    }).setCancelable(false).show();
+                    if(encryptionComplete)
+                    {
+                        encryptionComplete = false;
+                        showMessage("Complete","Encryption Complete!");
+                    }
+                    else
+                    {
+                        showMessage("Alert","Problem Occured Try Again");
+                    }
+                    break;
+                case UPDATEDONEDEC:
+                    progressDialog.dismiss();
 
-                        }
-                    });*/
+                    if(decryptionComplete)
+                    {
+                        decryptionComplete = false;
+                        showMessage("Complete","Decryption Complete!");
+                    }
+                    else
+                    {
+                        showMessage("Alert","Problem Occured. Give Correct Password");
+                    }
                     break;
             }
 

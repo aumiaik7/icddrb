@@ -28,9 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	private static String DB_PATH = "/mnt/sdcard/";
 	private static String SDDB_PATH = "/mnt/sdcard/external_sd/";
 	private static String DB_NAME = "dbencryption.sqlite";
-	// Code by Sadia (For Baseline)
-	private static String DB_NAME_BASE = "HBIS2.sqlite";
-	private static String DB_PATH_BASE = "/mnt/sdcard/";
+
  
     private static SQLiteDatabase myDataBase = null,myDataBaseBASE=null; 
  
@@ -264,17 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         	//myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman	
     	}
     }
- // Code by Sadia (For Baseline)
-    public void openDataBase_BASE() throws SQLException{
-   	 
-    	//Open the database
-    
-    	if(myDataBaseBASE==null){
-            String myPath = DB_PATH_BASE + DB_NAME_BASE;
-            	myDataBaseBASE = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-        		
-    	}
-    }
+
     @Override
 	public synchronized void close() {
     	    if(myDataBase != null){

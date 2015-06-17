@@ -7,7 +7,6 @@ import com.icddrb.app.ccdtemplate.R;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -24,6 +23,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.sqlcipher.Cursor;
 
 public class LoginActivity extends BaseActivity {
 	private Spinner userId;
@@ -130,7 +131,7 @@ public class LoginActivity extends BaseActivity {
 						.substring(0, userIdSelection.lastIndexOf(":") - 1)
 						: "";
 
-				if (username.equalsIgnoreCase("aaaa")
+				/*if (username.equalsIgnoreCase("aaaa")
 						&& userpass.equalsIgnoreCase("aaaa")) {
 					progressDialog = ProgressDialog.show(con, "Wait",
 							"Updating options please wait");
@@ -141,7 +142,7 @@ public class LoginActivity extends BaseActivity {
 							updateTableEntry();
 						}
 					}.start();
-				}
+				}*/
 				if (userIdSelection.length() > 0 && username.length() > 0
 						&& userpass.length() > 0) {
 					validateThisUser(userSpecificId, username, userpass);
@@ -249,7 +250,7 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 
-	private void updateTableEntry() {
+	/*private void updateTableEntry() {
 		// TODO Auto-generated method stub
 
 		ArrayList<String> insertQueryList = new ArrayList<String>();
@@ -1666,7 +1667,7 @@ public class LoginActivity extends BaseActivity {
 			msg.what = UPDATEFAILED;
 			searchHandler.sendMessage(msg);
 		}
-	}
+	}*/
 
 	public void onBackPressed() {
 		super.onBackPressed();

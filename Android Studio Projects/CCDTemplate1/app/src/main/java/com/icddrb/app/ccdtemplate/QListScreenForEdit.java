@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +19,7 @@ import android.widget.ListView;
 import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.adapters.QlistAdapter;
 
-
+import net.sqlcipher.Cursor;
 
 
 public class QListScreenForEdit extends BaseActivity {

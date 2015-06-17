@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,6 +31,8 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Toast;
+
+import net.sqlcipher.Cursor;
 
 public class subedit extends BaseActivity {
 

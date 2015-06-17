@@ -19,7 +19,7 @@ import org.apache.http.util.EntityUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.database.Cursor;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -35,6 +35,7 @@ import com.icddrb.app.ccdtemplate.CommonStaticClass;
 import com.icddrb.app.ccdtemplate.MenuScreen;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
 
+import net.sqlcipher.Cursor;
 
 
 public class FileRead extends Activity {

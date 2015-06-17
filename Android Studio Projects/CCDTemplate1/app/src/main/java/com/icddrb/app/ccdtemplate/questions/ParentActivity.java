@@ -28,7 +28,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
@@ -93,6 +93,8 @@ import com.icddrb.app.ccdtemplate.adapters.SpinAdapter;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
 
 import com.icddrb.app.ccdtemplate.questions.TouchImageView.OnTouchImageViewListener;
+
+import net.sqlcipher.Cursor;
 
 public class ParentActivity extends BaseActivity implements FormListener {
 

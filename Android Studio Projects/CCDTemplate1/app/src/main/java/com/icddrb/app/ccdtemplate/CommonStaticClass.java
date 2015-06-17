@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
+
 import android.media.ExifInterface;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -17,6 +17,8 @@ import android.widget.Spinner;
 
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
 import com.icddrb.app.ccdtemplate.questions.ParentActivity;
+
+import net.sqlcipher.Cursor;
 
 public class CommonStaticClass {
 

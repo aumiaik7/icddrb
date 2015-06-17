@@ -5,15 +5,18 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
 import com.icddrb.app.ccdtemplate.questions.ParentActivity;
+
+import net.sqlcipher.database.SQLiteDatabase;
 
 
 public class BaseActivity extends Activity {
@@ -23,12 +26,32 @@ public class BaseActivity extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		SQLiteDatabase.loadLibs(this);
 		contxt = this;
 
 		if (DatabaseHelper.getInstance() == null) {
-			dbHelper = new DatabaseHelper(contxt);
-			dbHelper.openDataBase();
+			try {
+				dbHelper = new DatabaseHelper(contxt);
+				dbHelper.openDataBase();
+			}
+			catch (Exception e)
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("Error");
+				builder.setMessage("Wrong Password FOR ENCRYPTED Database. Program will exit now");
+
+
+				// Set up the buttons
+				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						//dialog.cancel();
+						System.exit(0);
+					}
+				});
+
+				builder.show();
+			}
 		} else {
 			dbHelper = DatabaseHelper.getInstance();
 		}

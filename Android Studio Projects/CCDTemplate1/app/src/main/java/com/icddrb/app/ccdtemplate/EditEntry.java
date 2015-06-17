@@ -13,7 +13,7 @@ import com.icddrb.app.ccdtemplate.R;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +30,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+
+import net.sqlcipher.Cursor;
 
 public class EditEntry extends BaseActivity{
 	private ListView listentries;

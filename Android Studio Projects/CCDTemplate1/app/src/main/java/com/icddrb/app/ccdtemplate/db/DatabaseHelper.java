@@ -10,17 +10,22 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
+import android.content.DialogInterface;
 import android.os.Environment;
 import android.util.Log;
 
+
 import com.icddrb.app.ccdtemplate.CommonStaticClass;
+
+import net.sqlcipher.Cursor;
+import net.sqlcipher.SQLException;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteException;
+import net.sqlcipher.database.SQLiteOpenHelper;
+import net.sqlcipher.database.SQLiteStatement;
+
 public class DatabaseHelper extends SQLiteOpenHelper
 {
 //	private static String DB_PATH = "/data/data/"+CommonStaticClass.pName+"/databases/";
@@ -34,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	private static String DB_NAME_BASE = "HBIS2.sqlite";
 	private static String DB_PATH_BASE = "/mnt/sdcard/";
  
-    private static SQLiteDatabase myDataBase = null,myDataBaseBASE=null; 
+    private static SQLiteDatabase myDataBase = null,myDataBaseBASE=null;
  
     private final Context myContext;
     
@@ -42,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public static  DatabaseHelper dbHelperBase;
     
     private SQLiteStatement stmt,stmt1;
+
     
     public DatabaseHelper(Context context) {
     	 
@@ -50,12 +56,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
     	String parts[] = DB_NAME.split(".sqlite");
     	CommonStaticClass.DB = parts[0]; 
         this.myContext = context;
-        try {
+       /* try {
 			createDataBase();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
     }
     
     public static DatabaseHelper getInstance(){
@@ -64,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public static DatabaseHelper getInstanceBase(){
    	 return dbHelperBase;
    }
-    public void createDataBase() throws IOException
+   /* public void createDataBase() throws IOException
     {    	 
     	boolean dbExist = checkDataBase();
     	if(dbExist)
@@ -73,25 +79,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
     	}
     	else
     	{
- 
-/*    		
+
+*//*
 *     By calling this method and empty database will be created into the default system path
 *     of your application so we are gonna be able to overwrite that database with our database.
-*/
-        	this.getReadableDatabase().close();
- 
+*//*
+
+        	*//*this.getReadableDatabase(getpw()).close();
+
         	try {
- 
+
     			copyDataBase();
- 
+
     		} catch (IOException e) {
- 
+
         		throw new Error("Error copying database");
- 
-        	}
+
+        	}*//*
+
     	}
  
-    }
+    }*/
     
     public boolean IsDataExists(String s){	
 		String sql = "";	
@@ -167,27 +175,32 @@ public class DatabaseHelper extends SQLiteOpenHelper
 				return Integer.parseInt(data);
 	}
 	
-	 public void openDataTransferToolDataBasesFrmList() throws SQLException{
+	 public void openDataTransferToolDataBasesFrmList() throws SQLException {
 	   	 
 	    	//Open the database
 	    	//if(myDataBase==null){
 	            String myPath = DB_PATH + DB_NAME;
-	        	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-	        	//myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman	
+	        	myDataBase = SQLiteDatabase.openDatabase(myPath, getpw(), null, SQLiteDatabase.OPEN_READWRITE);
+		 		//myDataBase = SQLiteDatabase.openOrCreateDatabase(myPath, getpw(), null);
+		 //myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman
 	    	//}
 	    	
 	    }
 	
-    private boolean checkDataBase()
+   /* private boolean checkDataBase()
     {
     	boolean t = false;
     	SQLiteDatabase checkDB = null;
- 
-    	try{
+		SQLiteOpenHelper dbHelperObj = null;
+
+		try{
     		String myPath = DB_PATH + DB_NAME;
-    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
- 
-    	}catch(SQLiteException e)
+			//checkDB = SQLiteDatabase.openOrCreateDatabase(myPath, getpw(), null);
+
+			//checkDB = dbHelperObj.getReadableDatabase("");
+			checkDB = SQLiteDatabase.openDatabase(myPath, getpw(), null, SQLiteDatabase.OPEN_READONLY);
+
+		}catch(SQLiteException e)
     	{
 
     		//database does't exist yet.
@@ -201,7 +214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         	}
     	}
     	return t;
-    }
+    }*/
     private void copyDataBase() throws IOException
     {
     	InputStream databaseInput = null;
@@ -350,8 +363,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     	//Open the database
     	if(myDataBase==null){
             String myPath = DB_PATH + DB_NAME;
-        	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-        	//myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman	
+        	myDataBase = SQLiteDatabase.openDatabase(myPath, getpw(), null, SQLiteDatabase.OPEN_READWRITE);
+			//myDataBase = SQLiteDatabase.openOrCreateDatabase(myPath, getpw(), null);
+			//myDataBase = SQLiteDatabase.openOrCreateDatabase(myPath, getpw(), null);
+			//myDataBase=dbHelper.getWritableDatabase(); //Blocked by zaman
     	}
     }
  // Code by Sadia (For Baseline)
@@ -361,9 +376,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     
     	if(myDataBaseBASE==null){
             String myPath = DB_PATH_BASE + DB_NAME_BASE;
-            	myDataBaseBASE = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-        		
-    	}
+            	myDataBaseBASE = SQLiteDatabase.openDatabase(myPath, getpw(), null, SQLiteDatabase.OPEN_READWRITE);
+			//myDataBaseBASE = SQLiteDatabase.openOrCreateDatabase(myPath, getpw(), null);
+
+		}
     }
     @Override
 	public synchronized void close() {
@@ -536,6 +552,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
         	myDataBase.endTransaction(); // this must be in the finally block 
         } 
     }
+	private String getpw()
+	{
+		return "ccd@app";
+	}
+
+
+
+
 }
 
 

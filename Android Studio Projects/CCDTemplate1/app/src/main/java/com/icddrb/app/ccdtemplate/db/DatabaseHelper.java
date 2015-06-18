@@ -32,9 +32,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
 //	 
 //    private static String DB_NAME = "nutritionalstatus";
 	
-	private static String DB_PATH = "/mnt/sdcard/";
+	public static String DB_PATH = "/mnt/sdcard/";
 	private static String SDDB_PATH = "/mnt/sdcard/external_sd/";
-	private static String DB_NAME = "ccdtemplate.sqlite";
+	public static String DB_NAME = "ccdtemplate.sqlite";
 	// Code by Sadia (For Baseline)
 	private static String DB_NAME_BASE = "HBIS2.sqlite";
 	private static String DB_PATH_BASE = "/mnt/sdcard/";
@@ -552,7 +552,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         	myDataBase.endTransaction(); // this must be in the finally block 
         } 
     }
-	private String getpw()
+	public static String getpw()
 	{
 		return "ccd@app";
 	}

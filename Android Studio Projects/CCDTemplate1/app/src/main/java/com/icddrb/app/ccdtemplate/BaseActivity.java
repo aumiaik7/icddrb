@@ -20,7 +20,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 
 public class BaseActivity extends Activity {
-	protected DatabaseHelper dbHelper;
+	protected static DatabaseHelper dbHelper;
 	protected DatabaseHelper dbHelperBase;
 	private Context contxt;
 
@@ -43,7 +43,7 @@ public class BaseActivity extends Activity {
 
 				// Set up the buttons
 				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-					@Override
+//					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						//dialog.cancel();
 						System.exit(0);

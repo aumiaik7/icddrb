@@ -10,9 +10,13 @@ import com.icddrb.app.ccdtemplate.R;
 
 import com.icddrb.app.ccdtemplate.datatransfertool.FileRead;
 import com.icddrb.app.ccdtemplate.datatransfertool.TransData;
+import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
+import com.icddrb.app.ccdtemplate.schedulebackup.ScheduleBackup;
 
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -52,6 +56,9 @@ public class MenuScreen extends BaseActivity {
 	public static final int INCREASE = 3;
 	protected static final int Send_SUCCESS = 4;
 	protected static final int COPY_FAILED = 5;
+	private PendingIntent pendingIntent;
+	private AlarmManager manager;
+	private boolean alarm = false;
 
 	private boolean mAvailable = false;
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,30 @@ public class MenuScreen extends BaseActivity {
 		con = this;
 		setTheme(R.style.AppTheme);
 		loadGui();
+
+		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
+		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
+		alarmIntent.putExtra("dbname", DatabaseHelper.DB_NAME);
+		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
+		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+
+
+
+	}
+
+	public void startAlarm() {
+		manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+		int interval = 10000; // 10 seconds
+
+		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
+		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
+	}
+	public void cancelAlarm() {
+		if (manager != null) {
+			manager.cancel(pendingIntent);
+			Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
+		}
+
 	}
 
 	private void loadGui() {
@@ -230,6 +261,23 @@ public class MenuScreen extends BaseActivity {
 				}).setCancelable(false).show();
 			}
 			return true;
+			case R.id.Alarm:
+				if (!alarm)
+				{
+				/*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*/
+
+//				new hasInternet().execute("");
+					alarm = true;
+					startAlarm();
+
+
+				}
+				else
+				{
+					alarm = false;
+					cancelAlarm();
+				}
+				return true;
 
 		default:
 			return super.onOptionsItemSelected(item);

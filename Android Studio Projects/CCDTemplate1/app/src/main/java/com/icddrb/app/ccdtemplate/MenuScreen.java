@@ -70,7 +70,7 @@ public class MenuScreen extends BaseActivity {
 
 		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
 		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
-		alarmIntent.putExtra("dbname", DatabaseHelper.DB_NAME);
+		alarmIntent.putExtra("dbname", CommonStaticClass.DB);
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
@@ -80,7 +80,7 @@ public class MenuScreen extends BaseActivity {
 
 	public void startAlarm() {
 		manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		int interval = 10000; // 10 seconds
+		int interval = 30000; // 10 seconds
 
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();

@@ -34,6 +34,7 @@ import com.google.gson.Gson;
 import com.icddrb.app.ccdtemplate.CommonStaticClass;
 import com.icddrb.app.ccdtemplate.MenuScreen;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
+import com.icddrb.app.ccdtemplate.schedulebackup.ScheduleBackup;
 
 import net.sqlcipher.Cursor;
 
@@ -71,6 +72,7 @@ public class FileRead extends Activity {
 	}*/
 
 	DatabaseHelper dbHelper = null;
+	ScheduleBackup scheduleBackup = null;
 	// JSONObject InsertDataStrings = new JSONObject();
 	ArrayList<InsertStatement> list = new ArrayList<InsertStatement>();
 
@@ -222,6 +224,13 @@ public class FileRead extends Activity {
 									.getMessage().toString());
 							e.printStackTrace();
 						}
+						finally {
+							if(!table_cursor.isClosed())
+								table_cursor.close();
+							if(!primarykey_cursor.isClosed())
+								primarykey_cursor.close();
+						}
+
 
 					} while (mCursor.moveToNext());
 
@@ -243,7 +252,315 @@ public class FileRead extends Activity {
 		return _trans;
 	}
 
-	
+	///For ScheduleBackup
+	public ArrayList<TransData> MakeInsertStringSB(Context con,ScheduleBackup sb, String dbname) {
+
+
+		// List<String> dblist = GetListOfSqliteFiles();
+
+		// InsertDataStrings = new JSONObject();
+		list = new ArrayList<InsertStatement>();
+
+//		for (String s : dblist) {
+
+		Cursor mCursor = null;
+		try {
+			TransData _tran = new TransData();
+//				DatabaseHelper.DB_NAME = s;
+
+			contxt = con;
+			scheduleBackup = sb;
+			//dbHelper = new DatabaseHelper(contxt);
+				/*dbHelper.openDataTransferToolDataBasesFrmList();
+
+				dbHelper = DatabaseHelper.getInstance();*/
+
+			mCursor = scheduleBackup
+					.getQueryCursor(String
+							.format("Select * from sqlite_master where type='table'"));
+
+			if (mCursor.moveToFirst()) {
+				do {
+					String table_name = mCursor.getString(mCursor
+							.getColumnIndex("tbl_name"));
+
+
+					if (table_name.startsWith("frmr")
+							|| table_name
+							.equalsIgnoreCase("tblOptions")
+							|| table_name
+							.equalsIgnoreCase("tblQuestion")
+							|| table_name.equalsIgnoreCase("tblStack")
+							|| table_name.equalsIgnoreCase("tblUser")
+							|| table_name
+							.equalsIgnoreCase("tblVersion")) {
+						continue;
+					}
+
+
+
+					_tran = new TransData();
+					_tran.setDatabaseNm(dbname);
+					_tran.setAssetId(CommonStaticClass.AssetID);
+					_tran.setTableNm(table_name);
+
+					Cursor table_cursor = null;
+					Cursor primarykey_cursor = null;
+
+					try {
+
+						table_cursor = scheduleBackup.getQueryCursor(String
+								.format("PRAGMA table_info('%s')",
+										table_name));
+
+						primarykey_cursor = scheduleBackup.getQueryCursor(String
+								.format("PRAGMA table_info('%s')",
+										table_name));
+
+
+						primarykeycolumlist = GetPrimaryKeyColumnList(primarykey_cursor);
+						if (primarykeycolumlist.size() <= 0) {
+							continue;
+						}
+//						scheduleBackup.cursorClose();
+
+						if (table_cursor.moveToFirst()) {
+
+							StringBuilder IStatement = new StringBuilder();
+							IStatement.append(String.format(
+									"Insert Into %s (", table_name));
+
+							do {
+
+								String column_name = table_cursor
+										.getString(table_cursor
+												.getColumnIndex("name"));
+
+								IStatement.append(column_name + ",");
+
+							} while (table_cursor.moveToNext());
+
+							if (IStatement.length() > 0) {
+								IStatement.replace(IStatement.length() - 1,
+										IStatement.length(), "");
+								IStatement.append(")");
+
+								_tran.setIStatement(MakeValueStringSB(
+										table_name, con, IStatement,
+										primarykeycolumlist));
+
+								_trans.add(_tran);
+
+//								Message ms = new Message();
+//								ms.what = MenuScreen.INCREASE;
+//								handler.sendMessage(ms);
+
+							}
+							// table_cursor.close();
+						}
+
+					} catch (Exception e) {
+						/*CommonStaticClass.showMyAlert(con, "Error", e
+								.getMessage().toString());
+						e.printStackTrace();*/
+					}
+					finally {
+						if(!table_cursor.isClosed())
+							table_cursor.close();
+						if(!primarykey_cursor.isClosed())
+							primarykey_cursor.close();
+					}
+
+				} while (mCursor.moveToNext());
+
+
+			}
+
+
+		} catch (Exception e) { // TODO: handle exception
+			// Toast.makeText(con, e.getMessage().toString(), 1000).show();
+			/*CommonStaticClass.showMyAlert(con, "Error", e.getMessage()
+					.toString());*/
+			Log.e("cursor", "is null");
+		} finally {
+			if (mCursor != null)
+				mCursor.close();
+
+		}
+
+
+		//}
+
+		return _trans;
+	}
+	public ArrayList<InsertStatement> MakeValueStringSB(String table_name,
+													  Context con, StringBuilder IStatement, ArrayList<String> Pklist) {
+
+		primarykeycolumlist = Pklist;// GetPrimaryKeyColumnList(PrimaryKeyCursor);
+		if (primarykeycolumlist.size() <= 0) {
+			return null;
+		}
+
+		PrimaryClm column = null;
+		// StringBuilder value = null;
+		String value = "";
+		Cursor value_cursor = null;
+		ArrayList<PrimaryClm> _primarykeyColumn = null;
+		InsertStatement insertStatement = null;
+		ArrayList<InsertStatement> _trans = new ArrayList<InsertStatement>();
+		try {
+			// value = new StringBuilder();
+
+			_primarykeyColumn = new ArrayList<PrimaryClm>();
+
+			value_cursor =
+					scheduleBackup.getQueryCursor(String.format("select * from '%s' where IsTransferred is not '1'",
+							table_name));
+			//value_cursor = dbHelper.getQueryCursor(String.format(
+			//		"select * from '%s'", table_name));
+
+			if (value_cursor != null) {
+				if (value_cursor.getCount() > 0) {
+					if (value_cursor.moveToFirst()) {
+
+						column = new PrimaryClm();
+						// primarykeycolumlist =
+						// GetPrimaryKeyColumnList(PrimaryKeyCursor);
+
+						/*
+						 * if (primarykeycolumlist.size() <= 0) { return null; }
+						 */
+
+						do {
+							insertStatement = new InsertStatement();
+							_primarykeyColumn = new ArrayList<PrimaryClm>();
+							// value.append(IStatement + "VALUES(");
+							value = value + IStatement + "VALUES(";
+							// int colindex = 0;
+							for (int i = 0; i < value_cursor.getColumnCount();) {
+								// get column index takes too much time
+								if (value_cursor.getString(value_cursor
+										.getColumnIndex(value_cursor
+												.getColumnName(i))) == null) {
+									value = value
+											+ ""
+											+ value_cursor
+											.getString(value_cursor
+													.getColumnIndex(value_cursor
+															.getColumnName(i)))
+											+ ",";
+
+								} else if (value_cursor.getString(
+										value_cursor
+												.getColumnIndex(value_cursor
+														.getColumnName(i)))
+										.equalsIgnoreCase("-1"))
+
+								{
+									value = value
+											+ ""
+											+ value_cursor
+											.getString(value_cursor
+													.getColumnIndex(value_cursor
+															.getColumnName(i)))
+											+ ",";
+
+								}
+
+								else if (value_cursor.getString(
+										value_cursor
+												.getColumnIndex(value_cursor
+														.getColumnName(i)))
+										.equalsIgnoreCase("null"))
+
+								{
+									value = value
+											+ ""
+											+ value_cursor
+											.getString(value_cursor
+													.getColumnIndex(value_cursor
+															.getColumnName(i)))
+											+ ",";
+
+								}
+
+								else {
+
+									value = value
+											+ "'"
+											+ value_cursor
+											.getString(value_cursor
+													.getColumnIndex(value_cursor
+															.getColumnName(i)))
+											+ "',";
+
+								}
+
+								for (int j = 0; j < primarykeycolumlist.size(); j++) {
+									if (String.valueOf(
+											primarykeycolumlist.get(j))
+											.equalsIgnoreCase(
+													value_cursor
+															.getColumnName(i))) {
+										column = new PrimaryClm();
+										column.set_ClumnMn(value_cursor
+												.getColumnName(i));
+										column.setClumnValue("'"
+												+ value_cursor.getString(value_cursor
+												.getColumnIndex(value_cursor
+														.getColumnName(i)))
+												+ "'");
+
+										_primarykeyColumn.add(column);
+
+									}
+									if (_primarykeyColumn != null) {
+										insertStatement
+												.setPrimaryClmList(_primarykeyColumn);
+
+									}
+								}
+
+								i++;
+							}
+
+							value = value.substring(0, value.length() - 1);
+
+							value = value + ");";
+
+							insertStatement.setStatement(value.toString());
+
+							_trans.add(insertStatement);
+							value = "";
+							insertStatement = new InsertStatement();
+							//Log.e("InsertStatementWithValue", value.toString());
+							CommonStaticClass.entryUdpated = CommonStaticClass.entryUdpated +1;
+
+						} while (value_cursor.moveToNext());
+
+					}
+				}
+				value_cursor.close();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			CommonStaticClass.showMyAlert(con, "Message", e.getMessage()
+					.toString());
+
+		} finally {
+			value = null;
+			_primarykeyColumn = null;
+			column = null;
+			value_cursor = null;
+			// PrimaryKeyCursor = null;
+
+		}
+
+		return _trans;
+	}
+
 
 	private ArrayList<String> primarykeycolumlist;
 
@@ -387,7 +704,7 @@ public class FileRead extends Activity {
 							_trans.add(insertStatement);
 							value = "";
 							insertStatement = new InsertStatement();
-							Log.e("InsertStatementWithValue", value.toString());
+							//Log.e("InsertStatementWithValue", value.toString());
 							CommonStaticClass.entryUdpated = CommonStaticClass.entryUdpated +1;
 
 						} while (value_cursor.moveToNext());
@@ -638,11 +955,99 @@ public class FileRead extends Activity {
 
 	}
 
+	public Boolean CallWebServiceSB(ArrayList<TransData> trans)
+			throws UnsupportedEncodingException {
+		// Boolean NoError = false;
+
+		// The live one
+
+		//HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
+		HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
+
+		// HttpPost request = new HttpPost("http://172.16.8.221:8732/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
+		// Real IP
+
+		// HttpPost request = new
+		// HttpPost("http://203.190.254.64/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
+
+		// HttpPost request = new
+		// HttpPost("http://ccd-dataserver.icddrb.net/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
+
+		// HttpPost request = new HttpPost("http://172.16.10.28:8732"+
+		// "/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
+
+		/*
+		 * HttpPost request = new HttpPost(
+		 * "http://ccd-rzaman.icddrb.net/Pub/DataTransferApp.DataTransService.svc/CCDRDUpload"
+		 * );
+		 */
+
+		request.setHeader("Accept", "application/json");
+		request.setHeader("Content-type", "application/json");
+
+		Gson g = new Gson();
+		String s = g.toJson(trans);
+		StringEntity entity = new StringEntity(s, "UTF-8");// MakeEmployees());
+
+		try {
+
+			request.setEntity(entity);
+
+			HttpParams httpParameters = new BasicHttpParams();
+
+			int timeoutConnection = 0;// Timeout for establishing connection
+			HttpConnectionParams.setConnectionTimeout(httpParameters,
+					timeoutConnection);
+			int timeoutSocket = 0;// Timeout for establishing data transfer work
+			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+			DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
+
+			HttpResponse response;
+			try {
+				response = httpClient.execute(request);
+				String _response;
+				_response = EntityUtils.toString(response.getEntity());
+				TransData[] sectionArray = new Gson().fromJson(_response,
+						TransData[].class);
+				ArrayList<TransData> tdata = new ArrayList<TransData>();
+				for (int i = 0; i < sectionArray.length; i++) {
+					tdata.add(sectionArray[i]);
+				}
+
+				if (UpdateFlagSB(tdata) == true)
+					return true;
+				else
+					return false;
+
+				// return true;
+
+				/*
+				 * if(sectionArray==null) return false; else return true;
+				 */
+
+			} catch (Exception e) {
+				CommonStaticClass.showMyAlert(contxt, "Message", e.getMessage()
+						.toString());
+				return false;
+
+			}
+
+		} catch (Exception e) {
+			/*
+			 * Log.e("", e.printStackTrace());
+			 */
+			// return false;
+		}
+		return false;
+
+	}
+
 	private boolean UpdateFlag(ArrayList<TransData> transactionData) {
 		try {
 			for (TransData transData : transactionData) {
 
-				String DatabaseName = CommonStaticClass.DB+".sqlite";
+				String DatabaseName = transData.getDatabaseNm()+".sqlite";
+						//CommonStaticClass.DB+".sqlite";
 						
 						//this.GetDataBaseName(transData.getDatabaseNm(), _DatabseList);
 
@@ -683,6 +1088,50 @@ public class FileRead extends Activity {
 
 	}
 
+	private boolean UpdateFlagSB(ArrayList<TransData> transactionData) {
+		try {
+			for (TransData transData : transactionData) {
+
+				String DatabaseName = CommonStaticClass.DB+".sqlite";
+
+				//this.GetDataBaseName(transData.getDatabaseNm(), _DatabseList);
+
+				String sql = "";
+
+				// String WhereClause = "";
+				ArrayList<InsertStatement> iStatements = transData
+						.getIStatement();
+				// String TableName = transData.getTableNm();
+
+				for (InsertStatement insertStatement : iStatements) {
+					sql = "UPDATE " + transData.getTableNm()
+							+ " SET IsTransferred = '1' WHERE ";
+
+					List<PrimaryClm> primarykeycolumns = insertStatement
+							.getPrimaryClmList();
+					String WhereClause = "";
+					for (PrimaryClm columns : primarykeycolumns) {
+
+						WhereClause = WhereClause + columns.get_ClumnMn() + "="
+								+ columns.getClumnValue() + " AND ";
+					}
+					if (WhereClause.length() > 0) {
+						String filter = WhereClause.substring(0,
+								WhereClause.length() - 5);
+						sql = sql + filter + "";
+						UpdatedataBaseSB(DatabaseName, sql);
+					}
+				}
+
+			}
+			return true;
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 	private void UpdatedataBase(String DBName, String SqlStatement) {
 		// Context contxt = getApplicationContext();
 		try {
@@ -699,6 +1148,24 @@ public class FileRead extends Activity {
 					"Error Updating Databse");
 
 		} 
+
+	}
+	private void UpdatedataBaseSB(String DBName, String SqlStatement) {
+		// Context contxt = getApplicationContext();
+		try {
+
+			/*DatabaseHelper.DB_NAME = DBName;
+			dbHelper = new DatabaseHelper(contxt);
+			dbHelper.openDataTransferToolDataBasesFrmList();
+
+			dbHelper = DatabaseHelper.getInstance();*/
+
+			scheduleBackup.executeDMLQuery(SqlStatement);
+		} catch (Exception e) {
+			CommonStaticClass.showMyAlert(contxt, "Error",
+					"Error Updating Databse");
+
+		}
 
 	}
 

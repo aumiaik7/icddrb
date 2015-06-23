@@ -14940,7 +14940,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ "    b612R2_5  ,    b612R2_day,    b612R3_1  ,    b612R3_2  ,    b612R3_3  ,    b612R3_day,    b612R4_1  ,    b612R4_2  ,    b612R4_3  ,"
 					+ "    b612R4_4  ,    b612R4_5  ,    b612R4_day,    b612R5_1  ,    b612R5_2  ,    b612R5_3  ,    b612R5_4  ,    b612R5_5  ,    b612R5_6  ,"
 					+ "    b612R5_7  ,    b612R5_8  ,    b612R5_9  ,    b612R5_10 ,    b612R5_11 ,    b612R5_day,    b612R6_1  ,    b612R6_2  ,    b612R6_3  ,"
-					+ "    b612R6_4  ,    b612R6_5  ,    b612R6_6  ,    b612R6_day,    b612R7_1  ,    b612R7_2  ,    b612R7_3  ,    b612R7_4  ,    b612R7_5  ,"
+					+ "    b612R6_4  ,    b612R6_5  ,    b612R6_6  ,    b612R6_7  ,    b612R6_day,    b612R7_1  ,    b612R7_2  ,    b612R7_3  ,    b612R7_4  ,    b612R7_5  ,"
 					+ "    b612R7_6  ,    b612R7_day"
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
@@ -15172,6 +15172,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											4,
 											mCursor1.getInt(mCursor1
 													.getColumnIndex("b612R6_6")) == 1 ? true
+													: false);
+							listView6
+									.setItemChecked(
+											5,
+											mCursor1.getInt(mCursor1
+													.getColumnIndex("b612R6_7")) == 1 ? true
 													: false);
 
 							sp6.setSelection(mCursor1.getInt(mCursor1

@@ -69,8 +69,7 @@ public class BaseActivity extends Activity {
 			CommonStaticClass.currentSLNo = CommonStaticClass.SLNOSTACK
 					.get(CommonStaticClass.SLNOSTACK.size() - 1);
 		}
-		Log.e("CommonStaticClass.currentSLNo", ""
-				+ CommonStaticClass.currentSLNo);
+//		Log.e("CommonStaticClass.currentSLNo", ""+ CommonStaticClass.currentSLNo);
 		if (CommonStaticClass.questionMap.get(CommonStaticClass.currentSLNo)
 				.getQvar() == "memberid")
 			CommonStaticClass.isMember = false;

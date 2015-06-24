@@ -74,21 +74,21 @@ public class MenuScreen extends BaseActivity {
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-
+		startAlarm();
 
 	}
 
 	public void startAlarm() {
 		manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		int interval = 30000; // 10 seconds
+		long interval = (24*60*60)*1000; // 10 seconds
 
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-		Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Auto Backup Started", Toast.LENGTH_SHORT).show();
 	}
 	public void cancelAlarm() {
 		if (manager != null) {
 			manager.cancel(pendingIntent);
-			Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Auto Backup Stoppped", Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -262,9 +262,9 @@ public class MenuScreen extends BaseActivity {
 			}
 			return true;
 			case R.id.Alarm:
-				if (!alarm)
+				/*if (!alarm)
 				{
-				/*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*/
+				*//*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*//*
 
 //				new hasInternet().execute("");
 					alarm = true;
@@ -274,9 +274,9 @@ public class MenuScreen extends BaseActivity {
 				}
 				else
 				{
-					alarm = false;
-					cancelAlarm();
-				}
+					alarm = false;*/
+				cancelAlarm();
+//				}
 				return true;
 
 		default:

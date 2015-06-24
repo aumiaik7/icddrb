@@ -15474,7 +15474,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			String StroagePath = "";
 
 			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-				StroagePath = Environment.getExternalStorageDirectory().getAbsoluteFile().toString()+"/icddrb/"+CommonStaticClass.DB;
+				StroagePath = Environment.getExternalStorageDirectory().getAbsoluteFile().toString()+"/icddrbDB/"+CommonStaticClass.DB;
 				storageDir=new File(StroagePath);
 				if (storageDir != null) {
 					if (! storageDir.mkdirs()) {

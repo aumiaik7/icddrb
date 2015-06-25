@@ -29,6 +29,9 @@ public class QListScreenForEdit extends BaseActivity {
 	private ArrayList<String> qdescbng;
 	private ArrayList<String> qdesceng;
 	private ArrayList<Integer> qslno;
+	private ArrayList<String> qans;
+
+
 	// private EditText filterText = null;
 	private QlistAdapter myAdapter;
 
@@ -48,12 +51,13 @@ public class QListScreenForEdit extends BaseActivity {
 		qs = new ArrayList<String>();
 		qdescbng = new ArrayList<String>();
 		qdesceng = new ArrayList<String>();
+		qans = new ArrayList<String>();
 
 		// filterText = (EditText) findViewById(R.id.search_box);
 		// filterText.addTextChangedListener(filterTextWatcher);
 
 		listentries = (ListView) findViewById(R.id.listentries);
-		myAdapter = new QlistAdapter(this, qs, qdescbng, qdesceng);
+		myAdapter = new QlistAdapter(this, qs, qdescbng, qdesceng,qans);
 		listentries.setAdapter(myAdapter);
 		listentries.setOnItemClickListener(new OnItemClickListener() {
 
@@ -281,6 +285,9 @@ public class QListScreenForEdit extends BaseActivity {
 							.getColumnIndex("Qdescbng"))));
 					qdesceng.add(mCursor.getString((mCursor
 							.getColumnIndex("Qdesceng"))));
+					qans.add(getAns(mCursor.getString(mCursor.getColumnIndex("Qvar"))));
+
+
 				} while (mCursor.moveToNext());
 			}
 		} catch (Exception e) {
@@ -295,6 +302,140 @@ public class QListScreenForEdit extends BaseActivity {
 		}
 	
 
+	}
+
+	private String getAns(String qvar) {
+		String qAns = "Answer inside";
+		String sql = "";
+
+		Cursor mCursor = null;
+
+		sql = "select Formname,Tablename from tblQuestion where Qvar = '"+qvar+"'";
+
+		try{
+			mCursor = dbHelper.getQueryCursor(sql);
+			if (mCursor.moveToFirst())
+			{
+				String form = mCursor.getString(mCursor.getColumnIndex("Formname"));
+				String table = mCursor.getString(mCursor.getColumnIndex("Tablename"));
+				if(form.equalsIgnoreCase("frmdate") || form.equalsIgnoreCase("frmnumeric")
+						|| form.equalsIgnoreCase("frmtext") || form.equalsIgnoreCase("frmtime")
+						|| form.equalsIgnoreCase("frmcombobox"))
+				{
+					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					mCursor = dbHelper.getQueryCursor(sql);
+					if (mCursor.moveToFirst()) {
+						qAns = mCursor.getString(mCursor.getColumnIndex(qvar));
+					}
+				}
+				else if(form.equalsIgnoreCase("frmsinglechoice"))
+				{
+					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					mCursor = dbHelper.getQueryCursor(sql);
+					if (mCursor.moveToFirst()) {
+						String choiceValue = mCursor.getString(mCursor.getColumnIndex(qvar));
+						sql = "Select  CaptionEng from tblOptions where QID = '"+qvar+"' " +
+								"and Code = '"+choiceValue+"'";
+						mCursor = dbHelper.getQueryCursor(sql);
+						if (mCursor.moveToFirst()) {
+
+								qAns = mCursor.getString(mCursor.getColumnIndex("CaptionEng"));
+						}
+					}
+				}
+				else if(form.equalsIgnoreCase("frmmessage"))
+				{
+					qAns = "Message Form";
+				}
+				else if(form.equalsIgnoreCase("frmyeartomin"))
+				{
+					sql = "Select * from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					mCursor = dbHelper.getQueryCursor(sql);
+
+					if (mCursor.moveToFirst()) {
+
+						String yearColumn = qvar	+ "years";
+						String monthColumn = qvar + "months";
+						String weekColumn = qvar + "weeks";
+						String dayColumn = qvar + "days";
+						String hourColumn = qvar + "hours";
+						String minColumn = qvar + "mins";
+						Cursor mCursor2 = null;
+						try {
+							if (mCursor.getColumnIndex(yearColumn) != -1) {
+								sql = "select " + yearColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns = "Year:" + mCursor2.getString(mCursor2.getColumnIndex(yearColumn));
+								}
+
+							}
+							if (mCursor.getColumnIndex(monthColumn) != -1) {
+								sql = "select " + monthColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns += " Month:" + mCursor2.getString(mCursor2.getColumnIndex(monthColumn));
+								}
+
+							}
+							if (mCursor.getColumnIndex(weekColumn) != -1) {
+								sql = "select " + weekColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns += " Week:" + mCursor2.getString(mCursor2.getColumnIndex(weekColumn));
+								}
+
+							}
+							if (mCursor.getColumnIndex(dayColumn) != -1) {
+								sql = "select " + dayColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns += " Day:" + mCursor2.getString(mCursor2.getColumnIndex(dayColumn));
+								}
+
+							}
+							if (mCursor.getColumnIndex(hourColumn) != -1) {
+								sql = "select " + hourColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns += " Hour:" + mCursor2.getString(mCursor2.getColumnIndex(hourColumn));
+								}
+
+							}
+							if (mCursor.getColumnIndex(minColumn) != -1) {
+								sql = "select " + minColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								mCursor2 = dbHelper.getQueryCursor(sql);
+								if (mCursor2.moveToFirst()) {
+									qAns += " Min:" + mCursor2.getString(mCursor2.getColumnIndex(minColumn));
+								}
+
+							}
+						}catch (Exception e) {
+							// TODO: handle exception
+							CommonStaticClass.showFinalAlert(con,
+									"A problem occured please try later");
+						} finally {
+							if (mCursor2 != null)
+								mCursor2.close();
+						}
+					}
+				}
+
+			}
+
+		}
+		catch (Exception e) {
+		// TODO: handle exception
+		CommonStaticClass.showFinalAlert(con,
+				"A problem occured please try later");
+		} finally {
+			if (mCursor != null)
+				mCursor.close();
+		}
+
+
+
+		return qAns;
 	}
 
 	// Added By Angsuman

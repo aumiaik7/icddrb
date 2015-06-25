@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
+    <solid android:color="#ffffea" />
+    <stroke android:width="1dip" android:color="#B8B8A9"/>
+</shape><!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/CCDTemplate1/app/src/main/res/drawable-ldpi/back.xml -->

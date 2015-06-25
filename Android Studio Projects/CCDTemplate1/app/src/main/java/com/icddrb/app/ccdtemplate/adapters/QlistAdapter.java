@@ -22,8 +22,10 @@ public class QlistAdapter extends ArrayAdapter<String> {
 	List<String> qlist;
 	List<String> qdescbng;
 	List<String> qdesceng;
+	List<String> qans;
 	public QlistAdapter(Activity context,
-			List<String> qobjects,List<String> objectsbng,List<String> objectseng) {
+			List<String> qobjects,List<String> objectsbng,List<String> objectseng
+			,List<String> objectsans) {
 		super(context, R.layout.qitem, qobjects);
 		font = Typeface.createFromAsset(context.getAssets(),
 		"Siyam Rupali ANSI.ttf");
@@ -32,6 +34,7 @@ public class QlistAdapter extends ArrayAdapter<String> {
 		this.qlist  = qobjects;
 		this.qdescbng  = objectsbng;
 		this.qdesceng  = objectseng;
+		this.qans = objectsans;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,15 +45,19 @@ public class QlistAdapter extends ArrayAdapter<String> {
 		View row=inflater.inflate(R.layout.qitem, null);
 		TextView label=(TextView)row.findViewById(R.id.text1);
 		TextView labeldesc=(TextView)row.findViewById(R.id.textdesc);
+		TextView labelans=(TextView)row.findViewById(R.id.textans);
+
 		
 		if(bn && qdescbng.get(position).length()>0){
-			Log.e("pos:",position+"");
+			Log.e("pos:", position + "");
 			labeldesc.setTypeface(font);
 			labeldesc.setText(qdescbng.get(position));
+
 		}else{
 			labeldesc.setText(qdesceng.get(position));
+
 		}
-		
+		labelans.setText(qans.get(position));
 		label.setText(qlist.get(position));
 		
 		return row;

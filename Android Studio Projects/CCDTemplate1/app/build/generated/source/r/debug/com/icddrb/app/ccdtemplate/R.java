@@ -35,25 +35,26 @@ containing a value of this type.
         public static final int white=0x7f050007;
     }
     public static final class drawable {
-        public static final int banglaimage=0x7f020000;
-        public static final int border=0x7f020001;
-        public static final int datatransfer=0x7f020002;
-        public static final int englishimage=0x7f020003;
-        public static final int exitimage=0x7f020004;
-        public static final int homeimage=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int sc_bar=0x7f020007;
-        public static final int unreadborder=0x7f020008;
+        public static final int back=0x7f020000;
+        public static final int banglaimage=0x7f020001;
+        public static final int border=0x7f020002;
+        public static final int datatransfer=0x7f020003;
+        public static final int englishimage=0x7f020004;
+        public static final int exitimage=0x7f020005;
+        public static final int homeimage=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int sc_bar=0x7f020008;
+        public static final int unreadborder=0x7f020009;
     }
     public static final class id {
-        public static final int AddMenuItem=0x7f09018b;
-        public static final int Alarm=0x7f090186;
-        public static final int BNGMenuItem=0x7f090187;
-        public static final int DTMenuItem=0x7f090185;
-        public static final int ENGMenuItem=0x7f090188;
-        public static final int EditMenuItem=0x7f09018c;
-        public static final int ExitItem=0x7f090189;
-        public static final int GotoHomeItem=0x7f09018a;
+        public static final int AddMenuItem=0x7f09018c;
+        public static final int Alarm=0x7f090187;
+        public static final int BNGMenuItem=0x7f090188;
+        public static final int DTMenuItem=0x7f090186;
+        public static final int ENGMenuItem=0x7f090189;
+        public static final int EditMenuItem=0x7f09018d;
+        public static final int ExitItem=0x7f09018a;
+        public static final int GotoHomeItem=0x7f09018b;
         public static final int LinearLayout03=0x7f090069;
         public static final int LinearLayout04=0x7f09006e;
         public static final int LinearLayout06=0x7f09006f;
@@ -96,7 +97,7 @@ containing a value of this type.
         public static final int btnNeonatesDischarge=0x7f090066;
         public static final int btnNote=0x7f09001e;
         public static final int btnSave=0x7f0900ec;
-        public static final int buttonHolder=0x7f090184;
+        public static final int buttonHolder=0x7f090185;
         public static final int c1=0x7f0900f5;
         public static final int c2=0x7f0900f7;
         public static final int c3=0x7f0900fa;
@@ -395,6 +396,7 @@ containing a value of this type.
         public static final int textView1_=0x7f0900c3;
         public static final int textView2=0x7f0900c1;
         public static final int textView3=0x7f090030;
+        public static final int textans=0x7f090184;
         public static final int textdesc=0x7f090183;
         public static final int top=0x7f090024;
         public static final int tvVersion=0x7f090152;

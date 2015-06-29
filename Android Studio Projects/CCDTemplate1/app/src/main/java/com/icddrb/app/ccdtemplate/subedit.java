@@ -292,14 +292,14 @@ public class subedit extends BaseActivity {
 
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		final MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.home_menu, menu);
+		inflater.inflate(R.menu.lang_menu, menu);
 		return true;
 	}
 
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
 
-		case R.id.ExitItem:
+		case R.id.GotoHomeItem:
 
 			CommonStaticClass.mode = "";
 			finish();

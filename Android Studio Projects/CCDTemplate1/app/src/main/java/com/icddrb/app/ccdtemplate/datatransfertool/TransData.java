@@ -1,8 +1,6 @@
 package com.icddrb.app.ccdtemplate.datatransfertool;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TransData {
 

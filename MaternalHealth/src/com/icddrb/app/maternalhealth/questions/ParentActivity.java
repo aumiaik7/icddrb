@@ -13406,7 +13406,55 @@ else {
 //
 //						}
 //					}
-					if((qName.equalsIgnoreCase("q_1009_x") && code ==2) )
+					if((qName.equalsIgnoreCase("q_804_d") || qName.equalsIgnoreCase("q_804_d_12"))
+							&& ((getChoiceValue("q_804_a") != 1 
+							&& getChoiceValue("q_804_b") != 1 
+							&& getChoiceValue("q_804_c") != 1 
+							&& getChoiceValue("q_804_d") != 1 ) ))
+					{
+						nullifyWithInRange(qName, "msg803");
+						CommonStaticClass.findOutNextSLNo(qName, "msg803");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
+					
+					else if((qName.equalsIgnoreCase("q_805_d") || qName.equalsIgnoreCase("q_805_d_12")
+							|| qName.equalsIgnoreCase("q_805_d_freq"))
+							&& ((getChoiceValue("q_805_a") != 1 
+							&& getChoiceValue("q_805_b") != 1 
+							&& getChoiceValue("q_805_c") != 1 
+							&& getChoiceValue("q_805_d") != 1 ) ))
+					{
+						nullifyWithInRange(qName, "msg804");
+						CommonStaticClass.findOutNextSLNo(qName, "msg804");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
+					
+					else if((qName.equalsIgnoreCase("q_806_f") || qName.equalsIgnoreCase("q_806_f_12")
+							|| qName.equalsIgnoreCase("q_806_f_freq"))
+							&& ((getChoiceValue("q_806_a") != 1 
+							&& getChoiceValue("q_806_b") != 1 
+							&& getChoiceValue("q_806_c") != 1 
+							&& getChoiceValue("q_806_d") != 1
+							&& getChoiceValue("q_806_e") != 1
+							&& getChoiceValue("q_806_f") != 1) ))
+					{
+						nullifyWithInRange(qName, "msg805");
+						CommonStaticClass.findOutNextSLNo(qName, "msg805");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
+					
+					else if((qName.equalsIgnoreCase("q_807_c") || qName.equalsIgnoreCase("q_807_c_12")
+							|| qName.equalsIgnoreCase("q_807_c_freq"))
+							&& ((getChoiceValue("q_807_a") != 1 
+							&& getChoiceValue("q_807_b") != 1 
+							&& getChoiceValue("q_807_c") != 1 ) ))
+					{
+						nullifyWithInRange(qName, "q_808");
+						CommonStaticClass.findOutNextSLNo(qName, "q_808");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+					}
+
+					else if((qName.equalsIgnoreCase("q_1009_x") && code ==2) )
 					{
 						if(CommonStaticClass.checkFor10BallNotChecked(dbHelper) )
 						{

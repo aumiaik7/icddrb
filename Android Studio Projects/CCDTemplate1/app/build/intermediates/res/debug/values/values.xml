@@ -12,7 +12,7 @@
     <color name="white">#ffffff</color>
     <declare-styleable name="TextViewBangla"><attr format="string" name="customFont"/></declare-styleable>
     <string name="addcomment">Add Comment</string>
-    <string name="app_name">Give this App a name</string>
+    <string name="app_name">Galvanic Skin Response Data Collection</string>
     <string name="hello">Hello World, LoginActivity!</string>
     <string name="lbl1stVBN">cÖ_g wPwKrmv`vZv</string>
     <string name="lbl1stVisitBN">cÖ_g wPwKrmv`vZv</string>

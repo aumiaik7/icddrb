@@ -1,10 +1,7 @@
 package com.icddrb.app.ccdtemplate.datatransfertool;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -23,12 +20,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.icddrb.app.ccdtemplate.CommonStaticClass;

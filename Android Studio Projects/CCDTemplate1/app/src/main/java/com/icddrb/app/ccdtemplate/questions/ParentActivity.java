@@ -71,7 +71,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -91,8 +90,6 @@ import com.icddrb.app.ccdtemplate.Options;
 import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.adapters.SpinAdapter;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
-
-import com.icddrb.app.ccdtemplate.questions.TouchImageView.OnTouchImageViewListener;
 
 import net.sqlcipher.Cursor;
 
@@ -11897,8 +11894,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					/*	if (IfCompletedAllMembersFrmSingleChoice())
 							showUserFinishDialogFrmSingleChoice();
 						else {*/
-							CommonStaticClass.currentSLNo = 31;
-							CommonStaticClass.nextQuestion(ParentActivity.this);
+						CommonStaticClass.findOutNextSLNo(qName, "END");
+						CommonStaticClass.nextQuestion(ParentActivity.this);
 //						}
 					}
 					else {
@@ -13439,6 +13436,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							} else {
 								aaachecklist.set(checkButton.getId(), 0);
 								spinner1.setVisibility(View.INVISIBLE);
+								editforwater.setVisibility(View.INVISIBLE);
 								// spinner2.setVisibility(View.INVISIBLE);
 								if (adjustForSpinner) {
 									// spinner3.setVisibility(View.INVISIBLE);
@@ -15455,7 +15453,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				
 				mImageView.setVisibility(View.VISIBLE);
 				
-				mImageView.setOnTouchImageViewListener(new OnTouchImageViewListener() {
+				mImageView.setOnTouchImageViewListener(new TouchImageView.OnTouchImageViewListener() {
 					
 					public void onMove() {
 						PointF point = mImageView.getScrollPosition();

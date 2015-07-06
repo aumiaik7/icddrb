@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_save"
+          android:icon="@drawable/ic_menu_save"
+          android:title="Save"
+          android:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/menu_exit"
+          android:icon="@drawable/navigation_cancel"
+          android:title="Exit"
+          android:showAsAction="ifRoom|withText" />
+</menu>

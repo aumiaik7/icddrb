@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rootlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/time1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”.(Time 1)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup20time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup201time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Cotrimoxazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup202time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Amoxycillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup203time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Flucloxacillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup204time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ciprofloxacin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup205time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Erythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup206time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Azythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup207time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Nalidixic acid" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup208time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8. Doxycycline" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup209time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Betapen (penicillin)" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2010time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Chloramphenicol" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2011time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Metronidazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2012time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Other: Specify" >
+                </RadioButton>
+
+                <EditText
+                    android:id="@+id/radioGroup2012time1_other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:maxLength="200" >
+                </EditText>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2013Dontknowtime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21.	Ask: “How many total days did this child use this antibiotic?” (For This Episode)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/q21time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <RadioButton
+                android:id="@+id/radioGroup2101Dontknowtime1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don’t know" >
+            </RadioButton>
+        </LinearLayout>
+
+        <!-- Time 2 -->
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/time2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”.(Time 2)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup20time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup201time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Cotrimoxazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup202time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Amoxycillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup203time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Flucloxacillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup204time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ciprofloxacin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup205time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Erythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup206time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Azythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup207time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Nalidixic acid" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup208time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8. Doxycycline" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup209time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Betapen (penicillin)" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2010time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Chloramphenicol" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2011time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Metronidazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2012time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Other: Specify" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2013Dontknowtime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/radioGroup2012time2_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="200" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21.	Ask: “How many total days did this child use this antibiotic?” (For This Episode)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/q21time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <RadioButton
+                android:id="@+id/radioGroup2101Dontknowtime2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don’t know" >
+            </RadioButton>
+        </LinearLayout>
+
+        <!-- time 3 -->
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/time3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”.(Time 3)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup20time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup201time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Cotrimoxazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup202time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Amoxycillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup203time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Flucloxacillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup204time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ciprofloxacin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup205time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Erythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup206time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Azythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup207time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Nalidixic acid" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup208time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8. Doxycycline" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup209time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Betapen (penicillin)" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2010time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Chloramphenicol" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2011time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Metronidazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2012time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Other: Specify" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2013Dontknowtime3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/radioGroup2012time3_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="200" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21.	Ask: “How many total days did this child use this antibiotic?” (For This Episode)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/q21time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <RadioButton
+                android:id="@+id/radioGroup2101Dontknowtime3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don’t know" >
+            </RadioButton>
+        </LinearLayout>
+
+        <!-- time 4 -->
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/time4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”.(Time 4)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup20time4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup201time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Cotrimoxazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup202time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Amoxycillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup203time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Flucloxacillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup204time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ciprofloxacin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup205time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Erythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup206time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Azythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup207time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Nalidixic acid" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup208time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8. Doxycycline" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup209time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Betapen (penicillin)" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2010time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Chloramphenicol" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2011time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Metronidazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2012time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Other: Specify" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2013Dontknowtime4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/radioGroup2012time4_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="200" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21.	Ask: “How many total days did this child use this antibiotic?” (For This Episode)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/q21time4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <RadioButton
+                android:id="@+id/radioGroup2101Dontknowtime4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don’t know" >
+            </RadioButton>
+        </LinearLayout>
+
+        <!-- time 5 -->
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/time5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20.ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”.(Time 5)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup20time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup201time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Cotrimoxazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup202time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Amoxycillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup203time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Flucloxacillin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup204time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Ciprofloxacin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup205time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Erythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup206time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Azythromycin" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup207time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Nalidixic acid" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup208time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="8. Doxycycline" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup209time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. Betapen (penicillin)" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2010time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Chloramphenicol" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2011time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11. Metronidazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2012time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12. Other: Specify" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2013Dontknowtime5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don’t know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/radioGroup2012time5_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="200" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21.	Ask: “How many total days did this child use this antibiotic?” (For This Episode)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <EditText
+                android:id="@+id/q21time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <RadioButton
+                android:id="@+id/radioGroup2101Dontknowtime5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don’t know" >
+            </RadioButton>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

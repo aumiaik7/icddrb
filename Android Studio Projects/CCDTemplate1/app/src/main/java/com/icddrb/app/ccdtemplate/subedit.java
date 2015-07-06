@@ -1,36 +1,20 @@
 package com.icddrb.app.ccdtemplate;
-import java.util.Calendar;
 
 import com.icddrb.app.ccdtemplate.R;
-import com.icddrb.app.ccdtemplate.questions.ParentActivity;
 
 
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TimePicker;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.Toast;
 
 import net.sqlcipher.Cursor;
 

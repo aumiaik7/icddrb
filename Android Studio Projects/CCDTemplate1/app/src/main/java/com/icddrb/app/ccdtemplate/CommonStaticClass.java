@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import android.media.ExifInterface;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;

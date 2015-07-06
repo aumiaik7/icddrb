@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+       <TextView
+           android:id="@+id/textView13"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/linearLayout3"
+           android:text="17. Aliquots"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+
+       <LinearLayout
+           android:id="@+id/linearLayout4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_below="@+id/textView13"
+           android:orientation="vertical" >
+
+           <RadioGroup
+               android:id="@+id/radioGroup4"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" >
+
+               <RadioButton
+                   android:id="@+id/q17radio0"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="No Aliquot" />
+
+               <RadioButton
+                   android:id="@+id/q17radio1"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Partial Aliquot" />
+
+               <RadioButton
+                   android:id="@+id/q17radio2"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Full Aliquot" />
+           </RadioGroup>
+       </LinearLayout>
+
+       <Button
+           android:id="@+id/okBT"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="OK" />
+
+</LinearLayout>

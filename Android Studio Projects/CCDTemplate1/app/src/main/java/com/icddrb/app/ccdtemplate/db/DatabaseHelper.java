@@ -10,9 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Environment;
 import android.util.Log;
 
@@ -22,7 +20,6 @@ import com.icddrb.app.ccdtemplate.CommonStaticClass;
 import net.sqlcipher.Cursor;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteException;
 import net.sqlcipher.database.SQLiteOpenHelper;
 import net.sqlcipher.database.SQLiteStatement;
 
@@ -554,7 +551,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 	public static String getpw()
 	{
-		return "ccd@app";
+		return "";
 	}
 
 

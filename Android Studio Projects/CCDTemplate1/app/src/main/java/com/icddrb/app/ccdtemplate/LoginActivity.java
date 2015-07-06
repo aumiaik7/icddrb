@@ -2,7 +2,7 @@ package com.icddrb.app.ccdtemplate;
 
 import java.util.ArrayList;
 
-import com.icddrb.app.ccdtemplate.R;
+//import com.icddrb.app.ccdtemplate.R;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,7 +23,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import net.sqlcipher.Cursor;
 
 public class LoginActivity extends BaseActivity {

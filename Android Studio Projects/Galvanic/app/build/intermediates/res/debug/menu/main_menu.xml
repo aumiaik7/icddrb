@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/AddMenuItem" android:title="Add Entry"></item>
+        <item android:id="@+id/EditMenuItem" android:title="Edit Entry"></item>
+</menu>
+<!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/Galvanic/app/src/main/res/menu/main_menu.xml -->

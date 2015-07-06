@@ -1,0 +1,747 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:scrollbars="horizontal" >
+<TextView android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:text="xxx"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/title_Bar"
+			android:gravity="center" 
+			android:textColor="#F00" 
+			/>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.	Child Full Name"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/q12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" >
+
+            <requestFocus android:layout_width="wrap_content" >
+            </requestFocus>
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13. Child Nick Name"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/q13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14.	Gender of Child"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/rdogroup14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/rdogroup1401"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/rdogroup1402"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" >
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15.	Date of Birth"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/q15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16.	Source of Date of Birth (DOB)"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/rdogroup16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radiogroup1601"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Confirmed DOB by Valid Vaccination card" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radiogroup1602"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Mother/Relative remembers DOB" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radiogroup1603"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Both 1 and 2" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radiogroup1604"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" >
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17. Age (in Days)"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/q17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18.	ASK: “How long ago did [CHILD NAME] take any antibiotics? (Provide examples from the ‘List of Common Antibiotics and Medicine’ in the EE Sampling Handbook)"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/q18days"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" >
+
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Months"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/q18months"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" >
+
+        </EditText>
+
+        <RadioGroup
+            android:id="@+id/radiogroup18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radiogroup1801"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="88. Never" />
+
+            <RadioButton
+                android:id="@+id/radiogroup1802"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19.	ASK: “Can you tell us how many times in the last 3 months this child has used antibiotics?”"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/q19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" >
+        </EditText>
+
+        <RadioGroup
+            android:id="@+id/radioGroup19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup1901"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="88. Never" />
+
+            <RadioButton
+                android:id="@+id/radioGroup1902"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" />
+        </RadioGroup>
+
+        <!--
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20.	ASK: “Please try and recall the name of each antibiotic this child used in the last 3 months (90 days before collection date)”."
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup201"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               
+                android:text="1. Cotrimoxazole" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup202"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Amoxycillin" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup203"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Flucloxacillin" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup204"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                               android:text="4. Ciprofloxacin" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup205"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5. Erythromycin" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup206"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6. Azythromycin" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup207"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7. Nalidixic acid" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup208"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8. Doxycycline" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup209"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9. Betapen (penicillin)" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10. Chloramphenicol" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2011"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11. Metronidazole" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2012"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12. Other: Specify" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2013"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Don’t know" >
+            </RadioButton>
+        </RadioGroup>
+        -->
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/customlayout" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22.	ASK: “Has this child had malaria in the last 1 month?”"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup2201"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Yes,  diagnosed in a clinic/by a physician" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2202"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Yes, not  diagnosed in a clinic/by a physician" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2203"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. No" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2204"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. Not applicable" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2205"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" >
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23.	ASK: “Has this child had malaria in the last 6 months?”"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup2301"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Yes,  diagnosed in a clinic/by a physician" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2302"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. Yes, not  diagnosed in a clinic/by a physician" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2303"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. No" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2304"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4. Not applicable" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2305"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" >
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24.	ASK FOR CHILDREN 6 MONTHS AND OVER: “In the last 6 months, has [CHILD NAME] received a pill or drug for intestinal worms?” (Provide examples from the ‘List of Common Antibiotics and Medicine’ in the EE Sampling Handbook)"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup2401"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Yes" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2402"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. No" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2403"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3. Not Applicable" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2404"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Dont know" >
+            </RadioButton>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/ln25to27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25.	ASK: “Where did [CHILD NAME] receive the drug for intestinal worms?”"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup2501"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. At Home / In Village" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2502"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. At a Clinic or Health Facility" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2503"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. At a school" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2504"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. From Icddr,B" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2505"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="99. Dont know" >
+                </RadioButton>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="26.	ASK: “Approximately how long ago did [CHILD NAME] receive the deworming drug?” "
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Days"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText
+                android:id="@+id/q26days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="2" >
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Months"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText
+                android:id="@+id/q26months"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="2" >
+
+            </EditText>
+
+            <RadioButton
+                android:id="@+id/q26Dontknow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dont know" />
+            <!--
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rootView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            -->
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27.	ASK: “Please try and recall the name of the deworming drug [CHILD NAME] took.” (Provide examples from the ‘List of Common Antibiotics and Medicine’ in the EE Sampling Handbook)"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/radioGroup27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radioGroup2701"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Albendazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2702"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Mebendazole" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/radioGroup2704"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="99. Don’t know" />
+
+                <RadioButton
+                    android:id="@+id/radioGroup2703"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Other: Specify" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/q27_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28.	ASK: “Does [CHILD NAME] typically wear shoes/socks/sandals?”"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup2801"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Yes" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2802"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. No" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2803"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Don’t know" >
+            </RadioButton>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView77"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="29.	OBSERVE: Is child wearing shoes/socks/sandals?"
+            android:textAppearance="?android:attr/textAppearanceLarge" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/radioGroup2901"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1. Yes" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2902"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2. No" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/radioGroup2903"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99. Don’t know" >
+            </RadioButton>
+        </RadioGroup>
+        
+           <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/sample_symptom" />
+
+        <Button
+            android:id="@+id/btnbDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/done" >
+        </Button>
+        
+    </LinearLayout>
+
+</ScrollView>
+
+
+     
+    

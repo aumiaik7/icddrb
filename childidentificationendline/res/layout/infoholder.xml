@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+        
+
+    <LinearLayout
+        android:id="@+id/rootView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Cluster ID "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="3" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="and Mother ID"
+            android:textAppearance="?android:attr/textAppearanceMedium" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. Date of Data Collection"
+            android:textAppearance="?android:attr/textAppearanceMedium" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="219dp"
+            android:layout_height="wrap_content" >
+        </EditText>
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5. Consent"
+            android:textAppearance="?android:attr/textAppearanceMedium" >
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/rdogroup5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioButton
+                android:id="@+id/rdogroup501"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/rdogroup502"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="No" >
+            </RadioButton>
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/radio6View"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. Why was consent not given?"
+                android:textAppearance="?android:attr/textAppearanceMedium" >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/rdogroup6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rdogroup60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. Migration" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. Household head Is not home" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup62"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. Primary caregiver Is not home" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4. Child is not home" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5. Child is sick" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup65"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6. Household head refused" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7. Primary caregiver refused" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup67"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8. Too busy" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup68"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9. No reason given" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/rdogroup69"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10. Other: Specify" >
+                </RadioButton>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/rdogroup6_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="200" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/showhidescrollview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:id="@+id/showhideLinearview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7.	Verify primary caregiver’s identity: Does caregiver match Household and Cluster ID?"
+                    android:textAppearance="?android:attr/textAppearanceLarge" >
+                </TextView>
+
+                <RadioGroup
+                    android:id="@+id/rdogroup7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/radiogroup701"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/radiogroup702"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" >
+                    </RadioButton>
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tv8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8. Identification of Primary Caregiver"
+                    android:textAppearance="?android:attr/textAppearanceLarge" >
+                </TextView>
+
+                <RadioGroup
+                    android:id="@+id/rdogroup8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/rdogroup80"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1. Child’s Mother" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup81"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. Child’s Maternal Grandparents" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup82"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3. Child’s Paternal Grandparents" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup83"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4. Child’s Maternal Aunt/Uncle" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup84"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5. Child’s Paternal Aunt/Uncle" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup85"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6. Child’s Father (And His New Partner/Wife)" >
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/rdogroup86"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7. Other: Specify" >
+                    </RadioButton>
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/rdogroup8_other"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:maxLength="200" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="9. Mobile Number of Household Head [Enter 99 for Don&apos;t know]"
+                    android:textAppearance="?android:attr/textAppearanceMedium" >
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/et9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="11" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10. Mobile Number of Primary Caregiver [Enter 99 for Don&apos;t know]"
+                    android:textAppearance="?android:attr/textAppearanceMedium" >
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/et10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="11" >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/tv11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="11. Number of Eligible Children"
+                    android:textAppearance="?android:attr/textAppearanceMedium" >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/et11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="1" >
+                </EditText>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText5"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="32dp"
+            android:text="NEXT" />
+    </LinearLayout>
+
+</ScrollView>

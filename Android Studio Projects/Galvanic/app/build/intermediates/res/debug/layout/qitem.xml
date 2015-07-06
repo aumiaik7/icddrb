@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     
+	android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="vertical" >
+<TextView  
+    android:id="@+id/text1"
+	style="?android:attr/spinnerItemStyle"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee" android:textColor="@color/blue" android:text="sadsa" android:textSize="20dp"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/textdesc"
+        style="?android:attr/spinnerItemStyle"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:text="sdasa"
+        android:textSize="17dp"
+        />
+
+    <TextView
+        android:id="@+id/textans"
+        style="?android:attr/spinnerItemStyle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:ellipsize="marquee"
+        android:textColor="@color/green"
+        android:text="sdasa"
+        android:textSize="17dp"
+        android:background="@drawable/back"
+        />
+        </LinearLayout>
+        <!-- <com.icddrb.app.TextViewBangla
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bng = "http://schemas.android.com/apk/res/com.icddrb.app" 
+        android:id="@+id/text1"
+		style="?android:attr/spinnerItemStyle"
+    	android:singleLine="true"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:ellipsize="marquee" 
+        bng:customFont="Siyam Rupali ANSI.ttf">
+        </com.icddrb.app.TextViewBangla> -->
+</LinearLayout><!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/Galvanic/app/src/main/res/layout/qitem.xml -->

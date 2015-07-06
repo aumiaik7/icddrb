@@ -1,5 +1,5 @@
 <com.icddrb.app.ccdtemplate.TextViewBangla xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bngspin="http://schemas.android.com/apk/res/com.icddrb.app.ccdtemplate"
+    xmlns:bngspin="http://schemas.android.com/apk/res-auto"
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:layout_width="match_parent"

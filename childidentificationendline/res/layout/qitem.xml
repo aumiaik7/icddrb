@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"     
+	android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="vertical">
+
+<TextView
+    android:id="@+id/text1"
+    style="?android:attr/spinnerItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="marquee"
+    android:singleLine="true"
+    android:text="sadsa"
+    android:textColor="#00FF00" />
+
+    <TextView
+        android:id="@+id/textdesc"
+        style="?android:attr/spinnerItemStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:text="askldjas" />
+
+        <!-- <com.icddrb.app.TextViewBangla
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bng = "http://schemas.android.com/apk/res/com.icddrb.app" 
+        android:id="@+id/text1"
+		style="?android:attr/spinnerItemStyle"
+    	android:singleLine="true"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:ellipsize="marquee" 
+        bng:customFont="Siyam Rupali ANSI.ttf">
+        </com.icddrb.app.TextViewBangla> -->
+</LinearLayout>

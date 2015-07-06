@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/BNGMenuItem" android:title="Bangla"  android:icon="@drawable/banglaimage" android:showAsAction="ifRoom|withText"></item>
+        <item android:id="@+id/ENGMenuItem" android:title="English" android:icon="@drawable/englishimage" android:showAsAction="ifRoom|withText"></item>
+</menu>
+<!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/Galvanic/app/src/main/res/menu/lang_login_menu.xml -->

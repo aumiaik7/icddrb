@@ -1,0 +1,51 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0" package="com.app.stoolsampleendline">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher" android:debuggable="true">
+        
+        
+    
+		<activity android:name="app.stoolsampleendline.LoginActivity"
+                  android:label="@string/app_name"
+            	  android:configChanges="orientation"
+				  android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+        
+        	android:label="@string/app_name"
+            android:name="app.stoolsampleendline.MenuScreen"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
+        </activity>        
+        <activity
+        	android:label="@string/app_name"
+            android:name="app.stoolsampleendline.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+        	android:label="@string/app_name"
+            android:name="app.stoolsampleendline.SampleCollector"
+            android:configChanges="orientation"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+        	android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" android:name="app.stoolsampleendline.EditEntryList">
+        </activity>                
+    </application>
+
+</manifest>

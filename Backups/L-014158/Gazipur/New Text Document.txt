@@ -1,5 +1,0 @@
-Form A=50
-Form C=02
-Form illness D=40
-Form Summary D=49
-Form E=49

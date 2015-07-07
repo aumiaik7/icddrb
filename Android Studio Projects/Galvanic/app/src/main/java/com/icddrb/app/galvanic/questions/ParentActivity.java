@@ -2385,7 +2385,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getQvar() + "='"
 					+ sResCode + "' Where DataID='"
-					+ CommonStaticClass.dataId + "'";
+					+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 
 			
 			if(dbHelper.executeDMLQuery(sql))
@@ -2454,7 +2454,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		String sql = "Select * from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -2631,7 +2631,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns
-						+ "' where dataid='" + CommonStaticClass.dataId + "'";
+						+ "' where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 				if (dbHelper.executeDMLQuery(sql)) {
 					// preserveState();
 					CommonStaticClass.findOutNextSLNo(
@@ -4268,7 +4268,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " SET " + qName + "Lon='" + sLongitude + "'," + qName
 					+ "Lat='" + sLatitude + "' where dataid='"
-					+ CommonStaticClass.dataId + "'";
+					+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 
 			if (dbHelper.executeDMLQuery(sql)) {
 
@@ -4329,7 +4329,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		String sql = "Select * from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -6764,14 +6764,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			else {
 				try {
 
+					String entryDate = "dd/mm/yyyy";
+					String entryTime = "hh:mm";
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 					Date d = new Date(System.currentTimeMillis());
-					String entryDate = "dd-mmm-yy";
-					entryDate = d.toLocaleString();
+					entryDate = sdf.format(d);
+					sdf = new SimpleDateFormat("HH:mm");
+					entryTime = sdf.format(d);
 					if (!(Integer.parseInt(NumChildren) > 2)) {
 
 						boolean dataadded = false;
 
-						String sql = "INSERT INTO tblMainQues ('dataid','clusterid','mid','FaId','SampleColDate','NumChildren','VersionNo','EntryBy','EntryDate','EditBy','EditDate', AssetID) VALUES('"
+						String sql = "INSERT INTO tblMainQues ('dataid','clusterid','mid','FaId','SampleColDate','NumChildren','VersionNo','EntryBy','EntryDate',EntryTime,'EditBy','EditDate', AssetId) VALUES('"
 								+ dataid
 								+ "','"
 								+ clusterid
@@ -6790,6 +6794,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								+ "','"
 								+ entryDate
 								+ "','"
+								+ entryTime
+								+ "','"
 								+ CommonStaticClass.userSpecificId
 								+ "','"
 								+ entryDate
@@ -6804,13 +6810,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 
-								String sqlsample = "Insert into sample (dataid,EntryBy,EntryDate, memberid) values('"
+								String sqlsample = "Insert into sample (dataid,EntryBy,EntryDate,EntryTime, memberid, AssetId) values('"
 										+ CommonStaticClass.dataId
 										+ "','"
 										+ CommonStaticClass.userSpecificId
 										+ "','"
 										+ entryDate
-										+ "','" + i + "')";
+										+ "','"
+										+ entryTime
+										+ "','" + i + "'" +
+										 ",'"
+										+ CommonStaticClass.AssetID
+										+ "')";
 
 
 
@@ -7645,7 +7656,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		
 
 		Cursor mCursor1 = null;
@@ -7684,7 +7695,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 
 		Cursor mCursor1 = null;
 		try {
@@ -7881,7 +7892,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				Log.e("Option Name :", "" + op.qidList.get(i));
 			}
 			
-				sql += "where dataid='" + CommonStaticClass.dataId + "'";
+				sql += "where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 
 			if (checkIfSingleOptionIsCheckedFrmMultipleCheckCombo()) {
@@ -7950,7 +7961,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		else
 			// added later 7 aug 2012
 			sql += " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 
 		if (checkIfSingleOptionIsCheckedFrmMultipleCheckCombo()) {
 
@@ -8571,8 +8582,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
-		
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor c = null;
 		try {
 
@@ -8617,7 +8627,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -8682,7 +8692,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										+ op.qnList.get(pairs.getKey()) + " = '"
 										+ pairs.getValue().getText().toString()
 										+ "' where dataid='"
-										+ CommonStaticClass.dataId + "'";
+										+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 							
 							dbHelper.executeDMLQuery(sq);
 						}
@@ -8698,7 +8708,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									CommonStaticClass.currentSLNo)
 									.getTablename() + " SET "
 							+ op.qnList.get(pairs.getKey()) + " = null where dataid='"
-							+ CommonStaticClass.dataId + "'";
+							+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 				
 					dbHelper.executeDMLQuery(sq);
 				}
@@ -8721,7 +8731,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				sql += op.qidList.get(i) + " = '" + aaa.get(i) + "',";
 			}
 			
-				sql += " where dataid='" + CommonStaticClass.dataId + "'";
+				sql += " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 
 			if (dbHelper.executeDMLQuery(sql)) {
@@ -9620,7 +9630,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			sql = "Select notes from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -9692,7 +9702,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " set notes='" + qAns + "' where dataid='"
-						+ CommonStaticClass.dataId + "'";
+						+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 			dbHelper.executeDMLQuery(sql);
 
@@ -9786,7 +9796,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -9914,7 +9924,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " SET " + currentQuestion + "='" + qAns
-					+ "' where dataid='" + CommonStaticClass.dataId + "'";
+					+ "' where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 
 			if (dbHelper.executeDMLQuery(sql)) {
 
@@ -10080,7 +10090,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -10531,7 +10541,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns
-						+ "' where dataid='" + CommonStaticClass.dataId + "'";
+						+ "' where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 
 							
@@ -10637,7 +10647,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -10868,7 +10878,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " SET " + qName1 + "='" + qAns1 + "'," + qName2 + "='"
 					+ qAns2 + "' where dataid='" + CommonStaticClass.dataId
-					+ "'";
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			if (dbHelper.executeDMLQuery(sql)) {
 
 				CommonStaticClass.findOutNextSLNo(
@@ -11510,7 +11520,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ i3 + ",p1_11jv3=" + j3 + ",p1_11v1other='" + other1
 					+ "',p1_11v2other='" + other2 + "',p1_11v3other='" + other3
 					+ "' Where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			if (dbHelper.executeDMLQuery(SQL)) {
 				// preserveState();
 				CommonStaticClass.findOutNextSLNo(
@@ -11833,7 +11843,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -12020,22 +12030,47 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		try {
 
 			if (code != -1) {
-				
+
+
+
 					sql = "UPDATE "
 							+ CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo)
-									.getTablename()
+							CommonStaticClass.currentSLNo)
+							.getTablename()
 							+ " SET "
 							+ CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar()
+							CommonStaticClass.currentSLNo).getQvar()
 							+ "='" + code + "' where dataid='"
-							+ CommonStaticClass.dataId + "'";
-				
+							+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
+
 
 
 				if (dbHelper.executeDMLQuery(sql)) {
 
-					if (nextToGo.equalsIgnoreCase("END")) {
+
+					if(CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q9")
+							)
+					{
+						if(code == 1) {
+							int slno = creategsrdevicerow();
+							CommonStaticClass.slno = slno;
+							sql = "Insert into gsrdevice (dataid, memberid, slno, AssetId) values('"
+									+ CommonStaticClass.dataId
+									+ "','"
+									+ CommonStaticClass.memberID
+									+ "','" + slno + "'," +
+									"'" + CommonStaticClass.AssetID + "'" +
+									")";
+
+							dbHelper.executeDMLQuery(sql);
+						}
+						CommonStaticClass.findOutNextSLNo(qName, nextToGo);
+						CommonStaticClass.nextQuestion(ParentActivity.this);
+
+					}
+
+					else if (nextToGo.equalsIgnoreCase("END")) {
 						Message msg = new Message();
 						msg.what = UPDATEDONE;
 						handler.sendMessage(msg);
@@ -12048,7 +12083,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 //						}
 					}
 					else {
-						
+
 						nullifyWithInRange(qName, nextToGo);
 						CommonStaticClass.findOutNextSLNo(qName, nextToGo);
 						CommonStaticClass.nextQuestion(ParentActivity.this);
@@ -12059,6 +12094,29 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			// CommonStaticClass.showMyAlert(con, "Exception",
 			// ex.getMessage().toString());
 		}
+
+	}
+
+	private int creategsrdevicerow() {
+		Cursor cursor = null;
+		String sql = "Select max(slno) as serial from gsrdevice where dataid='" + CommonStaticClass.dataId + "'";
+		int maxSlno = 0;
+		try{
+			cursor = dbHelper.getQueryCursor(sql);
+			if(cursor.moveToFirst())
+			{
+				maxSlno = Integer.parseInt(cursor.getString(cursor.getColumnIndex("serial")));
+			}
+
+		}
+		catch(Exception e)
+		{
+
+		}finally {
+			if(cursor!=null)
+				cursor.close();
+		}
+		return maxSlno+1;
 
 	}
 
@@ -12220,7 +12278,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -12315,7 +12373,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ " from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 		else
 			sql = "Select "
 					+ qName
@@ -12323,7 +12381,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -12455,7 +12513,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + qName + "='" + qAns + "' where dataid='"
-						+ CommonStaticClass.dataId + "'";
+						+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 			if (dbHelper.executeDMLQuery(sql)) {
 				
@@ -12662,7 +12720,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			sql = "Select * from "
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
-					+ " where dataid='" + CommonStaticClass.dataId + "'";
+					+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 		
 		Cursor mCursor1 = null;
 		try {
@@ -12735,12 +12793,32 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 			String sql = "";
-			
+
+
+			if(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q10")
+					||CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQvar().equalsIgnoreCase("q11"))
+			{
+
 				sql = "UPDATE "
 						+ CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getTablename()
+						CommonStaticClass.currentSLNo)
+						.getTablename()
+						+ " SET "
+						+ CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getQvar()
+						+ "='" + qAns + "' where dataid='"
+						+ CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"' " +
+						"and slno = '"+CommonStaticClass.slno+"'";
+			}
+			else {
+				sql = "UPDATE "
+						+ CommonStaticClass.questionMap.get(
+						CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + currentQuestion + "='" + qAns
-						+ "' where dataid='" + CommonStaticClass.dataId + "'";
+						+ "' where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
+			}
 			
 
 			if (dbHelper.executeDMLQuery(sql)) {
@@ -12872,7 +12950,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		String sql = "Select * from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -13886,7 +13964,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 
 		Cursor mCursor1 = null;
 		try {
@@ -13917,7 +13995,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 
 		Cursor mCursor1 = null;
 		try {
@@ -14051,7 +14129,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 
 		Cursor mCursor1 = null;
 		try {
@@ -14082,7 +14160,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'";
 
 		Cursor mCursor1 = null;
 		try {
@@ -14114,7 +14192,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 
 		Cursor mCursor1 = null;
 		try {
@@ -14884,7 +14962,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 
 		Cursor mCursor1 = null;
 		try {
@@ -15201,7 +15279,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.questionMap.get(
 							CommonStaticClass.currentSLNo).getTablename()
 					+ " where dataid='" + CommonStaticClass.dataId
-					+ "' and memberid=" + CommonStaticClass.memberID;
+					+ "' and memberid='"+CommonStaticClass.memberID+"'" ;
 		Cursor mCursor1 = null;
 		try {
 			mCursor1 = dbHelper.getQueryCursor(sql);
@@ -15400,7 +15478,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " from "
 				+ CommonStaticClass.questionMap.get(
 						CommonStaticClass.currentSLNo).getTablename()
-				+ " where dataid='" + CommonStaticClass.dataId + "'";
+				+ " where dataid='" + CommonStaticClass.dataId + "'  and memberid='"+CommonStaticClass.memberID+"'";
 	
 		Cursor mCursor1 = null;
 		try {
@@ -15474,7 +15552,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ CommonStaticClass.questionMap.get(
 								CommonStaticClass.currentSLNo).getTablename()
 						+ " SET " + qName + "='" + mCurrentPhotoPath
-						+ "' where dataid='" + CommonStaticClass.dataId + "'";
+						+ "' where dataid='" + CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
 			
 
 							

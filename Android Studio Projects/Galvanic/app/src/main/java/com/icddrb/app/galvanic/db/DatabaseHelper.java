@@ -500,6 +500,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		}
 		catch (Exception e) {
 			// TODO: handle exception
+
+			 sq = "UPDATE "
+					+ tableName + " SET IsTransferred = 0 where dataid='"
+					+ CommonStaticClass.dataId + "'";
+			 myDataBase.execSQL(sq);
 			
 		}
 		

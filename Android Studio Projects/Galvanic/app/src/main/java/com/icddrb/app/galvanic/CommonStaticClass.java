@@ -61,6 +61,7 @@ public class CommonStaticClass {
 	public static int subEditMode = 0;
 	public static int entryUdpated = 0;
 	public static int numberofchildren=0;
+	public static int slno=0;
 	
 	public static String DB = "";
 //	public static int numberofchildren = 1;

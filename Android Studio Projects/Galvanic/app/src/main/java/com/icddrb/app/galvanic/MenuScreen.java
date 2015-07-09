@@ -11,6 +11,7 @@ import com.icddrb.app.galvanic.R;
 import com.icddrb.app.galvanic.datatransfertool.FileRead;
 import com.icddrb.app.galvanic.datatransfertool.TransData;
 import com.icddrb.app.galvanic.db.DatabaseHelper;
+import com.icddrb.app.galvanic.schedulebackup.DBCopier;
 import com.icddrb.app.galvanic.schedulebackup.ScheduleBackup;
 
 
@@ -66,19 +67,19 @@ public class MenuScreen extends BaseActivity {
 		setTheme(R.style.AppTheme);
 		loadGui();
 
-		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
+		/*Intent alarmIntent = new Intent(this, ScheduleBackup.class);
 		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
 		alarmIntent.putExtra("dbname", CommonStaticClass.DB);
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-		startAlarm();
+		startAlarm();*/
 
 	}
 
 	public void startAlarm() {
 		manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		long interval = (24*60*60)*1000; // 10 seconds
+		long interval = (24*60*60)*1000; //1 day
 
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(this, "Auto Backup Started", Toast.LENGTH_SHORT).show();
@@ -133,7 +134,7 @@ public class MenuScreen extends BaseActivity {
 				
 				///Edit mode with all questions
 				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
-				CommonStaticClass.subEditMode = 0;
+//				CommonStaticClass.subEditMode = 0;
 				Intent i = new Intent();
 				i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
 						+ ".EditEntry");
@@ -250,32 +251,38 @@ public class MenuScreen extends BaseActivity {
 			}
 			else
 			{
-				new AlertDialog.Builder(con).setTitle("Network Error!!!")
+
+
+				/*new AlertDialog.Builder(con).setTitle("Network Error!!!")
 				.setMessage("Network is not Available")
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						dialog.dismiss();
 					}
-				}).setCancelable(false).show();
+				}).setCancelable(false).show();*/
+
+
+				new Thread() {
+
+					public void run() {
+
+
+						Looper.prepare();
+//						TransferFile();
+						try {
+							new DBCopier(con).copyDataBaseToSdcard(dbHelper.DB_PATH, CommonStaticClass.DB);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}Looper.loop();
+
+					}
+
+				}.start();
+
+
+
 			}
 			return true;
-			case R.id.Alarm:
-				/*if (!alarm)
-				{
-				*//*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*//*
-
-//				new hasInternet().execute("");
-					alarm = true;
-					startAlarm();
-
-
-				}
-				else
-				{
-					alarm = false;*/
-				cancelAlarm();
-//				}
-				return true;
 
 		default:
 			return super.onOptionsItemSelected(item);
@@ -503,6 +510,23 @@ public class MenuScreen extends BaseActivity {
 				} else {
 					CommonStaticClass.showMyAlert(con,"Message",
 							"Could not connect to server. Please try again.");
+
+					new Thread() {
+
+						public void run() {
+
+
+							Looper.prepare();
+//						TransferFile();
+							try {
+								new DBCopier(con).copyDataBaseToSdcard(dbHelper.DB_PATH, CommonStaticClass.DB);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}Looper.loop();
+
+						}
+
+					}.start();
 					
 					
 				}

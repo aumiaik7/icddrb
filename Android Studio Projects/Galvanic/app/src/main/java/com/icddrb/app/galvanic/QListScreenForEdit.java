@@ -184,7 +184,7 @@ public class QListScreenForEdit extends BaseActivity {
 					" '"+CommonStaticClass.sectionEnd+"') order by SLNo asc";
 		else
 		//load all
-			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  order by SLNo asc";
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where Qvar not in ('q10', 'q11')  order by SLNo asc";
 		
 		/*if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
 		if (!CommonStaticClass.isMember)
@@ -305,7 +305,7 @@ public class QListScreenForEdit extends BaseActivity {
 	}
 
 	private String getAns(String qvar) {
-		String qAns = "Answer inside";
+		String qAns = "Check inside";
 		String sql = "";
 
 		Cursor mCursor = null;
@@ -322,7 +322,8 @@ public class QListScreenForEdit extends BaseActivity {
 						|| form.equalsIgnoreCase("frmtext") || form.equalsIgnoreCase("frmtime")
 						|| form.equalsIgnoreCase("frmcombobox"))
 				{
-					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"'" +
+							" and memberid = '"+CommonStaticClass.memberID+"'";
 					mCursor = dbHelper.getQueryCursor(sql);
 					if (mCursor.moveToFirst()) {
 						qAns = mCursor.getString(mCursor.getColumnIndex(qvar));
@@ -330,7 +331,8 @@ public class QListScreenForEdit extends BaseActivity {
 				}
 				else if(form.equalsIgnoreCase("frmsinglechoice"))
 				{
-					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					sql = "Select "+qvar+" from "+table+" where dataid = '"+CommonStaticClass.dataId+"' " +
+							"and memberid = '"+CommonStaticClass.memberID+"'";
 					mCursor = dbHelper.getQueryCursor(sql);
 					if (mCursor.moveToFirst()) {
 						String choiceValue = mCursor.getString(mCursor.getColumnIndex(qvar));
@@ -341,6 +343,8 @@ public class QListScreenForEdit extends BaseActivity {
 
 								qAns = mCursor.getString(mCursor.getColumnIndex("CaptionEng"));
 						}
+						else
+							qAns = "";
 					}
 				}
 				else if(form.equalsIgnoreCase("frmmessage"))
@@ -349,7 +353,7 @@ public class QListScreenForEdit extends BaseActivity {
 				}
 				else if(form.equalsIgnoreCase("frmyeartomin"))
 				{
-					sql = "Select * from "+table+" where dataid = '"+CommonStaticClass.dataId+"'";
+					sql = "Select * from "+table+" where dataid = '"+CommonStaticClass.dataId+"' and memberid = '"+CommonStaticClass.memberID+"'";
 					mCursor = dbHelper.getQueryCursor(sql);
 
 					if (mCursor.moveToFirst()) {
@@ -363,7 +367,7 @@ public class QListScreenForEdit extends BaseActivity {
 						Cursor mCursor2 = null;
 						try {
 							if (mCursor.getColumnIndex(yearColumn) != -1) {
-								sql = "select " + yearColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + yearColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns = "Year:" + mCursor2.getString(mCursor2.getColumnIndex(yearColumn));
@@ -371,7 +375,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 							}
 							if (mCursor.getColumnIndex(monthColumn) != -1) {
-								sql = "select " + monthColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + monthColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns += " Month:" + mCursor2.getString(mCursor2.getColumnIndex(monthColumn));
@@ -379,7 +383,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 							}
 							if (mCursor.getColumnIndex(weekColumn) != -1) {
-								sql = "select " + weekColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + weekColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns += " Week:" + mCursor2.getString(mCursor2.getColumnIndex(weekColumn));
@@ -387,7 +391,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 							}
 							if (mCursor.getColumnIndex(dayColumn) != -1) {
-								sql = "select " + dayColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + dayColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns += " Day:" + mCursor2.getString(mCursor2.getColumnIndex(dayColumn));
@@ -395,7 +399,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 							}
 							if (mCursor.getColumnIndex(hourColumn) != -1) {
-								sql = "select " + hourColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + hourColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns += " Hour:" + mCursor2.getString(mCursor2.getColumnIndex(hourColumn));
@@ -403,7 +407,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 							}
 							if (mCursor.getColumnIndex(minColumn) != -1) {
-								sql = "select " + minColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "'";
+								sql = "select " + minColumn + " from " + table + " where dataid = '" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
 								mCursor2 = dbHelper.getQueryCursor(sql);
 								if (mCursor2.moveToFirst()) {
 									qAns += " Min:" + mCursor2.getString(mCursor2.getColumnIndex(minColumn));
@@ -417,6 +421,8 @@ public class QListScreenForEdit extends BaseActivity {
 						} finally {
 							if (mCursor2 != null)
 								mCursor2.close();
+							if(mCursor != null)
+								mCursor.close();;
 						}
 					}
 				}

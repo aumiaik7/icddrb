@@ -53,54 +53,75 @@ public class EditEntry extends BaseActivity{
 		loadDataToList();
 	}
 	private void loadGui() {
+
 		// TODO Auto-generated method stub
 		dID = new ArrayList<String>();
-		listentries = (ListView)findViewById(R.id.listentries);
+		listentries = (ListView) findViewById(R.id.listentries);
 		myAdapter = new ArrayAdapter<String>(this,
-        		android.R.layout.simple_list_item_multiple_choice,dID);
+				android.R.layout.simple_list_item_multiple_choice, dID);
 		listentries.setAdapter(myAdapter);
 		listentries.setOnItemClickListener(new OnItemClickListener() {
 
-			
 			public void onItemClick(AdapterView<?> parent, View v, int pos,
-					long id) {
+									long id) {
 				// TODO Auto-generated method stub
 				clearEveryThing();
-				
-				
+
 				String dataid = dID.get(pos);
 				CommonStaticClass.dataId = dataid;
-				
+
 				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
-				
-				
-				if(CommonStaticClass.questionMap.size()==0){
-					progressDialog = ProgressDialog.show(con, "Questions", "Please wait while loading questioniare");
-					new Thread() 
-					{
-						
-						public void run() 
-						{
-							loadQuestions();
+
+				if (CommonStaticClass.questionMap.size() == 0) {
+					progressDialog = ProgressDialog.show(con, "Questions",
+							"Please wait while loading questioniare");
+					new Thread() {
+
+						public void run() {
+
+							//CommonStaticClass.mode = CommonStaticClass.EDITMODE;
+							Intent i = new Intent();
+							/*i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							i.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);*/
+
+							i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
+									+ ".EditEntryMember");
+							int x = 0;
+							startActivityForResult(i,0);
+
+							//startActivity(i);
+
+
+
+							//loadQuestions();
 						}
-					}.start();				
+					}.start();
 				}
 			}
 		});
-		listentries.setOnCreateContextMenuListener( new OnCreateContextMenuListener() {
-			
-			
-			public void onCreateContextMenu(ContextMenu menu, View v,
-					ContextMenuInfo menuInfo) {
-				// TODO Auto-generated method stub
-				/*if(CommonStaticClass.userSpecificId.equalsIgnoreCase("3")|| CommonStaticClass.userSpecificId.equalsIgnoreCase("5")){					
-					menu.setHeaderTitle("Select");
-					menu.add(0, CONTEXTMENU_DELETE, 0, "Delete this ID");
-				}*/
-			}
-		});
+		listentries
+				.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
+
+					public void onCreateContextMenu(ContextMenu menu, View v,
+													ContextMenuInfo menuInfo) {
+						// TODO Auto-generated method stub
+						if (CommonStaticClass.userSpecificId
+								.equalsIgnoreCase("3")
+								|| CommonStaticClass.userSpecificId
+								.equalsIgnoreCase("5")) {
+							menu.setHeaderTitle("Select");
+							menu.add(0, CONTEXTMENU_DELETE, 0, "Delete this ID");
+						}
+					}
+				});
+
 	}
-	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(resultCode==2){
+			finish();
+		}
+	}
 	
 	public boolean onContextItemSelected(MenuItem aItem) {
 
@@ -215,10 +236,10 @@ public class EditEntry extends BaseActivity{
 						Date startDate = df.parse(sDate1);
 						c1.setTime(startDate);
 						
-						if((System.currentTimeMillis() - c1.getTimeInMillis()) < (5*24*60*60*1000))
-						{
+						/*if((System.currentTimeMillis() - c1.getTimeInMillis()) < (5*24*60*60*1000))
+						{*/
 							dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));
-						}
+//						}
 					}
 				}while(mCursor.moveToNext());
 			}

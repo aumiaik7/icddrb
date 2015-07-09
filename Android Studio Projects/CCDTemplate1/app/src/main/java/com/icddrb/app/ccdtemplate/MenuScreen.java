@@ -11,6 +11,7 @@ import com.icddrb.app.ccdtemplate.R;
 import com.icddrb.app.ccdtemplate.datatransfertool.FileRead;
 import com.icddrb.app.ccdtemplate.datatransfertool.TransData;
 import com.icddrb.app.ccdtemplate.db.DatabaseHelper;
+import com.icddrb.app.ccdtemplate.schedulebackup.DBCopier;
 import com.icddrb.app.ccdtemplate.schedulebackup.ScheduleBackup;
 
 
@@ -66,13 +67,13 @@ public class MenuScreen extends BaseActivity {
 		setTheme(R.style.AppTheme);
 		loadGui();
 
-		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
+		/*Intent alarmIntent = new Intent(this, ScheduleBackup.class);
 		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
 		alarmIntent.putExtra("dbname", CommonStaticClass.DB);
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-		startAlarm();
+		startAlarm();*/
 
 	}
 
@@ -250,13 +251,29 @@ public class MenuScreen extends BaseActivity {
 			}
 			else
 			{
-				new AlertDialog.Builder(con).setTitle("Network Error!!!")
+				/*new AlertDialog.Builder(con).setTitle("Network Error!!!")
 				.setMessage("Network is not Available")
 				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						dialog.dismiss();
 					}
-				}).setCancelable(false).show();
+				}).setCancelable(false).show();*/
+				new Thread() {
+
+					public void run() {
+
+
+
+//						TransferFile();
+						try {
+							new DBCopier(con).copyDataBaseToSdcard(dbHelper.DB_PATH, CommonStaticClass.DB);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
+					}
+
+				}.start();
 			}
 			return true;
 			case R.id.Alarm:
@@ -503,7 +520,22 @@ public class MenuScreen extends BaseActivity {
 				} else {
 					CommonStaticClass.showMyAlert(con,"Message",
 							"Could not connect to server. Please try again.");
-					
+					new Thread() {
+
+						public void run() {
+
+
+							Looper.prepare();
+//						TransferFile();
+							try {
+								new DBCopier(con).copyDataBaseToSdcard(dbHelper.DB_PATH, CommonStaticClass.DB);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}Looper.loop();
+
+						}
+
+					}.start();
 					
 				}
 			} else {

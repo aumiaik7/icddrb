@@ -415,8 +415,11 @@ public class QListScreenForEdit extends BaseActivity {
 							CommonStaticClass.showFinalAlert(con,
 									"A problem occured please try later");
 						} finally {
+							if(mCursor != null)
+								mCursor.close();
 							if (mCursor2 != null)
 								mCursor2.close();
+
 						}
 					}
 				}

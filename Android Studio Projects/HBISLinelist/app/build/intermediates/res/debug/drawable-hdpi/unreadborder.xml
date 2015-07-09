@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"> 
+   <stroke android:width="4dp" android:color="#38B48B" /> 
+   <padding android:left="7dp" android:top="7dp" 
+        android:right="7dp" android:bottom="5dp" /> 
+   <corners android:radius="10dp" /> 
+</shape>
+<!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/HBISLinelist/app/src/main/res/drawable-hdpi/unreadborder.xml -->

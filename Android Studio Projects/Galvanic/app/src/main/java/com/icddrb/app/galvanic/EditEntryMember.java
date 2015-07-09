@@ -46,18 +46,18 @@ public class EditEntryMember extends BaseActivity {
 		loadGui();
 		loadDataToList();
 	}
-	
+
 
 	protected void onStop() {
-	    setResult(2);
-	    super.onStop();
+		setResult(2);
+		super.onStop();
 	}
 	@Override
 	protected void onDestroy() {
-	    setResult(2);
-	    super.onDestroy();
+		setResult(2);
+		super.onDestroy();
 	}
-	
+
 	private void loadGui() {
 		// TODO Auto-generated method stub
 		dID = new ArrayList<String>();
@@ -68,7 +68,7 @@ public class EditEntryMember extends BaseActivity {
 		listentries.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View v, int pos,
-					long id) {
+									long id) {
 				// TODO Auto-generated method stub
 				clearEveryThing();
 
@@ -98,12 +98,12 @@ public class EditEntryMember extends BaseActivity {
 				.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
 
 					public void onCreateContextMenu(ContextMenu menu, View v,
-							ContextMenuInfo menuInfo) {
+													ContextMenuInfo menuInfo) {
 						// TODO Auto-generated method stub
 						if (CommonStaticClass.userSpecificId
 								.equalsIgnoreCase("3")
 								|| CommonStaticClass.userSpecificId
-										.equalsIgnoreCase("5")) {
+								.equalsIgnoreCase("5")) {
 							menu.setHeaderTitle("Select");
 							menu.add(0, CONTEXTMENU_DELETE, 0, "Delete this ID");
 						}
@@ -117,53 +117,53 @@ public class EditEntryMember extends BaseActivity {
 				.getMenuInfo();
 
 		switch (aItem.getItemId()) {
-		case CONTEXTMENU_DELETE:
-			Log.e("menuInfo.position", "" + menuInfo.position);
-			final String dataid = dID.get(menuInfo.position);
+			case CONTEXTMENU_DELETE:
+				Log.e("menuInfo.position", "" + menuInfo.position);
+				final String dataid = dID.get(menuInfo.position);
 
-			progressDialog = ProgressDialog.show(con, "", "");
+				progressDialog = ProgressDialog.show(con, "", "");
 
-			new Thread() {
+				new Thread() {
 
-				public void run() {
-					try {
-						String sql1 = "Delete from tblMainQues where dataid='"
-								+ dataid + "'";
-						String sql2 = "Delete from tblAnthropometry where dataid='"
-								+ dataid + "'";
-						String sql3 = "Delete from tblHousehold where dataid='"
-								+ dataid + "'";
-						String sql4 = "Delete from tblMainQuesMC where dataid='"
-								+ dataid + "'";
-						String sql5 = "Delete from tblMainQuesMCThree where dataid='"
-								+ dataid + "'";
-						String sql6 = "Delete from tblMainQuesSC where dataid='"
-								+ dataid + "'";
-						if (dbHelper.executeDMLQuery(sql1)) {
-							if (dbHelper.executeDMLQuery(sql2)) {
-								if (dbHelper.executeDMLQuery(sql3)) {
-									if (dbHelper.executeDMLQuery(sql4)) {
-										if (dbHelper.executeDMLQuery(sql5)) {
-											if (dbHelper.executeDMLQuery(sql6)) {
-												Message msg = new Message();
-												msg.what = DELETEDONE;
-												handler.sendMessage(msg);
+					public void run() {
+						try {
+							String sql1 = "Delete from tblMainQues where dataid='"
+									+ dataid + "'";
+							String sql2 = "Delete from tblAnthropometry where dataid='"
+									+ dataid + "'";
+							String sql3 = "Delete from tblHousehold where dataid='"
+									+ dataid + "'";
+							String sql4 = "Delete from tblMainQuesMC where dataid='"
+									+ dataid + "'";
+							String sql5 = "Delete from tblMainQuesMCThree where dataid='"
+									+ dataid + "'";
+							String sql6 = "Delete from tblMainQuesSC where dataid='"
+									+ dataid + "'";
+							if (dbHelper.executeDMLQuery(sql1)) {
+								if (dbHelper.executeDMLQuery(sql2)) {
+									if (dbHelper.executeDMLQuery(sql3)) {
+										if (dbHelper.executeDMLQuery(sql4)) {
+											if (dbHelper.executeDMLQuery(sql5)) {
+												if (dbHelper.executeDMLQuery(sql6)) {
+													Message msg = new Message();
+													msg.what = DELETEDONE;
+													handler.sendMessage(msg);
+												}
 											}
 										}
 									}
 								}
 							}
+						} catch (Exception e) {
+							// TODO: handle exception
+							Message msg = new Message();
+							msg.what = DELETEFAILED;
+							handler.sendMessage(msg);
 						}
-					} catch (Exception e) {
-						// TODO: handle exception
-						Message msg = new Message();
-						msg.what = DELETEFAILED;
-						handler.sendMessage(msg);
 					}
-				}
-			}.start();
+				}.start();
 
-			return true; /* true means: "we handled the event". */
+				return true; /* true means: "we handled the event". */
 
 		}
 
@@ -202,7 +202,7 @@ public class EditEntryMember extends BaseActivity {
 	}
 
 	private void loadDataToList() {
-		String sql = "Select memberid from tblDay1 Where dataid='"
+		String sql = "Select memberid from sample Where dataid='"
 				+ CommonStaticClass.dataId + "'";
 		Cursor mCursor = null;
 		try {
@@ -212,7 +212,7 @@ public class EditEntryMember extends BaseActivity {
 				do {
 					dID.add(mCursor.getString((mCursor
 							.getColumnIndex("memberid"))));
-					
+
 					/*CommonStaticClass.AssetID = mCursor.getString((mCursor
 							.getColumnIndex("AssetId")));*/
 				} while (mCursor.moveToNext());
@@ -229,48 +229,48 @@ public class EditEntryMember extends BaseActivity {
 		}
 	}
 
-	
+
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.lang_menu, menu);
 		return true;
 	}
 
-	
+
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.BNGMenuItem:
-			CommonStaticClass.langBng = true;
-			return true;
-		case R.id.ENGMenuItem:
-			CommonStaticClass.langBng = false;
-			return true;
-		case R.id.GotoHomeItem:
-			CommonStaticClass.mode = "";
-			setResult(2);
-			finish();
-			
-			return true;
-		case R.id.ExitItem:
+			case R.id.BNGMenuItem:
+				CommonStaticClass.langBng = true;
+				return true;
+			case R.id.ENGMenuItem:
+				CommonStaticClass.langBng = false;
+				return true;
+			case R.id.GotoHomeItem:
+				CommonStaticClass.mode = "";
+				setResult(2);
+				finish();
 
-			CommonStaticClass.mode = "";
-			finish();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+				return true;
+			case R.id.ExitItem:
+
+				CommonStaticClass.mode = "";
+				finish();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 	@Override
 	protected void onResume() {
-	   // this.finish();
-	    super.onResume();
+		// this.finish();
+		super.onResume();
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
-	
+
 	}
 
 	private void AddSkipForMembers() {
@@ -323,7 +323,7 @@ public class EditEntryMember extends BaseActivity {
 
 	}
 
-	
+
 	/*public boolean onCreateOptionsMenu(final Menu menu) {
 		final MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.lang_menu, menu);
@@ -331,7 +331,7 @@ public class EditEntryMember extends BaseActivity {
 	}*/
 
 
-	
+
 	private void loadQuestions() {
 
 		//String sql = "Select * from tblQuestion where SLNO>=3";
@@ -357,31 +357,31 @@ public class EditEntryMember extends BaseActivity {
 							mCursor.getString((mCursor.getColumnIndex("Qnext4"))),
 							mCursor.getString((mCursor
 									.getColumnIndex("Qchoice1eng"))), mCursor
-									.getString((mCursor
-											.getColumnIndex("Qchoice2eng"))),
+							.getString((mCursor
+									.getColumnIndex("Qchoice2eng"))),
 							mCursor.getString((mCursor
 									.getColumnIndex("Qchoice3eng"))), mCursor
-									.getString((mCursor
-											.getColumnIndex("Qchoice1bng"))),
+							.getString((mCursor
+									.getColumnIndex("Qchoice1bng"))),
 							mCursor.getString((mCursor
 									.getColumnIndex("Qchoice2bng"))), mCursor
-									.getString((mCursor
-											.getColumnIndex("Qchoice3bng"))),
+							.getString((mCursor
+									.getColumnIndex("Qchoice3bng"))),
 							mCursor.getString((mCursor
 									.getColumnIndex("Qrange1"))), mCursor
-									.getString((mCursor
-											.getColumnIndex("Qrange2"))),
+							.getString((mCursor
+									.getColumnIndex("Qrange2"))),
 							mCursor.getString((mCursor
 									.getColumnIndex("DataType"))), mCursor
-									.getString((mCursor
-											.getColumnIndex("Tablename"))));
-					
+							.getString((mCursor
+									.getColumnIndex("Tablename"))));
+
 					CommonStaticClass.questionMap.put(
 							mCursor.getInt(mCursor.getColumnIndex("SLNo")), qd);
 
 				} while (mCursor.moveToNext());
 			}
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -429,39 +429,39 @@ public class EditEntryMember extends BaseActivity {
 
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case ALLQUESTIONLOADED:
-				progressDialog.dismiss();
-				CommonStaticClass.isChecked = false;
-				Intent i = new Intent(EditEntryMember.this,
-						QListScreenForEdit.class);
-				startActivity(i);
-				break;
-			case QUESTIONCANTLODED:
-				progressDialog.dismiss();
-				CommonStaticClass.showFinalAlert(con,
-						"A problem occured question loading");
-				break;
-			case DELETEDONE:
-				if (progressDialog != null && progressDialog.isShowing()) {
+				case ALLQUESTIONLOADED:
 					progressDialog.dismiss();
-				}
-				CommonStaticClass.showMyAlert(con, "Completed",
-						"ID deleted successfully");
-
-				if (dID != null & !dID.isEmpty()) {
-					dID.clear();
-					loadDataToList();
-				}
-
-				break;
-			case DELETEFAILED:
-				if (progressDialog != null && progressDialog.isShowing()) {
+					CommonStaticClass.isChecked = false;
+					Intent i = new Intent(EditEntryMember.this,
+							QListScreenForEdit.class);
+					startActivity(i);
+					break;
+				case QUESTIONCANTLODED:
 					progressDialog.dismiss();
-				}
-				CommonStaticClass.showMyAlert(con, "InComplete",
-						"ID can not be deleted");
+					CommonStaticClass.showFinalAlert(con,
+							"A problem occured question loading");
+					break;
+				case DELETEDONE:
+					if (progressDialog != null && progressDialog.isShowing()) {
+						progressDialog.dismiss();
+					}
+					CommonStaticClass.showMyAlert(con, "Completed",
+							"ID deleted successfully");
 
-				break;
+					if (dID != null & !dID.isEmpty()) {
+						dID.clear();
+						loadDataToList();
+					}
+
+					break;
+				case DELETEFAILED:
+					if (progressDialog != null && progressDialog.isShowing()) {
+						progressDialog.dismiss();
+					}
+					CommonStaticClass.showMyAlert(con, "InComplete",
+							"ID can not be deleted");
+
+					break;
 			}
 
 		}

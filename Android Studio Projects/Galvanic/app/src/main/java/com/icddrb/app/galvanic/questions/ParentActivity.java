@@ -12055,6 +12055,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						if(code == 1) {
 							int slno = creategsrdevicerow();
 							CommonStaticClass.slno = slno;
+							if(CommonStaticClass.AssetID.equalsIgnoreCase(""))
+							{
+								FileRead();
+							}
 							sql = "Insert into gsrdevice (dataid, memberid, slno, AssetId) values('"
 									+ CommonStaticClass.dataId
 									+ "','"
@@ -12064,6 +12068,24 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									")";
 
 							dbHelper.executeDMLQuery(sql);
+						}
+						else if(code ==2 && !getQuesValue("gsrdevice","q10").equalsIgnoreCase(""))
+						{
+
+								code = 1;
+								sql = "UPDATE "
+										+ CommonStaticClass.questionMap.get(
+										CommonStaticClass.currentSLNo)
+										.getTablename()
+										+ " SET "
+										+ CommonStaticClass.questionMap.get(
+										CommonStaticClass.currentSLNo).getQvar()
+										+ "='" + code + "' where dataid='"
+										+ CommonStaticClass.dataId + "' and memberid='"+CommonStaticClass.memberID+"'" ;
+										dbHelper.executeDMLQuery(sql);
+
+
+
 						}
 						CommonStaticClass.findOutNextSLNo(qName, nextToGo);
 						CommonStaticClass.nextQuestion(ParentActivity.this);
@@ -16174,6 +16196,41 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		});
 	}*/
 
+	public String getQuesValue(String table, String quesName)
+	{
+		String sql1 = "";
+		String choiceValue = "";
+		sql1 = "Select "+quesName+" from "+table+" where dataid='" + CommonStaticClass.dataId + "' and memberid = '"+CommonStaticClass.memberID+"'";
+		//sql1 = "Select q5_1,q5_2,q5_3,q5_4,q5_5,q5_6 from tblMainQues where dataid='" + CommonStaticClass.dataId + "'";
+
+		Cursor mCursor1 = null;
+
+
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql1);
+
+			if (mCursor1 != null && mCursor1.getCount() > 0) {
+
+				mCursor1.moveToFirst();
+
+
+
+
+				choiceValue = mCursor1.getString(mCursor1.getColumnIndex(quesName));
+
+
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+
+		}
+		return choiceValue;
+	}
 	@Override
 	public void onBackPressed() {
 		// if(formFlipper.getDisplayedChild()!=5){

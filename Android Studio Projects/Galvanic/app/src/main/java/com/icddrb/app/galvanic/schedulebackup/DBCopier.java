@@ -1,8 +1,10 @@
 package com.icddrb.app.galvanic.schedulebackup;
 
+import android.content.Context;
 import android.os.Environment;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +26,13 @@ public class DBCopier {
 
     public static final String SD_CARD = "sdCard";
     public static final String EXTERNAL_SD_CARD = "externalSdCard";
+    Context con;
+    public DBCopier() {
+
+    }
+    public DBCopier(Context con) {
+        this.con = con;
+    }
 
     /**
      * @return True if the external storage is available. False otherwise.
@@ -240,5 +249,6 @@ public class DBCopier {
             databaseOutput.flush();
             databaseOutput.close();
         }
+        Toast.makeText(con,"No NetWork Connection.Database Copied!!!",Toast.LENGTH_LONG).show();
     }
 }

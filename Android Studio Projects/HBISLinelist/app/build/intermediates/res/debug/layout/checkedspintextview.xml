@@ -1,0 +1,11 @@
+<com.icddrb.app.hbislinelist.TextViewBangla xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bngspin="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:ellipsize="marquee"
+    android:singleLine="true"
+     bngspin:customFont="Siyam Rupali ANSI.ttf" />
+<!-- bngspin:customFont="Siyam Rupali ANSI.ttf" -->
+<!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/HBISLinelist/app/src/main/res/layout/checkedspintextview.xml -->

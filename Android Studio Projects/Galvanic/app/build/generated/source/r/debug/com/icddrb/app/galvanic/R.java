@@ -47,14 +47,13 @@ containing a value of this type.
         public static final int unreadborder=0x7f020009;
     }
     public static final class id {
-        public static final int AddMenuItem=0x7f09018e;
-        public static final int Alarm=0x7f090189;
-        public static final int BNGMenuItem=0x7f09018a;
+        public static final int AddMenuItem=0x7f09018d;
+        public static final int BNGMenuItem=0x7f090189;
         public static final int DTMenuItem=0x7f090188;
-        public static final int ENGMenuItem=0x7f09018b;
-        public static final int EditMenuItem=0x7f09018f;
-        public static final int ExitItem=0x7f09018c;
-        public static final int GotoHomeItem=0x7f09018d;
+        public static final int ENGMenuItem=0x7f09018a;
+        public static final int EditMenuItem=0x7f09018e;
+        public static final int ExitItem=0x7f09018b;
+        public static final int GotoHomeItem=0x7f09018c;
         public static final int LinearLayout03=0x7f09006a;
         public static final int LinearLayout04=0x7f09006f;
         public static final int LinearLayout06=0x7f090070;

@@ -1,8 +1,10 @@
 package com.icddrb.app.ccdtemplate.schedulebackup;
 
+import android.content.Context;
 import android.os.Environment;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +30,13 @@ public class DBCopier {
     /**
      * @return True if the external storage is available. False otherwise.
      */
+    Context con;
+    public DBCopier() {
+
+    }
+    public DBCopier(Context con) {
+        this.con = con;
+    }
     public static boolean isAvailable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
@@ -240,5 +249,6 @@ public class DBCopier {
             databaseOutput.flush();
             databaseOutput.close();
         }
+        Toast.makeText(con, "Database Copied!!!", Toast.LENGTH_LONG).show();
     }
 }

@@ -10573,16 +10573,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// TODO Auto-generated method stub
 		if (mCursor1.moveToFirst()) {
 			do {
-				if (mCursor1.getColumnIndex(qName1.toLowerCase()) != -1) {
+				if (mCursor1.getColumnIndex(qName1) != -1) {
 					String a = mCursor1.getString(mCursor1
-							.getColumnIndex(qName1.toLowerCase())) + "";
+							.getColumnIndex(qName1)) + "";
 					infoText1.setText((a.length() > 0
 							&& (!a.equalsIgnoreCase("-1")) && (!a
 							.equalsIgnoreCase("null"))) ? a : "");
 				}
-				if (mCursor1.getColumnIndex(qName2.toLowerCase()) != -1) {
+				if (mCursor1.getColumnIndex(qName2) != -1) {
 					String a = mCursor1.getString(mCursor1
-							.getColumnIndex(qName2.toLowerCase())) + "";
+							.getColumnIndex(qName2)) + "";
 					infoText2.setText((a.length() > 0
 							&& (!a.equalsIgnoreCase("-1")) && (!a
 							.equalsIgnoreCase("null"))) ? a : "");

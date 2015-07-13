@@ -70,6 +70,9 @@
     <string name="q413_1bn">ÓwfUvwgb wgbv‡i‡ji cvDWvi/cywó Kbv/gwbwg•Ó MÖn‡bi Kv‡W© D‡jøwLZ ZvwiLwU wjLyb</string>
     <string name="q413_2bn">†Kvb ZvwiL D‡jøwLZ bvB</string>
     <string name="q413_3bn">KvW© †`Lv‡Z cv‡i bvB</string>
+    <string name="regex_email">^([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]{2,})$</string>
+    <string name="regex_phone">^\\(?\\d{3}[\\)?|-]\\d{3}[- ]\\d{4}((\\s=?)(ext\\.|x)\\d{1,4})?$</string>
+    <string name="regex_postal_code">^\\d{5}(-\\d{4})?$</string>
     <string name="s">s</string>
     <!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/HBISLinelist/app/src/main/res/values/styles.xml -->
     <eat-comment/>

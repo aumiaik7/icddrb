@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="D:\Git Backup\Android Studio Projects\CCDTemplate1\app\libs\sqlcipher.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ce76a34bb71db637e8b171d8a4df0e865463d786">
-        <dex dex="D:\Git Backup\Android Studio Projects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\sqlcipher-71148b2d25ce269d05f5de744d2423320acf0ce8.jar" />
-    </item>
-    <item
-        jar="D:\Git Backup\Android Studio Projects\CCDTemplate1\app\libs\sqlcipher-javadoc.jar"
+        jar="D:\Git Backup\Android Studio Projects\HBISLinelist\app\libs\sqlcipher-javadoc.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="e754969506d574afe10c35ab4bc3f48af3a58e62">
-        <dex dex="D:\Git Backup\Android Studio Projects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\sqlcipher-javadoc-aef31e662eb065da471d26755c6c38531c9a60a3.jar" />
+        <dex dex="D:\Git Backup\Android Studio Projects\HBISLinelist\app\build\intermediates\pre-dexed\debug\sqlcipher-javadoc-0d1c82ab62569f5e6ac9a1c5b05245ea841bd6e1.jar" />
     </item>
     <item
         jar="C:\Users\imtiaz.khan\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
@@ -35,13 +28,6 @@
         revision="22.0.1"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
         <dex dex="C:\Users\imtiaz.khan\StudioProjects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-b6cef2c3ef7d6ee6aef83a56693f37f61f5ca596.jar" />
-    </item>
-    <item
-        jar="D:\Git Backup\Android Studio Projects\HBISLinelist\app\libs\sqlcipher-javadoc.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e754969506d574afe10c35ab4bc3f48af3a58e62">
-        <dex dex="D:\Git Backup\Android Studio Projects\HBISLinelist\app\build\intermediates\pre-dexed\debug\sqlcipher-javadoc-0d1c82ab62569f5e6ac9a1c5b05245ea841bd6e1.jar" />
     </item>
 
 </items>

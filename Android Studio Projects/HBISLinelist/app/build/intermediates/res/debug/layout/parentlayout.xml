@@ -148,6 +148,18 @@
          <include
             android:id="@+id/frmcamera"
             layout="@layout/frmcamera" />
+        <include
+            android:id="@+id/frmmultiplechoicetext"
+            layout="@layout/frmmultiplechoicetext" />
+        <include
+            android:id="@+id/frmaddress"
+            layout="@layout/frmaddress" />
+        <include
+            android:id="@+id/frmpersonrelation"
+            layout="@layout/frmpersonrelation" />
+        <include
+            android:id="@+id/frmsymptoms"
+            layout="@layout/frmsymptoms" />
     </ViewFlipper>
 
 </LinearLayout><!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/HBISLinelist/app/src/main/res/layout/parentlayout.xml -->

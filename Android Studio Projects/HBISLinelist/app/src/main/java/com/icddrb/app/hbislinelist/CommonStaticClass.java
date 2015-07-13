@@ -1,8 +1,11 @@
 package com.icddrb.app.hbislinelist;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
@@ -12,6 +15,7 @@ import android.content.DialogInterface;
 
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.icddrb.app.hbislinelist.db.DatabaseHelper;
@@ -292,6 +296,58 @@ public class CommonStaticClass {
 
 	}
 
+	public static String getSkip(String column, String tablename,
+								 DatabaseHelper dbHelper) {
+
+		String GtSkip = "";
+		String sql = "";
+
+		if (!CommonStaticClass.isMember)
+
+			sql = "Select " + column + " from " + tablename + " where dataid='"
+					+ CommonStaticClass.dataId + "'";
+		else {
+			sql = "Select " + column + " from " + tablename + " where dataid='"
+					+ CommonStaticClass.dataId + "'" + "AND memberid='"
+					+ CommonStaticClass.memberID + "'";
+		}
+		// String data ="";
+
+		Cursor mCursor = null;
+
+		try {
+
+			mCursor = dbHelper.getQueryCursor(sql);
+
+			if (mCursor.getCount() > 0) {
+
+				if (mCursor.moveToFirst()) {
+
+					do {
+
+						GtSkip = mCursor.getString(mCursor
+								.getColumnIndex(column));
+
+					} while (mCursor.moveToNext());
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			// TODO: handle exception
+
+		}
+		finally {
+			if(mCursor != null)
+				mCursor.close();
+		}
+
+		return GtSkip;
+
+	}
+
 	public static void showFinalAlert(Context con, CharSequence message) {
 		new AlertDialog.Builder(con).setTitle("User Credential Incorrect!!!")
 				.setMessage(message)
@@ -464,7 +520,7 @@ public class CommonStaticClass {
 							.add(qvar
 									+ "_"
 									+ mCursor1.getString((mCursor1
-											.getColumnIndex("ID"))));
+									.getColumnIndex("ID"))));
 
 					op.capEngList.add(mCursor1.getString((mCursor1
 							.getColumnIndex("Name"))));
@@ -581,7 +637,7 @@ public class CommonStaticClass {
 
 			mCursor = dbHelper.getQueryCursor(String.format(
 					"Select HosName,DistCode from Hospital where Hosid = '%s'",
-					CommonStaticClass.dataId.substring(5, 7)));
+					CommonStaticClass.dataId.substring(4, 6)));
 
 			if (mCursor.getCount() > 0) {
 
@@ -601,6 +657,10 @@ public class CommonStaticClass {
 
 			// TODO: handle exception
 
+		}
+		finally {
+			if(mCursor != null)
+				mCursor.close();
 		}
 
 		return GtSkip;
@@ -690,6 +750,10 @@ public class CommonStaticClass {
 
 			// TODO: handle exception
 
+		}
+		finally {
+			if(mCursor != null)
+				mCursor.close();
 		}
 	}
 
@@ -967,6 +1031,18 @@ public class CommonStaticClass {
 		return false;
 	}
 
+	public static int DayDifferenceBackwardWithMonth(Calendar startDate, Calendar endDate ) {
+		Calendar cal1 = new GregorianCalendar();
+		Calendar cal2 = new GregorianCalendar();
+		cal1.set(startDate.get(startDate.YEAR), startDate.get(startDate.MONTH), startDate.get(startDate.DAY_OF_MONTH));
+		cal2.set(endDate.get(endDate.YEAR), endDate.get(endDate.MONTH), endDate.get(endDate.DAY_OF_MONTH));
+		return daysBetween(cal1.getTime(),cal2.getTime());
+
+	}
+	public static int daysBetween(Date d1, Date d2){
+		return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	}
+
 	public static int DayDifference(Calendar startDate, Calendar endDate) {
 		Calendar date = (Calendar) startDate.clone();
 		int daysBetween = 0;
@@ -978,372 +1054,45 @@ public class CommonStaticClass {
 		return daysBetween;
 		// return (int) (daysBetween / 365.25);
 	}
-	
-	//For Question 1101
-	public static boolean checkFor307(DatabaseHelper dbHelper, int currentlyPregnant) {
-		// TODO Auto-generated method stub
-		
-		int a = 0,b = 0;
-	
-		
-		String sql = "Select " +
-				"q_301" +
-				"," +
-				"q_305_a" +
-				"," +
-				"q_305_b" +
-				"," +
-				"q_305_c" +
-				"," +
-				"q_306_a" +
-				"," +
-				"q_306_b" +
-				"," +
-				"q_306_c" +
-				"," +
-				"q_306_d" +
-				" from tblMainQues where dataid='"+ CommonStaticClass.dataId + "'";
-			
-		Cursor mCursor1 = null;
+
+	public static boolean IsValidHBISDate(EditText et)
+	{
+
+		SimpleDateFormat formatterdtpCough = new SimpleDateFormat("dd/MM/yyyy");
+		String dateInStringdtpCough = et.getText().toString();
+
+		Date datedtpCough = null;
 		try {
-			mCursor1 = dbHelper.getQueryCursor(sql);
-			if(mCursor1.getCount() > 0) {
-
-				if (mCursor1.moveToFirst()) {
-					a = Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_301")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_306_a")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_306_b")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_306_c")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_306_d"))) +currentlyPregnant
-											
-										;
-					b = Integer.parseInt(mCursor1.getString(mCursor1
-							.getColumnIndex("q_305_a")))
-							+
-							Integer.parseInt(mCursor1.getString(mCursor1
-							.getColumnIndex("q_305_b")))
-							+
-							(Integer.parseInt(mCursor1.getString(mCursor1
-							.getColumnIndex("q_305_c"))))*2
-							
-							;
-							Log.e("A and B", "A="+a+" B="+b);
-				}
-							
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.e("qnnnnn", ""+e.getMessage());
+			datedtpCough = formatterdtpCough.parse(dateInStringdtpCough);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
-		
-		
-		if(a == b)
+
+		if (CommonStaticClass.IsfutureDate(datedtpCough)) {
+
 			return true;
-		else 
-			return false;
-	}
-	//For Question 1101
-	public static boolean checkFor11BallNotChecked(DatabaseHelper dbHelper) {
-				// TODO Auto-generated method stub
-				
-				int elevenB = 0;
-			
-				
-				String sql = "Select " +
-						"q_1106_a" +
-						"," +
-						"q_1106_b" +
-						"," +
-						"q_1106_c" +
-						" from tblMainQuesSc where dataid='"+ CommonStaticClass.dataId + "'";
-					
-				Cursor mCursor1 = null;
-				try {
-					mCursor1 = dbHelper.getQueryCursor(sql);
-					if(mCursor1.getCount() > 0) {
-
-						if (mCursor1.moveToFirst()) {
-							elevenB = Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1106_a")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1106_b")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1106_c")))
-													
-													
-											;
-									Log.e("11B", ""+elevenB);
-						}
-									
-					}
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-					Log.e("qnnnnn", ""+e.getMessage());
-				}
-				
-				if(elevenB == 6)
-					return true;
-				else 
-					return false;
-			}
-	//For Question 1101
-		public static boolean checkFor11AallNotChecked(DatabaseHelper dbHelper) {
-			// TODO Auto-generated method stub
-			
-			int elevenA = 0;
-		
-			
-			String sql = "Select " +
-					"q_1101_a" +
-					"," +
-					"q_1101_b" +
-					"," +
-					"q_1101_c" +
-					"," +
-					"q_1101_d" +
-					" from tblMainQuesSc where dataid='"+ CommonStaticClass.dataId + "'";
-				
-			Cursor mCursor1 = null;
-			try {
-				mCursor1 = dbHelper.getQueryCursor(sql);
-				if(mCursor1.getCount() > 0) {
-
-					if (mCursor1.moveToFirst()) {
-						elevenA = Integer.parseInt(mCursor1.getString(mCursor1
-												.getColumnIndex("q_1101_a")))
-												+
-												Integer.parseInt(mCursor1.getString(mCursor1
-												.getColumnIndex("q_1101_b")))
-												+
-												Integer.parseInt(mCursor1.getString(mCursor1
-												.getColumnIndex("q_1101_c")))
-												+
-												Integer.parseInt(mCursor1.getString(mCursor1
-												.getColumnIndex("q_1101_d")))
-												
-										;
-								Log.e("11A", ""+elevenA);
-					}
-								
-				}
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-				Log.e("qnnnnn", ""+e.getMessage());
-			}
-			
-			if(elevenA == 8)
-				return true;
-			else 
-				return false;
 		}
-	
-	////For Question 1009
-	public static boolean checkFor10BallNotChecked(DatabaseHelper dbHelper) {
-		
-		// TODO Auto-generated method stub
-				int tenB = 0;
-				
-				String sql = "Select " +
-						"q_1009_a" +
-						"," +
-						"q_1009_b" +
-						"," +
-						"q_1009_c" +
-						"," +
-						"q_1009_d" +
-						"," +
-						"q_1009_e" +
-						"," +
-						"q_1009_f" +
-						"," +
-						"q_1009_g" +
-						"," +
-						"q_1009_h" +
-						"," +
-						"q_1009_i" +
-						"," +
-						"q_1009_x" +
-						" from tblMainQuesSc where dataid='"+ CommonStaticClass.dataId + "'";
-					
-				Cursor mCursor1 = null;
-				try {
-					mCursor1 = dbHelper.getQueryCursor(sql);
-					if(mCursor1.getCount() > 0) {
-
-						if (mCursor1.moveToFirst()) {
-							tenB = Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_a")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_b")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_c")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_d")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_e")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_f")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_g")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_h")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_i")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_1009_x")))
-											;
-									Log.e("10B", ""+tenB);
-						}
-									
-					}
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-					Log.e("qnnnnn", ""+e.getMessage());
-				}
-				
-			
-				
-				if(tenB == 20)
-					return true;
-				else 
-					return false;
-		
-	}
-
-	//For Question 806
-	public static boolean checkFor8AallNotChecked(DatabaseHelper dbHelper) {
-		
-		// TODO Auto-generated method stub
-				int eightA = 0;
-				
-				String sql = "Select " +
-						"q_806_a" +
-						"," +
-						"q_806_b" +
-						"," +
-						"q_806_c" +
-						"," +
-						"q_806_d" +
-						"," +
-						"q_806_e" +
-						"," +
-						"q_806_f" +
-						" from tblMainQuesSc where dataid='"+ CommonStaticClass.dataId + "'";
-					
-				Cursor mCursor1 = null;
-				try {
-					mCursor1 = dbHelper.getQueryCursor(sql);
-					if(mCursor1.getCount() > 0) {
-
-						if (mCursor1.moveToFirst()) {
-							eightA = Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_a")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_b")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_c")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_d")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_e")))
-													+
-													Integer.parseInt(mCursor1.getString(mCursor1
-													.getColumnIndex("q_806_f")))
-											;
-									Log.e("8A", ""+eightA);
-						}
-									
-					}
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-					Log.e("qnnnnn", ""+e.getMessage());
-				}
-				
-			
-				
-				if(eightA == 12)
-					return true;
-				else 
-					return false;
-		
-	}
-
-	//For Question 807
-	public static boolean checkFor8BallNotChecked(DatabaseHelper dbHelper) {
-		// TODO Auto-generated method stub
-		
-		int eightB = 0;
-	
-		
-		String sql = "Select " +
-				"q_807_a" +
-				"," +
-				"q_807_b" +
-				"," +
-				"q_807_c" +
-				" from tblMainQuesSc where dataid='"+ CommonStaticClass.dataId + "'";
-			
-		Cursor mCursor1 = null;
-		try {
-			mCursor1 = dbHelper.getQueryCursor(sql);
-			if(mCursor1.getCount() > 0) {
-
-				if (mCursor1.moveToFirst()) {
-					eightB = Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_807_a")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_807_b")))
-											+
-											Integer.parseInt(mCursor1.getString(mCursor1
-											.getColumnIndex("q_807_c")))
-											
-									;
-							Log.e("8B", ""+eightB);
-				}
-							
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			Log.e("qnnnnn", ""+e.getMessage());
-		}
-		
-		if(eightB == 6)
-			return true;
-		else 
+		else
+		{
 			return false;
+
+		}
+
+
+
 	}
+
+	public static String SetpadLeft(String s, int n) {
+		if (s.length() == 1)
+			return String.format("%02d", Integer.parseInt(s));
+		else
+			return s;
+	}
+	
+
+	
+
 
 	// End
 }

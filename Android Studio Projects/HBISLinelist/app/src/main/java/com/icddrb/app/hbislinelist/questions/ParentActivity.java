@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,6 +32,7 @@ import android.content.pm.ResolveInfo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -50,6 +52,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +74,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -127,13 +131,15 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	
 
 	// frmdate part
-	private EditText pickDate;
+	private EditText pickDate, dischargeDate;
 	static final int DATE_DIALOG = 1;
 	private int dateYear;
 	private int dateMonth;
 	private int dateDay;
 
 	// frmfamilymember part
+
+	private boolean admOrdis = true;
 
 	private TextView lblSL;
 
@@ -154,7 +160,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	protected EditText txtLongitute, txtLatitue;
 
 	// frmhhid part
-	static final int DATE_DIALOG_ID = 3;
+	static final int DATE_DIALOG_ID = 3, HBIS_DATE_DIALOG_ID = 5;;
 	private int mYear;
 	private int mMonth;
 	private int mDay;
@@ -170,6 +176,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	Spinner spinnerward;
 	EditText etyearmonth;
 	EditText etillness;
+
+	private int dobYear;
+	private int dobMonth;
+	private int dobDay;
 
 	private EditText txtschoolID, txtID, txtschoolIDRe, txtIDRe;
 	private String schoolid = "", id = "", schoolidre = "", idre = "";
@@ -283,7 +293,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			frmcomboswitheditspiner, frmmultiplecheckcombotwo,
 			frmmultiplechoiceradio, frmmultiple, frmq124,
 			frmmultiplechecknumeric, frmmultiplecheckdate, frmbarcode,
-			frmnumericwithrdbtn, frmfindsection, frmneonatelinfo,frmcamera;
+			frmnumericwithrdbtn, frmfindsection, frmneonatelinfo,frmcamera,frmmultiplechoicetext,
+			frmaddress, frmpersonrelation, frmsymptoms;
 
 	private int lastIndexBeforeFraNotes;
 	private TextView dataidViewer;
@@ -472,6 +483,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		frmfindsection = (ViewGroup) findViewById(R.id.frmfindsection);
 		frmneonatelinfo = (ViewGroup) findViewById(R.id.frmneonatelinfo);
 		frmcamera = (ViewGroup) findViewById(R.id.frmcamera);
+		frmmultiplechoicetext = (ViewGroup) findViewById(R.id.frmmultiplechoicetext);
+		frmaddress = (ViewGroup) findViewById(R.id.frmaddress);
+		frmpersonrelation = (ViewGroup) findViewById(R.id.frmpersonrelation);
+		frmsymptoms = (ViewGroup) findViewById(R.id.frmsymptoms);
 	}
 
 	protected void FraNotes() {
@@ -1778,45 +1793,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 	}*/
 
-	/*private void updateTableDataFrmAddress() {
-		// TODO Auto-generated method stub
-		resHHno = txtHoldingNo.getText().toString();
-		resPara = txtPara.getText().toString();
-		resVillage = txtVillage.getText().toString();
-		resUnion = txtunion.getText().toString();
-		resUpazilla = txtupazila.getText().toString();
-		resDistrict = txtDistrict.getText().toString();
-		resPhone1 = txtPhone1.getText().toString();
-		resPhone2 = txtPhone2.getText().toString();
 
-		// Check Validation
-		if (!IsvalidFrmAddress())
-			return;
-
-		try {
-
-			String sql = "UPDATE "
-					+ CommonStaticClass.questionMap.get(
-							CommonStaticClass.currentSLNo).getTablename()
-					+ " SET  holdnumber='" + resHHno + "',para='" + resPara
-					+ "', village='" + resVillage + "',unionward='" + resUnion
-					+ "',upazilla='" + resUpazilla + "',district='"
-					+ resDistrict + "',phone1='" + resPhone1 + "',phone2='"
-					+ resPhone2 + "' where dataid='" + CommonStaticClass.dataId
-					+ "'";
-			// Update the table if success full go to the next question
-			if (dbHelper.executeDMLQuery(sql)) {
-				CommonStaticClass.findOutNextSLNo(
-						qName,
-						CommonStaticClass.questionMap.get(
-								CommonStaticClass.currentSLNo).getQnext1());
-				CommonStaticClass.nextQuestion(ParentActivity.this);
-			}
-		} catch (Exception e) {
-			CommonStaticClass.showMyAlert(con, "Exception", e.toString());
-		}
-
-	}*/
 
 	/*private void showUserFinishDialogFrmAddress() {
 		// get prompts.xml view
@@ -1865,52 +1842,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		alertDialog.show();
 	}*/
 
-	/*private boolean IsvalidFrmAddress() {
-		boolean Isvalid = false;
 
-		if (resPara.length() == 0) {
-			CommonStaticClass.showMyAlert(con, "Error", "Para Name is Empty");
-			return Isvalid;
-		}
-		if (resVillage.length() == 0) {
-			CommonStaticClass
-					.showMyAlert(con, "Error", "Village Name is Empty");
-			return Isvalid;
-		}
-		if (resUnion.length() == 0) {
-			CommonStaticClass.showMyAlert(con, "Error", "Union Name is Empty");
-			return Isvalid;
-		}
-		if (resUpazilla.length() == 0) {
-			CommonStaticClass.showMyAlert(con, "Error",
-					"Upazilla Name is Empty");
-			return Isvalid;
-		}
-		if (resDistrict.length() == 0) {
-			CommonStaticClass.showMyAlert(con, "Error",
-					"District Name is Empty");
-			return Isvalid;
-		}
-		if (resPhone1.length() == 0) {
-			CommonStaticClass.showMyAlert(con, "Error", "Phone Name is Empty");
-			return Isvalid;
-		} else {
-			if (!resPhone1.startsWith("01")) {
-				CommonStaticClass.showMyAlert(con, "Error",
-						"Wrong combination of phone no.");
-				return Isvalid;
-			}
-			if (resPhone1.length() > 11 || resPhone1.length() < 11) {
-				CommonStaticClass.showMyAlert(con, "Error",
-						"Please inser 11 digit phone no.");
-				return Isvalid;
-			}
-
-		}
-
-		return true;
-
-	}*/
 
 	/*private void Fill_labelFrmAddress(ViewGroup v) {
 		lblHoldingNo = (TextView) v.findViewById(R.id.lblholdingNo);
@@ -2413,14 +2345,36 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			dateYear = year;
 			dateMonth = monthOfYear;
 			dateDay = dayOfMonth;
+
+			dobYear = year;
+			dobMonth = monthOfYear;
+			dobDay = dayOfMonth;
 			//updateDisplay("date");
 			
 			if (pickDate != null) {
+				if (pickDate.isFocused())
 				pickDate.setText((((dateDay < 10) ? "0" : "") + dateDay)+"/"+
 						(((dateMonth+1 < 10) ? "0" : "") + (dateMonth+1))+"/"+dateYear);
 			}
+
+
+
+			if (dischargeDate != null) {
+				if (dischargeDate.isFocused())
+					dischargeDate.setText((((dateDay < 10) ? "0" : "") + dateDay)+"/"+
+							(((dateMonth+1 < 10) ? "0" : "") + (dateMonth+1))+"/"+dateYear);
+			}
+
+			if (infoText2 != null) {
+				if (infoText2.isFocused())
+					infoText2.setText((((dateDay < 10) ? "0" : "") + dateDay)+"/"+
+							(((dateMonth+1 < 10) ? "0" : "") + (dateMonth+1))+"/"+dateYear);
+			}
+
+				// }
+			}
 			
-		}
+
 	};
 
 	//laod gui for frmdate
@@ -4297,7 +4251,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			}
 		} catch (Exception e) {
-			Toast.makeText(con, e.toString(), 0);
+			Toast.makeText(con, e.toString(), Toast.LENGTH_LONG);
 		}
 
 	}
@@ -6881,7 +6835,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							"Select all fields");
 					return;
 				}
-				String entryDate = CommonStaticClass.GetDate().toString();
+				String entryDate = "dd/mm/yyyy";
+				String entryTime = "hh:mm";
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date d = new Date(System.currentTimeMillis());
+				entryDate = sdf.format(d);
+				sdf = new SimpleDateFormat("HH:mm");
+				entryTime = sdf.format(d);
 
 				sql = String
 						.format("Insert into %s (dataid,VersionNo,assetid,YearID,MonthID,HosID,PatID,EntryBy,EntryDate, EntryTime) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
@@ -6903,15 +6863,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								CommonStaticClass.userSpecificId, entryDate,
 								CommonStaticClass.GetTime());
 
-				String s = String
+				/*String s = String
 						.format("Insert into %s (dataid,VersionNo,assetid,EntryBy,EntryDate) VALUES('%s','%s','%s','%s','%s')",
 								"tblMainQuesEPT", CommonStaticClass.dataId,
 								CommonStaticClass.VersionNo,
 								CommonStaticClass.AssetID,
-								CommonStaticClass.userSpecificId, entryDate);
+								CommonStaticClass.userSpecificId, entryDate);*/
 
 				if (dbHelper.executeDMLQuery(sql)
-						&& dbHelper.executeDMLQuery(s)) {
+//						&& dbHelper.executeDMLQuery(s)
+					) {
 
 					CommonStaticClass.HosCode = ((Spinner) v
 							.findViewById(R.id.sp3)).getSelectedItem()
@@ -10587,14 +10548,28 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			qqq.setText(CommonStaticClass.questionMap.get(
 					CommonStaticClass.currentSLNo).getQdesceng());
 			//set english text to the labels of the text field
-			if (qName.equalsIgnoreCase("q9")) {
-				num1.setText("Index hh");
-				num2.setText("Non Index hh");
+			if (qName.equalsIgnoreCase("sampleYes")) {
+				num1.setText("Identity code of the patient");
+				num2.setText("Date of  sample collection");
 			} 
 		}
 
 		infoText1 = (EditText) v.findViewById(R.id.txtNum1);
 		infoText2 = (EditText) v.findViewById(R.id.txtNum2);
+
+		infoText2.setOnTouchListener(new View.OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+
+				final Calendar c = Calendar.getInstance();
+				dateYear = c.get(Calendar.YEAR);
+				dateMonth = c.get(Calendar.MONTH);
+				dateDay = c.get(Calendar.DAY_OF_MONTH);
+				// TODO Auto-generated method stub
+				showDialog(DATE_DIALOG);
+				return false;
+			}
+		});
 
 		qName1 = qName + "_1";
 		qName2 = qName + "_2";
@@ -10690,16 +10665,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// TODO Auto-generated method stub
 		if (mCursor1.moveToFirst()) {
 			do {
-				if (mCursor1.getColumnIndex(qName1.toLowerCase()) != -1) {
+				if (mCursor1.getColumnIndex(qName1) != -1) {
 					String a = mCursor1.getString(mCursor1
-							.getColumnIndex(qName1.toLowerCase())) + "";
+							.getColumnIndex(qName1)) + "";
 					infoText1.setText((a.length() > 0
 							&& (!a.equalsIgnoreCase("-1")) && (!a
 							.equalsIgnoreCase("null"))) ? a : "");
 				}
-				if (mCursor1.getColumnIndex(qName2.toLowerCase()) != -1) {
+				if (mCursor1.getColumnIndex(qName2) != -1) {
 					String a = mCursor1.getString(mCursor1
-							.getColumnIndex(qName2.toLowerCase())) + "";
+							.getColumnIndex(qName2)) + "";
 					infoText2.setText((a.length() > 0
 							&& (!a.equalsIgnoreCase("-1")) && (!a
 							.equalsIgnoreCase("null"))) ? a : "");
@@ -12502,6 +12477,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 		return allch;
 	}
+	private DatePickerDialog.OnDateSetListener HBISdateListener = new DatePickerDialog.OnDateSetListener() {
+
+		public void onDateSet(DatePicker view, int year, int monthOfYear,
+							  int dayOfMonth) {
+			dateYear = year;
+			dateMonth = monthOfYear;
+			dateDay = dayOfMonth;
+			EditText et = (EditText) getWindow().getCurrentFocus();
+
+			updateDisplayfrmSymptom("date", et);
+		}
+	};
 
 	// FrmTime part
 	protected Dialog onCreateDialog(int id) {
@@ -12517,6 +12504,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			DatePickerDialog datePickerDialog = this.customDatePicker();
 			return datePickerDialog;
+
+			case HBIS_DATE_DIALOG_ID:
+				return new DatePickerDialog(this, HBISdateListener, dateYear,
+						dateMonth, dateDay);
 
 
 		}
@@ -14341,6 +14332,1354 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		return dataOk;
 	}
 
+
+	//Frrmultiplechoicetext
+	private void loadguifrmmultiplechoicetext(ViewGroup v) {
+
+		qqq = (TextView) v.findViewById(R.id.qqq);
+
+		qName = CommonStaticClass.questionMap
+				.get(CommonStaticClass.currentSLNo).getQvar();
+
+		// Load Question
+		if (CommonStaticClass.langBng) {
+			if (CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
+				Typeface font = Typeface.createFromAsset(getAssets(),
+						"Siyam Rupali ANSI.ttf");
+				qqq.setTypeface(font);
+			}
+			;
+			qqq.setText(CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng()
+					: CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		} else {
+			qqq.setTypeface(null);
+			qqq.setText(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		}
+
+		final ViewGroup vg = v;
+		loadDataMultipleChoiceText(vg);
+
+		/*
+		 * progressDialog = ProgressDialog.show(con, "Loading...",
+		 * "Please wait while loading data");
+		 *
+		 * new Thread() {
+		 *
+		 * public void run() { try { Looper.prepare();
+		 *
+		 * loadDataMultipleChoiceText(vg); Message msg = new Message(); msg.what
+		 * = UPDATEDONE; handlerFrmHHID.sendMessage(msg);
+		 *
+		 * } catch (Exception lg) { progressDialog.dismiss();
+		 * CommonStaticClass.showFinalAlert(con,
+		 * "An Error occured in load method");
+		 *
+		 * } finally { progressDialog.dismiss(); } Looper.loop(); }
+		 *
+		 * }.start();
+		 */
+
+		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
+
+		saveNxtButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+
+				if (!IsValidEntry(vg)) {
+					DisplayToast(thisactivity, "Please fill all fields", 1);
+					return;
+				}
+
+				progressDialog = ProgressDialog.show(con, "Saving...",
+						"Please wait while saving");
+
+				new Thread() {
+
+					public void run() {
+						try {
+							Looper.prepare();
+
+							updateTableDataFrmMultipleChoiceText(vg);
+							Message msg = new Message();
+							msg.what = UPDATEDONE;
+							handlerFrmHHID.sendMessage(msg);
+
+						} catch (Exception lg) {
+							progressDialog.dismiss();
+							CommonStaticClass.showFinalAlert(con,
+									"An Error occured in save method");
+
+						} finally {
+							progressDialog.dismiss();
+						}
+						Looper.loop();
+					}
+
+				}.start();
+
+			}
+
+		});
+		clButton = (Button) v.findViewById(R.id.clButton);
+		clButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View vv) {
+				// TODO Auto-generated method stub
+				// resetViewGroup((ViewGroup) vv);
+			}
+
+		});
+		/*
+		 * notesButton = (Button) v.findViewById(R.id.btnNote);
+		 * notesButton.setOnClickListener(new OnClickListener() {
+		 *
+		 * public void onClick(View v) { // TODO Auto-generated method stub
+		 * FraNotes();
+		 *
+		 * }
+		 *
+		 * });
+		 */
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+
+		});
+
+	}
+
+	private void updateTableDataFrmMultipleChoiceText(ViewGroup v) {
+
+		/*
+		 * if (!IsValidEntry(v)) { DisplayToast(thisactivity,
+		 * "Please fill all fields", 1); return; }
+		 */
+
+		String sql = String.format("");
+
+		try {
+
+			((Spinner) v.findViewById(R.id.spdept))
+					.getSelectedItem()
+					.toString()
+					.substring(
+							0,
+							((Spinner) v.findViewById(R.id.spdept))
+									.getSelectedItem().toString()
+									.lastIndexOf(":") - 1);
+
+			// String dept = dept.length() > 0 ? dept.substring(0,
+			// dept.lastIndexOf(":") - 1) : "";
+
+			sql = String
+					.format("Update %s Set Dept = '%s',  HosName='%s', RegNo= '%s', WardNo='%s', BedNo= '%s' , ProvDiag= '%s', EditBy='%s', EditDate='%s' WHERE dataid = '%s'",
+							CommonStaticClass
+									.GetTableName(CommonStaticClass.questionMap
+											.get(CommonStaticClass.currentSLNo)
+											.getQvar()),
+							((Spinner) v.findViewById(R.id.spdept))
+									.getSelectedItem()
+									.toString()
+									.substring(
+											0,
+											((Spinner) v
+													.findViewById(R.id.spdept))
+													.getSelectedItem()
+													.toString()
+													.lastIndexOf(":") - 1),
+							((EditText) v.findViewById(R.id.txtHospitalName))
+									.getText().toString(),
+							((EditText) v.findViewById(R.id.txtRegno))
+									.getText().toString(),
+							((EditText) v.findViewById(R.id.txtWardno))
+									.getText().toString(),
+							((EditText) v.findViewById(R.id.txtBedno))
+									.getText().toString(),
+							((EditText) v.findViewById(R.id.txtProDiag))
+									.getText().toString(),
+							CommonStaticClass.userSpecificId, CommonStaticClass
+									.GetCurrentDate(), CommonStaticClass.dataId);
+
+			if (dbHelper.executeDMLQuery(sql)) {
+
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void loadDataMultipleChoiceText(ViewGroup v) {
+		final ViewGroup vg = v;
+		Cursor cur = null;
+		try {
+			// SelectQueryBuilder();
+
+			String strSQL = "Select HosName, Dept, RegNo,WardNo, BedNo,ProvDiag, EntryDate, EntryTime from tblMainQues where dataid = '"
+					+ CommonStaticClass.dataId + "'";
+
+			cur = dbHelper.getQueryCursor(strSQL);
+
+			if (cur.moveToFirst()) {
+				do {
+					if (cur.getColumnIndexOrThrow("HosName") != -1) {
+
+						try {
+							String HosName = cur.getString(cur
+									.getColumnIndex("HosName"));
+							String Dept = cur.getString(cur
+									.getColumnIndex("Dept"));
+							String RegNo = cur.getString(cur
+									.getColumnIndex("RegNo"));
+							String WardNo = cur.getString(cur
+									.getColumnIndex("WardNo"));
+							String BedNo = cur.getString(cur
+									.getColumnIndex("BedNo"));
+							String ProvDiag = cur.getString(cur
+									.getColumnIndex("ProvDiag"));
+							String EntryDate = cur.getString(cur
+									.getColumnIndex("EntryDate"));
+							String EntryTime = cur.getString(cur
+									.getColumnIndex("EntryTime"));
+
+							if (HosName != null) {
+
+								((EditText) v
+										.findViewById(R.id.txtHospitalName))
+										.setText(HosName);
+
+							} else {
+								((EditText) v
+										.findViewById(R.id.txtHospitalName))
+										.setText(CommonStaticClass
+												.GetHospitalName(dbHelper));
+							}
+
+							ArrayList<String> ids = new ArrayList<String>();
+							ids.add("");
+							ids.add("1 : Medicine");
+							ids.add("2 : Pediatrics");
+							CommonStaticClass.FillCombo(this, ids,
+									((Spinner) v.findViewById(R.id.spdept)));
+
+							if (Dept != null) {
+								if (!Dept.equalsIgnoreCase("-1")) {
+
+									if (Dept.equalsIgnoreCase("1")) {
+										((Spinner) v.findViewById(R.id.spdept))
+												.setSelection(1);
+									} else if (Dept.equalsIgnoreCase("2")) {
+										((Spinner) v.findViewById(R.id.spdept))
+												.setSelection(2);
+									}
+								}
+
+							}
+
+							/*ids = new ArrayList<String>();
+							ids.add("1 : Inpatient");
+							ids.add("2 : Outpatient");
+							CommonStaticClass.FillCombo(this, ids,
+									((Spinner) v.findViewById(R.id.spunit)));
+
+							if (Unit != null) {
+								if (!Unit.equalsIgnoreCase("-1")) {
+									if (Unit.equalsIgnoreCase("1")) {
+										((Spinner) v.findViewById(R.id.spunit))
+												.setSelection(0);
+									} else if (Unit.equalsIgnoreCase("2")) {
+										((Spinner) v.findViewById(R.id.spunit))
+												.setSelection(1);
+									} *//*
+									 * else { String Comp = CommonStaticClass
+									 * .getSkip("Comp", "tblMainques",
+									 * dbHelper); if (Comp != null) { if
+									 * (Comp.length() > 0) { if
+									 * (Comp.equalsIgnoreCase("3") ||
+									 * Comp.equalsIgnoreCase("1")) { ((Spinner)
+									 * v .findViewById(R.id.spunit))
+									 * .setSelection(0); } else if (Comp
+									 * .equalsIgnoreCase("2")) { ((Spinner) v
+									 * .findViewById(R.id.spunit))
+									 * .setSelection(1); } else {
+									 *
+									 * } } } }
+									 *//*
+
+								}
+								*//*
+								 * else { String Comp = CommonStaticClass
+								 * .getSkip("Comp", "tblMainques", dbHelper); if
+								 * (Comp != null) { if (Comp.length() > 0) { if
+								 * (Comp.equalsIgnoreCase("3") ||
+								 * Comp.equalsIgnoreCase("1")) { ((Spinner) v
+								 * .findViewById(R.id.spunit)) .setSelection(0);
+								 * } else if (Comp .equalsIgnoreCase("2")) {
+								 * ((Spinner) v .findViewById(R.id.spunit))
+								 * .setSelection(1); } else {
+								 *
+								 * } } } }
+								 *//*
+							}*/
+							/*
+							 * else { String Comp = CommonStaticClass
+							 * .getSkip("Comp", "tblMainques", dbHelper); if
+							 * (Comp != null) { if (Comp.length() > 0) { if
+							 * (Comp.equalsIgnoreCase("3") ||
+							 * Comp.equalsIgnoreCase("1")) { ((Spinner) v
+							 * .findViewById(R.id.spunit)) .setSelection(0); }
+							 * else if (Comp .equalsIgnoreCase("2")) {
+							 * ((Spinner) v .findViewById(R.id.spunit))
+							 * .setSelection(1); } else {
+							 *
+							 * } } } }
+							 */
+
+							if (RegNo != null) {
+
+								((EditText) v.findViewById(R.id.txtRegno))
+										.setText(RegNo);
+
+							}
+
+							if (WardNo != null) {
+
+								((EditText) v.findViewById(R.id.txtWardno))
+										.setText(WardNo);
+
+							}
+							if (BedNo != null) {
+
+								((EditText) v.findViewById(R.id.txtBedno))
+										.setText(BedNo);
+
+							}
+							if (ProvDiag != null) {
+
+								((EditText) v.findViewById(R.id.txtProDiag))
+										.setText(ProvDiag);
+
+							}
+
+							/*ids = new ArrayList<String>();
+
+							ids.add("");
+							ids.add("1 : HBIS");
+							ids.add("3 : Both");
+							CommonStaticClass.FillCombo(this, ids,
+									((Spinner) v.findViewById(R.id.spsur)));
+
+							if (Surveillance != null) {
+								if (!Surveillance.equalsIgnoreCase("-1")) {
+									if (Surveillance.equalsIgnoreCase("1")) {
+
+										((Spinner) v.findViewById(R.id.spsur))
+												.setSelection(1);
+										((EditText) v
+												.findViewById(R.id.txtSEIBID))
+												.setVisibility(View.GONE);
+									} else if (Surveillance
+											.equalsIgnoreCase("3")) {
+
+										((Spinner) v.findViewById(R.id.spsur))
+												.setSelection(2);
+										((EditText) v
+												.findViewById(R.id.txtSEIBID))
+												.setVisibility(View.VISIBLE);
+									}
+
+									*//*
+									 * else { String HosID = CommonStaticClass
+									 * .getSkip("HosID", "tblMainques",
+									 * dbHelper); if (HosID != null) { if
+									 * (HosID.length() > 0) { if
+									 * (!HosID.equalsIgnoreCase("03") &&
+									 * HosID.equalsIgnoreCase("05") &&
+									 * HosID.equalsIgnoreCase("08") &&
+									 * HosID.equalsIgnoreCase("12")) {
+									 * ((Spinner) v .findViewById(R.id.spsur))
+									 * .setSelection(0); } else if (HosID
+									 * .equalsIgnoreCase("2")) { ((Spinner) v
+									 * .findViewById(R.id.spunit))
+									 * .setSelection(1); } else {
+									 *
+									 * } } } }
+									 *//*
+
+								}*//*
+								 * else { String HosID = CommonStaticClass
+								 * .getSkip("HosID", "tblMainques", dbHelper);
+								 * if (HosID != null) { if (HosID.length() > 0)
+								 * { if (!HosID.equalsIgnoreCase("03") &&
+								 * HosID.equalsIgnoreCase("05") &&
+								 * HosID.equalsIgnoreCase("08") &&
+								 * HosID.equalsIgnoreCase("12")) { ((Spinner) v
+								 * .findViewById(R.id.spsur)) .setSelection(0);
+								 * } else if (HosID .equalsIgnoreCase("2")) {
+								 * ((Spinner) v .findViewById(R.id.spunit))
+								 * .setSelection(1); } else {
+								 *
+								 * } } } }
+								 *//*
+							}*//*
+							 * else { String HosID = CommonStaticClass
+							 * .getSkip("HosID", "tblMainques", dbHelper); if
+							 * (HosID != null) { if (HosID.length() > 0) { if
+							 * (!HosID.equalsIgnoreCase("03") &&
+							 * HosID.equalsIgnoreCase("05") &&
+							 * HosID.equalsIgnoreCase("08") &&
+							 * HosID.equalsIgnoreCase("12")) { ((Spinner) v
+							 * .findViewById(R.id.spsur)) .setSelection(0); }
+							 * else if (HosID .equalsIgnoreCase("2")) {
+							 * ((Spinner) v .findViewById(R.id.spunit))
+							 * .setSelection(1); } else {
+							 *
+							 * } } } }
+							 */
+
+							((EditText) v.findViewById(R.id.etdate))
+									.setText(EntryDate);
+							((EditText) v.findViewById(R.id.ettime))
+									.setText(EntryTime);
+
+							/*if (CommonStaticClass.getSkip("Comp",
+									"tblMainques", dbHelper).equalsIgnoreCase(
+									"1")) {
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spdept)),
+												"1");
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spunit)),
+												"1");
+							} else if (CommonStaticClass.getSkip("Comp",
+									"tblMainques", dbHelper).equalsIgnoreCase(
+									"2")) {
+								// Department should be blank
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spdept)),
+												"");
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spunit)),
+												"2");
+							} else if (CommonStaticClass.getSkip("Comp",
+									"tblMainques", dbHelper).equalsIgnoreCase(
+									"3")) {
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spdept)),
+												"2");
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.spunit)),
+												"1");
+							}*/
+
+							/*if ((CommonStaticClass.userSpecificId
+									.equalsIgnoreCase("03")
+									|| CommonStaticClass.userSpecificId
+									.equalsIgnoreCase("05")
+									|| CommonStaticClass.userSpecificId
+									.equalsIgnoreCase("08") || CommonStaticClass.userSpecificId
+									.equalsIgnoreCase("12"))
+									&& (CommonStaticClass.getSkip("Comp",
+									"tblMainques", dbHelper)
+									.equalsIgnoreCase("3"))) {
+
+								*//*
+								 * ((Spinner) v.findViewById(R.id.spsur))
+								 * .setSelection(0);
+								 *//*
+
+							}*/
+
+
+								/*((Spinner) v.findViewById(R.id.spsur))
+										.setEnabled(true);
+								((Spinner) v.findViewById(R.id.spsur))
+										.setSelection(1);
+
+
+							((Spinner) v.findViewById(R.id.spsur))
+									.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+										public void onItemSelected(
+												AdapterView<?> arg0, View arg1,
+												int arg2, long arg3) {
+
+											String val = ((Spinner) vg
+													.findViewById(R.id.spsur))
+													.getSelectedItem()
+													.toString();
+
+											if (val.contains("3")) {
+												((EditText) vg
+														.findViewById(R.id.txtSEIBID))
+														.setEnabled(true);
+												((EditText) vg
+														.findViewById(R.id.txtSEIBID))
+														.setVisibility(View.VISIBLE);
+
+											} else {
+												((EditText) vg
+														.findViewById(R.id.txtSEIBID))
+														.setEnabled(false);
+												((EditText) vg
+														.findViewById(R.id.txtSEIBID))
+														.setVisibility(View.GONE);
+											}
+
+										}
+
+
+										public void onNothingSelected(
+												AdapterView<?> arg0) {
+											// TODO Auto-generated method
+											// stub
+
+										}
+									});*/
+
+							// ((EditText)v.findViewById(R.id.txtSEIBID)).setEnabled(false);
+
+						} catch (Exception e) {
+							// TODO: handle exception
+							Log.e("error", e.getMessage());
+						}
+						finally {
+							if(cur != null)
+								cur.close();
+						}
+
+					}
+
+				} while (cur.moveToNext());
+			}
+
+			else {
+
+			}
+		}
+
+		catch (Exception ex) {
+			// MessageBox.Show(ex.ToString(), "Error");
+
+		}
+	}
+
+	private boolean IsValidEntry(ViewGroup v) {
+
+		ViewGroup viewGroup = (LinearLayout) v.findViewById(R.id.ln);
+		int nrOfChildren = viewGroup.getChildCount();
+		boolean alltrue = true;
+		for (int i = 0; i < nrOfChildren; i++) {
+			View view = viewGroup.getChildAt(i);
+
+			if (view instanceof EditText) {
+				if (!(((EditText) view).getText().toString().length() > 0)) {
+
+					if (view.getVisibility() == View.GONE) {
+						continue;
+					}
+
+					/*
+					 * else { if (ExcludeFromvalidation(view)) { continue; }
+					 */
+					else {
+						view.setBackgroundResource(R.drawable.border);
+						view.requestFocus();
+						return false;
+					}
+
+					// }
+
+				}
+			}
+
+			else if (view instanceof RadioGroup) {
+
+				if (view.getVisibility() == View.GONE) {
+					continue;
+				} else if (((RadioGroup) view).getCheckedRadioButtonId() == -1) {
+					((RadioGroup) view)
+							.setBackgroundResource(R.drawable.border);
+					return false;
+
+				}
+
+			}
+
+		}
+		return true;
+
+	}
+	// display customized Toast message
+	public static int SHORT_TOAST = 0;
+	public static int LONG_TOAST = 1;
+	public static void DisplayToast(Context caller, String toastMsg, int toastType){
+
+		try {// try-catch to avoid stupid app crashes
+			LayoutInflater inflater = LayoutInflater.from(caller);
+
+			View mainLayout = inflater.inflate(R.layout.toast_layout, null);
+			View rootLayout = mainLayout.findViewById(R.id.toast_layout_root);
+
+			ImageView image = (ImageView) mainLayout.findViewById(R.id.image);
+			image.setImageResource(R.drawable.notification);
+			TextView text = (TextView) mainLayout.findViewById(R.id.text);
+			text.setText(toastMsg);
+
+			Toast toast = new Toast(caller);
+			//toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+			toast.setGravity(Gravity.TOP, 0, 0);
+			if (toastType==SHORT_TOAST)//(isShort)
+				toast.setDuration(Toast.LENGTH_SHORT);
+			else
+				toast.setDuration(Toast.LENGTH_LONG);
+			toast.setView(rootLayout);
+			toast.show();
+		}
+		catch(Exception ex) {// to avoid stupid app crashes
+
+		}
+	}
+	//frmpersonrelation form
+	private void loadguifrmpersonrelation(ViewGroup v) {
+
+
+		qqq = (TextView) v.findViewById(R.id.qqq);
+
+		qName = CommonStaticClass.questionMap
+				.get(CommonStaticClass.currentSLNo).getQvar();
+
+		// Load Question
+		if (CommonStaticClass.langBng) {
+			if (CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
+				Typeface font = Typeface.createFromAsset(getAssets(),
+						"Siyam Rupali ANSI.ttf");
+				qqq.setTypeface(font);
+			}
+			;
+			qqq.setText(CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng()
+					: CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		} else {
+			qqq.setTypeface(null);
+			qqq.setText(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		}
+
+		loadDataPersonRelation(v);
+		final ViewGroup vg = v;
+
+		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
+
+		saveNxtButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (validatePersonRelation(vg))
+					updateTableDataFrmPersonRelation(vg);
+				else
+					CommonStaticClass.showMyAlert(thisactivity, "Message",
+							"Please fill all fields correctly");
+
+				// preserveState();
+			}
+
+		});
+		clButton = (Button) v.findViewById(R.id.clButton);
+		clButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View vv) {
+				// TODO Auto-generated method stub
+				// resetViewGroup((ViewGroup) v);
+			}
+
+		});
+
+		/*
+		 * notesButton = (Button) v.findViewById(R.id.btnNote);
+		 * notesButton.setOnClickListener(new OnClickListener() {
+		 *
+		 * public void onClick(View v) { // TODO Auto-generated method stub
+		 * FraNotes();
+		 *
+		 * }
+		 *
+		 * });
+		 */
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+
+		});
+
+	}
+
+	private void updateTableDataFrmPersonRelation(ViewGroup vg) {
+
+		try {
+
+			String AdmDate = ((EditText) vg.findViewById(R.id.admissiondate))
+					.getText().toString();
+
+			String DisDate = "";
+			String DgCode = "";
+			String DgOthers = "";
+			String OutCome = "";
+
+		/*	if (((CheckBox) vg.findViewById(R.id.checkBox1)).isChecked()) {*/
+				DisDate = ((EditText) vg.findViewById(R.id.dischargedate))
+						.getText().toString();
+
+			/*} else {
+				DisDate = "";
+			}*/
+
+			/*DgCode = ((Spinner) vg.findViewById(R.id.sp1))
+					.getSelectedItem()
+					.toString()
+					.substring(
+							0,
+							((Spinner) vg.findViewById(R.id.sp1))
+									.getSelectedItem().toString()
+									.lastIndexOf(":")).trim();
+
+			if (DgCode.equalsIgnoreCase("99")) {
+				DgOthers = ((EditText) vg.findViewById(R.id.et1)).getText()
+						.toString();
+			} else {
+				DgOthers = null;
+			}*/
+
+			OutCome = ((Spinner) vg.findViewById(R.id.sp2))
+					.getSelectedItem()
+					.toString()
+					.substring(
+							0,
+							((Spinner) vg.findViewById(R.id.sp2))
+									.getSelectedItem().toString()
+									.lastIndexOf(":"));
+
+			String sql = String.format(
+					"UPDATE '%s' set AdmDate = '%s', DisDate='%s',"
+							+ " OutCome='%s', EditBy='%s', EditDate='%s'"
+							+ " WHERE dataid='%s'",
+
+					CommonStaticClass
+							.GetTableName(CommonStaticClass.questionMap.get(
+									CommonStaticClass.currentSLNo).getQvar()),
+					AdmDate, DisDate, OutCome,
+					CommonStaticClass.userSpecificId, CommonStaticClass
+							.GetCurrentDate(), CommonStaticClass.dataId);
+
+			if (dbHelper.executeDMLQuery(sql)) {
+
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	protected boolean validatePersonRelation(ViewGroup v) {
+
+		boolean validated = true;
+
+		if (!Validate.hasText(((EditText) v.findViewById(R.id.admissiondate))))
+			validated = false;
+		/*if (!Validate.hasText(((Spinner) v.findViewById(R.id.sp1))))
+			validated = false;*/
+		/*
+		 * if (!Validate.hasText(editLastName)) validated = false; if
+		 * (!Validate.hasText(editAddress)) validated = false; if
+		 * (!Validate.hasText(editCity)) validated = false; if
+		 * (!Validate.isPostalCode(editPostalCode, true)) validated = false; if
+		 * (!Validate.isPhoneNumber(editDayPhone, true)) validated = false; if
+		 * (!Validate.isPhoneNumber(editEveningPhone, false)) validated = false;
+		 * if (!Validate.isPhoneNumber(editMobilePhone, false)) validated =
+		 * false; if (!Validate.isEmailAddress(editEmailAddress, false))
+		 * validated = false;
+		 */
+
+		String edate = CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+				dbHelper);
+		// String[] splitentrydate = edate.split("/");
+
+		String AdmDate = ((EditText) v.findViewById(R.id.admissiondate))
+				.getText().toString();
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		// String[] d = (((EditText)
+		// v.findViewById(R.id.dtpFever)).getText().toString()).split("/");
+		String[] splitentrydate = edate.split("/");
+
+		// String dateInString = splitentrydate[0] +"-"+ splitentrydate[1] + "-"
+		// + splitentrydate[2];
+
+		/*
+		 * Date date = null, denddate = null; try { date =
+		 * formatter.parse(dateInString); } catch (ParseException e1) { // TODO
+		 * Auto-generated catch block e1.printStackTrace(); }
+		 */
+
+		// /////////////////////////////////////////////////////////////////////////
+		/*
+		 * if (CommonStaticClass.IsSeconDateGraterThanFirstDate(((EditText)
+		 * v.findViewById(R.id.admissiondate)) .getText().toString(), edate)) {
+		 * CommonStaticClass.showMyAlert(thisactivity, "Error",
+		 * "Please input correct Fever date"); return false; }
+		 */
+
+		String[] d = (((EditText) v.findViewById(R.id.admissiondate)).getText()
+				.toString()).split("/");
+
+		String dateInString =((EditText) v.findViewById(R.id.admissiondate)).getText().toString();
+				//d[0] + "-" + d[1] + "-" + d[0];
+
+		Date date = null, denddate = null;
+		if (dateInString.length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Error",
+					"Please input date");
+			return false;
+		}
+		try {
+			date = formatter.parse(dateInString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Calendar startdate = Calendar.getInstance();
+		Calendar enddate = Calendar.getInstance();
+
+		startdate.setTime(date);
+
+		Date dt = new Date(System.currentTimeMillis());
+		String senddate = formatter.format(dt);//;
+				/*enddate.get(Calendar.YEAR)
+				+ "-"
+				+ CommonStaticClass.SetpadLeft(
+				String.valueOf(enddate.get(Calendar.MONTH) + 1),
+				enddate.get(Calendar.MONTH)) + "-"
+				+ enddate.get(Calendar.DAY_OF_MONTH);*/
+
+		try {
+			denddate = formatter.parse(senddate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		enddate.setTime(denddate);
+
+		int x = CommonStaticClass.DayDifferenceBackwardWithMonth(startdate,
+				enddate);
+
+		/*if (x > 8) {
+			CommonStaticClass.showMyAlert(thisactivity, "Error",
+					"Fever Date can not be more than 7");
+			return false;
+
+		}*/
+
+		if (x == 1) {
+
+			// return false;
+
+		}
+
+		else if (x == 2) {
+
+			// return false;
+
+		} else if (x == 3) {
+
+			// return false;
+
+		} else if (x == 4) {
+
+			// return false;
+
+		} else if (x == 5) {
+
+			// return false;
+
+		} else if (x == 6) {
+
+			// return false;
+
+		}
+
+		else if (x == 7) {
+
+			// return false;
+
+		} else if (x == 0) {
+
+			// return false;
+
+		} else {
+
+			CommonStaticClass.showMyAlert(thisactivity, "Message",
+					"Please fill admission date correctly");
+			validated = false;
+
+		}
+
+		return validated;
+
+		// ///////////////////////////////////////////////////////////////////////////
+
+		/*
+		 * Calendar startdate = Calendar.getInstance(); Calendar enddate =
+		 * Calendar.getInstance();
+		 *
+		 *
+		 * startdate.setTime(date);
+		 *
+		 * String[] splitAdmDate = AdmDate.split("/"); //String AdmDateInString
+		 * = splitAdmDate[0] +"-"+
+		 * CommonStaticClass.SetpadLeft(splitAdmDate[1],Integer
+		 * .parseInt(splitAdmDate[1])) + "-" + splitAdmDate[2]; String
+		 * AdmDateInString = splitAdmDate[0] +"-"+
+		 * CommonStaticClass.SetpadLeft(splitAdmDate
+		 * [1],Integer.parseInt(splitAdmDate[1])) + "-" + splitAdmDate[2];
+		 *
+		 * String senddate = AdmDateInString;//enddate.get(Calendar.YEAR) + "-"+
+		 * CommonStaticClass
+		 * .SetpadLeft(String.valueOf(enddate.get(Calendar.MONTH) + 1),
+		 * enddate.get(Calendar.MONTH)) + "-"+
+		 * enddate.get(Calendar.DAY_OF_MONTH);
+		 *
+		 * try { denddate = formatter.parse(senddate); } catch (ParseException
+		 * e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 * enddate.setTime(denddate);
+		 *
+		 *
+		 * CommonStaticClass.IsSeconDateGraterThanFirstDate(date1, date2)
+		 */
+
+		/*
+		 * Date d1 = Date.parse(edate); Date d2 = new Date(AdmDate);
+		 */
+
+		/*
+		 * if (enddate.after(startdate)) {
+		 * CommonStaticClass.showMyAlert(thisactivity, "Message",
+		 * "Please fill admission date correctly"); validated = false; } return
+		 * validated;
+		 */
+	}
+
+	private void loadDataPersonRelation(final ViewGroup v) {
+
+		pickDate = ((EditText) v.findViewById(R.id.admissiondate));
+		/*
+		 * if (!(pickDate.getText().toString().length() > 0))
+		 * updateDisplay("date");
+		 */
+
+		dischargeDate = ((EditText) v.findViewById(R.id.dischargedate));
+		/*
+		 * if (!(dischargeDate.getText().toString().length() > 0))
+		 * updateDisplay("date");
+		 */
+
+		//dischargeDate.setVisibility(View.INVISIBLE);
+
+		pickDate.setOnTouchListener(new View.OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+
+				final Calendar c = Calendar.getInstance();
+				dateYear = c.get(Calendar.YEAR);
+				dateMonth = c.get(Calendar.MONTH);
+				dateDay = c.get(Calendar.DAY_OF_MONTH);
+
+				showDialog(DATE_DIALOG);
+				return false;
+			}
+		});
+
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+		dischargeDate.setOnTouchListener(new View.OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+
+				final Calendar c = Calendar.getInstance();
+				dateYear = c.get(Calendar.YEAR);
+				dateMonth = c.get(Calendar.MONTH);
+				dateDay = c.get(Calendar.DAY_OF_MONTH);
+
+				showDialog(DATE_DIALOG);
+				return false;
+			}
+		});
+
+		/*String dist = "SELECT '' AS DgCode UNION SELECT (" + "" + "DgCode" + ""
+				+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
+				+ " from DiagnosisCode ORDER BY DgCode" + "";
+
+		CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
+				((Spinner) v.findViewById(R.id.sp1)));*/
+
+		/*
+		 * ((Spinner) v.findViewById(R.id.sp2)) .setOnItemSelectedListener(new
+		 * OnItemSelectedListener() {
+		 *
+		 * @Override public void onItemSelected(AdapterView<?> parent, View
+		 * view, int pos, long id) {
+		 *
+		 * if (parent.getItemAtPosition(pos).toString().length() > 0) {
+		 *
+		 * sResCode = parent .getItemAtPosition(pos) .toString() .substring( 0,
+		 * (parent.getItemAtPosition(pos) .toString()
+		 * .lastIndexOf(":"))).trim(); if (sResCode.length() > 0) { if
+		 * (sResCode.equalsIgnoreCase("99")) { ((EditText)
+		 * v.findViewById(R.id.et1)) .setEnabled(true);
+		 *
+		 * } else { ((EditText) v.findViewById(R.id.et1)) .setEnabled(false); }
+		 * }
+		 *
+		 * }
+		 *
+		 * }
+		 *
+		 * @Override public void onNothingSelected(AdapterView<?> arg0) { //
+		 * TODO Auto-generated method stub
+		 *
+		 * } });
+		 */
+
+		/*((Spinner) v.findViewById(R.id.sp1))
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+					public void onItemSelected(AdapterView<?> parent,
+											   View view, int pos, long id) {
+
+						if (parent.getItemAtPosition(pos).toString().length() > 0) {
+
+							sResCode = parent
+									.getItemAtPosition(pos)
+									.toString()
+									.substring(
+											0,
+											(parent.getItemAtPosition(pos)
+													.toString()
+													.lastIndexOf(":"))).trim();
+							if (sResCode.length() > 0) {
+								if (sResCode.equalsIgnoreCase("99")) {
+									((EditText) v.findViewById(R.id.et1))
+											.setVisibility(view.VISIBLE);
+
+								} else {
+									((EditText) v.findViewById(R.id.et1))
+											.setVisibility(view.INVISIBLE);
+								}
+							}
+
+						}
+
+					}
+
+
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});*/
+
+		/*((CheckBox) v.findViewById(R.id.checkBox1))
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+
+					public void onCheckedChanged(CompoundButton arg0,
+												 boolean arg1) {
+						if (arg1 == true) {
+							((EditText) v.findViewById(R.id.dischargedate))
+									.setVisibility(View.VISIBLE);
+							((TextView) v.findViewById(R.id.textView2))
+									.setVisibility(View.VISIBLE);
+
+							((Spinner) v.findViewById(R.id.sp2))
+									.setVisibility(View.VISIBLE);
+							((TextView) v.findViewById(R.id.lblsp2))
+									.setVisibility(View.VISIBLE);
+						} else {
+							((TextView) v.findViewById(R.id.textView2))
+									.setVisibility(View.GONE);
+							((EditText) v.findViewById(R.id.dischargedate))
+									.setVisibility(View.INVISIBLE);
+							((EditText) v.findViewById(R.id.dischargedate))
+									.setText("");
+							((Spinner) v.findViewById(R.id.sp2))
+									.setVisibility(View.INVISIBLE);
+
+							((TextView) v.findViewById(R.id.lblsp2))
+									.setVisibility(View.INVISIBLE);
+						}
+					}
+				});*/
+
+		ArrayList<String> ids = new ArrayList<String>();
+		ids.add("1 : Fully recovered");
+		ids.add("2 : Partially recovered");
+		ids.add("3 : Remains hospitalized");
+		ids.add("4 : Transferred");
+		ids.add("5 : Death");
+		ids.add("9 : Unknown");
+
+		CommonStaticClass.FillCombo(thisactivity, ids,
+				((Spinner) v.findViewById(R.id.sp2)));
+
+		/*((Spinner) v.findViewById(R.id.sp2)).setVisibility(View.INVISIBLE);
+		((TextView) v.findViewById(R.id.lblsp2)).setVisibility(View.INVISIBLE);*/
+		String sql = String
+				.format("Select AdmDate, DisDate, OutCome from tblMainQues where dataid = '%s'",
+						CommonStaticClass.dataId);
+
+		Cursor cur = null;
+
+		try {
+
+			cur = dbHelper.getQueryCursor(sql);
+
+			if (cur.getCount() > 0) {
+
+				if (cur.moveToFirst()) {
+
+					do {
+						// District
+						/*String intComp = CommonStaticClass.getSkip("Comp",
+								"tblMainQues", dbHelper);
+
+						if (intComp.equalsIgnoreCase("1")
+								|| intComp.equalsIgnoreCase("3")) {
+
+							if (cur.getString(0) == null) // if
+							// (DR["AdmDate"].ToString()
+							// ==
+							// "")
+							{
+								*//*
+								 * ((EditText)
+								 * v.findViewById(R.id.admissiondate))
+								 * .setText(CommonStaticClass.GetDate());
+								 *//*
+							} else {*/
+								((EditText) v.findViewById(R.id.admissiondate))
+										.setText(cur.getString(0));
+//							}
+//						}
+
+						// if (DR["DisDate"].ToString() == "")
+						// {
+						// dtpDischDate.Value = System.DateTime.Today;
+						// }
+						// else
+						// {
+						// dtpDischDate.Value =
+						// Convert.ToDateTime(DR["AdmDate"].ToString());
+						// }
+
+						/*if (cur.getString(1) == null) // if
+						// (DR["AdmDate"].ToString()
+						// == "")
+						{*/
+							((EditText) v.findViewById(R.id.dischargedate))
+									.setText(cur.getString(1));
+						/*} else {
+							((CheckBox) v.findViewById(R.id.checkBox1))
+									.setChecked(true);
+							((EditText) v.findViewById(R.id.dischargedate))
+									.setText(cur.getString(1));
+
+						}*/
+
+						/*if (cur.getString(2) == null) {
+							*//*
+							 * ((RadioGroup) v.findViewById(R.id.radioGroup1))
+							 * .clearCheck();
+							 *//*
+							((TextView) v.findViewById(R.id.lblother))
+									.setVisibility(View.INVISIBLE);
+							((EditText) v.findViewById(R.id.et1))
+									.setVisibility(View.INVISIBLE);
+						} else if (cur.getString(2).equalsIgnoreCase("99")) {
+
+							*//*
+							 * ((RadioButton) ((RadioGroup) v
+							 * .findViewById(R.id.radioGroup1))
+							 * .findViewById(R.id.radio0)) .setChecked(true);
+							 *//*
+
+							for (int i = 0; i < ((Spinner) v
+									.findViewById(R.id.sp1)).getCount(); i++) {
+
+								if (((Spinner) v.findViewById(R.id.sp1))
+										.getItemAtPosition(i).toString()
+										.contains(cur.getString(2))) {
+
+									((Spinner) v.findViewById(R.id.sp1))
+											.setSelection(i);
+
+									((EditText) v.findViewById(R.id.et1))
+											.setVisibility(View.VISIBLE);
+									((EditText) v.findViewById(R.id.et1))
+											.setText(cur.getString(3));
+									((TextView) v.findViewById(R.id.lblother))
+											.setVisibility(View.VISIBLE);
+								}
+							}
+
+						} else {
+							for (int i = 0; i < ((Spinner) v
+									.findViewById(R.id.sp1)).getCount(); i++) {
+
+								if (((Spinner) v.findViewById(R.id.sp1))
+										.getItemAtPosition(i).toString()
+										.contains(cur.getString(2))) {
+									((Spinner) v.findViewById(R.id.sp1))
+											.setSelection(i);
+
+									((EditText) v.findViewById(R.id.et1))
+											.setVisibility(View.INVISIBLE);
+									((EditText) v.findViewById(R.id.et1))
+											.setText(cur.getString(3));
+									((TextView) v.findViewById(R.id.lblother))
+											.setVisibility(View.INVISIBLE);
+								}
+							}
+						}*/
+
+						// international 1
+
+
+
+						if (cur.getString(2) == null) {
+
+						}
+						else {
+							for (int i = 0; i < ((Spinner) v
+									.findViewById(R.id.sp2)).getCount(); i++) {
+
+								if (((Spinner) v.findViewById(R.id.sp2))
+										.getItemAtPosition(i).toString()
+										.contains(cur.getString(2))) {
+									((Spinner) v.findViewById(R.id.sp2))
+											.setSelection(i);
+								}
+
+							}
+						}
+
+					} while (cur.moveToNext());
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			Log.e("Error", e.getMessage());
+			// TODO: handle exception
+
+		}
+		finally
+		{
+			if(cur != null)
+				cur.close();
+		}
+
+		/*if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+				.equalsIgnoreCase("1")) {
+			CommonStaticClass.SetSpinnerValue(thisactivity,
+					((Spinner) v.findViewById(R.id.sp2)), "3");
+			((CheckBox) v.findViewById(R.id.checkBox1))
+					.setVisibility(View.VISIBLE);
+			((TextView) v.findViewById(R.id.textView2))
+					.setVisibility(View.GONE);
+			((EditText) v.findViewById(R.id.dischargedate))
+					.setVisibility(View.GONE);
+
+		} else if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+				.equalsIgnoreCase("2")) {
+			CommonStaticClass.SetSpinnerValue(thisactivity,
+					((Spinner) v.findViewById(R.id.sp1)), "01");
+
+			((CheckBox) v.findViewById(R.id.checkBox1))
+					.setVisibility(View.GONE);
+			((TextView) v.findViewById(R.id.textView2))
+					.setVisibility(View.GONE);
+			((EditText) v.findViewById(R.id.dischargedate))
+					.setVisibility(View.GONE);
+
+		} else if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+				.equalsIgnoreCase("3")) {
+			CommonStaticClass.SetSpinnerValue(thisactivity,
+					((Spinner) v.findViewById(R.id.sp1)), "17");
+			CommonStaticClass.SetSpinnerValue(thisactivity,
+					((Spinner) v.findViewById(R.id.sp2)), "3");
+
+			((CheckBox) v.findViewById(R.id.checkBox1))
+					.setVisibility(View.GONE);
+			((TextView) v.findViewById(R.id.textView2))
+					.setVisibility(View.GONE);
+			((EditText) v.findViewById(R.id.dischargedate))
+					.setVisibility(View.GONE);
+		}*/
+	}
+
 	public int getFormIndex(String formname) {
 		int index = 0;
 		if (formname.equalsIgnoreCase("FrmHHID")) {
@@ -14441,6 +15780,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		
 		if (formname.equalsIgnoreCase("frmcamera")) {
 			index = 32;
+		}
+		if (formname.equalsIgnoreCase("frmmultiplechoicetext")) {
+			index = 33;
+		}
+		if (formname.equalsIgnoreCase("frmaddress")) {
+			index = 34;
+		}
+		if (formname.equalsIgnoreCase("frmpersonrelation")) {
+			index = 35;
+		}
+		if (formname.equalsIgnoreCase("frmsymptoms")) {
+			index = 36;
 		}
 
 		return index;
@@ -14569,11 +15920,2410 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		case 32:
 			loadGuifrmcamera(frmcamera);
 			break;
+		case 33:
+			loadguifrmmultiplechoicetext(frmmultiplechoicetext);
+			break;
+		case 34:
+			loadguifrmaddress(frmaddress);
+			break;
+		case 35:
+			loadguifrmpersonrelation(frmpersonrelation);
+			break;
+		case 36:
+			loadguifrmsymptoms(frmsymptoms);
+			break;
+
 
 		default:
 
 			break;
 		}
+	}
+
+	//frmsymptoms
+	private void loadguifrmsymptoms(ViewGroup v) {
+
+		resetViewGroup(v);
+		qqq = (TextView) v.findViewById(R.id.qqq);
+
+		qName = CommonStaticClass.questionMap
+				.get(CommonStaticClass.currentSLNo).getQvar();
+
+		// Load Question
+		if (CommonStaticClass.langBng) {
+			if (CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
+				Typeface font = Typeface.createFromAsset(getAssets(),
+						"Siyam Rupali ANSI.ttf");
+				qqq.setTypeface(font);
+			}
+			;
+			qqq.setText(CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng()
+					: CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		} else {
+			qqq.setTypeface(null);
+			qqq.setText(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		}
+
+		loadDataFrmSymptom(v);
+		final ViewGroup vg = v;
+
+		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
+
+		saveNxtButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (CheckValidationfrmSymptom(vg))
+					updateTableDataFrmSymptom(vg);
+				// else
+				/*
+				 * CommonStaticClass.showMyAlert(thisactivity, "Message",
+				 * "Please fill all fields correctly");
+				 */
+
+				// preserveState();
+			}
+
+		});
+		clButton = (Button) v.findViewById(R.id.clButton);
+		clButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View vv) {
+				// TODO Auto-generated method stub
+				// resetViewGroup((ViewGroup) v);
+			}
+
+		});
+
+		/*
+		 * notesButton = (Button) v.findViewById(R.id.btnNote);
+		 * notesButton.setOnClickListener(new OnClickListener() {
+		 *
+		 * public void onClick(View v) { // TODO Auto-generated method stub
+		 * FraNotes();
+		 *
+		 * }
+		 *
+		 * });
+		 */
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+
+		});
+
+	}
+
+	private Integer intAge, intSex;
+	private void updateTableDataFrmSymptom(ViewGroup vg)
+	{
+
+		try {
+			// if (SB.Length > 0)
+			// {
+			// SB.Remove(0, SB.Length);
+			// }
+			StringBuilder SB = new StringBuilder();
+
+			intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
+					"tblMainQues", dbHelper));
+			intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
+					"tblMainQues", dbHelper));
+			/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
+					"tblMainQues", dbHelper));*/
+
+			SB.append("UPDATE tblMainQues ");
+			if (((CheckBox) vg.findViewById(R.id.chkFever)).isChecked() == true) {
+				SB.append("Set Fever = 1");
+				SB.append(", dt_fever = '"
+						+ ((EditText) vg.findViewById(R.id.dtpFever)).getText()
+						.toString() + "' ");
+			} else {
+				SB.append("Set Fever = 2 ");
+				SB.append(", dt_fever = null ");
+			}
+			if (((CheckBox) vg.findViewById(R.id.chkMeasureFever)).isChecked()) {
+				// int x =
+				// (((Spinner)vg.findViewById(R.id.cboSfever)).getSelectedItem().toString().lastIndexOf(":")
+				// - 1);
+
+				SB.append(", fever_meas_subj = "
+						+ CommonStaticClass.GetSpinnerValue(((Spinner) vg
+						.findViewById(R.id.cboSfever))));
+
+				if ((((Spinner) vg.findViewById(R.id.cboSfever))
+						.getSelectedItem().toString().lastIndexOf(":") - 1) == 1) {
+					SB.append(", fever_temp = '"
+							+ ((EditText) vg.findViewById(R.id.txtFeverTemp))
+							.getText().toString() + "'");
+				} else {
+					SB.append(", fever_temp = null ");
+				}
+
+			} else {
+				SB.append(", fever_meas_subj = null ");
+				SB.append(", fever_temp = null ");
+			}
+			if (((CheckBox) vg.findViewById(R.id.chkCough)).isChecked()) {
+				SB.append(", cough = 1");
+				SB.append(", dt_cough = '"
+						+ ((EditText) vg.findViewById(R.id.dtpCough)).getText()
+						.toString() + "' ");
+			} else {
+				SB.append(", dt_cough = Null ");
+				SB.append(", Cough = 2 ");
+			}
+
+			if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGroupchkSputum))
+					.findViewById(R.id.radio0)).isChecked())
+			// if (((RadioGroup)
+			// vg.findViewById(R.id.radioGroupchkSputum)).isChecked())
+			{
+				// SB.append(", sputum = '" + txtSputum.Text.ToString() + "' ");
+				SB.append(", sputum = 1 ");
+				// if (optSputumY.Checked == true)
+				// {
+				// SB.append(", sputum = 1 ");
+				// }
+				// else if (optSputumN.Checked == true)
+				// {
+				// SB.append(", sputum = 2 ");
+				// }
+			} else if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGroupchkSputum))
+					.findViewById(R.id.radio1)).isChecked()) {
+				SB.append(", sputum = 2 ");
+				// SB.append(", sputum = Null ");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkDiffbreathing)).isChecked()) {
+				SB.append(", dif_brea = 1");
+				SB.append(", dt_brea = '"
+						+ ((EditText) vg.findViewById(R.id.dtpDiffBreath))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", dt_brea = Null ");
+				SB.append(", dif_brea = 2 ");
+			}
+
+
+			if (((CheckBox) vg.findViewById(R.id.chkOtherOne)).isChecked()) {
+				SB.append(", other1 = 1");
+				SB.append(", SOther1N = '"
+						+ ((EditText) vg.findViewById(R.id.txtOtherOne))
+						.getText().toString() + "' ");
+				SB.append(", SOther1DT = '"
+						+ ((EditText) vg.findViewById(R.id.dtpOtherOne))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", other1 = 2");
+				SB.append(", SOther1DT = Null ");
+				SB.append(", SOther1N = null");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkOtherTwo)).isChecked()) {
+				SB.append(", other2 = 1");
+				SB.append(", SOther2N = '"
+						+ ((EditText) vg.findViewById(R.id.txtOtherTwo))
+						.getText().toString() + "' ");
+				SB.append(", SOther2DT = '"
+						+ ((EditText) vg.findViewById(R.id.dtpOtherTwo))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", other2 = 2");
+				SB.append(", SOther2DT = Null ");
+				SB.append(", SOther2N = null");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkOtherThree)).isChecked()) {
+				SB.append(", other3 = 1");
+				SB.append(", SOther3DT = '"
+						+ ((EditText) vg.findViewById(R.id.dtpOtherThree))
+						.getText().toString() + "' ");
+				SB.append(", SOther3N = '"
+						+ ((EditText) vg.findViewById(R.id.txtOtherThree))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", other3 = 2");
+				SB.append(", SOther3DT = Null ");
+				SB.append(", SOther3N = null");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkOtherFour)).isChecked()) {
+				SB.append(", other4 = 1");
+				SB.append(", SOther4DT = '"
+						+ ((EditText) vg.findViewById(R.id.dtpOtherFour))
+						.getText().toString() + "' ");
+				SB.append(", SOther4N = '"
+						+ ((EditText) vg.findViewById(R.id.txtOtherFour))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", other4 = 2");
+				SB.append(", SOther4DT = Null ");
+				SB.append(", SOther4N = null");
+			}
+
+			if (intAge < 5) {
+				if (((CheckBox) vg.findViewById(R.id.chkChestindraw))
+						.isChecked()) {
+					SB.append(", S5ChestIND = '"
+							+ ((EditText) vg.findViewById(R.id.dtpChestIndraw))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5ChestIND = Null ");
+				}
+				if (((CheckBox) vg.findViewById(R.id.chkStridor)).isChecked()) {
+					SB.append(", S5Stridor = '"
+							+ ((EditText) vg.findViewById(R.id.dtpStridor))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5Stridor = Null ");
+				}
+				if (((CheckBox) vg.findViewById(R.id.chkConvulsion))
+						.isChecked()) {
+					SB.append(", S5Convulsion = '"
+							+ ((EditText) vg.findViewById(R.id.dtpConvulsion))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5Convulsion = Null ");
+				}
+				if (((CheckBox) vg.findViewById(R.id.chkUnableToDrink))
+						.isChecked()) {
+					SB.append(", S5UnDrink = '"
+							+ ((EditText) vg.findViewById(R.id.dtpUnableDrink))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5UnDrink = Null ");
+				}
+				if (((CheckBox) vg.findViewById(R.id.chkUnconsciousness))
+						.isChecked()) {
+					SB.append(", S5UnCons = '"
+							+ ((EditText) vg
+							.findViewById(R.id.dtpUnconsciousness))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5UnCons = Null ");
+				}
+				if (((CheckBox) vg.findViewById(R.id.chkVomit)).isChecked()) {
+					SB.append(", S5Vomit = '"
+							+ ((EditText) vg.findViewById(R.id.dtpVomit))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", S5Vomit = Null ");
+				}
+
+			} else {
+				SB.append(", S5ChestIND = Null ");
+				SB.append(", S5Stridor = Null ");
+				SB.append(", S5Convulsion = Null ");
+				SB.append(", S5UnDrink = Null ");
+				SB.append(", S5UnCons = Null ");
+				SB.append(", S5Vomit = Null ");
+			}
+
+
+
+			SB.append(", EditBy = '" + CommonStaticClass.userSpecificId + "' ");
+			SB.append(", EditDate = '" + CommonStaticClass.GetDate() + "' ");
+
+			SB.append(" where dataid = '" + CommonStaticClass.dataId + "'");
+
+			if (dbHelper.executeDMLQuery(SB.toString())) {
+
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
+
+		} catch (Exception ex) {
+			CommonStaticClass.showMyAlert(thisactivity, "Error",
+					"Error in Update String Building");
+			// MessageBox.Show(ex.Message, "Error in Update String Building",
+			// MessageBoxButtons.OK, MessageBoxIcon.Asterisk,
+			// MessageBoxDefaultButton.Button1);
+		} finally {
+		}
+
+
+	}
+
+	private boolean CheckValidationfrmSymptom(ViewGroup v)
+	{
+
+		// Checking Fever is checked or not
+		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
+				"tblMainQues", dbHelper));
+		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
+				"tblMainQues", dbHelper));
+		/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
+				"tblMainQues", dbHelper));*/
+
+		if (((RadioGroup) v.findViewById(R.id.radioGroupchkSputum))
+				.getVisibility() == View.VISIBLE) {
+			if (((RadioButton) ((RadioGroup) v
+					.findViewById(R.id.radioGroupchkSputum))
+					.findViewById(R.id.radio0)).isChecked()) {
+
+			} else if (((RadioButton) ((RadioGroup) v
+					.findViewById(R.id.radioGroupchkSputum))
+					.findViewById(R.id.radio1)).isChecked())
+
+			{
+
+			} else {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input Sputum");
+				return false;
+			}
+
+		}
+
+
+
+		String edate = CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+				dbHelper);
+
+		String dateInStringdtpCough = "";
+		Date datedtpCough = null;
+		SimpleDateFormat formatterdtpCough = new SimpleDateFormat("dd/MM/yyyy");
+		if (((CheckBox) v.findViewById(R.id.chkCough)).isChecked()) {
+
+
+			dateInStringdtpCough = ((EditText) v.findViewById(R.id.dtpCough))
+					.getText().toString();
+
+
+
+
+			try {
+				datedtpCough = formatterdtpCough.parse(dateInStringdtpCough);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+
+			if (CommonStaticClass.IsfutureDate(datedtpCough)) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct cough date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkDiffbreathing)).isChecked()) {
+
+			dateInStringdtpCough = ((EditText) v.findViewById(R.id.dtpDiffBreath)).getText().toString();
+			datedtpCough = null;
+			try {
+				datedtpCough = formatterdtpCough.parse(dateInStringdtpCough);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			if (CommonStaticClass.IsfutureDate(datedtpCough)) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct difficulty breathing date");
+				return false;
+			}
+
+		}
+
+
+
+
+
+		/*if (((CheckBox) v.findViewById(R.id.chkSorethroat)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpSoreThroat)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct sore throat date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkRunningnose)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpRunningnose)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct running nose date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkHeadache)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpHeadache)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct headache date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkDiarrhea)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpDiarrhea)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct diarrhea date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkChills)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpChills)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct chills date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkBodyache)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpBodyache)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Body ache date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkhemo)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpHemo)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Hemoptysis date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkpleur)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtppleur)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Pleuritic Chest pain date");
+				return false;
+			}
+		}*/
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherOne)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpOtherOne)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Other date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherTwo)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpOtherTwo)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Other date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherThree)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpOtherThree)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Other date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherFour)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpOtherFour)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Other date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkChestindraw)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpChestIndraw)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Chest Indraw date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkStridor)).isChecked()) {
+
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpStridor)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Stridor date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkConvulsion)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpConvulsion)))) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Convulsion date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkUnableToDrink)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpUnableDrink)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Unable to Drink date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkUnconsciousness)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpUnconsciousness)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Unconsciousness date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkVomit)).isChecked()) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpVomit)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Vomit date");
+				return false;
+			}
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkFever)).isChecked() == true) {
+			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpFever)))) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Please input correct Fever date");
+				return false;
+			}
+
+		}
+
+		// Checking Fever is checked or not
+		/*if (intComp != 3) {
+			if (((CheckBox) v.findViewById(R.id.chkFever)).isChecked() == false) {
+				CommonStaticClass.showMyAlert(thisactivity, "Message",
+						"Fever must be checked");
+				((CheckBox) v.findViewById(R.id.chkFever))
+						.setBackgroundResource(R.drawable.border);
+				// tabDiseaseInfo.SelectedIndex = 0;
+				return false;
+			} else if (((CheckBox) v.findViewById(R.id.chkFever)).isChecked() == true) {
+				try {
+
+
+					if (((CheckBox) v.findViewById(R.id.chkFever)).isChecked() == true) {
+						if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpFever)))) {
+
+							CommonStaticClass.showMyAlert(thisactivity, "Error",
+									"Please input correct Fever date");
+							return false;
+						}
+
+					}
+
+
+				*//*	if (CommonStaticClass.IsSeconDateGraterThanFirstDate(
+							((EditText) v.findViewById(R.id.dtpFever))
+									.getText().toString(), edate)) {
+						CommonStaticClass.showMyAlert(thisactivity, "Error",
+								"Please input correct Fever date");
+						return false;
+					}*//*
+
+					SimpleDateFormat formatter = new SimpleDateFormat(
+							"yyyy-MM-dd");
+
+					String[] d = (((EditText) v.findViewById(R.id.dtpFever))
+							.getText().toString()).split("/");
+
+					String dateInString = d[2] + "-" + d[1] + "-" + d[0];
+
+					Date date, denddate;
+					if (dateInString.length() <= 0) {
+						CommonStaticClass.showMyAlert(thisactivity, "Error",
+								"Please input date");
+						return false;
+					}
+					date = formatter.parse(dateInString);
+
+					Calendar startdate = Calendar.getInstance();
+					Calendar enddate = Calendar.getInstance();
+
+					startdate.setTime(date);
+
+					String senddate = enddate.get(Calendar.YEAR)
+							+ "-"
+							+ CommonStaticClass.SetpadLeft(String
+									.valueOf(enddate.get(Calendar.MONTH) + 1),
+							enddate.get(Calendar.MONTH)) + "-"
+							+ enddate.get(Calendar.DAY_OF_MONTH);
+
+					denddate = formatter.parse(senddate);
+					enddate.setTime(denddate);
+
+					int x = CommonStaticClass.DayDifferenceBackwardWithMonth(
+							startdate, enddate);
+
+					if (x > 7) {
+						CommonStaticClass.showMyAlert(thisactivity, "Error",
+								"Fever Date can not be more than 7");
+						return false;
+
+					}
+
+					else if (x == 1) {
+
+						// return false;
+
+					}
+
+					else if (x == 2) {
+
+						// return false;
+
+					} else if (x == 3) {
+
+						// return false;
+
+					} else if (x == 4) {
+
+						// return false;
+
+					} else if (x == 5) {
+
+						// return false;
+
+					} else if (x == 6) {
+
+						// return false;
+
+					}
+
+					else if (x == 7) {
+
+						// return false;
+
+					} else if (x == 0) {
+
+						// return false;
+
+					} else {
+
+						CommonStaticClass.showMyAlert(thisactivity, "Error",
+								"Fever Date can not be more than 7");
+						return false;
+
+					}
+
+					*//*
+					 * else if (CommonStaticClass .DayDifference(enddate,
+					 * startdate) < 7) {
+					 * CommonStaticClass.showMyAlert(thisactivity, "Error",
+					 * "Fever Date can not be less than 7"); return false;
+					 *
+					 * }
+					 *//*
+
+					*//*
+					 * if(!CommonStaticClass.IsSeconDateGraterThanFirstDate(((
+					 * EditText) v
+					 * .findViewById(R.id.dtpFever)).getText().toString(),
+					 * CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+					 * dbHelper))) { CommonStaticClass.showMyAlert(thisactivity,
+					 * "Error", "Please input correct fever date"); return
+					 * false; }
+					 *//*
+
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				*//*
+				 * ((EditText) v.findViewById(R.id.dtpFever))
+				 * .setText(CommonStaticClass .CheckCursorValueWithNullHandler(
+				 * mCursor, "dt_fever") .toString());
+				 *//*
+			}
+			if (((CheckBox) v.findViewById(R.id.chkMeasureFever)).isChecked() == false) {
+				CommonStaticClass.showMyAlert(thisactivity, "Message",
+						"Measure Fever must be checked");
+				((CheckBox) v.findViewById(R.id.chkMeasureFever))
+						.setBackgroundResource(R.drawable.border);
+				// tabDiseaseInfo.SelectedIndex = 0;
+				return false;
+			}
+		}*/
+		/*if (intComp == 3) {
+			if (((CheckBox) v.findViewById(R.id.chkDiffbreathing)).isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkCough)).isChecked() == false) {
+				CommonStaticClass.showMyAlert(thisactivity, "Message",
+						"Diffbreathing or cough must be checked.");
+				((CheckBox) v.findViewById(R.id.chkDiffbreathing))
+						.setBackgroundResource(R.drawable.border);
+				// tabDiseaseInfo.SelectedIndex = 0;
+				return false;
+			}
+		}*/
+
+
+		if ( intAge < 5) {
+			if (((CheckBox) v.findViewById(R.id.chkChestindraw)).isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkStridor)).isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkConvulsion))
+					.isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkUnableToDrink))
+					.isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkUnconsciousness))
+					.isChecked() == false
+					&& ((CheckBox) v.findViewById(R.id.chkVomit)).isChecked() == false) {
+
+				((CheckBox) v.findViewById(R.id.chkChestindraw))
+						.setBackgroundResource(R.drawable.border);
+				((CheckBox) v.findViewById(R.id.chkStridor))
+						.setBackgroundResource(R.drawable.border);
+				((CheckBox) v.findViewById(R.id.chkConvulsion))
+						.setBackgroundResource(R.drawable.border);
+				((CheckBox) v.findViewById(R.id.chkUnableToDrink))
+						.setBackgroundResource(R.drawable.border);
+				((CheckBox) v.findViewById(R.id.chkUnconsciousness))
+						.setBackgroundResource(R.drawable.border);
+				((CheckBox) v.findViewById(R.id.chkVomit))
+						.setBackgroundResource(R.drawable.border);
+
+				CommonStaticClass
+						.showMyAlert(thisactivity, "Message",
+								"Please check atleast one option from Coloured Check boxes");
+
+				// tabDiseaseInfo.SelectedIndex = 2;
+				return false;
+			}
+		}
+
+
+
+
+
+
+
+		// intComp = Convert.ToInt16(txtHHID.Text.Substring(0, 1).Trim());
+
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherOne)).isChecked() == true
+				&& ((EditText) v.findViewById(R.id.txtOtherOne)).getText()
+				.toString().length() <= 0) {
+			((EditText) v.findViewById(R.id.txtOtherOne))
+					.setBackgroundResource(R.drawable.border);
+			CommonStaticClass.showMyAlert(thisactivity, "Message",
+					"Please write something in other.");
+
+			// tabDiseaseInfo.SelectedIndex = 2;
+			return false;
+		}
+		if (((CheckBox) v.findViewById(R.id.chkOtherTwo)).isChecked() == true
+				&& ((EditText) v.findViewById(R.id.txtOtherTwo)).getText()
+				.toString().length() <= 0) {
+			((EditText) v.findViewById(R.id.txtOtherTwo))
+					.setBackgroundResource(R.drawable.border);
+			CommonStaticClass.showMyAlert(thisactivity, "Message",
+					"Please write something in other.");
+			// tabDiseaseInfo.SelectedIndex = 2;
+			return false;
+		}
+		if (((CheckBox) v.findViewById(R.id.chkOtherThree)).isChecked() == true
+				&& ((EditText) v.findViewById(R.id.txtOtherThree)).getText()
+				.toString().length() <= 0) {
+			((EditText) v.findViewById(R.id.txtOtherThree))
+					.setBackgroundResource(R.drawable.border);
+			CommonStaticClass.showMyAlert(thisactivity, "Message",
+					"Please write something in other.");
+			// tabDiseaseInfo.SelectedIndex = 2;
+			return false;
+		}
+
+		if (((CheckBox) v.findViewById(R.id.chkOtherFour)).isChecked() == true
+				&& ((EditText) v.findViewById(R.id.txtOtherFour)).getText()
+				.toString().length() <= 0) {
+			((EditText) v.findViewById(R.id.txtOtherFour))
+					.setBackgroundResource(R.drawable.border);
+			CommonStaticClass.showMyAlert(thisactivity, "Message",
+					"Please write something in other.");
+			// tabDiseaseInfo.SelectedIndex = 2;
+			return false;
+		}
+
+
+
+		return true;
+
+	}
+
+	private void loadDataFrmSymptom(ViewGroup v)
+	{
+
+
+		final ViewGroup vg = v;
+		HideViews(v);
+		String sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + ""
+				+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
+				+ " from DrugChronicList WHERE DrCode <> '0' ORDER BY DrCode"
+				+ "";
+
+
+
+		sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + "" + "|| "
+				+ "" + "' : '" + " || " + "Name" + ") AS " + "D"
+				+ " from DrugChronicList ORDER BY DrCode" + "";
+
+
+		ArrayList<String> ids = new ArrayList<String>();
+		ids.add("");
+		ids.add("1 : Subjective");
+		ids.add("2 : Measured");
+
+		CommonStaticClass.FillCombo(thisactivity, ids,
+				((Spinner) v.findViewById(R.id.cboSfever)));
+		ids = new ArrayList<String>();
+		ids.add("");
+		ids.add("1 : Asthma");
+		ids.add("2 : COPD/Chronic bronchitis/Emphysema");
+		ids.add("3 : Diabetes");
+		ids.add("4 : Hypertension");
+		ids.add("5 : Ishchaemic Heart Diseases");
+		ids.add("6 : Cancer");
+		ids.add("7 : Malaria");
+		ids.add("8 : Kideney disease");
+		ids.add("9 : liver disease");
+		ids.add("10 : HIV/AIDS");
+		ids.add("99 : Others");
+		ids.add("0 : No");
+
+
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkFever),
+				(EditText) v.findViewById(R.id.dtpFever), v);
+
+		((CheckBox) v.findViewById(R.id.chkMeasureFever))
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+												 boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+
+							((Spinner) vg.findViewById(R.id.cboSfever))
+									.setVisibility(View.VISIBLE);
+
+							((TextView) vg.findViewById(R.id.lbltemp))
+									.setVisibility(View.VISIBLE);
+							if (((CheckBox) vg.findViewById(R.id.chkFever))
+									.isChecked()) {
+
+							} else {
+								((CheckBox) vg.findViewById(R.id.chkFever))
+										.setChecked(true);
+							}
+						} else {
+							((Spinner) vg.findViewById(R.id.cboSfever))
+									.setVisibility(View.GONE);
+							((TextView) vg.findViewById(R.id.lbltemp))
+									.setVisibility(View.GONE);
+
+							/*
+							 * if (((CheckBox) vg.findViewById(R.id.chkFever))
+							 * .isChecked()) { ((CheckBox)
+							 * vg.findViewById(R.id.chkFever))
+							 * .setChecked(true); }
+							 */
+							if (((CheckBox) vg.findViewById(R.id.chkFever))
+									.isChecked()) {
+								((CheckBox) vg
+										.findViewById(R.id.chkMeasureFever))
+										.setChecked(true);
+								((Spinner) vg.findViewById(R.id.cboSfever))
+										.setVisibility(View.VISIBLE);
+								((TextView) vg.findViewById(R.id.lbltemp))
+										.setVisibility(View.VISIBLE);
+							}
+						}
+					}
+				});
+
+
+
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkCough),
+				(EditText) v.findViewById(R.id.dtpCough), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkDiffbreathing),
+				(EditText) v.findViewById(R.id.dtpDiffBreath), v);
+
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkOtherOne),
+				(EditText) v.findViewById(R.id.txtOtherOne), v);
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkOtherTwo),
+				(EditText) v.findViewById(R.id.txtOtherTwo), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkOtherThree),
+				(EditText) v.findViewById(R.id.txtOtherThree), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkOtherFour),
+				(EditText) v.findViewById(R.id.txtOtherFour), v);
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkChestindraw),
+				(EditText) v.findViewById(R.id.dtpChestIndraw), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkStridor),
+				(EditText) v.findViewById(R.id.dtpStridor), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkConvulsion),
+				(EditText) v.findViewById(R.id.dtpConvulsion), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkUnableToDrink),
+				(EditText) v.findViewById(R.id.dtpUnableDrink), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkUnconsciousness),
+				(EditText) v.findViewById(R.id.dtpUnconsciousness), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkVomit),
+				(EditText) v.findViewById(R.id.dtpVomit), v);
+
+		SetDate((EditText) v.findViewById(R.id.dtpFever));
+
+		SetDate((EditText) v.findViewById(R.id.dtpCough));
+		SetDate((EditText) v.findViewById(R.id.dtpDiffBreath));
+
+
+		SetDate((EditText) v.findViewById(R.id.dtpOtherOne));
+		SetDate((EditText) v.findViewById(R.id.dtpOtherTwo));
+		SetDate((EditText) v.findViewById(R.id.dtpOtherThree));
+		SetDate((EditText) v.findViewById(R.id.dtpOtherFour));
+
+		SetDate((EditText) v.findViewById(R.id.dtpChestIndraw));
+		SetDate((EditText) v.findViewById(R.id.dtpStridor));
+		SetDate((EditText) v.findViewById(R.id.dtpConvulsion));
+		SetDate((EditText) v.findViewById(R.id.dtpUnableDrink));
+		SetDate((EditText) v.findViewById(R.id.dtpUnconsciousness));
+		SetDate((EditText) v.findViewById(R.id.dtpVomit));
+
+
+		((Spinner) vg.findViewById(R.id.cboSfever))
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent,
+											   View view, int pos, long id) {
+
+						if (parent.getItemAtPosition(pos).toString().length() > 0) {
+
+							sResCode = parent
+									.getItemAtPosition(pos)
+									.toString()
+									.substring(
+											0,
+											(parent.getItemAtPosition(pos)
+													.toString()
+													.lastIndexOf(":"))).trim();
+							if (sResCode.length() > 0) {
+								if (sResCode.equalsIgnoreCase("2")) {
+									((EditText) vg
+											.findViewById(R.id.txtFeverTemp))
+											.setVisibility(View.VISIBLE);
+									((TextView) vg.findViewById(R.id.lbltemp))
+											.setVisibility(View.VISIBLE);
+
+								} else {
+									((EditText) vg
+											.findViewById(R.id.txtFeverTemp))
+											.setVisibility(View.GONE);
+									((TextView) vg.findViewById(R.id.lbltemp))
+											.setVisibility(View.GONE);
+								}
+							}
+
+						}
+
+					}
+
+					public void onNothingSelected(AdapterView<?> arg0) {
+
+					}
+				});
+
+
+
+
+		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
+				"tblMainQues", dbHelper));
+		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
+				"tblMainQues", dbHelper));
+		/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
+				"tblMainQues", dbHelper));*/
+
+//		GetCathmanArea();
+
+		try {
+			String strSQL = "Select * from tblMainQues where dataid = '"
+					+ CommonStaticClass.dataId + "'";
+			Cursor mCursor = null;
+
+			try {
+
+				mCursor = dbHelper.getQueryCursor(strSQL);
+
+				if (mCursor.getCount() > 0) {
+
+					if (mCursor.moveToFirst()) {
+
+						do {
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"Fever").toString()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkFever))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"Fever").equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkFever))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpFever))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_fever")
+												.toString());
+
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.cboSfever)),
+												CommonStaticClass
+														.CheckCursorValueWithNullHandler(
+																mCursor,
+																"fever_meas_subj")
+														.toString().trim());
+
+								/*
+								 * ((EditText)
+								 * v.findViewById(R.id.dtpFever)).setVisibility
+								 * (View.VISIBLE);
+								 */
+							} else {
+								((CheckBox) v.findViewById(R.id.chkFever))
+										.setChecked(false);
+							}
+
+							if (!CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"fever_meas_subj")
+									.equalsIgnoreCase("")) {
+								((CheckBox) v
+										.findViewById(R.id.chkMeasureFever))
+										.setChecked(false);
+
+							}
+
+							if (!CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"fever_meas_subj")
+									.equalsIgnoreCase("")) {
+								CommonStaticClass
+										.SetSpinnerValue(
+												thisactivity,
+												((Spinner) v
+														.findViewById(R.id.cboSfever)),
+												CommonStaticClass
+														.CheckCursorValueWithNullHandler(
+																mCursor,
+																"fever_meas_subj")
+														.toString().trim());
+								((CheckBox) v
+										.findViewById(R.id.chkMeasureFever))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.txtFeverTemp))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "fever_temp"));
+
+
+							}
+
+							else {
+								((CheckBox) v
+										.findViewById(R.id.chkMeasureFever))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"Cough").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkCough))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"Cough").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkCough))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpCough))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_cough")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkCough))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"sputum").trim()
+									.equalsIgnoreCase("1")) {
+								((RadioButton) ((RadioGroup) vg
+										.findViewById(R.id.radioGroupchkSputum))
+										.findViewById(R.id.radio0))
+										.setChecked(true);
+								// ((CheckBox) v.findViewById(R.id.chkSputum))
+								// .setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"sputum").trim()
+									.equalsIgnoreCase("2")) {
+								((RadioButton) ((RadioGroup) vg
+										.findViewById(R.id.radioGroupchkSputum))
+										.findViewById(R.id.radio1))
+										.setChecked(true);
+								// ((CheckBox) v.findViewById(R.id.chkSputum))
+								// .setChecked(true);
+
+							}
+							/*
+							 * else { ((CheckBox)
+							 * v.findViewById(R.id.chkSputum))
+							 * .setChecked(false); }
+							 */
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"dif_brea").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v
+										.findViewById(R.id.chkDiffbreathing))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"dif_brea").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v
+										.findViewById(R.id.chkDiffbreathing))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpDiffBreath))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_brea")
+												.toString().trim());
+							} else {
+								((CheckBox) v
+										.findViewById(R.id.chkDiffbreathing))
+										.setChecked(false);
+							}
+
+
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"SOther1DT").trim()
+									.equalsIgnoreCase("")) {
+								((CheckBox) v.findViewById(R.id.chkOtherOne))
+										.setChecked(false);
+								((EditText) v.findViewById(R.id.txtOtherOne))
+										.setText("");
+							} else {
+								((CheckBox) v.findViewById(R.id.chkOtherOne))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpOtherOne))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther1DT")
+												.toString().trim());
+								((EditText) v.findViewById(R.id.txtOtherOne))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther1N")
+												.toString().trim());
+							}
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"SOther2DT").trim()
+									.equalsIgnoreCase("")) {
+								((CheckBox) v.findViewById(R.id.chkOtherTwo))
+										.setChecked(false);
+								((EditText) v.findViewById(R.id.txtOtherTwo))
+										.setText("");
+							} else {
+								((CheckBox) v.findViewById(R.id.chkOtherTwo))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpOtherTwo))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther2DT"));
+
+								((EditText) v.findViewById(R.id.txtOtherTwo))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther2N")
+												.toString().trim());
+							}
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"SOther3DT").trim()
+									.equalsIgnoreCase("")) {
+								((CheckBox) v.findViewById(R.id.chkOtherThree))
+										.setChecked(false);
+								((EditText) v.findViewById(R.id.txtOtherThree))
+										.setText("");
+							} else {
+								((CheckBox) v.findViewById(R.id.chkOtherThree))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpOtherThree))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther3DT")
+												.toString().trim());
+								((EditText) v.findViewById(R.id.txtOtherThree))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther3N")
+												.toString().trim());
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"SOther4DT").trim()
+									.equalsIgnoreCase("")) {
+								((CheckBox) v.findViewById(R.id.chkOtherFour))
+										.setChecked(false);
+								((EditText) v.findViewById(R.id.txtOtherFour))
+										.setText("");
+							} else {
+								((CheckBox) v.findViewById(R.id.chkOtherFour))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpOtherFour))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther4DT")
+												.toString().trim());
+								((EditText) v.findViewById(R.id.txtOtherFour))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "SOther4N")
+												.toString().trim());
+							}
+
+							if (intAge < 5) {
+								((CheckBox) v.findViewById(R.id.chkChestindraw))
+										.setChecked(true);
+								((CheckBox) v.findViewById(R.id.chkStridor))
+										.setChecked(true);
+								((CheckBox) v.findViewById(R.id.chkConvulsion))
+										.setChecked(true);
+								((CheckBox) v
+										.findViewById(R.id.chkUnableToDrink))
+										.setChecked(true);
+								((CheckBox) v
+										.findViewById(R.id.chkUnconsciousness))
+										.setChecked(true);
+								((CheckBox) v.findViewById(R.id.chkVomit))
+										.setChecked(true);
+								// panP4.Enabled = true;
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5ChestIND")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkChestindraw)),
+										((EditText) v
+												.findViewById(R.id.dtpChestIndraw)));
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5Stridor")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkStridor)),
+										((EditText) v
+												.findViewById(R.id.dtpStridor)));
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5Convulsion")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkConvulsion)),
+										((EditText) v
+												.findViewById(R.id.dtpConvulsion)));
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5UnDrink")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkUnableToDrink)),
+										((EditText) v
+												.findViewById(R.id.dtpUnableDrink)));
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5UnCons")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkUnconsciousness)),
+										((EditText) v
+												.findViewById(R.id.dtpUnconsciousness)));
+								LoadCheckedDate(
+										CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "S5Vomit")
+												.toString().trim(),
+										((CheckBox) v
+												.findViewById(R.id.chkVomit)),
+										((EditText) v
+												.findViewById(R.id.dtpVomit)));
+							} else {
+								((CheckBox) v.findViewById(R.id.chkChestindraw))
+										.setChecked(false);
+								((CheckBox) v.findViewById(R.id.chkStridor))
+										.setChecked(false);
+								((CheckBox) v.findViewById(R.id.chkConvulsion))
+										.setChecked(false);
+								((CheckBox) v
+										.findViewById(R.id.chkUnableToDrink))
+										.setChecked(false);
+								((CheckBox) v
+										.findViewById(R.id.chkUnconsciousness))
+										.setChecked(false);
+								((CheckBox) v.findViewById(R.id.chkVomit))
+										.setChecked(false);
+
+							}
+
+
+						} while (mCursor.moveToNext());
+
+					}
+
+				}
+
+			} catch (Exception e) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Error On Load");
+			} finally {
+
+			}
+		} finally {
+
+		}
+
+
+	}
+
+	private void SetDate(EditText et) {
+
+		if (!(et.getText().toString().length() > 0))
+			updateDisplayfrmSymptom("date", et);
+
+		et.setHint("Date of Onset");
+		et.setHintTextColor(Color.GRAY);
+		et.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+
+				final Calendar c = Calendar.getInstance();
+				dateYear = c.get(Calendar.YEAR);
+				dateMonth = c.get(Calendar.MONTH);
+				dateDay = c.get(Calendar.DAY_OF_MONTH);
+
+				showDialog(HBIS_DATE_DIALOG_ID);
+				return false;
+
+			}
+		});
+
+	}
+
+	private DatePickerDialog HBISDatePicker() {
+		DatePickerDialog dpd = new DatePickerDialog(this, HBISdateListener,
+				dateYear, dateMonth, dateDay);
+		try {
+
+			Field[] datePickerDialogFields = dpd.getClass().getDeclaredFields();
+			for (Field datePickerDialogField : datePickerDialogFields) {
+				if (datePickerDialogField.getName().equals("mDatePicker")) {
+					datePickerDialogField.setAccessible(true);
+					DatePicker datePicker = (DatePicker) datePickerDialogField
+							.get(dpd);
+					Field datePickerFields[] = datePickerDialogField.getType()
+							.getDeclaredFields();
+					for (Field datePickerField : datePickerFields) {
+						if ("mDayPicker".equals(datePickerField.getName())
+								|| "mDaySpinner".equals(datePickerField
+								.getName())) {
+							datePickerField.setAccessible(true);
+							Object dayPicker = new Object();
+							dayPicker = datePickerField.get(datePicker);
+							((View) dayPicker).setVisibility(View.GONE);
+						}
+					}
+				}
+
+			}
+		} catch (Exception ex) {
+		}
+		return dpd;
+	}
+	private void updateDisplayfrmSymptom(String dt, EditText et) {
+
+		if (dt.contains("date")) {
+			String date = new StringBuilder()
+					// Month is 0 based so add 1
+					.append(String.format("%02d", dateDay)).append("/")
+					.append(String.format("%02d", dateMonth + 1)).append("/")
+					.append(dateYear).toString();
+
+			if (et.isFocused())
+				et.setText(date);
+		}
+
+	}
+	private void SetCheckBox(final CheckBox chk, final EditText et,
+							 final ViewGroup vg) {
+
+		chk.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+										 boolean isChecked) {
+
+				if (chk.isChecked()) {
+					et.setVisibility(View.VISIBLE);
+
+					if (R.id.chkOtherOne == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherOne))
+								.setVisibility(View.VISIBLE);
+					} else if (R.id.chkOtherTwo == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherTwo))
+								.setVisibility(View.VISIBLE);
+					} else if (R.id.chkOtherThree == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherThree))
+								.setVisibility(View.VISIBLE);
+					}else if (R.id.chkOtherFour == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherFour))
+								.setVisibility(View.VISIBLE);
+					}else if (R.id.chkFever == chk.getId()) {
+						((CheckBox) vg.findViewById(R.id.chkMeasureFever))
+								.setChecked(true);
+						((TextView) vg.findViewById(R.id.lbltemp))
+								.setVisibility(View.VISIBLE);
+						((EditText) vg.findViewById(R.id.txtFeverTemp))
+								.setVisibility(View.VISIBLE);
+					}
+
+					else if ((R.id.chkCough) == chk.getId()) {
+						if (intAge < 5) {
+
+						} else {
+							((TextView) vg.findViewById(R.id.lblSputum))
+									.setVisibility(View.VISIBLE);
+							((RadioGroup) vg
+									.findViewById(R.id.radioGroupchkSputum))
+									.setVisibility(View.VISIBLE);
+						}
+					}
+				} else {
+					et.setVisibility(View.GONE);
+					if (R.id.chkOtherOne == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherOne))
+								.setVisibility(View.GONE);
+					} else if (R.id.chkOtherTwo == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherTwo))
+								.setVisibility(View.GONE);
+					} else if (R.id.chkOtherThree == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherThree))
+								.setVisibility(View.GONE);
+					} else if (R.id.chkOtherFour == chk.getId()) {
+						((EditText) vg.findViewById(R.id.dtpOtherFour))
+								.setVisibility(View.GONE);
+					} else if (R.id.chkFever == chk.getId()) {
+						((CheckBox) vg.findViewById(R.id.chkMeasureFever))
+								.setChecked(false);
+						((TextView) vg.findViewById(R.id.lbltemp))
+								.setVisibility(View.GONE);
+						((EditText) vg.findViewById(R.id.txtFeverTemp))
+								.setVisibility(View.GONE);
+					} else if ((R.id.chkCough) == chk.getId()) {
+						((TextView) vg.findViewById(R.id.lblSputum))
+								.setVisibility(View.GONE);
+						((RadioGroup) vg.findViewById(R.id.radioGroupchkSputum))
+								.clearCheck();
+						((RadioGroup) vg.findViewById(R.id.radioGroupchkSputum))
+								.setVisibility(View.GONE);
+					}
+				}
+
+				/*
+				 * if (((CheckBox) vg.findViewById(R.id.chkOtherOne)).getId() ==
+				 * chk .getId()) { ((EditText)
+				 * vg.findViewById(R.id.dtpOtherOne))
+				 * .setVisibility(View.VISIBLE); } else if (((CheckBox)
+				 * vg.findViewById(R.id.chkOtherTwo)) .getId() == chk.getId()) {
+				 * ((EditText) vg.findViewById(R.id.dtpOtherTwo))
+				 * .setVisibility(View.VISIBLE); } else if (((CheckBox)
+				 * vg.findViewById(R.id.chkOtherThree)) .getId() == chk.getId())
+				 * { ((EditText) vg.findViewById(R.id.dtpOtherThree))
+				 * .setVisibility(View.VISIBLE); }
+				 *
+				 * } else { et.setVisibility(View.GONE); if (((CheckBox)
+				 * vg.findViewById(R.id.chkOtherOne)).getId() == chk .getId()) {
+				 * ((EditText) vg.findViewById(R.id.dtpOtherOne))
+				 * .setVisibility(View.GONE); } else if (((CheckBox)
+				 * vg.findViewById(R.id.chkOtherTwo)) .getId() == chk.getId()) {
+				 * ((EditText) vg.findViewById(R.id.dtpOtherTwo))
+				 * .setVisibility(View.GONE); } else if (((CheckBox)
+				 * vg.findViewById(R.id.chkOtherThree)) .getId() == chk.getId())
+				 * { ((EditText) vg.findViewById(R.id.dtpOtherThree))
+				 * .setVisibility(View.GONE); } }
+				 */
+
+			}
+		});
+
+	}
+	private void LoadCheckedDate(String strData, CheckBox myChk, EditText myDtp) {
+		try {
+			if (strData.length() <= 0) {
+				myChk.setChecked(false);
+			} else {
+				myChk.setChecked(true);
+
+				myDtp.setText(strData);
+			}
+		} catch (Exception ex) {
+			CommonStaticClass.showMyAlert(thisactivity, "Error",
+					"Error in Load Check Date.");
+		} finally {
+		}
+	}
+	private void loadguifrmaddress(ViewGroup v) {
+		qqq = (TextView) v.findViewById(R.id.qqq);
+
+		qName = CommonStaticClass.questionMap
+				.get(CommonStaticClass.currentSLNo).getQvar();
+
+		// Load Question
+		if (CommonStaticClass.langBng) {
+			if (CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0) {
+				Typeface font = Typeface.createFromAsset(getAssets(),
+						"Siyam Rupali ANSI.ttf");
+				qqq.setTypeface(font);
+			}
+			;
+			qqq.setText(CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng().length() > 0 ? CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQdescbng()
+					: CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		} else {
+			qqq.setTypeface(null);
+			qqq.setText(CommonStaticClass.questionMap.get(
+					CommonStaticClass.currentSLNo).getQdesceng());
+		}
+
+		final ViewGroup vg = v;
+
+		/*
+		 * progressDialog = ProgressDialog.show(con, "Loading...",
+		 * "Please wait while loading data");
+		 */
+
+		/*
+		 * new Thread() {
+		 *
+		 * public void run() { try { Looper.prepare();
+		 */
+
+		loadDataAddress(vg);
+		/*
+		 * Message msg = new Message(); msg.what = UPDATEDONE;
+		 * handlerFrmHHID.sendMessage(msg);
+		 *
+		 * } catch (Exception lg) { progressDialog.dismiss();
+		 * CommonStaticClass.showFinalAlert(con,
+		 * "An Error occured in load method");
+		 *
+		 * } finally { progressDialog.dismiss(); } Looper.loop(); }
+		 *
+		 * }.start();
+		 */
+
+		saveNxtButton = (Button) v.findViewById(R.id.saveNxtButton);
+
+		saveNxtButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				/*
+				 * try { progressDialog = ProgressDialog.show(con, "Saving...",
+				 * "Please wait while saving.");
+				 *
+				 * Handler refresh = new Handler(Looper.getMainLooper());
+				 *
+				 * refresh.post(new Runnable() {
+				 *
+				 * public void run() {
+				 *
+				 * updateTableDataFrmAddress(vg);
+				 *
+				 * }
+				 *
+				 * }); } catch (Exception lg) { // progressDialog.dismiss();
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "An Error occured in Save method");
+				 *
+				 * } finally { progressDialog.dismiss(); }
+				 */
+
+				/*
+				 * progressDialog = ProgressDialog.show(con, "Saving...",
+				 * "Please wait while saving.");
+				 *
+				 * Thread thread=new Thread(new Runnable() {
+				 *
+				 * @Override public void run() {
+				 *
+				 * //do your parsing; //But do not update user interface here
+				 * updateTableDataFrmAddress(vg); Message msg = new Message();
+				 * msg.what = UPDATEDONE; handlerFrmHHID.sendMessage(msg); } });
+				 *
+				 * thread.start();
+				 */
+
+				/*
+				 * new Thread() {
+				 *
+				 * public void run() { try { Looper.prepare();
+				 */
+
+				updateTableDataFrmAddress(vg);
+				/*
+				 * Message msg = new Message(); msg.what = UPDATEDONE;
+				 * handlerFrmHHID.sendMessage(msg);
+				 *
+				 * } catch (Exception lg) { // progressDialog.dismiss();
+				 * CommonStaticClass.showFinalAlert(con,
+				 * "An Error occured in Save method");
+				 *
+				 * } finally { progressDialog.dismiss(); } Looper.loop(); }
+				 *
+				 * }.start();
+				 */
+
+				// preserveState();
+			}
+
+		});
+		clButton = (Button) v.findViewById(R.id.clButton);
+		clButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View vv) {
+				// TODO Auto-generated method stub
+				// resetViewGroup((ViewGroup) v);
+			}
+
+		});
+		/*
+		 * notesButton = (Button) v.findViewById(R.id.btnNote);
+		 * notesButton.setOnClickListener(new OnClickListener() {
+		 *
+		 * public void onClick(View v) { // TODO Auto-generated method stub
+		 * FraNotes();
+		 *
+		 * }
+		 *
+		 * });
+		 */
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+
+		});
+
+	}
+
+	private void HideViews(ViewGroup v)
+	{
+
+
+		((RadioGroup) v.findViewById(R.id.radioGroupchkSputum))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpFever)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpCough)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpDiffBreath))
+				.setVisibility(View.GONE);
+
+
+		((EditText) v.findViewById(R.id.dtpOtherOne)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherTwo)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherThree))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherFour))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpChestIndraw))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpStridor)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpConvulsion))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpUnableDrink))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpUnconsciousness))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpVomit)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpFever)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpCough)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpDiffBreath))
+				.setVisibility(View.GONE);
+
+
+
+
+
+		((EditText) v.findViewById(R.id.txtOtherOne)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.txtOtherTwo)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.txtOtherThree))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.txtOtherFour))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpChestIndraw))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpStridor)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpConvulsion))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpUnableDrink))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpUnconsciousness))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpVomit)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.txtFeverTemp)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpOtherOne)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherTwo)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherThree))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpOtherFour))
+				.setVisibility(View.GONE);
+
+
+		((Spinner) v.findViewById(R.id.cboSfever)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.txtFeverTemp)).setVisibility(View.GONE);
+
+
+		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
+				"tblMainQues", dbHelper));
+
+		if (intAge < 5)
+			((LinearLayout) v.findViewById(R.id.pan4))
+					.setVisibility(View.VISIBLE);
+		else if (intAge >= 5)
+			((LinearLayout) v.findViewById(R.id.pan4)).setVisibility(View.GONE);
+
+		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
+				"tblMainQues", dbHelper));
+		/*
+		 * intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
+		 * "tblMainQues", dbHelper));
+		 */
+
+		/*
+		 * if(intSex == 2) { (TextView) }
+		 */
+
+
+	}
+
+	private void loadDataAddress(final ViewGroup v) {
+
+		String dist = "SELECT (" + "" + "DistCode" + "" + "|| " + "" + "' : '"
+				+ " || " + "DistName" + ") AS " + "D"
+				+ " from District ORDER BY DistName" + "";
+
+		/*String occu = "SELECT '' AS occupCode UNION ALL SELECT (" + ""
+				+ "occupCode" + "" + "|| " + "" + "' : '" + " || "
+				+ "Occupation" + ") AS " + "O"
+				+ " from tblOccupation ORDER BY occupCode" + "";*/
+
+		ArrayList<String> ids = new ArrayList<String>();
+		/*ids.add("");
+		ids.add("1 : Urban");
+		ids.add("2 : Rural");*/
+
+		CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
+				((Spinner) v.findViewById(R.id.spdist)));
+
+		String s = String.format(
+				"select DistCode from Hospital where HosID='%s'",
+				CommonStaticClass.userSpecificId);
+		Cursor c = dbHelper.getQueryCursor(s);
+
+		((Spinner) v.findViewById(R.id.spdist))
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+					public void onItemSelected(AdapterView<?> parent,
+											   View view, int pos, long id) {
+
+						if (parent.getItemAtPosition(pos).toString().length() > 0) {
+
+							sResCode = parent
+									.getItemAtPosition(pos)
+									.toString()
+									.substring(
+											0,
+											(parent.getItemAtPosition(pos)
+													.toString()
+													.lastIndexOf(":")));
+
+							String strSQL = String
+									.format("SELECT ("
+											+ ""
+											+ "PSCode"
+											+ ""
+											+ "|| "
+											+ ""
+											+ "' : '"
+											+ " || "
+											+ "PSName"
+											+ ") AS "
+											+ "O"
+											+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
+											+ "", sResCode);
+
+							CommonStaticClass.FillCombo(thisactivity, dbHelper,
+									strSQL,
+									((Spinner) v.findViewById(R.id.spthana)));
+
+							String sql = "Select PSCode from tblMainQues where dataid = '"
+									+ CommonStaticClass.dataId + "'";
+							Cursor cur = null;
+
+							try {
+
+								cur = dbHelper.getQueryCursor(sql);
+
+								if (cur.getCount() > 0) {
+
+									if (cur.moveToFirst()) {
+
+										do {
+
+											CommonStaticClass.SetSpinnerValue(
+													thisactivity,
+													((Spinner) v
+															.findViewById(R.id.spthana)),
+													cur.getString(0));
+
+										} while (cur.moveToNext());
+
+									}
+
+								}
+
+							} catch (Exception e) {
+
+								// TODO: handle exception
+
+							}
+							finally {
+								if(cur != null)
+								cur.close();
+							}
+							// String strSQL =
+							// "Select PSCode, PSName from PoliceStation where DistCode = '"
+							// + sResCode + "' Order By PSName";
+
+						}
+
+					}
+
+
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+
+		if (c.getCount() > 0) {
+
+			if (c.moveToFirst()) {
+
+				do {
+
+					CommonStaticClass.SetSpinnerValue(thisactivity,
+							((Spinner) v.findViewById(R.id.spdist)),
+							CommonStaticClass.CheckCursorValue(c, "DistCode"));
+
+				} while (c.moveToNext());
+
+			}
+		}
+
+		/*CommonStaticClass.FillCombo(thisactivity, dbHelper, occu,
+				((Spinner) v.findViewById(R.id.spoccupation)));
+		CommonStaticClass.FillCombo(thisactivity, ids,
+				((Spinner) v.findViewById(R.id.splocation)));*/
+
+		ids = new ArrayList<String>();
+		ids.add("");
+		ids.add("1 : Male");
+		ids.add("2 : Female");
+
+		CommonStaticClass.FillCombo(thisactivity, ids,
+				((Spinner) v.findViewById(R.id.spsex)));
+
+		if (CommonStaticClass.dataId.subSequence(0, 1).equals("3")) {
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spyear)), 0, 4);
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spmonth)), 0, 11);
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spday)), 0, 29);
+		} else {
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spyear)), 0, 100);
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spmonth)), 0, 11);
+			CommonStaticClass.ComboAddRangeNumber(thisactivity,
+					((Spinner) v.findViewById(R.id.spday)), 0, 29);
+		}
+
+		/*
+		 * ((Spinner) v.findViewById(R.id.spyear)).setOnItemSelectedListener(new
+		 * OnItemSelectedListener() {
+		 *
+		 * @Override public void onItemSelected(AdapterView<?> arg0, View arg1,
+		 * int arg2, long arg3) {
+		 *
+		 * if() String val = ((Spinner) v .findViewById(R.id.spsur))
+		 * .getSelectedItem() .toString();
+		 *
+		 * if (val.contains("3")) { ((EditText) v .findViewById(R.id.txtSEIBID))
+		 * .setEnabled(true); ((EditText) v .findViewById(R.id.txtSEIBID))
+		 * .setVisibility(View.VISIBLE);
+		 *
+		 * }
+		 *
+		 * }
+		 *
+		 * @Override public void onNothingSelected(AdapterView<?> arg0) { //
+		 * TODO Auto-generated method stub
+		 *
+		 * } });
+		 */
+
+		String sql = "Select Name, HHHead, AgeY, AgeM, AgeD, Sex, Vill, UnionName, PSCode, DistCode, Phone,Phone1 from tblMainQues where dataid = '"
+				+ CommonStaticClass.dataId + "'";
+		Cursor cur = null;
+
+		try {
+
+			cur = dbHelper.getQueryCursor(sql);
+
+			if (cur.getCount() > 0) {
+
+				if (cur.moveToFirst()) {
+
+					do {
+
+						((EditText) v.findViewById(R.id.txtName)).setText(cur
+								.getString(0));
+						((EditText) v.findViewById(R.id.txtHHHead)).setText(cur
+								.getString(1));
+
+						CommonStaticClass.SetSpinnerValueFrmString(
+								thisactivity,
+								((Spinner) v.findViewById(R.id.spyear)),
+								cur.getString(2));
+
+						CommonStaticClass.SetSpinnerValueFrmString(
+								thisactivity,
+								((Spinner) v.findViewById(R.id.spmonth)),
+								cur.getString(3));
+
+						CommonStaticClass.SetSpinnerValueFrmString(
+								thisactivity,
+								((Spinner) v.findViewById(R.id.spday)),
+								cur.getString(4));
+
+						CommonStaticClass.SetSpinnerValue(thisactivity,
+								((Spinner) v.findViewById(R.id.spsex)),
+								cur.getString(5));
+
+						((EditText) v.findViewById(R.id.txtVillage))
+								.setText(cur.getString(6));
+						((EditText) v.findViewById(R.id.txtUnion)).setText(cur
+								.getString(7));
+						CommonStaticClass.SetSpinnerValue(thisactivity,
+								((Spinner) v.findViewById(R.id.spthana)),
+								cur.getString(8));
+
+						CommonStaticClass.SetSpinnerValue(thisactivity,
+								((Spinner) v.findViewById(R.id.spdist)),
+								cur.getString(9));
+
+
+
+
+
+						((EditText) v.findViewById(R.id.txtphone1)).setText(cur
+								.getString(10));
+						((EditText) v.findViewById(R.id.txtphone2)).setText(cur
+								.getString(11));
+
+
+
+
+
+					} while (cur.moveToNext());
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			// TODO: handle exception
+
+		}
+		finally {
+			if(cur != null)
+				cur.close();
+			if(c != null)
+				c.close();
+		}
+
+		/*if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+				.equalsIgnoreCase("1")) {
+			((Spinner) v.findViewById(R.id.spmonth)).setVisibility(View.GONE);
+			((Spinner) v.findViewById(R.id.spday)).setVisibility(View.GONE);
+
+			((TextView) v.findViewById(R.id.lblday)).setVisibility(View.GONE);
+			((TextView) v.findViewById(R.id.lblmonth)).setVisibility(View.GONE);
+		}*/
+
+	}
+
+	private void updateTableDataFrmAddress(ViewGroup vg) {
+		/*
+		 * if (!IsValidEntry(vg)) { DisplayToast(thisactivity,
+		 * "Please fill all fields", 1); return; }
+		 */
+		if (CheckValidationFrmAddress(vg) == false) {
+			return;
+		}
+		String sql = String.format("");
+
+		try {
+
+			/*String HCWorker = "", PlWorker = "", Plraising = "", occupation = "";
+			if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouphcw))
+					.findViewById(R.id.radio0)).isChecked()) {
+				HCWorker = "1";
+			} else if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouphcw))
+					.findViewById(R.id.radio1)).isChecked()) {
+				HCWorker = "2";
+			}
+
+			if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouppoultryworker))
+					.findViewById(R.id.radio0)).isChecked()) {
+				PlWorker = "1";
+			} else if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouppoultryworker))
+					.findViewById(R.id.radio1)).isChecked()) {
+				PlWorker = "2";
+			}
+
+			if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouppoultryraising))
+					.findViewById(R.id.radio0)).isChecked()) {
+				Plraising = "1";
+			} else if (((RadioButton) ((RadioGroup) vg
+					.findViewById(R.id.radioGrouppoultryraising))
+					.findViewById(R.id.radio1)).isChecked()) {
+				Plraising = "2";
+			}*/
+			/*if (((Spinner) vg.findViewById(R.id.spyear)).getSelectedItem()
+					.toString().length() > 0) {
+
+				if (Integer.parseInt(((Spinner) vg.findViewById(R.id.spyear))
+						.getSelectedItem().toString()) <= 10) {
+
+					occupation = "14";
+				} else {
+					occupation = ((Spinner) vg.findViewById(R.id.spoccupation))
+							.getSelectedItem()
+							.toString()
+							.substring(
+									0,
+									((Spinner) vg
+											.findViewById(R.id.spoccupation))
+											.getSelectedItem().toString()
+											.lastIndexOf(":") - 1);
+				} *//*
+				 * else {
+				 *
+				 * if(Integer.parseInt(((Spinner) vg.findViewById(R.id.spyear))
+				 * .getSelectedItem().toString())<=10) { occupation = "14";}
+				 *//*
+
+			} else {
+				occupation = "";
+			}*/
+
+			sql = String
+					.format("Update %s Set Name = '%s',  HHHead='%s', " +
+									"AgeY='%s', AgeM='%s', AgeD='%s', Sex ='%s', Vill= '%s', UnionName='%s', " +
+									"PSCode= '%s', DistCode='%s', Phone='%s', Phone1='%s' "
+									+ " WHERE dataid = '%s'",
+							CommonStaticClass
+									.GetTableName(CommonStaticClass.questionMap
+											.get(CommonStaticClass.currentSLNo)
+											.getQvar()),
+
+							((EditText) vg.findViewById(R.id.txtName))
+									.getText().toString(),
+							((EditText) vg.findViewById(R.id.txtHHHead))
+									.getText().toString(),
+							((Spinner) vg.findViewById(R.id.spyear))
+									.getSelectedItem().toString(),
+							((Spinner) vg.findViewById(R.id.spmonth))
+									.getSelectedItem().toString(),
+							((Spinner) vg.findViewById(R.id.spday))
+									.getSelectedItem().toString(),
+							((Spinner) vg.findViewById(R.id.spsex))
+									.getSelectedItem()
+									.toString()
+									.substring(
+											0,
+											((Spinner) vg
+													.findViewById(R.id.spsex))
+													.getSelectedItem()
+													.toString()
+													.lastIndexOf(":") - 1),
+							((EditText) vg.findViewById(R.id.txtVillage))
+									.getText().toString(),
+							((EditText) vg.findViewById(R.id.txtUnion))
+									.getText().toString(),
+
+							CommonStaticClass.GetSpinnerValue(((Spinner) vg
+									.findViewById(R.id.spthana))),
+							/*
+							 * ((Spinner) vg.findViewById(R.id.spthana))
+							 * .getSelectedItem() .toString() .substring( 0,
+							 * ((Spinner) vg .findViewById(R.id.spthana))
+							 * .getSelectedItem() .toString() .lastIndexOf(":")
+							 * - 1),
+							 */
+
+							CommonStaticClass.GetSpinnerValue(((Spinner) vg
+									.findViewById(R.id.spdist))),
+							/*
+							 * ((Spinner) vg.findViewById(R.id.spdist))
+							 * .getSelectedItem() .toString() .substring( 0,
+							 * ((Spinner) vg .findViewById(R.id.spdist))
+							 * .getSelectedItem() .toString() .lastIndexOf(":")
+							 * - 1),
+							 */
+
+							/*
+							 * ((Spinner) vg.findViewById(R.id.splocation))
+							 * .getSelectedItem() .toString() .substring( 0,
+							 * ((Spinner) vg .findViewById(R.id.splocation))
+							 * .getSelectedItem() .toString() .lastIndexOf(":")
+							 * - 1),
+							 */
+
+
+
+							((EditText) vg.findViewById(R.id.txtphone1))
+									.getText().toString(),
+							((EditText) vg.findViewById(R.id.txtphone2))
+									.getText().toString(), CommonStaticClass.dataId);
+
+
+							/*
+							 * ((Spinner) vg.findViewById(R.id.spoccupation))
+							 * .getSelectedItem() .toString() .substring( 0,
+							 * ((Spinner) vg .findViewById(R.id.spoccupation))
+							 * .getSelectedItem() .toString() .lastIndexOf(":")
+							 * - 1)
+							 */
+
+
+
+			if (dbHelper.executeDMLQuery(sql)) {
+
+				CommonStaticClass.findOutNextSLNo(
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQvar(),
+						CommonStaticClass.questionMap.get(
+								CommonStaticClass.currentSLNo).getQnext1());
+				CommonStaticClass.nextQuestion(ParentActivity.this);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private Boolean CheckValidationFrmAddress(ViewGroup v) {
+
+		// Checking Name
+		if (((EditText) v.findViewById(R.id.txtName)).getText().toString()
+				.length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please type Name");
+
+			((EditText) v.findViewById(R.id.txtName)).requestFocus();
+			return false;
+		}
+
+		if (((Spinner) v.findViewById(R.id.spsex)).getSelectedItem().toString()
+				.length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select Sex information");
+			return false;
+		}
+
+		// Checking wheather age related information selected properly or not.
+		if (((Spinner) v.findViewById(R.id.spyear)).getSelectedItem()
+				.toString().length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select Year");
+			return false;
+		}
+
+		// Checking the age year is less then 5, if less then 5 then month value
+		// is must
+		if (Integer.parseInt(((Spinner) v.findViewById(R.id.spyear))
+				.getSelectedItem().toString()) < 5) {
+			if (((Spinner) v.findViewById(R.id.spmonth)).getSelectedItem()
+					.toString().length() <= 0) {
+				CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+						"Please select Age Month information");
+				return false;
+			}
+			if (((Spinner) v.findViewById(R.id.spday)).getSelectedItem()
+					.toString().length() <= 0) {
+
+				CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+						"Please select Age Day information");
+				return false;
+			}
+		} else {
+			((Spinner) v.findViewById(R.id.spmonth)).setSelection(0);
+
+		}
+
+		if (((EditText) v.findViewById(R.id.txtphone1)).getText().toString()
+				.length() > 0) {
+			if ((((EditText) v.findViewById(R.id.txtphone1)).getText()
+					.toString().length() != 11)) {
+				CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+						"Phone number Should be 11 digit");
+
+				return false;
+			}
+		}
+		// }
+		if (((EditText) v.findViewById(R.id.txtphone2)).getText().toString()
+				.length() > 0) {
+			if ((((EditText) v.findViewById(R.id.txtphone2)).getText()
+					.toString().length() != 11)) {
+				CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+						"Phone number Should be 11 digit");
+
+				return false;
+			}
+			if (((EditText) v.findViewById(R.id.txtphone1)).getText()
+					.toString().length() <= 0) {
+				CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+						"Please input Phone 1 first");
+				return false;
+			}
+		}
+
+		// Checking district information given or not
+		if (((Spinner) v.findViewById(R.id.spdist)).getSelectedItem()
+				.toString().length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select district information");
+
+			return false;
+		}
+
+		// Checking Police station information given or not
+		if (((Spinner) v.findViewById(R.id.spthana)).getSelectedItem()
+				.toString().length() <= 0) {
+
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select police station information");
+
+			return false;
+		}
+
+
+		return true;
+
 	}
 
 	/*private ArrayList<String> optionList = null;

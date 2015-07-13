@@ -133,22 +133,22 @@ public class MenuScreen extends BaseActivity {
 //				startActivity(i);
 				
 				///Edit mode with all questions
-				/*CommonStaticClass.mode = CommonStaticClass.EDITMODE;
+				CommonStaticClass.mode = CommonStaticClass.EDITMODE;
 				CommonStaticClass.subEditMode = 0;
 				Intent i = new Intent();
 				i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
 						+ ".EditEntry");
-				startActivity(i);*/
+				startActivity(i);
 				
 				
 				
 				//Edit mode with Sub section
-				CommonStaticClass.subEditMode = 1;
+				/*CommonStaticClass.subEditMode = 1;
 				clearEveryThing();
 				Intent i = new Intent();
 				i.setClassName(CommonStaticClass.pName, CommonStaticClass.pName
 						+ ".subedit");
-				startActivity(i);
+				startActivity(i);*/
 	
 			}
 

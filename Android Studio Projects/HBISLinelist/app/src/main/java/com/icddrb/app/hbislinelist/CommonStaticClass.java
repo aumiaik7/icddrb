@@ -636,7 +636,7 @@ public class CommonStaticClass {
 		try {
 
 			mCursor = dbHelper.getQueryCursor(String.format(
-					"Select HosName,DistCode from Hospital where Hosid = '%s'",
+					"Select HosName,DistCode from frmrHospital where Hosid = '%s'",
 					CommonStaticClass.dataId.substring(4, 6)));
 
 			if (mCursor.getCount() > 0) {

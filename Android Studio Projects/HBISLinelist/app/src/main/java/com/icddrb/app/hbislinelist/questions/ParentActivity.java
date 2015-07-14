@@ -14465,6 +14465,22 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		 */
 
 		String sql = String.format("");
+		String DgOthers = "";
+		String DgCode = ((Spinner) v.findViewById(R.id.sp1))
+				.getSelectedItem()
+				.toString()
+				.substring(
+						0,
+						((Spinner) v.findViewById(R.id.sp1))
+								.getSelectedItem().toString()
+								.lastIndexOf(":")).trim();
+
+		if (DgCode.equalsIgnoreCase("99")) {
+			DgOthers = ((EditText) v.findViewById(R.id.et1)).getText()
+					.toString();
+		} else {
+			DgOthers = null;
+		}
 
 		try {
 
@@ -14481,7 +14497,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			// dept.lastIndexOf(":") - 1) : "";
 
 			sql = String
-					.format("Update %s Set Dept = '%s',  HosName='%s', RegNo= '%s', WardNo='%s', BedNo= '%s' , ProvDiag= '%s', EditBy='%s', EditDate='%s' WHERE dataid = '%s'",
+					.format("Update %s Set Dept = '%s',  HosName='%s', RegNo= '%s', WardNo='%s', BedNo= '%s' , DgCode= '%s',DgOthers='%s', EditBy='%s', EditDate='%s' WHERE dataid = '%s'",
 							CommonStaticClass
 									.GetTableName(CommonStaticClass.questionMap
 											.get(CommonStaticClass.currentSLNo)
@@ -14503,9 +14519,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							((EditText) v.findViewById(R.id.txtWardno))
 									.getText().toString(),
 							((EditText) v.findViewById(R.id.txtBedno))
-									.getText().toString(),
-							((EditText) v.findViewById(R.id.txtProDiag))
-									.getText().toString(),
+									.getText().toString()
+							, DgCode, DgOthers,
 							CommonStaticClass.userSpecificId, CommonStaticClass
 									.GetCurrentDate(), CommonStaticClass.dataId);
 
@@ -14530,7 +14545,54 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		try {
 			// SelectQueryBuilder();
 
-			String strSQL = "Select HosName, Dept, RegNo,WardNo, BedNo,ProvDiag, EntryDate, EntryTime from tblMainQues where dataid = '"
+
+			String dist = "SELECT '' AS DgCode UNION SELECT (" + "" + "DgCode" + ""
+					+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
+					+ " from frmrDiagnosisCode ORDER BY DgCode" + "";
+
+			CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
+					((Spinner) v.findViewById(R.id.sp1)));
+
+			((Spinner) v.findViewById(R.id.sp1))
+					.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+						public void onItemSelected(AdapterView<?> parent,
+												   View view, int pos, long id) {
+
+							if (parent.getItemAtPosition(pos).toString().length() > 0) {
+
+								sResCode = parent
+										.getItemAtPosition(pos)
+										.toString()
+										.substring(
+												0,
+												(parent.getItemAtPosition(pos)
+														.toString()
+														.lastIndexOf(":"))).trim();
+								if (sResCode.length() > 0) {
+									if (sResCode.equalsIgnoreCase("99")) {
+										((EditText) vg.findViewById(R.id.et1))
+												.setVisibility(view.VISIBLE);
+
+									} else {
+										((EditText) vg.findViewById(R.id.et1))
+												.setVisibility(view.INVISIBLE);
+									}
+								}
+
+							}
+
+						}
+
+
+						public void onNothingSelected(AdapterView<?> arg0) {
+							// TODO Auto-generated method stub
+
+						}
+					});
+
+			String strSQL = "Select HosName, Dept, RegNo,WardNo, BedNo,DgCode, DgOthers, EntryDate, EntryTime from tblMainQues where dataid = '"
 					+ CommonStaticClass.dataId + "'";
 
 			cur = dbHelper.getQueryCursor(strSQL);
@@ -14551,7 +14613,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							String BedNo = cur.getString(cur
 									.getColumnIndex("BedNo"));
 							String ProvDiag = cur.getString(cur
-									.getColumnIndex("ProvDiag"));
+									.getColumnIndex("DgCode"));
+							String DiagOthers = cur.getString(cur
+									.getColumnIndex("DgOthers"));
 							String EntryDate = cur.getString(cur
 									.getColumnIndex("EntryDate"));
 							String EntryTime = cur.getString(cur
@@ -14669,11 +14733,60 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										.setText(BedNo);
 
 							}
-							if (ProvDiag != null) {
+							if (ProvDiag == null) {
 
-								((EditText) v.findViewById(R.id.txtProDiag))
-										.setText(ProvDiag);
+//								((EditText) v.findViewById(R.id.txtProDiag))
+//										.setText(ProvDiag);
+								((TextView) v.findViewById(R.id.lblother))
+										.setVisibility(View.INVISIBLE);
+								((EditText) v.findViewById(R.id.et1))
+										.setVisibility(View.INVISIBLE);
 
+							}else if (ProvDiag.equalsIgnoreCase("99")) {
+
+							/*
+							 * ((RadioButton) ((RadioGroup) v
+							 * .findViewById(R.id.radioGroup1))
+							 * .findViewById(R.id.radio0)) .setChecked(true);
+							 */
+
+								for (int i = 0; i < ((Spinner) v
+										.findViewById(R.id.sp1)).getCount(); i++) {
+
+									if (((Spinner) v.findViewById(R.id.sp1))
+											.getItemAtPosition(i).toString()
+											.contains(ProvDiag)) {
+
+										((Spinner) v.findViewById(R.id.sp1))
+												.setSelection(i);
+
+										((EditText) v.findViewById(R.id.et1))
+												.setVisibility(View.VISIBLE);
+										((EditText) v.findViewById(R.id.et1))
+												.setText(DiagOthers);
+										((TextView) v.findViewById(R.id.lblother))
+												.setVisibility(View.VISIBLE);
+									}
+								}
+
+							} else {
+								for (int i = 0; i < ((Spinner) v
+										.findViewById(R.id.sp1)).getCount(); i++) {
+
+									if (((Spinner) v.findViewById(R.id.sp1))
+											.getItemAtPosition(i).toString()
+											.contains(ProvDiag)) {
+										((Spinner) v.findViewById(R.id.sp1))
+												.setSelection(i);
+
+										((EditText) v.findViewById(R.id.et1))
+												.setVisibility(View.INVISIBLE);
+										((EditText) v.findViewById(R.id.et1))
+												.setText(DiagOthers);
+										((TextView) v.findViewById(R.id.lblother))
+												.setVisibility(View.INVISIBLE);
+									}
+								}
 							}
 
 							/*ids = new ArrayList<String>();
@@ -14909,7 +15022,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			if (view instanceof EditText) {
 				if (!(((EditText) view).getText().toString().length() > 0)) {
 
-					if (view.getVisibility() == View.GONE) {
+					if (view.getVisibility() == View.GONE || view.getVisibility() == View.INVISIBLE) {
 						continue;
 					}
 
@@ -16786,14 +16899,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		HideViews(v);
 		String sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + ""
 				+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
-				+ " from DrugChronicList WHERE DrCode <> '0' ORDER BY DrCode"
+				+ " from frmrDrugChronicList WHERE DrCode <> '0' ORDER BY DrCode"
 				+ "";
 
 
 
 		sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + "" + "|| "
 				+ "" + "' : '" + " || " + "Name" + ") AS " + "D"
-				+ " from DrugChronicList ORDER BY DrCode" + "";
+				+ " from frmrDrugChronicList ORDER BY DrCode" + "";
 
 
 		ArrayList<String> ids = new ArrayList<String>();
@@ -16826,7 +16939,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		((CheckBox) v.findViewById(R.id.chkMeasureFever))
 				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-					@Override
+
 					public void onCheckedChanged(CompoundButton buttonView,
 												 boolean isChecked) {
 						// TODO Auto-generated method stub
@@ -16924,7 +17037,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		((Spinner) vg.findViewById(R.id.cboSfever))
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-					@Override
+
 					public void onItemSelected(AdapterView<?> parent,
 											   View view, int pos, long id) {
 
@@ -16981,7 +17094,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ CommonStaticClass.dataId + "'";
 			Cursor mCursor = null;
 
-			try {
+
 
 				mCursor = dbHelper.getQueryCursor(strSQL);
 
@@ -17336,10 +17449,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			} catch (Exception e) {
 				CommonStaticClass.showMyAlert(thisactivity, "Error",
 						"Error On Load");
-			} finally {
-
 			}
-		} finally {
+		 finally {
 
 		}
 
@@ -17355,7 +17466,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		et.setHintTextColor(Color.GRAY);
 		et.setOnTouchListener(new View.OnTouchListener() {
 
-			@Override
+
 			public boolean onTouch(View v, MotionEvent event) {
 
 				final Calendar c = Calendar.getInstance();
@@ -17420,7 +17531,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		chk.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-			@Override
+
 			public void onCheckedChanged(CompoundButton buttonView,
 										 boolean isChecked) {
 
@@ -17792,7 +17903,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		String dist = "SELECT (" + "" + "DistCode" + "" + "|| " + "" + "' : '"
 				+ " || " + "DistName" + ") AS " + "D"
-				+ " from District ORDER BY DistName" + "";
+				+ " from frmrDistrict ORDER BY DistName" + "";
 
 		/*String occu = "SELECT '' AS occupCode UNION ALL SELECT (" + ""
 				+ "occupCode" + "" + "|| " + "" + "' : '" + " || "
@@ -17808,7 +17919,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				((Spinner) v.findViewById(R.id.spdist)));
 
 		String s = String.format(
-				"select DistCode from Hospital where HosID='%s'",
+				"select DistCode from frmrHospital where HosID='%s'",
 				CommonStaticClass.userSpecificId);
 		Cursor c = dbHelper.getQueryCursor(s);
 
@@ -17842,7 +17953,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											+ "PSName"
 											+ ") AS "
 											+ "O"
-											+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
+											+ " from frmrPoliceStation where DistCode = '%s' ORDER BY PSName"
 											+ "", sResCode);
 
 							CommonStaticClass.FillCombo(thisactivity, dbHelper,

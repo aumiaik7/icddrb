@@ -67,13 +67,13 @@ public class MenuScreen extends BaseActivity {
 		setTheme(R.style.AppTheme);
 		loadGui();
 
-		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
+		/*Intent alarmIntent = new Intent(this, ScheduleBackup.class);
 		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
 		alarmIntent.putExtra("dbname", CommonStaticClass.DB);
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-		startAlarm();
+		startAlarm();*/
 
 	}
 

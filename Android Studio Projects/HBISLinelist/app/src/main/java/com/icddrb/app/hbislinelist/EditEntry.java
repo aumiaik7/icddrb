@@ -200,7 +200,7 @@ public class EditEntry extends BaseActivity{
 									"where ID = '"+CommonStaticClass.userSpecificId+"'";
 					mCursor2 = dbHelper.getQueryCursor(sql2);
 					
-				/*	if(mCursor2.moveToFirst() &&
+				    /*if(mCursor2.moveToFirst() &&
 							mCursor2.getString(mCursor2.getColumnIndex("Name")).equalsIgnoreCase("admin"))
 					{*/
 						dID.add(mCursor.getString((mCursor.getColumnIndex("dataid"))));

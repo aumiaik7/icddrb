@@ -9,18 +9,18 @@
         <dex dex="D:\Git Backup\Android Studio Projects\HBISLinelist\app\build\intermediates\pre-dexed\debug\sqlcipher-javadoc-0d1c82ab62569f5e6ac9a1c5b05245ea841bd6e1.jar" />
     </item>
     <item
-        jar="C:\Users\imtiaz.khan\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="C:\Users\imtiaz.khan\StudioProjects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\gson-2.3.1-9fde5d7287201d7b460af23315dc443deecc91cf.jar" />
-    </item>
-    <item
         jar="D:\Git Backup\Android Studio Projects\HBISLinelist\app\libs\sqlcipher.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="ce76a34bb71db637e8b171d8a4df0e865463d786">
         <dex dex="D:\Git Backup\Android Studio Projects\HBISLinelist\app\build\intermediates\pre-dexed\debug\sqlcipher-4dfd0f48f8ab7dd0340e6538adcad0a3cfbe95b1.jar" />
+    </item>
+    <item
+        jar="C:\Users\imtiaz.khan\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\imtiaz.khan\StudioProjects\CCDTemplate1\app\build\intermediates\pre-dexed\debug\gson-2.3.1-9fde5d7287201d7b460af23315dc443deecc91cf.jar" />
     </item>
     <item
         jar="C:\Users\imtiaz.khan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"

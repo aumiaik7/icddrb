@@ -368,6 +368,7 @@ containing a value of this type.
         public static final int lblj=0x7f09012b;
         public static final int lblmedicine=0x7f090055;
         public static final int lblmonth=0x7f09000c;
+        public static final int lblother=0x7f0900f1;
         public static final int lblsp2=0x7f090109;
         public static final int lbltemp=0x7f090154;
         public static final int linearLayout1=0x7f090023;
@@ -488,7 +489,6 @@ containing a value of this type.
         public static final int txtOtherTwo=0x7f090160;
         public static final int txtPatientname=0x7f090044;
         public static final int txtPhoneno=0x7f090045;
-        public static final int txtProDiag=0x7f0900f1;
         public static final int txtRegno=0x7f0900ee;
         public static final int txtSlno=0x7f0900fc;
         public static final int txtUnion=0x7f090015;

@@ -554,7 +554,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 	public static String getpw()
 	{
-		return "";
+		return "ccd@app";
 	}
 
 

@@ -249,7 +249,7 @@ public class BaseActivity extends Activity {
 	}*/
 
 	/*public void nullifyq4_3() {
-		String sql = "UPDATE tblMainQues SET q4_3_1 = '-1', q4_3_2 = '-1', q4_3_3 = '-1', q4_3_4 = '-1', q4_3_5 = '-1', q4_3_6 = '-1', q4_3_7 = '-1', q4_3_8 = '-1', q4_3_9 ='-1', q4_3_10 = '-1', q4_3_11 = '-1', q4_3_12 = '-1', q4_3_13 = '-1', q4_3_14 = '-1', q4_3_15 = '-1', q4_3_16 = '-1', q4_3_17 = '-1', q4_3_18 = '-1', q4_3_19 = '-1', q4_3_20 = '-1', q4_3_21 = '-1', q4_3_22 = '-1', q4_3_23 = '-1', q4_3_24 = '-1', q4_3_25 = '-1', q4_3_26 = '-1', q4_3_27 ='-1', q4_3_28 = '-1', q4_3_29 = '-1'  where dataid='"
+		String sql = "UPDATE tblLinelist SET q4_3_1 = '-1', q4_3_2 = '-1', q4_3_3 = '-1', q4_3_4 = '-1', q4_3_5 = '-1', q4_3_6 = '-1', q4_3_7 = '-1', q4_3_8 = '-1', q4_3_9 ='-1', q4_3_10 = '-1', q4_3_11 = '-1', q4_3_12 = '-1', q4_3_13 = '-1', q4_3_14 = '-1', q4_3_15 = '-1', q4_3_16 = '-1', q4_3_17 = '-1', q4_3_18 = '-1', q4_3_19 = '-1', q4_3_20 = '-1', q4_3_21 = '-1', q4_3_22 = '-1', q4_3_23 = '-1', q4_3_24 = '-1', q4_3_25 = '-1', q4_3_26 = '-1', q4_3_27 ='-1', q4_3_28 = '-1', q4_3_29 = '-1'  where dataid='"
 				+ CommonStaticClass.dataId + "'";
 
 		dbHelper.executeDMLQuery(sql);
@@ -306,7 +306,7 @@ public class BaseActivity extends Activity {
 
 			Cursor mCursor1 = null, mCursor2 = null, mCursor3 = null, mCursor4 = null, mCursor5 = null;
 			try {
-				sqlCheck = "Select dataid from tblMainQues where dataid like '%"
+				sqlCheck = "Select dataid from tblLinelist where dataid like '%"
 						+ CommonStaticClass.houseHoldToLook + "%'";
 				mCursor1 = dbHelper.getQueryCursor(sqlCheck);
 				if (mCursor1.getCount() > 0) {

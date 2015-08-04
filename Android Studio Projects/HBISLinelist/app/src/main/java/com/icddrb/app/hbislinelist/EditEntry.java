@@ -120,7 +120,7 @@ public class EditEntry extends BaseActivity{
 						
 						public void run() {
 							try {								
-								String sql1 = "Delete from tblMainQues where dataid='"+dataid+"'"; 
+								String sql1 = "Delete from tblLinelist where dataid='"+dataid+"'";
 								String sql2 = "Delete from tblAnthropometry where dataid='"+dataid+"'"; 
 								String sql3 = "Delete from tblHousehold where dataid='"+dataid+"'"; 
 								String sql4 = "Delete from tblMainQuesMC where dataid='"+dataid+"'"; 
@@ -188,7 +188,7 @@ public class EditEntry extends BaseActivity{
 		CommonStaticClass.isChecked = false;
 	}
 	private void loadDataToList(){
-		String sql = "Select dataid,EntryBy,EntryDate from tblMainQues";
+		String sql = "Select dataid,EntryBy,EntryDate from tblLinelist";
 	
 		Cursor mCursor = null;
 		Cursor mCursor2 = null;
@@ -237,7 +237,7 @@ public class EditEntry extends BaseActivity{
 	
 	private void loadQuestions() {
 
-		String sql = "Select * from tblQuestion";
+		String sql = "Select * from tblQuestionLList";
 		Cursor mCursor = null;
 		try {
 			mCursor = dbHelper.getQueryCursor(sql);

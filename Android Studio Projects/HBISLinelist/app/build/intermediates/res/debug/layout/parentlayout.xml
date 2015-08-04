@@ -160,6 +160,9 @@
         <include
             android:id="@+id/frmsymptoms"
             layout="@layout/frmsymptoms" />
+        <include
+            android:id="@+id/frmdataid2"
+            layout="@layout/frmdataid2" />
     </ViewFlipper>
 
 </LinearLayout><!-- From: file:/D:/Git%20Backup/Android%20Studio%20Projects/HBISLinelist/app/src/main/res/layout/parentlayout.xml -->

@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    
+    <item
+        android:id="@+id/BNGMenuItem"
+        android:icon="@drawable/banglaimage"
+        android:showAsAction="ifRoom|withText"
+        android:title="Bangla">
+    </item>
+    <item
+        android:id="@+id/ENGMenuItem"
+        android:icon="@drawable/englishimage"
+        android:showAsAction="ifRoom|withText"
+        android:title="English">
+    </item>
+   
+    <!-- <item android:id="@+id/StoreItem" android:title="Store Database To SDCARD"></item> -->
+
+    <!-- <item
+        android:id="@+id/viewall"
+        android:icon="@drawable/viewall"
+        android:showAsAction="always|withText"
+        android:title="View All"
+        android:visible="true">
+    </item>
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        android:showAsAction="always|withText"
+        android:title="Search">
+    </item> -->
+    <item
+        android:id="@+id/ExitItem"
+        android:icon="@drawable/exitimage"
+        android:showAsAction="always|withText"
+        android:title="EXIT">
+    </item>
+
+</menu>

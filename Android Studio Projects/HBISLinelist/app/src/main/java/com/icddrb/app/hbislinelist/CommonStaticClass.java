@@ -75,6 +75,7 @@ public class CommonStaticClass {
 //	public static String dataid_store = "";
 //	public static int TotalIndividual = 0;
 	public static String subEdit = "";
+	public static String hbisdataId = "";
 
 	public static void nextQuestion(final ParentActivity activity) {
 		// TODO Auto-generated method stub
@@ -245,7 +246,7 @@ public class CommonStaticClass {
 
 	public static void addQuestionFromThisSection(String qNext,
 			DatabaseHelper dbHelper) {
-		String sql = "Select Qvar from tblQuestion where Qvar like '" + qNext
+		String sql = "Select Qvar from tblQuestionLList where Qvar like '" + qNext
 				+ "%'";
 		Cursor mCursor1 = null;
 		try {
@@ -373,9 +374,9 @@ public class CommonStaticClass {
 		// TODO Auto-generated method stub
 		String sql1 = "", sql2 = "";
 
-		sql1 = "Select * from tblOptions where QID ='" + qvar
+		sql1 = "Select * from tblOptionsLList  where QID ='" + qvar
 				+ "' order by SLNo";
-		sql2 = "Select * from tblOptions where QID like '" + qvar
+		sql2 = "Select * from tblOptionsLList  where QID like '" + qvar
 				+ "%' order by SLNo ASC";
 
 		Options op = new Options();
@@ -429,23 +430,23 @@ public class CommonStaticClass {
 		String sql = "";
 
 		if (qvar.equalsIgnoreCase("AgeYr")) {
-			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptions WHERE (QID = 'AgeYr' OR QID = 'AgeMo' OR QID = 'AgeDa') order by SLNo";
+			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptionsLList  WHERE (QID = 'AgeYr' OR QID = 'AgeMo' OR QID = 'AgeDa') order by SLNo";
 		}
 
 		else if (qvar.equalsIgnoreCase("WT")) {
-			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptions WHERE (QID = 'WT' OR QID = 'HT' OR QID = 'MUAC') order by SLNo";
+			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptionsLList  WHERE (QID = 'WT' OR QID = 'HT' OR QID = 'MUAC') order by SLNo";
 		}
 
 		else if (qvar.equalsIgnoreCase("Ward")) {
-			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptions WHERE (QID = 'Ward' OR QID = 'Area' OR QID = 'SecBlock' OR QID = 'Road' OR QID = 'House' OR QID = 'Phone' OR QID = 'Vill' OR QID = 'UPZ' OR QID = 'Dist' ) order by SLNo";
+			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptionsLList  WHERE (QID = 'Ward' OR QID = 'Area' OR QID = 'SecBlock' OR QID = 'Road' OR QID = 'House' OR QID = 'Phone' OR QID = 'Vill' OR QID = 'UPZ' OR QID = 'Dist' ) order by SLNo";
 		}
 
 		else if (qvar.equalsIgnoreCase("DS36")) {
-			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptions WHERE (QID = 'DS36' OR QID = 'DS37' OR QID = 'DS38' OR QID = 'DS39') order by SLNo";
+			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptionsLList  WHERE (QID = 'DS36' OR QID = 'DS37' OR QID = 'DS38' OR QID = 'DS39') order by SLNo";
 		}
 
 		else if (qvar.equalsIgnoreCase("DS23")) {
-			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptions WHERE (QID = 'DS23' OR QID = 'DS24' OR QID = 'DS25' OR QID = 'DS25' OR QID = 'DS23_Options') order by SLNo";
+			sql = "Select QID, CaptionEng, CaptionBang, Code, QNext from tblOptionsLList  WHERE (QID = 'DS23' OR QID = 'DS24' OR QID = 'DS25' OR QID = 'DS25' OR QID = 'DS23_Options') order by SLNo";
 		}
 
 		Options op = new Options();
@@ -635,10 +636,13 @@ public class CommonStaticClass {
 
 		try {
 
-			mCursor = dbHelper.getQueryCursor(String.format(
+			/*mCursor = dbHelper.getQueryCursor(String.format(
 					"Select HosName,DistCode from frmrHospital where Hosid = '%s'",
-					CommonStaticClass.dataId.substring(4, 6)));
+					CommonStaticClass.dataId.substring(4, 6)));*/
 
+			mCursor = dbHelper.getQueryCursor(String.format(
+					"Select HosName,DistCode from Hospital where Hosid = '%s'",
+					CommonStaticClass.dataId.substring(4, 6)));
 			if (mCursor.getCount() > 0) {
 
 				if (mCursor.moveToFirst()) {
@@ -796,6 +800,7 @@ public class CommonStaticClass {
 				if (spnr.getItemAtPosition(i).toString()
 						.equalsIgnoreCase(String.valueOf(Value.trim()))) {
 					spnr.setSelection(i);
+					break;
 				}
 			}
 

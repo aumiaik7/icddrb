@@ -31,7 +31,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 	
 	public static String DB_PATH = "/mnt/sdcard/";
 	private static String SDDB_PATH = "/mnt/sdcard/external_sd/";
-	public static String DB_NAME = "HBISLinelist.sqlite";
+//	public static String DB_NAME = "HBISLinelist.sqlite";
+	public static String DB_NAME = "HBIS2.sqlite";
 	// Code by Sadia (For Baseline)
 	private static String DB_NAME_BASE = "HBIS2.sqlite";
 	private static String DB_PATH_BASE = "/mnt/sdcard/";
@@ -554,7 +555,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 	public static String getpw()
 	{
-		return "ccd@app";
+		return "";
 	}
 
 

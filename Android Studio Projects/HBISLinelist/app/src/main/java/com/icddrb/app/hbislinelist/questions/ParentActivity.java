@@ -294,7 +294,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			frmmultiplechoiceradio, frmmultiple, frmq124,
 			frmmultiplechecknumeric, frmmultiplecheckdate, frmbarcode,
 			frmnumericwithrdbtn, frmfindsection, frmneonatelinfo,frmcamera,frmmultiplechoicetext,
-			frmaddress, frmpersonrelation, frmsymptoms;
+			frmaddress, frmpersonrelation, frmsymptoms, frmdataid2;
 
 	private int lastIndexBeforeFraNotes;
 	private TextView dataidViewer;
@@ -487,6 +487,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		frmaddress = (ViewGroup) findViewById(R.id.frmaddress);
 		frmpersonrelation = (ViewGroup) findViewById(R.id.frmpersonrelation);
 		frmsymptoms = (ViewGroup) findViewById(R.id.frmsymptoms);
+		frmdataid2 = (ViewGroup) findViewById(R.id.frmdataid2);
 	}
 
 	protected void FraNotes() {
@@ -2940,7 +2941,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			entryDate = d.toLocaleString();
 			// CommonStaticClass.memberID=memberIDs.get(spinnerSL.getSelectedItemPosition());
 			
-			 * String v = getSkip("q1_6", "tblMainQues"); if (v != null) { if
+			 * String v = getSkip("q1_6", "tblLinelist"); if (v != null) { if
 			 * (v.length() > 0) { if (spinnerSL.getCount() >
 			 * Integer.parseInt(v)) {
 			 * 
@@ -3068,7 +3069,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			String entryDate = "dd-mmm-yy";
 			entryDate = d.toLocaleString();
 
-			String v = getSkip("q123", "tblMainQues");
+			String v = getSkip("q123", "tblLinelist");
 			if (v != null) {
 				if (v.length() > 0) {
 					if (spinnerc1.getCount() > Integer.parseInt(v)) {
@@ -3617,7 +3618,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			resetViewsFrmFamilyMember();
 		} else {
 			// String sq =
-			// "UPDATE tblMainQues SET q10='"+q101+"' where dataid='"+CommonStaticClass.dataId+"'";
+			// "UPDATE tblLinelist SET q10='"+q101+"' where dataid='"+CommonStaticClass.dataId+"'";
 			// if(dbHelper.executeDMLQuery(sq)){
 			// preserveState();
 			CommonStaticClass.findOutNextSLNo(
@@ -3641,7 +3642,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			resetViewsq124();
 		} else {
 			// String sq =
-			// "UPDATE tblMainQues SET q10='"+q101+"' where dataid='"+CommonStaticClass.dataId+"'";
+			// "UPDATE tblLinelist SET q10='"+q101+"' where dataid='"+CommonStaticClass.dataId+"'";
 			// if(dbHelper.executeDMLQuery(sq)){
 			// preserveState();
 			CommonStaticClass.findOutNextSLNo(
@@ -3656,7 +3657,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	/*private boolean valueInFrmFamilyMember(String column1, String column2) {
 		String sql = "Select " + column1 + "," + column2
-				+ " from tblMainQues where dataid='" + CommonStaticClass.dataId
+				+ " from tblLinelist where dataid='" + CommonStaticClass.dataId
 				+ "'";
 		Cursor mCursor = null;
 		try {
@@ -3681,7 +3682,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	}*/
 
 	/*private boolean valueInFrmFamilyMember(String column1) {
-		String sql = "Select " + column1 + " from tblMainQues where dataid='"
+		String sql = "Select " + column1 + " from tblLinelist where dataid='"
 				+ CommonStaticClass.dataId + "'";
 		Cursor mCursor = null;
 		try {
@@ -3707,7 +3708,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	/*private boolean valueInFrmFamilyMember(String column1, String column2,
 			String column3) {
 		String sql = "Select " + column1 + "," + column2 + "," + column3
-				+ " from tblMainQues where dataid='" + CommonStaticClass.dataId
+				+ " from tblLinelist where dataid='" + CommonStaticClass.dataId
 				+ "'";
 		Cursor mCursor = null;
 		try {
@@ -6378,7 +6379,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		String sql = "";
 
 		sql = String
-				.format("UPDATE tblMainQues SET c609_1_1='%s', c609_2_1='%s', c609_2_2='%s', c609_2_3='%s', c609_2_4='%s', c609_2_5='%s', c609_2_5_other='%s',"
+				.format("UPDATE tblLinelist SET c609_1_1='%s', c609_2_1='%s', c609_2_2='%s', c609_2_3='%s', c609_2_4='%s', c609_2_5='%s', c609_2_5_other='%s',"
 						+ "c609_3_1='%s', c609_3_2='%s', c609_3_3='%s', c609_3_3_other='%s', c609_4_1='%s', c609_4_2='%s', c609_5_1='%s', c609_5_2='%s', c609_5_3='%s',"
 						+ "c609_5_4='%s', c609_5_5='%s', c609_5_5_other='%s', c609_6_1='%s', c609_6_2='%s', c609_7_1='%s', c609_7_2='%s', c609_7_3='%s', c609_7_4='%s',"
 						+ "c609_7_5='%s', c609_7_6='%s', c609_7_6_other='%s', c609_8_1='%s', c609_8_2='%s', c609_8_3='%s', c609_8_4='%s', c609_8_5='%s', c609_8_6='%s',"
@@ -6639,12 +6640,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 		ArrayList<String> yearids = new ArrayList<String>();
-		yearids.add("13");
-		yearids.add("14");
 		yearids.add("15");
 		yearids.add("16");
 		yearids.add("17");
 		yearids.add("18");
+		yearids.add("19");
+		yearids.add("20");
+
 		adapterSl = new ArrayAdapter(this,
 				android.R.layout.simple_spinner_item, yearids);
 		adapterSl
@@ -6900,7 +6902,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		
 		 * try {
 		 * 
-		 * String strSQL = "update tblMainQues set PatName = '" + Name +
+		 * String strSQL = "update tblLinelist set PatName = '" + Name +
 		 * "',Comp = '" + Comp + "',YearID = '" + YearID + "',MonthID  = '" +
 		 * MonthID + "',HosID  = '" + HosID + "',HosName  = '" + HosName +
 		 * "',PatID = '" + PatID + "',AgeY  = '" + AgeY + "',AgeM   = '" + AgeM
@@ -6982,7 +6984,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	protected boolean doesExist(String dataid2) {
 		String id = "";
-		String sql = "Select * from tblMainQues where dataid='" + dataid2 + "'";
+		String sql = "Select * from tblLinelist where dataid='" + dataid2 + "'";
 		Cursor mCursor = null;
 		try {
 			mCursor = dbHelper.getQueryCursor(sql);
@@ -8677,7 +8679,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	/*private boolean IfCompletedAllMembersFrmMultipleChoice() {
 		boolean IsCompleted = true;
-		String sql1 = "Select * from tblMainQues  where dataid='"
+		String sql1 = "Select * from tblLinelist  where dataid='"
 				+ CommonStaticClass.dataId + "'";
 		String sql2 = "Select * from tblFamilyMember  where dataid='"
 				+ CommonStaticClass.dataId
@@ -9149,7 +9151,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			}
 			String SQL = "";
 			if (!IsVisited1st) {
-				SQL = "Update tblMainQues set p1_11av1=-1,p1_11bv1=-1,p1_11cv1=-1,p1_11dv1=-1,p1_11ev1=-1,p1_11fv1=-1,p1_11gv1=-1,p1_11hv1=-1,p1_11iv1=-1,p1_11jv1=-1,p1_11v1other='' Where dataid='"
+				SQL = "Update tblLinelist set p1_11av1=-1,p1_11bv1=-1,p1_11cv1=-1,p1_11dv1=-1,p1_11ev1=-1,p1_11fv1=-1,p1_11gv1=-1,p1_11hv1=-1,p1_11iv1=-1,p1_11jv1=-1,p1_11v1other='' Where dataid='"
 						+ CommonStaticClass.dataId
 						+ "' and memberid="
 						+ CommonStaticClass.memberID;
@@ -9157,7 +9159,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			}
 			if (!IsVisited2nd) {
-				SQL = "Update tblMainQues set p1_11av2=-1,p1_11bv2=-1,p1_11cv2=-1,p1_11dv2=-1,p1_11ev2=-1,p1_11fv2=-1,p1_11gv2=-1,p1_11hv2=-1,p1_11iv2=-1,p1_11jv2=-1,p1_11v2other='' Where dataid='"
+				SQL = "Update tblLinelist set p1_11av2=-1,p1_11bv2=-1,p1_11cv2=-1,p1_11dv2=-1,p1_11ev2=-1,p1_11fv2=-1,p1_11gv2=-1,p1_11hv2=-1,p1_11iv2=-1,p1_11jv2=-1,p1_11v2other='' Where dataid='"
 						+ CommonStaticClass.dataId
 						+ "' and memberid="
 						+ CommonStaticClass.memberID;
@@ -9165,7 +9167,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			}
 			if (!IsVisited3rd) {
-				SQL = "Update tblMainQues set p1_11av3=-1,p1_11bv3=-1,p1_11cv3=-1,p1_11dv3=-1,p1_11ev3=-1,p1_11fv3=-1,p1_11gv3=-1,p1_11hv3=-1,p1_11iv3=-1,p1_11jv3=-1,p1_11v3other='' Where dataid='"
+				SQL = "Update tblLinelist set p1_11av3=-1,p1_11bv3=-1,p1_11cv3=-1,p1_11dv3=-1,p1_11ev3=-1,p1_11fv3=-1,p1_11gv3=-1,p1_11hv3=-1,p1_11iv3=-1,p1_11jv3=-1,p1_11v3other='' Where dataid='"
 						+ CommonStaticClass.dataId
 						+ "' and memberid="
 						+ CommonStaticClass.memberID;
@@ -11375,7 +11377,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					CommonStaticClass.currentSLNo).getQdesceng());
 		}
 
-		String sql = "Select * from tblMainQues where dataid='"
+		String sql = "Select * from tblLinelist where dataid='"
 				+ CommonStaticClass.dataId + "' and memberid='"
 				+ CommonStaticClass.memberID + "'";
 		Cursor mCursor = null;
@@ -11441,7 +11443,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				return;
 			}
 
-			String SQL = "Update tblMainQues set p1_11av1=" + a1 + ",p1_11bv1="
+			String SQL = "Update tblLinelist set p1_11av1=" + a1 + ",p1_11bv1="
 					+ b1 + ",p1_11cv1=" + c1 + ",p1_11dv1=" + d1 + ",p1_11ev1="
 					+ e1 + ",p1_11fv1=" + f1 + ",p1_11gv1=" + g1 + ",p1_11hv1="
 					+ h1 + ",p1_11iv1=" + i1 + ",p1_11jv1=" + j1 + ",p1_11av2="
@@ -11513,7 +11515,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	/*private void Load_DataFrmReasoning() {
 
-		String sql = "Select * from tblMainQues where dataid='"
+		String sql = "Select * from tblLinelist where dataid='"
 				+ CommonStaticClass.dataId + "' and memberid='"
 				+ CommonStaticClass.memberID + "'";
 		Cursor mCursor = null;
@@ -11919,7 +11921,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ CommonStaticClass.dataId + "'";
 		cursor = dbHelper.getQueryCursor(sql);
 		if (cursor.getCount() == 0) {
-			sql = "Select tblMainQues.q10,tblMainQues.q12,tblMainQuesSc.q13 from  tblMainQues inner join tblMainQuesSc on tblMainQues.dataid=tblMainQuesSc.dataid Where  tblMainQues.dataid='"
+			sql = "Select tblLinelist.q10,tblLinelist.q12,tblMainQuesSc.q13 from  tblLinelist inner join tblMainQuesSc on tblLinelist.dataid=tblMainQuesSc.dataid Where  tblLinelist.dataid='"
 					+ CommonStaticClass.dataId + "'";
 			cursor = dbHelper.getQueryCursor(sql);
 			if (cursor.moveToFirst()) {
@@ -11937,7 +11939,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					+ vAge
 					+ "," + vSex + ",'" + entryBy + "','" + entryDate + "')";
 			if (dbHelper.executeDMLQuery(sql)) {
-				sql = "update  tblMainQues set q15=q15+1 Where dataid='"
+				sql = "update  tblLinelist set q15=q15+1 Where dataid='"
 						+ CommonStaticClass.dataId.substring(0, 5) + "00'";
 				if (dbHelper.executeDMLQuery(sql)) {
 
@@ -12037,7 +12039,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	/*private boolean IfCompletedAllMembersFrmSingleChoice() {
 		boolean IsCompleted = true;
-		String sql1 = "Select * from tblMainQues  where dataid='"
+		String sql1 = "Select * from tblLinelist  where dataid='"
 				+ CommonStaticClass.dataId + "'";
 		String sql2 = "Select * from tblFamilyMember  where dataid='"
 				+ CommonStaticClass.dataId
@@ -14546,9 +14548,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			// SelectQueryBuilder();
 
 
+			/*String dist = "SELECT '' AS DgCode UNION SELECT (" + "" + "DgCode" + ""
+					+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
+					+ " from frmrDiagnosisCode ORDER BY DgCode" + "";*/
 			String dist = "SELECT '' AS DgCode UNION SELECT (" + "" + "DgCode" + ""
 					+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
-					+ " from frmrDiagnosisCode ORDER BY DgCode" + "";
+					+ " from DiagnosisCode ORDER BY DgCode" + "";
 
 			CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
 					((Spinner) v.findViewById(R.id.sp1)));
@@ -14592,7 +14597,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 					});
 
-			String strSQL = "Select HosName, Dept, RegNo,WardNo, BedNo,DgCode, DgOthers, EntryDate, EntryTime from tblMainQues where dataid = '"
+			String strSQL = "Select HosName, Dept, RegNo,WardNo, BedNo,DgCode, DgOthers, EntryDate, EntryTime from "+
+					CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getTablename()+" where dataid = '"
 					+ CommonStaticClass.dataId + "'";
 
 			cur = dbHelper.getQueryCursor(strSQL);
@@ -14785,6 +14792,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 												.setText(DiagOthers);
 										((TextView) v.findViewById(R.id.lblother))
 												.setVisibility(View.INVISIBLE);
+										break;
 									}
 								}
 							}
@@ -15214,13 +15222,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									.lastIndexOf(":"));
 
 			String sql = String.format(
-					"UPDATE '%s' set AdmDate = '%s', DisDate='%s',"
+					"UPDATE tblLinelist set AdmDate = '%s', DisDate='%s',"
 							+ " OutCome='%s', EditBy='%s', EditDate='%s'"
 							+ " WHERE dataid='%s'",
 
-					CommonStaticClass
+					/*CommonStaticClass
 							.GetTableName(CommonStaticClass.questionMap.get(
-									CommonStaticClass.currentSLNo).getQvar()),
+									CommonStaticClass.currentSLNo).getQvar()),*/
 					AdmDate, DisDate, OutCome,
 					CommonStaticClass.userSpecificId, CommonStaticClass
 							.GetCurrentDate(), CommonStaticClass.dataId);
@@ -15260,7 +15268,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		 * validated = false;
 		 */
 
-		String edate = CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+		String edate = CommonStaticClass.getSkip("EntryDate", "tblLinelist",
 				dbHelper);
 		// String[] splitentrydate = edate.split("/");
 
@@ -15590,6 +15598,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		ids.add("3 : Remains hospitalized");
 		ids.add("4 : Transferred");
 		ids.add("5 : Death");
+		ids.add("6 : DOR");
+		ids.add("7 : DORB");
+		ids.add("8 : Abscond");
 		ids.add("9 : Unknown");
 
 		CommonStaticClass.FillCombo(thisactivity, ids,
@@ -15598,7 +15609,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		/*((Spinner) v.findViewById(R.id.sp2)).setVisibility(View.INVISIBLE);
 		((TextView) v.findViewById(R.id.lblsp2)).setVisibility(View.INVISIBLE);*/
 		String sql = String
-				.format("Select AdmDate, DisDate, OutCome from tblMainQues where dataid = '%s'",
+				.format("Select AdmDate, DisDate, OutCome from tblLinelist where dataid = '%s'",
 						CommonStaticClass.dataId);
 
 		Cursor cur = null;
@@ -15614,7 +15625,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					do {
 						// District
 						/*String intComp = CommonStaticClass.getSkip("Comp",
-								"tblMainQues", dbHelper);
+								"tblLinelist", dbHelper);
 
 						if (intComp.equalsIgnoreCase("1")
 								|| intComp.equalsIgnoreCase("3")) {
@@ -15754,7 +15765,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				cur.close();
 		}
 
-		/*if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+		/*if (CommonStaticClass.getSkip("Comp", "tblLinelist", dbHelper)
 				.equalsIgnoreCase("1")) {
 			CommonStaticClass.SetSpinnerValue(thisactivity,
 					((Spinner) v.findViewById(R.id.sp2)), "3");
@@ -15765,7 +15776,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			((EditText) v.findViewById(R.id.dischargedate))
 					.setVisibility(View.GONE);
 
-		} else if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+		} else if (CommonStaticClass.getSkip("Comp", "tblLinelist", dbHelper)
 				.equalsIgnoreCase("2")) {
 			CommonStaticClass.SetSpinnerValue(thisactivity,
 					((Spinner) v.findViewById(R.id.sp1)), "01");
@@ -15777,7 +15788,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			((EditText) v.findViewById(R.id.dischargedate))
 					.setVisibility(View.GONE);
 
-		} else if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+		} else if (CommonStaticClass.getSkip("Comp", "tblLinelist", dbHelper)
 				.equalsIgnoreCase("3")) {
 			CommonStaticClass.SetSpinnerValue(thisactivity,
 					((Spinner) v.findViewById(R.id.sp1)), "17");
@@ -15906,6 +15917,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		if (formname.equalsIgnoreCase("frmsymptoms")) {
 			index = 36;
 		}
+		if (formname.equalsIgnoreCase("frmdataid2")) {
+			index = 37;
+		}
+
 
 		return index;
 	}
@@ -16045,12 +16060,809 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		case 36:
 			loadguifrmsymptoms(frmsymptoms);
 			break;
-
+		case 37:
+			loadguifrmdataid2(frmdataid2);
+			break;
 
 		default:
 
 			break;
 		}
+	}
+
+	private void loadguifrmdataid2(ViewGroup v) {
+
+
+		// TODO Auto-generated method stub
+
+		final ViewGroup vg = v;
+		// textView3 = (TextView)v.findViewById(R.id.textView3);
+
+//		qqq = (TextView) v.findViewById(R.id.qqq);
+//
+//		if (CommonStaticClass.langBng) {
+//			qqq.setText(CommonStaticClass.questionMap.get(
+//					CommonStaticClass.currentSLNo).getQdescbng());
+//		} else {
+//			qqq.setTypeface(null);
+//			qqq.setText(CommonStaticClass.questionMap.get(
+//					CommonStaticClass.currentSLNo).getQdesceng());
+//		}
+
+		FillAllDataidCombo2(v);
+
+		pickDate = (EditText) v.findViewById(R.id.pickDate);
+		String sql = "Select * from "
+				+ CommonStaticClass.questionMap.get(
+				CommonStaticClass.currentSLNo).getTablename()
+				+ " where dataid='" + CommonStaticClass.dataId + "'";
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			if (mCursor1.moveToFirst()) {
+				do {
+					String column = CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar();
+
+					if (mCursor1.getColumnIndex(column+"_2") != -1) {
+						String val = mCursor1.getString(mCursor1
+								.getColumnIndex(column+"_2")) + "";
+						pickDate.setText((val.length() > 0 && !val
+								.equalsIgnoreCase("null")) ? val : "");
+					}
+				} while (mCursor1.moveToNext());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+		}
+
+		pickDate.setOnTouchListener(new View.OnTouchListener() {
+
+			public boolean onTouch(View v, MotionEvent event) {
+				// TODO Auto-generated method stub
+				showDialog(DATE_DIALOG);
+				return false;
+			}
+		});
+
+		final Calendar c = Calendar.getInstance();
+		dateYear = c.get(Calendar.YEAR);
+		dateMonth = c.get(Calendar.MONTH);
+		dateDay = c.get(Calendar.DAY_OF_MONTH);
+		if (!(pickDate.getText().toString().length() > 0)) {
+			if (!CommonStaticClass.questionMap
+					.get(CommonStaticClass.currentSLNo).getQvar()
+					.equalsIgnoreCase("onsetdt")) {
+				/*updateDisplay("date");*/
+			}
+		}
+
+		confButton = (Button) v.findViewById(R.id.confButton);
+		confButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				// updateTableData();
+				if (IsValidDataIDUserInput2(vg) == false) {
+					CommonStaticClass.showMyAlert(con, "Message",
+							"Please fill all fields correctly");
+					return;
+				}
+
+				if (CommonStaticClass.dataId.length() > 0) {
+					progressDialog = ProgressDialog.show(con, "Wait",
+							"Please wait while processing next question");
+
+					new Thread() {
+
+						public void run() {
+							try {
+								Looper.prepare();
+								if (FileRead()) {
+
+									if (CommonStaticClass.userSpecificId
+											.length() == 0
+											|| CommonStaticClass.AssetID
+											.length() == 0) {
+
+										return;
+									}
+									//
+									updateTableDataFrmHHID2(vg);
+									// preserveState();
+									Message msg = new Message();
+									msg.what = UPDATEDONE;
+									handlerFrmHHID.sendMessage(msg);
+								} else {
+									progressDialog.dismiss();
+									CommonStaticClass.showFinalAlert(con,
+											"Ensure your Asset ID");
+
+								}
+							} catch (Exception lg) {
+								progressDialog.dismiss();
+								CommonStaticClass.showFinalAlert(con,
+										"Ensure your Asset ID");
+
+							} finally {
+								progressDialog.dismiss();
+							}
+							Looper.loop();
+						}
+
+					}.start();
+				} else {
+					CommonStaticClass
+							.showFinalAlert(con,
+									"Please confirm data id is generated by clicking GENERATE");
+				}
+			}
+
+		});
+		prevButton = (Button) v.findViewById(R.id.prevButton);
+		prevButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				userPressedPrevious(ParentActivity.this);
+			}
+
+		});
+
+
+	}
+
+	private void updateTableDataFrmHHID2(ViewGroup vg) {
+
+		if (CommonStaticClass.hbisdataId.length() < 10 || pickDate.getText().toString().isEmpty()) {
+			CommonStaticClass.showMyAlert(con, "Error",
+					"Select all fields");
+			return;
+		}
+		String ques = CommonStaticClass.questionMap.get(
+				CommonStaticClass.currentSLNo).getQvar();
+		String sql = "Update "+ CommonStaticClass.questionMap.get(
+				CommonStaticClass.currentSLNo).getTablename() +" set "+ques+"_1= '"+CommonStaticClass.hbisdataId+"', "+ques+"_2= '"+pickDate.getText()+"'  Where dataid='"
+				+ CommonStaticClass.dataId+"'";
+
+		if (dbHelper.executeDMLQuery(sql))
+		{
+			createRowForHbis();
+			CommonStaticClass.findOutNextSLNo(
+					CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar(),
+					CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQnext1());
+			CommonStaticClass.nextQuestion(ParentActivity.this);
+		}
+	}
+
+	private void createRowForHbis() {
+
+		String sql = "Select * from tblLinelist where dataid='" + CommonStaticClass.dataId + "'";
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			if (mCursor1.moveToFirst()) {
+
+				String entryDate = "dd/mm/yyyy";
+				String entryTime = "hh:mm";
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date d = new Date(System.currentTimeMillis());
+				entryDate = sdf.format(d);
+				sdf = new SimpleDateFormat("HH:mm");
+				entryTime = sdf.format(d);
+				String sqlI = "insert into tblMainQues (dataid,Comp,YearID,MonthID,HosID,PatID" +
+						/*",HosName,Dept," +
+						"DgCode,DgOthers,Name,HHHead,AgeY,AgeM,AgeD,Sex,Vill,UnionName,PSCode,DistCode,Location" +
+						",Phone,Phone1,AdmDate,DisDate,OutCome" +*/
+						/*",Fever,dt_fever,fever_meas_subj,fever_temp,Cough,dt_cough," +
+						"sputum,dif_brea,dt_brea,s_throat,dt_throa,r_nose,dt_nose,headache,dt_head,diarrhea,dt_diarr" +
+						",chills,dt_chills,bodyache,dt_body,hemo,dt_hemo,pleur,dt_peur" +*/
+						/*",other1,other2,other3,SOther1N," +
+						"SOther1DT,SOther2N,SOther2DT,SOther3N,SOther3DT,S5ChestIND,S5Stridor,S5Convulsion,S5UnDrink,S5UnCons" +
+						",S5Vomit" +*/
+						",EntryBy,EntryDate, EntryTime,assetid) values ('"
+						+ CommonStaticClass.hbisdataId
+						+ "','"
+						+ String.valueOf(CommonStaticClass.hbisdataId.charAt(0))
+						+ "','"
+						+ CommonStaticClass.hbisdataId.substring(1, 3)
+						+ "','" + CommonStaticClass.hbisdataId.substring(3,5)
+						+ "','" + CommonStaticClass.hbisdataId.substring(5, 7)
+						+ "','" + CommonStaticClass.hbisdataId.substring(7)
+						/*+ "','" + mCursor1.getString(mCursor1.getColumnIndex("HosName"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Dept"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("DgCode"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("DgOthers"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Name"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("HHHead"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("AgeY"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("AgeM"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("AgeD"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Sex"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Vill"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("UnionName"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("PSCode"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("DistCode"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Location"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Phone"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Phone1"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("AdmDate"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("DisDate"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("OutCome"))*/
+						/*+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Fever"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_fever"))
+						+ "','" +mCursor1.getString(mCursor1.getColumnIndex("fever_meas_subj"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("fever_temp"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("Cough"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_cough"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("sputum"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dif_brea"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_brea"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("s_throat"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_throa"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("r_nose"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_nose"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("headache"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_head"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("diarrhea"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_diarr"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("chills"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_chills"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("bodyache"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_body"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("hemo"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_hemo"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("pleur"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("dt_peur"))*/
+						/*+ "','" + mCursor1.getString(mCursor1.getColumnIndex("other1"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("other2"))
+						+ "','" + mCursor1.getString(mCursor1.getColumnIndex("other3"))
+						+ "'," + mCursor1.getString(mCursor1.getColumnIndex("SOther1N"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("SOther1DT"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("SOther2N"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("SOther2DT"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("SOther3N"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("SOther3DT"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5ChestIND"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5Stridor"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5Convulsion"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5UnDrink"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5UnCons"))
+						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5Vomit"))*/
+						+ "','" + CommonStaticClass.userSpecificId + "','" + entryDate + "','" + entryTime +  "','" + CommonStaticClass.AssetID + "')";
+
+				dbHelper.executeDMLQuery(sqlI);
+
+				/*if(dbHelper.executeDMLQuery(sqlI))
+				{*/
+					StringBuilder SB = new StringBuilder();
+					SB.append("UPDATE tblMainQues set " +
+
+							/*"dataid = '"+CommonStaticClass.hbisdataId+"'" +
+							",Comp = '"+String.valueOf(CommonStaticClass.hbisdataId.charAt(0))+"'" +
+							",YearID = '"+CommonStaticClass.hbisdataId.substring(1,3)+"'" +
+							",MonthID = '"+CommonStaticClass.hbisdataId.substring(3,5)+"'" +
+							",HosID = '"+CommonStaticClass.hbisdataId.substring(5,7)+"' " +
+							",PatID = '"+CommonStaticClass.hbisdataId.substring(7)+"'" +*/
+							"HosName = '"+mCursor1.getString(mCursor1.getColumnIndex("HosName"))+"'" +
+							", Dept = '"+mCursor1.getString(mCursor1.getColumnIndex("Dept"))+"'" +
+							",DgCode = '"+mCursor1.getString(mCursor1.getColumnIndex("DgCode"))+"'" +
+							",DgOthers = '"+mCursor1.getString(mCursor1.getColumnIndex("DgOthers"))+"'" +
+							",Name = '"+mCursor1.getString(mCursor1.getColumnIndex("Name"))+"'" +
+							",HHHead = '"+mCursor1.getString(mCursor1.getColumnIndex("HHHead"))+"' " +
+							",AgeY = '"+mCursor1.getString(mCursor1.getColumnIndex("AgeY"))+"'" +
+							",AgeM = '"+mCursor1.getString(mCursor1.getColumnIndex("AgeM"))+"'" +
+							",AgeD = '"+mCursor1.getString(mCursor1.getColumnIndex("AgeD"))+"'" +
+							",Sex = '"+mCursor1.getString(mCursor1.getColumnIndex("Sex"))+"'" +
+							",Vill = '"+mCursor1.getString(mCursor1.getColumnIndex("Vill"))+"'" +
+							",UnionName = '"+mCursor1.getString(mCursor1.getColumnIndex("UnionName"))+"'" +
+							",PSCode = '"+mCursor1.getString(mCursor1.getColumnIndex("PSCode"))+"'" +
+							",DistCode = '"+mCursor1.getString(mCursor1.getColumnIndex("DistCode"))+"'" +
+//							",Location = '"+mCursor1.getString(mCursor1.getColumnIndex("Location"))+"'" +
+							",Phone = '"+mCursor1.getString(mCursor1.getColumnIndex("Phone"))+"'" +
+							",Phone1 = '"+mCursor1.getString(mCursor1.getColumnIndex("Phone1"))+"'" +
+							",AdmDate = '"+mCursor1.getString(mCursor1.getColumnIndex("AdmDate"))+"'" +
+							",DisDate = '"+mCursor1.getString(mCursor1.getColumnIndex("DisDate"))+"'" +
+							",OutCome = '"+mCursor1.getString(mCursor1.getColumnIndex("OutCome"))+"'");
+
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("Fever")).equalsIgnoreCase("1")) {
+						SB.append(",Fever = 1");
+						SB.append(", dt_fever = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_fever")) + "' ");
+					} else {
+						SB.append(",Fever = 2 ");
+						SB.append(", dt_fever = null ");
+					}
+					if (mCursor1.getString(mCursor1.getColumnIndex("fever_meas_subj")) != null) {
+						// int x =
+						// (((Spinner)vg.findViewById(R.id.cboSfever)).getSelectedItem().toString().lastIndexOf(":")
+						// - 1);
+
+						SB.append(", fever_meas_subj = "
+								+mCursor1.getString(mCursor1.getColumnIndex("fever_meas_subj")));
+
+						if (mCursor1.getString(mCursor1.getColumnIndex("fever_temp")) != null) {
+							SB.append(", fever_temp = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("fever_temp")) + "'");
+						} else {
+							SB.append(", fever_temp = null ");
+						}
+
+					} else {
+						SB.append(", fever_meas_subj = null ");
+						SB.append(", fever_temp = null ");
+					}
+					if (mCursor1.getString(mCursor1.getColumnIndex("Cough")).equalsIgnoreCase("1")) {
+						SB.append(", cough = 1");
+						SB.append(", dt_cough = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_cough")) + "' ");
+					} else {
+						SB.append(", dt_cough = Null ");
+						SB.append(", Cough = 2 ");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("sputum"))!= null)
+					// if (((RadioGroup)
+					// vg.findViewById(R.id.radioGroupchkSputum)).isChecked())
+					{
+						// SB.append(", sputum = '" + txtSputum.Text.ToString() + "' ");
+						SB.append(", sputum = 1 ");
+						// if (optSputumY.Checked == true)
+						// {
+						// SB.append(", sputum = 1 ");
+						// }
+						// else if (optSputumN.Checked == true)
+						// {
+						// SB.append(", sputum = 2 ");
+						// }
+					} else if (mCursor1.getString(mCursor1.getColumnIndex("sputum")) != null) {
+						SB.append(", sputum = 2 ");
+						// SB.append(", sputum = Null ");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("dif_brea")).equalsIgnoreCase("1")) {
+						SB.append(", dif_brea = 1");
+						SB.append(", dt_brea = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_brea")) + "' ");
+					} else {
+						SB.append(", dt_brea = Null ");
+						SB.append(", dif_brea = 2 ");
+					}
+//					if (intComp != 3 && intAge >= 5) {
+						if (mCursor1.getString(mCursor1.getColumnIndex("s_throat")).equalsIgnoreCase("1")) {
+							SB.append(", s_throat = 1");
+							SB.append(", dt_throa = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("dt_throa")) + "' ");
+						} else {
+							SB.append(", dt_throa = Null ");
+							SB.append(", s_throat = 2 ");
+						}
+					/*} else {
+						SB.append(", dt_throa = Null ");
+						SB.append(", s_throat = 2 ");
+
+					}*/
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("r_nose")).equalsIgnoreCase("1")) {
+						SB.append(", r_nose = 1");
+						SB.append(", dt_nose= '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_nose")) + "' ");
+					} else {
+						SB.append(", r_nose = 2");
+						SB.append(", dt_nose= Null ");
+					}
+
+//					if (intAge >= 5) {
+						if (mCursor1.getString(mCursor1.getColumnIndex("headache"))!=null) {
+							SB.append(", headache = 1");
+							SB.append(", dt_head= '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("dt_head")) + "' ");
+						} else {
+							SB.append(", headache = 2");
+							SB.append(", dt_head= Null ");
+						}
+					/*} else {
+						SB.append(", headache = null");
+						SB.append(", dt_head= Null ");
+					}*/
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("diarrhea")).equalsIgnoreCase("1")) {
+						SB.append(", diarrhea = 1");
+						SB.append(", dt_diarr= '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_diarr")) + "' ");
+					} else {
+						SB.append(", diarrhea = 2");
+						SB.append(", dt_diarr= Null ");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("chills")).equalsIgnoreCase("1")) {
+						SB.append(", chills = 1");
+						SB.append(", dt_chills= '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_chills")) + "' ");
+					} else {
+						SB.append(", chills = 2");
+						SB.append(", dt_chills= Null ");
+					}
+					/*if (intAge >= 5) {*/
+						if (mCursor1.getString(mCursor1.getColumnIndex("bodyache")) !=null) {
+							SB.append(", bodyache = 1");
+							SB.append(", dt_body= '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("dt_body")) + "' ");
+						} else {
+							SB.append(", bodyache = 2");
+							SB.append(", dt_body= Null ");
+						}
+					/*} else {
+						SB.append(", bodyache = null");
+						SB.append(", dt_body= Null ");
+					}*/
+					if (mCursor1.getString(mCursor1.getColumnIndex("hemo")).equalsIgnoreCase("1")) {
+						SB.append(", hemo = 1");
+						SB.append(", dt_hemo='"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_hemo")) + "'");
+					} else {
+						SB.append(", hemo = 2");
+						SB.append(", dt_hemo= Null ");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("pleur")).equalsIgnoreCase("1")) {
+						SB.append(", pleur = 1");
+						SB.append(", dt_peur='"
+								+ mCursor1.getString(mCursor1.getColumnIndex("dt_peur")) + "'");
+					} else {
+						SB.append(", pleur = 2");
+						SB.append(", dt_peur=Null ");
+					}
+
+
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("other1")).equalsIgnoreCase("1")) {
+						SB.append(", other1 = 1");
+						SB.append(", SOther1N = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("SOther1N")) + "' ");
+						SB.append(", SOther1DT = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("SOther1DT")) + "' ");
+					} else {
+						SB.append(", other1 = 2");
+						SB.append(", SOther1DT = Null ");
+						SB.append(", SOther1N = null");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("other2")).equalsIgnoreCase("1")) {
+						SB.append(", other2 = 1");
+						SB.append(", SOther2N = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("SOther2N")) + "' ");
+						SB.append(", SOther2DT = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("SOther2DT")) + "' ");
+					} else {
+						SB.append(", other2 = 2");
+						SB.append(", SOther2DT = Null ");
+						SB.append(", SOther2N = null");
+					}
+
+					if (mCursor1.getString(mCursor1.getColumnIndex("other3")).equalsIgnoreCase("1")) {
+						SB.append(", other3 = 1");
+						SB.append(", SOther3DT = '"
+								+  mCursor1.getString(mCursor1.getColumnIndex("SOther3DT")) + "' ");
+						SB.append(", SOther3N = '"
+								+ mCursor1.getString(mCursor1.getColumnIndex("SOther3N")) + "' ");
+					} else {
+						SB.append(", other3 = 2");
+						SB.append(", SOther3DT = Null ");
+						SB.append(", SOther3N = null");
+					}
+
+
+
+//					if (Integer.parseInt(mCursor1.getString(mCursor1.getColumnIndex("AgeY")))<5) {
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5ChestIND")) != null) {
+							SB.append(", S5ChestIND = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5ChestIND")) + "' ");
+						} else {
+							SB.append(", S5ChestIND = Null ");
+						}
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5Stridor"))!=null) {
+							SB.append(", S5Stridor = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5Stridor")) + "' ");
+						} else {
+							SB.append(", S5Stridor = Null ");
+						}
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5Convulsion")) != null) {
+							SB.append(", S5Convulsion = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5Convulsion")) + "' ");
+						} else {
+							SB.append(", S5Convulsion = Null ");
+						}
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5UnDrink"))!= null) {
+							SB.append(", S5UnDrink = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5UnDrink")) + "' ");
+						} else {
+							SB.append(", S5UnDrink = Null ");
+						}
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5UnCons")) != null) {
+							SB.append(", S5UnCons = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5UnCons")) + "' ");
+						} else {
+							SB.append(", S5UnCons = Null ");
+						}
+						if (mCursor1.getString(mCursor1.getColumnIndex("S5Vomit")) != null) {
+							SB.append(", S5Vomit = '"
+									+ mCursor1.getString(mCursor1.getColumnIndex("S5Vomit")) + "' ");
+						} else {
+							SB.append(", S5Vomit = Null ");
+						}
+
+					 /*}else {
+						SB.append(", S5ChestIND = Null ");
+						SB.append(", S5Stridor = Null ");
+						SB.append(", S5Convulsion = Null ");
+						SB.append(", S5UnDrink = Null ");
+						SB.append(", S5UnCons = Null ");
+						SB.append(", S5Vomit = Null ");
+					}*/
+					SB.append(" where dataid = '" + CommonStaticClass.hbisdataId + "'");
+					dbHelper.executeDMLQuery(SB.toString());
+
+				/*}
+				else
+				{
+
+				}*/
+
+
+
+
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+		}
+
+	}
+
+
+	private boolean IsValidDataIDUserInput2(ViewGroup v) {
+
+
+
+
+		CommonStaticClass.hbisdataId = ((Spinner) v.findViewById(R.id.sp1))
+				.getSelectedItem().toString()
+				+ ((Spinner) v.findViewById(R.id.sp2)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.sp3)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.sp4)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.sp5)).getSelectedItem()
+				.toString();
+		String ReDataid = ((Spinner) v.findViewById(R.id.spl1))
+				.getSelectedItem().toString()
+				+ ((Spinner) v.findViewById(R.id.spl2)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.spl3)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.spl4)).getSelectedItem()
+				.toString()
+				+ ((Spinner) v.findViewById(R.id.spl5)).getSelectedItem()
+				.toString();
+
+		if (CommonStaticClass.hbisdataId.equalsIgnoreCase(ReDataid)) {
+			return true;
+		}
+
+		return false;
+
+	}
+
+	private void FillAllDataidCombo2(ViewGroup v) {
+
+
+		// Data id spinners
+		ArrayList<String> compids = new ArrayList<String>();
+		compids.add("");
+		compids.add("1");
+		compids.add("2");
+		compids.add("3");
+
+		adapterSl = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, compids);
+		adapterSl
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		((Spinner) v.findViewById(R.id.sp1)).setAdapter(adapterSl);
+		((Spinner) v.findViewById(R.id.spl1)).setAdapter(adapterSl);
+
+		ArrayList<String> yearids = new ArrayList<String>();
+
+		yearids.add("15");
+		yearids.add("16");
+		yearids.add("17");
+		yearids.add("18");
+		yearids.add("19");
+		yearids.add("20");
+		adapterSl = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, yearids);
+		adapterSl
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		((Spinner) v.findViewById(R.id.sp2)).setAdapter(adapterSl);
+		((Spinner) v.findViewById(R.id.spl2)).setAdapter(adapterSl);
+
+		ArrayList<String> monthids = new ArrayList<String>();
+		monthids.add("01");
+		monthids.add("02");
+		monthids.add("03");
+		monthids.add("04");
+		monthids.add("05");
+		monthids.add("06");
+		monthids.add("07");
+		monthids.add("08");
+		monthids.add("09");
+		monthids.add("10");
+		monthids.add("11");
+		monthids.add("12");
+
+		adapterSl = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, monthids);
+		adapterSl
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		((Spinner) v.findViewById(R.id.sp3)).setAdapter(adapterSl);
+		((Spinner) v.findViewById(R.id.spl3)).setAdapter(adapterSl);
+
+		ArrayList<String> hosids = new ArrayList<String>();
+		hosids.add("01");
+		hosids.add("02");
+		hosids.add("03");
+		hosids.add("04");
+		hosids.add("05");
+		hosids.add("06");
+		hosids.add("07");
+		hosids.add("08");
+		hosids.add("09");
+		hosids.add("10");
+		hosids.add("11");
+		hosids.add("12");
+		hosids.add("13");
+		hosids.add("14");
+		adapterSl = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, hosids);
+		adapterSl
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		((Spinner) v.findViewById(R.id.sp4)).setAdapter(adapterSl);
+		((Spinner) v.findViewById(R.id.spl4)).setAdapter(adapterSl);
+
+		ArrayList<String> patientids = new ArrayList<String>();
+		patientids.add("");
+		for (int i = 1; i <= 100; i++) {
+			patientids.add(String.format("%03d", (i)));
+		}
+
+		adapterSl = new ArrayAdapter(this,
+				android.R.layout.simple_spinner_item, patientids);
+		adapterSl
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		((Spinner) v.findViewById(R.id.sp5)).setAdapter(adapterSl);
+		((Spinner) v.findViewById(R.id.spl5)).setAdapter(adapterSl);
+
+		// strYear = System.DateTime.Today.Date.Year.ToString();
+		// /strYear = strYear.Substring(2, 2);
+		// intMonth = System.DateTime.Today.Date.Month;
+
+		String sql = "Select * from "
+				+ CommonStaticClass.questionMap.get(
+				CommonStaticClass.currentSLNo).getTablename()
+				+ " where dataid='" + CommonStaticClass.dataId + "'";
+		Cursor mCursor1 = null;
+		try {
+			mCursor1 = dbHelper.getQueryCursor(sql);
+			if (mCursor1.moveToFirst()) {
+
+					String column = CommonStaticClass.questionMap.get(
+							CommonStaticClass.currentSLNo).getQvar();
+
+					if (mCursor1.getColumnIndex(column+"_1") != -1) {
+						String val = mCursor1.getString(mCursor1
+								.getColumnIndex(column+"_1")) + "";
+
+						if(!val.equalsIgnoreCase("null")) {
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp1)),
+									String.valueOf(val.charAt(0)));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp2)),
+									val.substring(1, 3));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp3)),
+									val.substring(3, 5));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp4)),
+									val.substring(5, 7));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp5)),
+									val.substring(7));
+
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl1)),
+									String.valueOf(val.charAt(0)));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl2)),
+									val.substring(1, 3));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl3)),
+									val.substring(3, 5));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl4)),
+									val.substring(5, 7));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl5)),
+									val.substring(7));
+						}
+						else
+						{
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.sp2)),
+									String.valueOf(CommonStaticClass.GetYear(true)));
+							CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+									((Spinner) v.findViewById(R.id.spl2)),
+									String.valueOf(CommonStaticClass.GetYear(true)));
+
+							CommonStaticClass.SetSpinnerValueFrmString(
+									thisactivity,
+									((Spinner) v.findViewById(R.id.sp3)),
+									CommonStaticClass.padLeft(
+											String.valueOf(CommonStaticClass.GetMonth()), 2, "0"));
+							CommonStaticClass.SetSpinnerValueFrmString(
+									thisactivity,
+									((Spinner) v.findViewById(R.id.spl3)),
+									CommonStaticClass.padLeft(
+											String.valueOf(CommonStaticClass.GetMonth()), 2, "0"));
+
+							if (CommonStaticClass.TryParse(CommonStaticClass.userSpecificId) != null) {
+								CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+										((Spinner) v.findViewById(R.id.sp4)),
+										String.valueOf(CommonStaticClass.userSpecificId));
+								CommonStaticClass.SetSpinnerValueFrmString(thisactivity,
+										((Spinner) v.findViewById(R.id.spl4)),
+										String.valueOf(CommonStaticClass.userSpecificId));
+							} else {
+
+							}
+
+
+
+					}
+
+
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if (mCursor1 != null)
+				mCursor1.close();
+		}
+
+
+
+
+		/*
+		 * cboHospitalID.SelectedItem = strHosID.Trim();
+		 * cboHospitalIDRe.SelectedItem = strHosID.Trim();
+		 */
+
+
 	}
 
 	//frmsymptoms
@@ -16148,13 +16960,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			StringBuilder SB = new StringBuilder();
 
 			intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
-					"tblMainQues", dbHelper));
+					"tblLinelist", dbHelper));
 			intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
-					"tblMainQues", dbHelper));
+					"tblLinelist", dbHelper));
 			/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
-					"tblMainQues", dbHelper));*/
+					"tblLinelist", dbHelper));*/
 
-			SB.append("UPDATE tblMainQues ");
+			SB.append("UPDATE tblLinelist ");
 			if (((CheckBox) vg.findViewById(R.id.chkFever)).isChecked() == true) {
 				SB.append("Set Fever = 1");
 				SB.append(", dt_fever = '"
@@ -16228,7 +17040,100 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				SB.append(", dt_brea = Null ");
 				SB.append(", dif_brea = 2 ");
 			}
+			if (intAge >= 5) {
+				if (((CheckBox) vg.findViewById(R.id.chkSorethroat))
+						.isChecked()) {
+					SB.append(", s_throat = 1");
+					SB.append(", dt_throa = '"
+							+ ((EditText) vg.findViewById(R.id.dtpSoreThroat))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", dt_throa = Null ");
+					SB.append(", s_throat = 2 ");
+				}
+			} else {
+				SB.append(", dt_throa = Null ");
+				SB.append(", s_throat = 2 ");
 
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkRunningnose)).isChecked()) {
+				SB.append(", r_nose = 1");
+				SB.append(", dt_nose= '"
+						+ ((EditText) vg.findViewById(R.id.dtpRunningnose))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", r_nose = 2");
+				SB.append(", dt_nose= Null ");
+			}
+
+			if (intAge >= 5) {
+				if (((CheckBox) vg.findViewById(R.id.chkHeadache)).isChecked()) {
+					SB.append(", headache = 1");
+					SB.append(", dt_head= '"
+							+ ((EditText) vg.findViewById(R.id.dtpHeadache))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", headache = 2");
+					SB.append(", dt_head= Null ");
+				}
+			} else {
+				SB.append(", headache = null");
+				SB.append(", dt_head= Null ");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkDiarrhea)).isChecked()) {
+				SB.append(", diarrhea = 1");
+				SB.append(", dt_diarr= '"
+						+ ((EditText) vg.findViewById(R.id.dtpDiarrhea))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", diarrhea = 2");
+				SB.append(", dt_diarr= Null ");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkChills)).isChecked()) {
+				SB.append(", chills = 1");
+				SB.append(", dt_chills= '"
+						+ ((EditText) vg.findViewById(R.id.dtpChills))
+						.getText().toString() + "' ");
+			} else {
+				SB.append(", chills = 2");
+				SB.append(", dt_chills= Null ");
+			}
+			if (intAge >= 5) {
+				if (((CheckBox) vg.findViewById(R.id.chkBodyache)).isChecked()) {
+					SB.append(", bodyache = 1");
+					SB.append(", dt_body= '"
+							+ ((EditText) vg.findViewById(R.id.dtpBodyache))
+							.getText().toString() + "' ");
+				} else {
+					SB.append(", bodyache = 2");
+					SB.append(", dt_body= Null ");
+				}
+			} else {
+				SB.append(", bodyache = null");
+				SB.append(", dt_body= Null ");
+			}
+			if (((CheckBox) vg.findViewById(R.id.chkhemo)).isChecked()) {
+				SB.append(", hemo = 1");
+				SB.append(", dt_hemo='"
+						+ ((EditText) vg.findViewById(R.id.dtpHemo)).getText()
+						.toString() + "'");
+			} else {
+				SB.append(", hemo = 2");
+				SB.append(", dt_hemo= Null ");
+			}
+
+			if (((CheckBox) vg.findViewById(R.id.chkpleur)).isChecked()) {
+				SB.append(", pleur = 1");
+				SB.append(", dt_peur='"
+						+ ((EditText) vg.findViewById(R.id.dtppleur)).getText()
+						.toString() + "'");
+			} else {
+				SB.append(", pleur = 2");
+				SB.append(", dt_peur=Null ");
+			}
 
 			if (((CheckBox) vg.findViewById(R.id.chkOtherOne)).isChecked()) {
 				SB.append(", other1 = 1");
@@ -16378,11 +17283,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		// Checking Fever is checked or not
 		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 		/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
-				"tblMainQues", dbHelper));*/
+				"tblLinelist", dbHelper));*/
 
 		if (((RadioGroup) v.findViewById(R.id.radioGroupchkSputum))
 				.getVisibility() == View.VISIBLE) {
@@ -16406,7 +17311,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 
-		String edate = CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+		String edate = CommonStaticClass.getSkip("EntryDate", "tblLinelist",
 				dbHelper);
 
 		String dateInStringdtpCough = "";
@@ -16459,7 +17364,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 
-		/*if (((CheckBox) v.findViewById(R.id.chkSorethroat)).isChecked()) {
+		if (((CheckBox) v.findViewById(R.id.chkSorethroat)).isChecked()) {
 			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpSoreThroat)))) {
 				CommonStaticClass.showMyAlert(thisactivity, "Error",
 						"Please input correct sore throat date");
@@ -16531,7 +17436,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						"Please input correct Pleuritic Chest pain date");
 				return false;
 			}
-		}*/
+		}
 
 		if (((CheckBox) v.findViewById(R.id.chkOtherOne)).isChecked()) {
 
@@ -16762,7 +17667,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					 * if(!CommonStaticClass.IsSeconDateGraterThanFirstDate(((
 					 * EditText) v
 					 * .findViewById(R.id.dtpFever)).getText().toString(),
-					 * CommonStaticClass.getSkip("EntryDate", "tblMainQues",
+					 * CommonStaticClass.getSkip("EntryDate", "tblLinelist",
 					 * dbHelper))) { CommonStaticClass.showMyAlert(thisactivity,
 					 * "Error", "Please input correct fever date"); return
 					 * false; }
@@ -16897,16 +17802,22 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		final ViewGroup vg = v;
 		HideViews(v);
-		String sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + ""
+		/*String sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + ""
 				+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
 				+ " from frmrDrugChronicList WHERE DrCode <> '0' ORDER BY DrCode"
+				+ "";*/
+		String sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + ""
+				+ "|| " + "" + "' : '" + " || " + "Name" + ") AS " + "D"
+				+ " from DrugChronicList WHERE DrCode <> '0' ORDER BY DrCode"
 				+ "";
 
 
-
+		/*sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + "" + "|| "
+				+ "" + "' : '" + " || " + "Name" + ") AS " + "D"
+				+ " from frmrDrugChronicList ORDER BY DrCode" + "";*/
 		sql = "SELECT '' AS DrCode UNION SELECT (" + "" + "DrCode" + "" + "|| "
 				+ "" + "' : '" + " || " + "Name" + ") AS " + "D"
-				+ " from frmrDrugChronicList ORDER BY DrCode" + "";
+				+ " from DrugChronicList ORDER BY DrCode" + "";
 
 
 		ArrayList<String> ids = new ArrayList<String>();
@@ -16990,6 +17901,23 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				(EditText) v.findViewById(R.id.dtpCough), v);
 		SetCheckBox((CheckBox) v.findViewById(R.id.chkDiffbreathing),
 				(EditText) v.findViewById(R.id.dtpDiffBreath), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkSorethroat),
+				(EditText) v.findViewById(R.id.dtpSoreThroat), v);
+
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkRunningnose),
+				(EditText) v.findViewById(R.id.dtpRunningnose), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkHeadache),
+				(EditText) v.findViewById(R.id.dtpHeadache), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkDiarrhea),
+				(EditText) v.findViewById(R.id.dtpDiarrhea), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkChills),
+				(EditText) v.findViewById(R.id.dtpChills), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkBodyache),
+				(EditText) v.findViewById(R.id.dtpBodyache), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkhemo),
+				(EditText) v.findViewById(R.id.dtpHemo), v);
+		SetCheckBox((CheckBox) v.findViewById(R.id.chkpleur),
+				(EditText) v.findViewById(R.id.dtppleur), v);
 
 
 		SetCheckBox((CheckBox) v.findViewById(R.id.chkOtherOne),
@@ -17016,9 +17944,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				(EditText) v.findViewById(R.id.dtpVomit), v);
 
 		SetDate((EditText) v.findViewById(R.id.dtpFever));
-
 		SetDate((EditText) v.findViewById(R.id.dtpCough));
 		SetDate((EditText) v.findViewById(R.id.dtpDiffBreath));
+		SetDate((EditText) v.findViewById(R.id.dtpSoreThroat));
+		SetDate((EditText) v.findViewById(R.id.dtpRunningnose));
+		SetDate((EditText) v.findViewById(R.id.dtpHeadache));
+		SetDate((EditText) v.findViewById(R.id.dtpDiarrhea));
+		SetDate((EditText) v.findViewById(R.id.dtpChills));
+		SetDate((EditText) v.findViewById(R.id.dtpBodyache));
+		SetDate((EditText) v.findViewById(R.id.dtpHemo));
+		SetDate((EditText) v.findViewById(R.id.dtppleur));
 
 
 		SetDate((EditText) v.findViewById(R.id.dtpOtherOne));
@@ -17081,18 +18016,18 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 		/*intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
-				"tblMainQues", dbHelper));*/
+				"tblLinelist", dbHelper));*/
 
 //		GetCathmanArea();
-
+		Cursor mCursor = null;
 		try {
-			String strSQL = "Select * from tblMainQues where dataid = '"
+			String strSQL = "Select * from tblLinelist where dataid = '"
 					+ CommonStaticClass.dataId + "'";
-			Cursor mCursor = null;
+
 
 
 
@@ -17259,6 +18194,222 @@ public class ParentActivity extends BaseActivity implements FormListener {
 										.setChecked(false);
 							}
 
+							if (intAge >= 5) {
+								((CheckBox) v.findViewById(R.id.chkSorethroat))
+										.setChecked(true);
+								if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "s_throat").trim()
+										.equalsIgnoreCase("2")) {
+									((CheckBox) v
+											.findViewById(R.id.chkSorethroat))
+											.setChecked(false);
+								} else if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "s_throat").trim()
+										.equalsIgnoreCase("1")) {
+									((CheckBox) v
+											.findViewById(R.id.chkSorethroat))
+											.setChecked(true);
+									((EditText) v
+											.findViewById(R.id.dtpSoreThroat))
+											.setText(CommonStaticClass
+													.CheckCursorValueWithNullHandler(
+															mCursor, "dt_throa")
+													.toString().trim());
+								} else {
+									((CheckBox) v
+											.findViewById(R.id.chkSorethroat))
+											.setChecked(false);
+								}
+							} else {
+								((CheckBox) v.findViewById(R.id.chkSorethroat))
+										.setChecked(false);
+								((CheckBox) v.findViewById(R.id.chkSorethroat))
+										.setEnabled(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"r_nose").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkRunningnose))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"r_nose").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkRunningnose))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpRunningnose))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_nose")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkRunningnose))
+										.setChecked(false);
+							}
+
+							if (intAge < 5) {
+								((CheckBox) v.findViewById(R.id.chkHeadache))
+										.setChecked(false);
+								/*
+								 * ((CheckBox) v.findViewById(R.id.chkspoon))
+								 * .setChecked(false);
+								 */
+							} else {
+								((CheckBox) v.findViewById(R.id.chkHeadache))
+										.setEnabled(true);
+								if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "headache").trim()
+										.equalsIgnoreCase("2")) {
+									((CheckBox) v
+											.findViewById(R.id.chkHeadache))
+											.setChecked(false);
+								} else if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "headache").trim()
+										.equalsIgnoreCase("1")) {
+									((CheckBox) v
+											.findViewById(R.id.chkHeadache))
+											.setChecked(true);
+									((EditText) v
+											.findViewById(R.id.dtpHeadache))
+											.setText(CommonStaticClass
+													.CheckCursorValueWithNullHandler(
+															mCursor, "dt_head")
+													.toString().trim());
+								} else {
+									((CheckBox) v
+											.findViewById(R.id.chkHeadache))
+											.setChecked(false);
+								}
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"diarrhea").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkDiarrhea))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"diarrhea").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkDiarrhea))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpDiarrhea))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_diarr")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkDiarrhea))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"chills").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkChills))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"chills").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkChills))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpChills))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_chills")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkChills))
+										.setChecked(false);
+							}
+
+							if (intAge >= 5) {
+								((CheckBox) v.findViewById(R.id.chkBodyache))
+										.setEnabled(true);
+								if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "bodyache").trim()
+										.equalsIgnoreCase("2")) {
+									((CheckBox) v
+											.findViewById(R.id.chkBodyache))
+											.setChecked(false);
+								} else if (CommonStaticClass
+										.CheckCursorValueWithNullHandler(
+												mCursor, "bodyache").trim()
+										.equalsIgnoreCase("1")) {
+									((CheckBox) v
+											.findViewById(R.id.chkBodyache))
+											.setChecked(true);
+									((EditText) v
+											.findViewById(R.id.dtpBodyache))
+											.setText(CommonStaticClass
+													.CheckCursorValueWithNullHandler(
+															mCursor, "dt_body")
+													.toString().trim());
+								} else {
+									((CheckBox) v
+											.findViewById(R.id.chkBodyache))
+											.setChecked(false);
+								}
+							} else {
+								((CheckBox) v.findViewById(R.id.chkBodyache))
+										.setEnabled(false);
+								((CheckBox) v.findViewById(R.id.chkBodyache))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"hemo").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkhemo))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"hemo").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkhemo))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtpHemo))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_hemo")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkhemo))
+										.setChecked(false);
+							}
+
+							if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"pleur").trim()
+									.equalsIgnoreCase("2")) {
+								((CheckBox) v.findViewById(R.id.chkpleur))
+										.setChecked(false);
+							} else if (CommonStaticClass
+									.CheckCursorValueWithNullHandler(mCursor,
+											"pleur").trim()
+									.equalsIgnoreCase("1")) {
+								((CheckBox) v.findViewById(R.id.chkpleur))
+										.setChecked(true);
+								((EditText) v.findViewById(R.id.dtppleur))
+										.setText(CommonStaticClass
+												.CheckCursorValueWithNullHandler(
+														mCursor, "dt_peur")
+												.toString().trim());
+							} else {
+								((CheckBox) v.findViewById(R.id.chkpleur))
+										.setChecked(false);
+							}
 
 
 							if (CommonStaticClass
@@ -17451,6 +18602,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						"Error On Load");
 			}
 		 finally {
+			if(mCursor != null )
+				mCursor.close();
 
 		}
 
@@ -17806,7 +18959,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		((EditText) v.findViewById(R.id.dtpCough)).setVisibility(View.GONE);
 		((EditText) v.findViewById(R.id.dtpDiffBreath))
 				.setVisibility(View.GONE);
-
+		((EditText) v.findViewById(R.id.dtpSoreThroat))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpRunningnose))
+				.setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpHeadache)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpDiarrhea)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpChills)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpBodyache)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtpHemo)).setVisibility(View.GONE);
+		((EditText) v.findViewById(R.id.dtppleur)).setVisibility(View.GONE);
 
 		((EditText) v.findViewById(R.id.dtpOtherOne)).setVisibility(View.GONE);
 		((EditText) v.findViewById(R.id.dtpOtherTwo)).setVisibility(View.GONE);
@@ -17833,6 +18995,23 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		((EditText) v.findViewById(R.id.dtpDiffBreath))
 				.setVisibility(View.GONE);
 
+		((EditText) v.findViewById(R.id.dtpSoreThroat))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpRunningnose))
+				.setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpHeadache)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpDiarrhea)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpChills)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpBodyache)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtpHemo)).setVisibility(View.GONE);
+
+		((EditText) v.findViewById(R.id.dtppleur)).setVisibility(View.GONE);
 
 
 
@@ -17877,7 +19056,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 
 		intAge = Integer.parseInt(CommonStaticClass.getSkip("AgeY",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 
 		if (intAge < 5)
 			((LinearLayout) v.findViewById(R.id.pan4))
@@ -17886,10 +19065,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			((LinearLayout) v.findViewById(R.id.pan4)).setVisibility(View.GONE);
 
 		intSex = Integer.parseInt(CommonStaticClass.getSkip("Sex",
-				"tblMainQues", dbHelper));
+				"tblLinelist", dbHelper));
 		/*
 		 * intComp = Integer.parseInt(CommonStaticClass.getSkip("Comp",
-		 * "tblMainQues", dbHelper));
+		 * "tblLinelist", dbHelper));
 		 */
 
 		/*
@@ -17901,9 +19080,12 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 	private void loadDataAddress(final ViewGroup v) {
 
+		/*String dist = "SELECT (" + "" + "DistCode" + "" + "|| " + "" + "' : '"
+				+ " || " + "DistName" + ") AS " + "D"
+				+ " from frmrDistrict ORDER BY DistName" + "";*/
 		String dist = "SELECT (" + "" + "DistCode" + "" + "|| " + "" + "' : '"
 				+ " || " + "DistName" + ") AS " + "D"
-				+ " from frmrDistrict ORDER BY DistName" + "";
+				+ " from District ORDER BY DistName" + "";
 
 		/*String occu = "SELECT '' AS occupCode UNION ALL SELECT (" + ""
 				+ "occupCode" + "" + "|| " + "" + "' : '" + " || "
@@ -17918,8 +19100,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
 				((Spinner) v.findViewById(R.id.spdist)));
 
-		String s = String.format(
+		/*String s = String.format(
 				"select DistCode from frmrHospital where HosID='%s'",
+				CommonStaticClass.userSpecificId);*/
+		String s = String.format(
+				"select DistCode from Hospital where HosID='%s'",
 				CommonStaticClass.userSpecificId);
 		Cursor c = dbHelper.getQueryCursor(s);
 
@@ -17941,7 +19126,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 													.toString()
 													.lastIndexOf(":")));
 
-							String strSQL = String
+							/*String strSQL = String
 									.format("SELECT ("
 											+ ""
 											+ "PSCode"
@@ -17954,13 +19139,28 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											+ ") AS "
 											+ "O"
 											+ " from frmrPoliceStation where DistCode = '%s' ORDER BY PSName"
+											+ "", sResCode);*/
+
+							String strSQL = String
+									.format("SELECT ("
+											+ ""
+											+ "PSCode"
+											+ ""
+											+ "|| "
+											+ ""
+											+ "' : '"
+											+ " || "
+											+ "PSName"
+											+ ") AS "
+											+ "O"
+											+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
 											+ "", sResCode);
 
 							CommonStaticClass.FillCombo(thisactivity, dbHelper,
 									strSQL,
 									((Spinner) v.findViewById(R.id.spthana)));
 
-							String sql = "Select PSCode from tblMainQues where dataid = '"
+							String sql = "Select PSCode from tblLinelist where dataid = '"
 									+ CommonStaticClass.dataId + "'";
 							Cursor cur = null;
 
@@ -18054,6 +19254,51 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					((Spinner) v.findViewById(R.id.spday)), 0, 29);
 		}
 
+
+		((Spinner) v.findViewById(R.id.spyear))
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+
+					public void onItemSelected(AdapterView<?> parent,
+											   View view, int pos, long id) {
+
+						if (parent.getItemAtPosition(pos).toString().length() > 0) {
+
+							sResCode = parent
+									.getItemAtPosition(pos)
+									.toString();
+
+							if (sResCode.length() > 0) {
+								if (Integer.parseInt(sResCode) < 5) {
+									((Spinner) v.findViewById(R.id.spmonth))
+											.setVisibility(view.VISIBLE);
+									((Spinner) v.findViewById(R.id.spday))
+											.setVisibility(view.VISIBLE);
+
+								} else {
+									((Spinner) v.findViewById(R.id.spmonth))
+											.setSelection(0);
+									((Spinner) v.findViewById(R.id.spday))
+											.setSelection(0);
+									((Spinner) v.findViewById(R.id.spday))
+											.setVisibility(view.INVISIBLE);
+									((Spinner) v.findViewById(R.id.spmonth))
+											.setVisibility(view.INVISIBLE);
+									((Spinner) v.findViewById(R.id.spday))
+											.setVisibility(view.INVISIBLE);
+								}
+							}
+
+						}
+
+					}
+
+
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});
 		/*
 		 * ((Spinner) v.findViewById(R.id.spyear)).setOnItemSelectedListener(new
 		 * OnItemSelectedListener() {
@@ -18078,7 +19323,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		 * } });
 		 */
 
-		String sql = "Select Name, HHHead, AgeY, AgeM, AgeD, Sex, Vill, UnionName, PSCode, DistCode, Phone,Phone1 from tblMainQues where dataid = '"
+		String sql = "Select Name, HHHead, AgeY, AgeM, AgeD, Sex, Vill, UnionName, PSCode, DistCode, Phone,Phone1 from tblLinelist where dataid = '"
 				+ CommonStaticClass.dataId + "'";
 		Cursor cur = null;
 
@@ -18159,7 +19404,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				c.close();
 		}
 
-		/*if (CommonStaticClass.getSkip("Comp", "tblMainQues", dbHelper)
+		/*if (CommonStaticClass.getSkip("Comp", "tblLinelist", dbHelper)
 				.equalsIgnoreCase("1")) {
 			((Spinner) v.findViewById(R.id.spmonth)).setVisibility(View.GONE);
 			((Spinner) v.findViewById(R.id.spday)).setVisibility(View.GONE);
@@ -19537,7 +20782,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 
 		
-		 * String sqlD = "select comments from tblMainQues where dataid= '" +
+		 * String sqlD = "select comments from tblLinelist where dataid= '" +
 		 * CommonStaticClass.dataId + "'"; String cmnts = ""; Cursor dCursor =
 		 * dbHelper.getQueryCursor(sqlD); if (dCursor.moveToFirst()) { do {
 		 * cmnts = dCursor.getString(dCursor.getColumnIndex("comments")); }
@@ -19604,7 +20849,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		 * public void onClick(View v) { if
 		 * (!CommonStaticClass.isNullOrEmpty(txtcomnt.getText() .toString())) {
 		 * if (!txtcomnt.getText().toString().trim() .equalsIgnoreCase("")) {
-		 * String cmntSQL = "Update tblMainQues set comments = '" +
+		 * String cmntSQL = "Update tblLinelist set comments = '" +
 		 * txtcomnt.getText().toString() + "' where dataid= '" +
 		 * CommonStaticClass.dataId + "'";
 		 * 

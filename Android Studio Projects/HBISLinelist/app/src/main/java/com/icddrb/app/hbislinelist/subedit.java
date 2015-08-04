@@ -84,7 +84,7 @@ public class subedit extends BaseActivity {
 	}
 	private void lookForSections() {
 		// TODO Auto-generated method stub
-		String sqlForSec = "Select SLNo,Qdesceng from tblQuestion where Qvar like 'sec%' order by SLNo";
+		String sqlForSec = "Select SLNo,Qdesceng from tblQuestionLList where Qvar like 'sec%' order by SLNo";
 
 		Cursor mCursor1 = null;
 		try {
@@ -115,7 +115,7 @@ public class subedit extends BaseActivity {
 	}
 
 	private int getlastSerialNo() {
-		String sqlForSec = "Select max(SLNo) as SLNo from tblQuestion";
+		String sqlForSec = "Select max(SLNo) as SLNo from tblQuestionLList";
 		int lastSl = 0;
 		Cursor mCursor1 = null;
 		try {

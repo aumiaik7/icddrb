@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ln"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dip">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:orientation="vertical"
+        android:scrollbars="vertical" style="@style/scroll_view">
+
+        <TextView
+            android:id="@+id/DisplayCriteria"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dip"
+            android:ellipsize="none"
+            android:text=""
+            android:textColor="#0404B4"
+            android:textStyle="bold" android:visibility="invisible"/>
+
+        <!-- <TextView
+            android:id="@+id/DisplayRowCount"
+            android:layout_width="1000dip"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dip"
+            android:ellipsize="none"
+            android:text=""
+            android:textColor="#0404B4"
+            android:textStyle="bold" /> -->
+
+        <TableLayout
+            android:id="@+id/TableLayout02"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dip"
+            android:scrollbars="horizontal" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="180dip"
+                android:background="@color/blue"
+                android:scrollbars="horizontal" >
+
+                <TextView
+                    android:id="@+id/PIDCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="PID" />
+
+                <TextView
+                    android:id="@+id/HhCaption"
+                    android:layout_width="105dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="HH" />
+
+                <TextView
+                    android:id="@+id/SlnoCaption"
+                    android:layout_width="110dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="SL" />
+
+                <TextView
+                    android:id="@+id/NameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/SexCaption"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Sex" />
+
+                <TextView
+                    android:id="@+id/AgeCaption"
+                    android:layout_width="50dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Age" />
+
+                <TextView
+                    android:id="@+id/BDateCaption"
+                    android:layout_width="120dip"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="BDate(Y-M-D)" />
+
+                <TextView
+                    android:id="@+id/RthCaption"
+                    android:layout_width="50dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Rth" />
+
+                <TextView
+                    android:id="@+id/MSCaption"
+                    android:layout_width="50dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="MS" />
+
+                <TextView
+                    android:id="@+id/AreaCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Area" />
+
+                <TextView
+                    android:id="@+id/SecBlockCaption"
+                    android:layout_width="80dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="SecBlock" />
+
+                <TextView
+                    android:id="@+id/RoadCaption"
+                    android:layout_width="130dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Road" />
+
+                <TextView
+                    android:id="@+id/HouseCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="House" />
+
+                <TextView
+                    android:id="@+id/DistCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Dist" />
+
+                <TextView
+                    android:id="@+id/UPZCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="UPZ" />
+
+                <TextView
+                    android:id="@+id/VillCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Vill" />
+
+                <TextView
+                    android:id="@+id/Phone1Caption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Phone1" />
+
+                <TextView
+                    android:id="@+id/Phone2Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Phone2" />
+
+                <TextView
+                    android:id="@+id/Phone3Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Phone3" />
+
+                <TextView
+                    android:id="@+id/Phone4Caption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Phone4" />
+
+                <TextView
+                    android:id="@+id/GISIDCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="GISID" />
+
+                <TextView
+                    android:id="@+id/WardCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Ward" />
+
+                <TextView
+                    android:id="@+id/ClustCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Clust" />
+
+                <TextView
+                    android:id="@+id/BlockCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Block" />
+
+                <TextView
+                    android:id="@+id/FaSizeCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="FaSize" />
+
+                <TextView
+                    android:id="@+id/EnDateCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="EnDate(Y-M-D)" />
+
+                <TextView
+                    android:id="@+id/MotherNameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Mother Name" />
+
+                <TextView
+                    android:id="@+id/FatherNameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Father Name" />
+
+                <TextView
+                    android:id="@+id/HeadNameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Head Name" />
+
+                <TextView
+                    android:id="@+id/SpouseNameCaption"
+                    android:layout_width="200dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Spouse Name" />
+
+                <!-- <TextView
+                    android:id="@+id/UcodeCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Ucode" />
+
+                <TextView
+                    android:id="@+id/UnionNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Union Name" />
+
+                <TextView
+                    android:id="@+id/VillKCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Villk" />
+
+                <TextView
+                    android:id="@+id/VpartCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Vpart" />
+
+                <TextView
+                    android:id="@+id/VillNameCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Vill Name" />
+
+                <TextView
+                    android:id="@+id/MohallaCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Mohalla" />
+
+                <TextView
+                    android:id="@+id/BariCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Bari" />
+
+                <TextView
+                    android:id="@+id/KhanaCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Khana" />
+
+                <TextView
+                    android:id="@+id/ProjectCaption"
+                    android:layout_width="70dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Project" />
+
+                <TextView
+                    android:id="@+id/LocationCaption"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:ellipsize="none"
+                    android:scrollHorizontally="false"
+                    android:text="Location" /> -->
+            </TableRow>
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:clipChildren="true"
+            android:horizontalSpacing="5dip"
+            android:isScrollContainer="true"
+            android:numColumns="1"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dip" 
+            android:visibility="visible" style="@style/scroll_view" />
+    </LinearLayout>
+
+</HorizontalScrollView>

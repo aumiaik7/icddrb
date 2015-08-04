@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foods/ingredients in recipes (may be in a sauce or porridge) eaten by the child yesterday " />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/chk1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khichuri" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/chk2_1"
+                   android:layout_width="150dp"
+                    
+                    android:layout_height="wrap_content"
+                    android:text="Porridge" />
+
+                <CheckBox
+                    android:id="@+id/chk2_2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Rice" />
+
+                <CheckBox
+                    android:id="@+id/chk2_3"
+                android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bread/ Roti" />
+
+                <CheckBox
+                    android:id="@+id/chk2_4"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Noodles" />
+
+                <CheckBox
+                    android:id="@+id/chk2_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other foods made by grain" />
+
+                <EditText
+                    android:id="@+id/et2_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/chk3_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Pumpkin" />
+
+                <CheckBox
+                    android:id="@+id/chk3_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Carrots" />
+
+                <CheckBox
+                    android:id="@+id/chk3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other yellow vegetable" />
+
+                <EditText
+                    android:id="@+id/et3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk4_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Potato" />
+
+                <CheckBox
+                    android:id="@+id/chk4_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
+                    android:text="White sweet potato" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk5_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Pumpkin leaves" />
+
+                <CheckBox
+                    android:id="@+id/chk5_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mustard leaves" />
+
+                <CheckBox
+                    android:id="@+id/chk5_3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bean leaves" />
+
+                <CheckBox
+                    android:id="@+id/chk5_4"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="Pigeon pea/Motorshuti leaves" />
+
+                <CheckBox
+                    android:id="@+id/chk5_5"
+                    android:layout_width="150dp"
+                    android:layout_height="58dp"
+                    android:text="Other dark green leaves" />
+
+                <EditText
+                    android:id="@+id/et5_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk6_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ripe mango" />
+
+                <CheckBox
+                    android:id="@+id/chk6_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ripe papaya" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk7_1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Banana" />
+
+                <CheckBox
+                    android:id="@+id/chk7_2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Pineapple" />
+
+                <CheckBox
+                    android:id="@+id/chk7_3"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Guava" />
+
+                <CheckBox
+                    android:id="@+id/chk7_4"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Apple" />
+
+                <CheckBox
+                    android:id="@+id/chk7_5"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Grape" />
+
+                    <CheckBox
+                    android:id="@+id/chk7_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orange" />
+                    
+                <CheckBox
+                    android:id="@+id/chk7_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other fruit" />
+
+                <EditText
+                    android:id="@+id/et7_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk8_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tomato" />
+
+                <CheckBox
+                    android:id="@+id/chk8_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Onion" />
+
+                <CheckBox
+                    android:id="@+id/chk8_3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mushroom" />
+
+                <CheckBox
+                    android:id="@+id/chk8_4"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lady’s finger" />
+
+                <CheckBox
+                    android:id="@+id/chk8_5"
+                    android:layout_width="150dp"
+                    android:layout_height="52dp"
+                    android:text="Fresh bean / Motorshuti" />
+
+                <CheckBox
+                    android:id="@+id/chk8_6"
+                    android:layout_width="122dp"
+                    android:layout_height="wrap_content"
+                    android:text="other Vegetable" />
+
+                <EditText
+                    android:id="@+id/et8_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk9_1"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Liver" />
+
+                <CheckBox
+                    android:id="@+id/chk9_2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Kidney" />
+
+                <CheckBox
+                    android:id="@+id/chk9_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Heart" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk10_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Any type of meat / flesh, including from birds and animals" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk11_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Any type of  egg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk12_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Fresh fish" />
+
+            <CheckBox
+                android:id="@+id/chk12_2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Dried fish" />
+
+            <CheckBox
+                android:id="@+id/chk12_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other fish / seafood" />
+
+            <EditText
+                android:id="@+id/et12_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk13_1"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:text="Beans" />
+
+            <CheckBox
+                android:id="@+id/chk13_2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Peas / Lentils" />
+
+            <CheckBox
+                android:id="@+id/chk13_3"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:text="Soya" />
+
+            <CheckBox
+                android:id="@+id/chk13_4"
+                android:layout_width="133dp"
+                android:layout_height="54dp"
+                android:text="Groundnut" />
+
+            <CheckBox
+                android:id="@+id/chk13_5"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="Cashew" />
+
+            <CheckBox
+                android:id="@+id/chk13_6"
+                android:layout_width="199dp"
+                android:layout_height="wrap_content"
+                android:text="Pounded groundnut" />
+
+            <CheckBox
+                android:id="@+id/chk13_7"
+                android:layout_width="112dp"
+                android:layout_height="match_parent"
+                android:text="Any other legume or nut" />
+
+            <EditText
+                android:id="@+id/et13_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk14_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cheese" />
+
+            <CheckBox
+                android:id="@+id/chk14_2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Yogurt" />
+
+            <CheckBox
+                android:id="@+id/chk14_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other milk products" />
+
+            <EditText
+                android:id="@+id/et14_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk15_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Vegetable oil" />
+
+            <CheckBox
+                android:id="@+id/chk15_2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Animal fat" />
+
+            <CheckBox
+                android:id="@+id/chk15_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Margarine" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk16_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Chocolate" />
+
+            <CheckBox
+                android:id="@+id/chk16_2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Sweets / candies" />
+
+            <CheckBox
+                android:id="@+id/chk16_3"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cake" />
+
+            <CheckBox
+                android:id="@+id/chk16_4"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:text="Cookies / sweet biscuits" />
+
+            <CheckBox
+                android:id="@+id/chk16_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sugar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk17_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Seasonings" />
+
+            <CheckBox
+                android:id="@+id/chk17_2"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Garlic" />
+
+            <CheckBox
+                android:id="@+id/chk17_3"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Spices" />
+
+            <CheckBox
+                android:id="@+id/chk17_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salt" />
+            
+             
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk18_1"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Prawns" />
+
+            <CheckBox
+                android:id="@+id/chk18_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crab" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="If not on list above, write food(s) here" />
+
+            <EditText
+                android:id="@+id/et19_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+            <LinearLayout android:layout_marginBottom="10dip" android:layout_width="match_parent" android:id="@+id/linearLayout2" android:orientation="horizontal" android:weightSum="1" android:layout_height="30dp" android:layout_weight="0.03">
+         <Button  android:id="@+id/btnNote" android:text="Add Note" android:layout_width="match_parent" android:layout_weight="0.96" android:layout_height="match_parent"></Button>
+    </LinearLayout>
+    
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout3" android:orientation="horizontal" android:weightSum="6" android:gravity="center_horizontal">
+        <Button android:layout_weight="2" android:layout_marginRight="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/prevButton" android:text="Previous"></Button>
+        <Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight="2" android:text="Clear" android:id="@+id/clButton"></Button>
+        <Button android:layout_weight="2" android:layout_marginLeft="10dip" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Save &amp; Next" android:id="@+id/saveNxtButton"></Button>
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

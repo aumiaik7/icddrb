@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+<LinearLayout
+    android:id="@+id/linearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:layout_weight="0.42"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_weight="2.33"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="akdals"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:visibility="gone" >
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linealist1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="1dp"
+                    android:weightSum="2" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <TextView
+                            android:id="@+id/txtChamber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                       
+                            android:text="cvqLvbvi Ae¯’v msµvš— t, ‡P¤^vi bs"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                      >
+
+                        <Spinner
+                            android:id="@+id/spChamber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="2dp" >
+
+                    <TextView
+                        android:id="@+id/txt2_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:layout_weight=".5"
+                        android:text="2.12.	cvqLvbvi `iRvi Ae¯’v †Kgb wQj? (cvqLvbv e¨enviKvixi †MvcbxqZv eRvq ivLvi Ae¯’vwU †Kgb wQj?"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/blue" />
+
+                    <RadioGroup
+                        android:id="@+id/rg2_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5" >
+
+                        <RadioButton
+                            android:id="@+id/rb2_12a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="1.†MvcbxqZv eRvq ivLvi †Kvb e¨e¯’v wQj bv (cvqLvbvi Af¨šÍ‡ii RvqMvwU evB‡i †_‡K `„wó‡MvPi Kivi †Kvb e¨e¯’v wQj bv)" />
+
+                        <RadioButton
+                            android:id="@+id/rb2_12b"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2.†MvcbxqZv eRvq ivLvi e¨e¯’vwU Kg cwigv‡b wQ‡jv/AvswkK wQj (`iRv wQj, wKšÍ– wQUwKwb wQj bv)" />
+
+                        <RadioButton
+                            android:id="@+id/rb2_12c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.†MvcbxqZv eRvq ivLvi e¨e¯’vwU wbwðZ wQj (`iRv wQj Ges wQUwKwb I Kvh©Kix wQj)" />
+
+                        <RadioButton
+                            android:id="@+id/rb2_12d"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.†MvcbxqZv eRvq ivLvi e¨e¯’vwU AZ¨všÍ my`„p wQj (`iRvq wQUwKwb wQj Ges evB‡i †_‡K †evSv hvw”Q‡jv †h †fZ‡i GKRb e¨enviKvix Av‡Q)" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <TextView
+                            android:id="@+id/txt2_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_weight="1"
+                            android:text="2.13.cvqLvbvwU‡Z wK †Kvb Zvjv wQj?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <RadioGroup
+                            android:id="@+id/rg2_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:orientation="horizontal" >
+
+                            <RadioButton
+                                android:id="@+id/rb2_13a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="1. bv" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_13b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2.nu¨v " />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+                   <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <TextView
+                            android:id="@+id/txt2_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_weight="1"
+                            android:text="2.14.cvqLvbvi `iRv †Lvjvi Rb¨ evB‡i wK †Kvb Pvwe wQj? "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <RadioGroup
+                            android:id="@+id/rg2_14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:orientation="horizontal" >
+
+                            <RadioButton
+                                android:id="@+id/rb2_14a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="1. bv" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_14b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2.nu¨v " />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+                   <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2dp"
+                    android:weightSum="2" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <TextView
+                            android:id="@+id/txt2_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_weight="1"
+                            android:text="2.15.cvqLvbvwU‡Z wK †Kvb Kvh©Kix Av‡jv wQj?"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/blue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="1dp" >
+
+                        <RadioGroup
+                            android:id="@+id/rg2_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:orientation="horizontal" >
+
+                            <RadioButton
+                                android:id="@+id/rb2_15a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="1. bv" />
+
+                            <RadioButton
+                                android:id="@+id/rb2_15b"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2.nu¨v " />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linealist1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:weightSum="6" >
+
+                <Button
+                    android:id="@+id/clButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Clear" >
+                </Button>
+
+                <Button
+                    android:id="@+id/saveNxtButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_weight="2"
+                    android:text="Save" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+ </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linealist1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0.99"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lvshowAll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/goNxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

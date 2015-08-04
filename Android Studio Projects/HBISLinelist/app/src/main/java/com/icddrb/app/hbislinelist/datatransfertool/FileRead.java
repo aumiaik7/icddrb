@@ -140,9 +140,9 @@ public class FileRead extends Activity {
 							
 							if (table_name.startsWith("frmr")	
 									|| table_name
-											.equalsIgnoreCase("tblOptions")
+											.equalsIgnoreCase("tblOptionsLList ")
 									|| table_name
-											.equalsIgnoreCase("tblQuestion")
+											.equalsIgnoreCase("tblQuestionLList")
 									|| table_name.equalsIgnoreCase("tblStack")	
 									|| table_name.equalsIgnoreCase("tblUser")
 									|| table_name
@@ -278,9 +278,9 @@ public class FileRead extends Activity {
 
 					if (table_name.startsWith("frmr")
 							|| table_name
-							.equalsIgnoreCase("tblOptions")
+							.equalsIgnoreCase("tblOptionsLList ")
 							|| table_name
-							.equalsIgnoreCase("tblQuestion")
+							.equalsIgnoreCase("tblQuestionLList")
 							|| table_name.equalsIgnoreCase("tblStack")
 							|| table_name.equalsIgnoreCase("tblUser")
 							|| table_name

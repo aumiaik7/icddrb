@@ -127,7 +127,7 @@ public class EditEntryMember extends BaseActivity {
 
 				public void run() {
 					try {
-						String sql1 = "Delete from tblMainQues where dataid='"
+						String sql1 = "Delete from tblLinelist where dataid='"
 								+ dataid + "'";
 						String sql2 = "Delete from tblAnthropometry where dataid='"
 								+ dataid + "'";
@@ -335,7 +335,7 @@ public class EditEntryMember extends BaseActivity {
 	private void loadQuestions() {
 
 		//String sql = "Select * from tblQuestion where SLNO>=3";
-		String sql = "Select * from tblQuestion";
+		String sql = "Select * from tblQuestionLList";
 		Cursor mCursor = null;
 		try {
 			mCursor = dbHelper.getQueryCursor(sql);
@@ -390,7 +390,7 @@ public class EditEntryMember extends BaseActivity {
 			if (mCursor != null)
 				mCursor.close();
 
-			String sqlForSec = "Select SLNo,Qvar from tblQuestion where  SLNO>=3 and Qvar  like 'sec%' order by SLNo";
+			String sqlForSec = "Select SLNo,Qvar from tblQuestionLList where  SLNO>=3 and Qvar  like 'sec%' order by SLNo";
 
 			Cursor mCursor1 = null;
 			try {

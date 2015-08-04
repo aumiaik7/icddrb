@@ -581,7 +581,7 @@ public class MenuScreen extends BaseActivity {
 
 	private void loadQuestions() {
 
-		String sql = "Select * from tblQuestion order by SLNo asc";
+		String sql = "Select * from tblQuestionLList order by SLNo asc";
 		Cursor mCursor = null;
 		try {
 			mCursor = dbHelper.getQueryCursor(sql);
@@ -634,7 +634,7 @@ public class MenuScreen extends BaseActivity {
 			if (mCursor != null)
 				mCursor.close();
 
-			String sqlForSec = "Select SLNo,Qvar from tblQuestion where Qvar like 'sec%' order by SLNo asc";
+			String sqlForSec = "Select SLNo,Qvar from tblQuestionLList where Qvar like 'sec%' order by SLNo asc";
 
 			Cursor mCursor1 = null;
 			try {

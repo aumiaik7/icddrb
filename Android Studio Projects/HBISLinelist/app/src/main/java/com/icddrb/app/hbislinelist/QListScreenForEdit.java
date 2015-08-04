@@ -179,12 +179,12 @@ public class QListScreenForEdit extends BaseActivity {
 		//load sections 
 		
 		if(CommonStaticClass.subEditMode == 1)
-		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where (SLNo >= '"+ CommonStaticClass.sectionStart+"' " +
+		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  where (SLNo >= '"+ CommonStaticClass.sectionStart+"' " +
 					"and SLNo <=" +
 					" '"+CommonStaticClass.sectionEnd+"') order by SLNo asc";
 		else
 		//load all
-			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  order by SLNo asc";
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  order by SLNo asc";
 		
 		/*if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
 		if (!CommonStaticClass.isMember)
@@ -310,7 +310,7 @@ public class QListScreenForEdit extends BaseActivity {
 
 		Cursor mCursor = null;
 
-		sql = "select Formname,Tablename from tblQuestion where Qvar = '"+qvar+"'";
+		sql = "select Formname,Tablename from tblQuestionLList where Qvar = '"+qvar+"'";
 
 		try{
 			mCursor = dbHelper.getQueryCursor(sql);
@@ -334,7 +334,7 @@ public class QListScreenForEdit extends BaseActivity {
 					mCursor = dbHelper.getQueryCursor(sql);
 					if (mCursor.moveToFirst()) {
 						String choiceValue = mCursor.getString(mCursor.getColumnIndex(qvar));
-						sql = "Select  CaptionEng from tblOptions where QID = '"+qvar+"' " +
+						sql = "Select  CaptionEng from tblOptionsLList  where QID = '"+qvar+"' " +
 								"and Code = '"+choiceValue+"'";
 						mCursor = dbHelper.getQueryCursor(sql);
 						if (mCursor.moveToFirst()) {

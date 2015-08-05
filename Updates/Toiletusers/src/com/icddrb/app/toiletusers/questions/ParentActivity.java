@@ -16879,20 +16879,21 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// TODO Auto-generated method stub
 		
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		map.put(15, R.drawable.brac);
-		map.put(14, R.drawable.plan);
-		map.put(13, R.drawable.dsk);
-		map.put(12, R.drawable.cwfd);
-		map.put(11, R.drawable.ma);
-		map.put(10, R.drawable.uppr);
-		map.put(9, R.drawable.arban);
-		map.put(8, R.drawable.hsbc);
-		map.put(7, R.drawable.unicef);
-		map.put(6, R.drawable.unilever);
-		map.put(5, R.drawable.wsup);
-		map.put(4, R.drawable.wv);
-		map.put(3, R.drawable.wasa);
-		map.put(2, R.drawable.hh);
+		map.put(17, R.drawable.brac);
+		map.put(16, R.drawable.plan);
+		map.put(15, R.drawable.dsk);
+		map.put(14, R.drawable.cwfd);
+		map.put(13, R.drawable.ma);
+		map.put(12, R.drawable.uppr);
+		map.put(11, R.drawable.arban);
+		map.put(10, R.drawable.hsbc);
+		map.put(9, R.drawable.unicef);
+		map.put(8, R.drawable.unilever);
+		map.put(7, R.drawable.wsup);
+		map.put(6, R.drawable.wv);
+		map.put(5, R.drawable.wasa);
+		map.put(4, R.drawable.hh);
+		map.put(3, R.drawable.icddrb);
 		if (aaa != null && aaa.size() > 0) {
 			aaa.clear();
 		}
@@ -16992,7 +16993,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			
 			if(qName.equalsIgnoreCase("q8_15"))
 			{
-				if(i > 1)
+				if(i > 2)
 				{
 					image.setImageResource(map.get(i));
 					ln.addView(image, 0, layoutParamForimage);
@@ -17395,7 +17396,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					if (qName.equalsIgnoreCase("q3_6")) {
 						if (aaa.get(0) == 1 || aaa.get(1) == 1
 								|| aaa.get(3) == 1|| aaa.get(4) == 1) {
-							CommonStaticClass.findOutNextSLNo(qName, "q3_10");
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_6a");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
 							CommonStaticClass.findOutNextSLNo(
@@ -21015,7 +21016,26 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		if(qName.equalsIgnoreCase("q_3_6a"))
 		{
 			Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-			map.put(1, R.drawable.fecal1);
+//			map.put(1, R.drawable.fecal1);
+			map.put(0, R.drawable.fecal1);
+			LinearLayout.LayoutParams layoutParamforimage = new RadioGroup.LayoutParams(
+					RadioGroup.LayoutParams.WRAP_CONTENT,
+					RadioGroup.LayoutParams.WRAP_CONTENT);
+			
+			layoutParamforimage.setMargins(0, 7, 0, 7);
+			layoutParamforimage.gravity = Gravity.CENTER;
+			
+			final ImageView image = new ImageView(this);
+			final ImageView image2 = new ImageView(this);
+			image.setImageResource(map.get(0));
+			mRadioGroup.addView(image, 0, layoutParamforimage);
+//			image2.setImageResource(map.get(1));
+//			mRadioGroup.addView(image2, 0, layoutParamforimage);
+		}
+		if(qName.equalsIgnoreCase("q_3_6b"))
+		{
+			Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+//			map.put(1, R.drawable.fecal1);
 			map.put(0, R.drawable.fecal2);
 			LinearLayout.LayoutParams layoutParamforimage = new RadioGroup.LayoutParams(
 					RadioGroup.LayoutParams.WRAP_CONTENT,
@@ -21028,8 +21048,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			final ImageView image2 = new ImageView(this);
 			image.setImageResource(map.get(0));
 			mRadioGroup.addView(image, 0, layoutParamforimage);
-			image2.setImageResource(map.get(1));
-			mRadioGroup.addView(image2, 0, layoutParamforimage);
+//			image2.setImageResource(map.get(1));
+//			mRadioGroup.addView(image2, 0, layoutParamforimage);
 		}
 		for (int i = 0; i < op.codeList.size(); i++) {
 
@@ -21232,6 +21252,20 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 						return;
 
+					}
+					else if (qName.equalsIgnoreCase("q_3_6a")) {
+						if (CommonStaticClass.getSkip("q3_6_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
+							|| CommonStaticClass.getSkip("q3_6_8", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_10");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						} else {
+							CommonStaticClass.findOutNextSLNo(
+									qName,
+									CommonStaticClass.questionMap.get(
+											CommonStaticClass.currentSLNo)
+											.getQnext1());
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
 					}
 					else if (qName.equalsIgnoreCase("q_3_16b")) {
 						if (CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")) {

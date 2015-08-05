@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:id="@+id/checkBoxHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/qqq"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
+                android:gravity="center"
+                android:text="heading"
+                android:textAppearance="?android:attr/textAppearanceLarge" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/lblPulseRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pulse rate (per min) :"
+                android:textAppearance="?android:attr/textAppearanceMedium" >
+            </TextView>
+
+            <Spinner
+                android:id="@+id/cboPulseRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblHeartRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Heart rate (per min) :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboHeartRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temperature (in F) :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtTemperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/lblVillage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time of temp :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboTempTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!--
+            <TextView
+                android:id="@+id/lblUnion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" >
+            </TextView>
+
+
+
+            -->
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temp Location :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboTempLoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblSystolic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Systolic blood pressure :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboSystolic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblDiastolic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diastolic blood pressure :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboDiastolic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblRespiratoryrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Respiratory rates (per min) :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboRespiratoryRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblCyanosis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cyanosis :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupCyanosis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abnormal Breath Sound :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupBreath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lbldecreased"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Decreased breath Sounds:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupDBreathSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblrhonchi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rhonchi :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupRhonchi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblcrepitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crepitation :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupCrepitation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblrhales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rhales: "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupRhales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblstridor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stridor: "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupStridor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mental Status: "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Spinner
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cboMentalStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                android:id="@+id/lbllabfindings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blood Specimen Collected?"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/chkLabFindings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:textAppearance="?android:attr/textAppearanceMedium" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <!--
+                 <EditText
+                android:id="@+id/dtSpecimencol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Date" />
+
+            <EditText
+                android:id="@+id/dtSpecimentime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Time" />
+
+
+            -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <EditText
+                    android:id="@+id/dtSpecimencol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Date" />
+
+                <EditText
+                    android:id="@+id/dtSpecimentime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:hint="Time" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lblWbcCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WBC count :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtWBCcount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/lblnutrophils"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neutrophils :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboNeutrophils"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblLymphocytes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lymphocytes :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboLymphocytes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblPlatelet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Platelet count :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtPlateletCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblHemoglobin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hemoglobin (gm/dl) :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtHemoglobin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblesr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ESR :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboESR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chest X-ray finding :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/cboChestRadiograph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblxrayother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xray other:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtRadiographOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblisfindings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Is Finding consistent with Pneumonia ? "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupPneumonia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DK" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblforthisillness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For this illness episode, any medicine taken in the 24 hours before admission to the study hospital?"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupMedic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DK" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblmedicine1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine1 :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <!--  <Spinner
+                android:id="@+id/cboMedicineOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+           <AutoCompleteTextView
+			   android:id="@+id/autoCompleteMed1"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lblmedicine2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medicine2 :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <!--  <Spinner
+                android:id="@+id/cboMedicineTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+            <AutoCompleteTextView
+			   android:id="@+id/autoCompleteMed2"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lblmedicine3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medicine3 :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <!--  <Spinner
+                android:id="@+id/cboMedicineThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+             <AutoCompleteTextView
+			   android:id="@+id/autoCompleteMed3"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lblOtherMedicien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtMedicineOthers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" android:maxLength="30"/>
+
+            <TextView
+                android:id="@+id/lblisantibiotic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Is the medicine an antibiotic? "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupIsAntiobiotic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DK" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblexample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treatment during this admission?"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/lbltreatment1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treatment :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <!--   <Spinner
+                android:id="@+id/cboTreatmentOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+            <AutoCompleteTextView
+			   android:id="@+id/autoCompleteTextView1"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			   android:layout_weight="1" 
+			   android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lbltreatment2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treatment :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <!-- <Spinner
+                android:id="@+id/cboTreatmentTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+             <AutoCompleteTextView
+			   android:id="@+id/autoCompleteTextView2"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			   android:layout_weight="1" 
+			   android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lbltreatment3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Treatment :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <!--  <Spinner
+                android:id="@+id/cboTreatmentThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+           <AutoCompleteTextView
+			   android:id="@+id/autoCompleteTextView3"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			   android:layout_weight="1"
+			   android:popupBackground ="#FFFFCC" 
+			/>
+
+            <TextView
+                android:id="@+id/lbltreatment4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treatment :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <!-- <Spinner
+                android:id="@+id/cboTreatmentFour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+                
+             <AutoCompleteTextView
+			   android:id="@+id/autoCompleteTextView4"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			   android:layout_weight="1"
+			   android:popupBackground ="#FFFFCC" 
+			 />
+
+          
+			   <!-- android:layout_alignParentTop="true"
+			   android:layout_centerHorizontal="true"
+			   android:ems="10" 
+			    -->
+			   
+            <TextView
+                android:id="@+id/lblOthersTreatment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            
+            
+            
+
+            <EditText
+                android:id="@+id/txtTreatmentOthers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:maxLength="200"/>
+
+            <TextView
+                android:id="@+id/lblhospitalization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="During this hospitalization, has patient taken antibiotics prior to swab collection? "
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupOPD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblanti1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Antibiotics 1:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+          <!--   <Spinner
+                android:id="@+id/cbolistantiBio1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+            <AutoCompleteTextView
+			   android:id="@+id/autoCompleteAnt1"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lblanti2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Antibiotics 2:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <!--  <Spinner
+                android:id="@+id/cbolistantiBio2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+            <AutoCompleteTextView
+			   android:id="@+id/autoCompleteAnt2"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lblanti3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Antibiotics 3:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+<!-- 
+            <Spinner
+                android:id="@+id/cbolistantiBio3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" /> -->
+            <AutoCompleteTextView
+			   android:id="@+id/autoCompleteAnt3"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			 />
+
+            <TextView
+                android:id="@+id/lbld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/dtpAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lblt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/dtpAdminTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/lbloxygen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oxygen received by the patient"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupOxyRecv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblicu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Was the patient admitted into the intensive care unit(ICU)"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupICU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unknown" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblmechanical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Has the patient required mechanical ventilation during this admission?"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupMechVenti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/lblnodaysventilator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of days on ventilator:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtNoofVentilator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/lblComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments :"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/txtComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" >
+            </EditText>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.3"
+                android:orientation="horizontal"
+                android:weightSum="1" >
+
+                <Button
+                    android:id="@+id/btnNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Note" >
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:text="Previous" >
+        </Button>
+
+        <Button
+            android:id="@+id/clButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Clear" >
+        </Button>
+
+        <Button
+            android:id="@+id/saveNxtButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:text="Save &amp; Next" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

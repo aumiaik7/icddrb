@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wkï MZKvj ‡h Lvevi/Lv`¨ ˆZixi Dcv`vb †L‡q‡Q(†Svj A_ev wm× hv B †nvK bv †Kb)" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <CheckBox
+                    android:id="@+id/chk1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wLPzox( wLPzox wK wK w`‡q ivbœv n‡q‡Q †R‡b wb‡q dzW MÖc Abyhvqx bx‡P †KvW Kiyb)" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cvwb‡Z ev `y‡a wm× Kiv km¨ RvZxq Lvevi †hgb: mywR,fvZ, iywU, byWzjm,  Ab¨vb¨  km¨ RvZxq `vbv`vi Lv`¨" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/chk2_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Porridge" />
+
+                <CheckBox
+                    android:id="@+id/chk2_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rice" />
+
+                <CheckBox
+                    android:id="@+id/chk2_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bread/ Roti" />
+
+                <CheckBox
+                    android:id="@+id/chk2_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Noodles" />
+
+                <CheckBox
+                    android:id="@+id/chk2_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other foods made by grain" />
+
+                <EditText
+                    android:id="@+id/et2_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <CheckBox
+                    android:id="@+id/chk3_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wgwó Kzgov" />
+
+                <CheckBox
+                    android:id="@+id/chk3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MvRi" />
+
+                <CheckBox
+                    android:id="@+id/chk3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ab¨vb¨ njy` meRx" />
+
+                <EditText
+                    android:id="@+id/et3_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk4_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Avj" />
+
+                <CheckBox
+                    android:id="@+id/chk4_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mv`v wgwó Avj" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk5_1"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:text="wgwó Kzgov kvK" />
+
+                <CheckBox
+                    android:id="@+id/chk5_2"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="mwilv kvK" />
+
+                <CheckBox
+                    android:id="@+id/chk5_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gUi ïwU kvK" />
+
+                <CheckBox
+                    android:id="@+id/chk5_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="gUi ïwU kvK,  cyBu kvK" />
+
+                <CheckBox
+                    android:id="@+id/chk5_5"
+                    android:layout_width="147dp"
+                    android:layout_height="58dp"
+                    android:text="Ab¨vb¨ Mvp meyR kvK" />
+
+                <EditText
+                    android:id="@+id/et5_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk6_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cvKv Avg" />
+
+                <CheckBox
+                    android:id="@+id/chk6_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cvKv †cu‡cu" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk7_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kjv" />
+
+                <CheckBox
+                    android:id="@+id/chk7_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Avbvim" />
+
+                <CheckBox
+                    android:id="@+id/chk7_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="‡cqviv" />
+
+                <CheckBox
+                    android:id="@+id/chk7_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Av‡cj" />
+
+                <CheckBox
+                    android:id="@+id/chk7_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Av½yi" />
+
+                <CheckBox
+                    android:id="@+id/chk7_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ab¨vb¨ dj" />
+
+                <EditText
+                    android:id="@+id/et7_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk8_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="U‡g‡Uv" />
+
+                <CheckBox
+                    android:id="@+id/chk8_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wcuqvR" />
+
+                <CheckBox
+                    android:id="@+id/chk8_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gvkiyg" />
+
+                <CheckBox
+                    android:id="@+id/chk8_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="‡pom" />
+
+                <CheckBox
+                    android:id="@+id/chk8_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ZvRv mxg/gUi ïwU" />
+
+                <CheckBox
+                    android:id="@+id/chk8_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ab¨vb¨ mewR" />
+
+                <EditText
+                    android:id="@+id/et8_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk9_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" KwjRv" />
+
+                <CheckBox
+                    android:id="@+id/chk9_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wMjv" />
+
+                <CheckBox
+                    android:id="@+id/chk9_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Heart" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/chk10_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="†h †Kvb gvsm ,cï cvwLmn" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk11_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="†h †Kvb ai‡Yi wWg" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk12_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ZvRv  gvQ" />
+
+            <CheckBox
+                android:id="@+id/chk12_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ïUwK gvQ" />
+
+            <CheckBox
+                android:id="@+id/chk12_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ab¨vb¨ gvQ / mvgyw`ªK Lvevi" />
+
+            <EditText
+                android:id="@+id/et12_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk13_1"
+                android:layout_width="117dp"
+                android:layout_height="wrap_content"
+                android:text="mxg" />
+
+            <CheckBox
+                android:id="@+id/chk13_2"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:text="Wvj" />
+
+            <CheckBox
+                android:id="@+id/chk13_3"
+                android:layout_width="129dp"
+                android:layout_height="wrap_content"
+                android:text="mqv" />
+
+            <CheckBox
+                android:id="@+id/chk13_4"
+                android:layout_width="131dp"
+                android:layout_height="54dp"
+                android:text="Pxbvev`vg" />
+
+            <CheckBox
+                android:id="@+id/chk13_5"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:text="†Kki" />
+
+            <CheckBox
+                android:id="@+id/chk13_6"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:text="fvix Pxbvev`vg" />
+
+            <CheckBox
+                android:id="@+id/chk13_7"
+                android:layout_width="112dp"
+                android:layout_height="match_parent"
+                android:text="Ab¨vb¨ †h †Kvb Wvj ev ev`vg RvZxq" />
+
+            <EditText
+                android:id="@+id/et13_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk14_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cwbi" />
+
+            <CheckBox
+                android:id="@+id/chk14_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="`B" />
+
+            <CheckBox
+                android:id="@+id/chk14_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ab¨vb¨ `ya RvZxq Lv`¨" />
+
+            <EditText
+                android:id="@+id/et14_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk15_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dw™¢¾ ‡Zj (WvjWv)" />
+
+            <CheckBox
+                android:id="@+id/chk15_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cïi Pwe" />
+
+            <CheckBox
+                android:id="@+id/chk15_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GK ai‡bi gvLb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk16_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PK‡jU" />
+
+            <CheckBox
+                android:id="@+id/chk16_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wgwó/ K¨vwÛ" />
+
+            <CheckBox
+                android:id="@+id/chk16_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wcVv" />
+
+            <CheckBox
+                android:id="@+id/chk16_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wgwó we¯‹zU" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk17_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¯^v` e„w× KviK" />
+
+            <CheckBox
+                android:id="@+id/chk17_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="imyb" />
+
+            <CheckBox
+                android:id="@+id/chk17_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gmjv" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/chk18_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wPswo" />
+
+            <CheckBox
+                android:id="@+id/chk18_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KvKov" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hw` Lv`¨ ZvwjKvq bv _v‡K Zvn‡j wb‡P Lvev‡ii bvg wjLyb|" />
+
+            <EditText
+                android:id="@+id/et19_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dip"
+            android:layout_weight="0.03"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Button
+                android:id="@+id/btnNote"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.96"
+                android:text="Add Note" >
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <Button
+                android:id="@+id/prevButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dip"
+                android:layout_weight="2"
+                android:text="Previous" >
+            </Button>
+
+            <Button
+                android:id="@+id/clButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Clear" >
+            </Button>
+
+            <Button
+                android:id="@+id/saveNxtButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_weight="2"
+                android:text="Save &amp; Next" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

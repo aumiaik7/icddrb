@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+
+                <!-- <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    
+                    android:textAppearance="?android:attr/textAppearanceSmall" >
+                </TextView> -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" android:layout_gravity="bottom">
+
+                <!--
+            <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This is Hospital data collection appliation. 
+            This application is bases on Questionnaire for Hospital Based Human Influenza Surveillance in Bangladesh. 
+                Please click on Main menu to Add or Edit infomration. Click close menu to close this screen. 
+                    For any kind of help, please contact with Imtiaz, CCD, CSU(email: esimtiaz@icddrb.org, mobile: +8801712208209)"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                -->
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="This is Hospital data collection appliation. This application is bases on Questionnaire for Hospital Based Human Influenza Surveillance in Bangladesh.Please click on Main menu to Add or Edit infomration. Click close menu to close this screen.For any kind of help, please contact with Angsuman, CCD, CSU(email: angsuman@icddrb.org, mobile: +8801725406829)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_gravity="bottom" >
+                </TextView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6" >
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:layout_weight="2"
+            android:background="@android:color/holo_orange_light"
+            android:text="Add Entry" >
+        </Button>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="2"
+            android:background="@android:color/holo_orange_light"
+            android:text="Edit Entry" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

@@ -16741,20 +16741,21 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		// TODO Auto-generated method stub
 		
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		map.put(15, R.drawable.brac);
-		map.put(14, R.drawable.plan);
-		map.put(13, R.drawable.dsk);
-		map.put(12, R.drawable.cwfd);
-		map.put(11, R.drawable.ma);
-		map.put(10, R.drawable.uppr);
-		map.put(9, R.drawable.arban);
-		map.put(8, R.drawable.hsbc);
-		map.put(7, R.drawable.unicef);
-		map.put(6, R.drawable.unilever);
-		map.put(5, R.drawable.wsup);
-		map.put(4, R.drawable.wv);
-		map.put(3, R.drawable.wasa);
-		map.put(2, R.drawable.hh);
+		map.put(17, R.drawable.brac);
+		map.put(16, R.drawable.plan);
+		map.put(15, R.drawable.dsk);
+		map.put(14, R.drawable.cwfd);
+		map.put(13, R.drawable.ma);
+		map.put(12, R.drawable.uppr);
+		map.put(11, R.drawable.arban);
+		map.put(10, R.drawable.hsbc);
+		map.put(9, R.drawable.unicef);
+		map.put(8, R.drawable.unilever);
+		map.put(7, R.drawable.wsup);
+		map.put(6, R.drawable.wv);
+		map.put(5, R.drawable.wasa);
+		map.put(4, R.drawable.hh);
+		map.put(3, R.drawable.icddrb);
 		
 		if (aaa != null && aaa.size() > 0) {
 			aaa.clear();
@@ -16876,7 +16877,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			ln.setId(i);
 			if(qName.equalsIgnoreCase("q2_13_e"))
 			{
-				if(i > 1)
+				if(i > 2)
 				{
 					image.setImageResource(map.get(i));
 					ln.addView(image, 0, layoutParamForimage);

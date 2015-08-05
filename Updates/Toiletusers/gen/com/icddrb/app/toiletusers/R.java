@@ -47,18 +47,19 @@ containing a value of this type.
         public static final int homeimage=0x7f02000b;
         public static final int hsbc=0x7f02000c;
         public static final int ic_launcher=0x7f02000d;
-        public static final int ma=0x7f02000e;
-        public static final int notification=0x7f02000f;
-        public static final int plan=0x7f020010;
-        public static final int sc_bar=0x7f020011;
-        public static final int search=0x7f020012;
-        public static final int unicef=0x7f020013;
-        public static final int unilever=0x7f020014;
-        public static final int uppr=0x7f020015;
-        public static final int viewall=0x7f020016;
-        public static final int wasa=0x7f020017;
-        public static final int wsup=0x7f020018;
-        public static final int wv=0x7f020019;
+        public static final int icddrb=0x7f02000e;
+        public static final int ma=0x7f02000f;
+        public static final int notification=0x7f020010;
+        public static final int plan=0x7f020011;
+        public static final int sc_bar=0x7f020012;
+        public static final int search=0x7f020013;
+        public static final int unicef=0x7f020014;
+        public static final int unilever=0x7f020015;
+        public static final int uppr=0x7f020016;
+        public static final int viewall=0x7f020017;
+        public static final int wasa=0x7f020018;
+        public static final int wsup=0x7f020019;
+        public static final int wv=0x7f02001a;
     }
     public static final class id {
         public static final int AddMenuItem=0x7f090458;

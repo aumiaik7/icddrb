@@ -17409,7 +17409,48 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					} 
 					else if (qName.equalsIgnoreCase("q3_5")) {
 						if (aaa.get(0) == 1 || aaa.get(1) == 1) {
-							CommonStaticClass.findOutNextSLNo(qName, "q3_10");
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_6a");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						} else {
+							CommonStaticClass.findOutNextSLNo(
+									qName,
+									CommonStaticClass.questionMap.get(
+											CommonStaticClass.currentSLNo)
+											.getQnext1());
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+					}
+					else if (qName.equalsIgnoreCase("q3_16")) {
+						if (aaa.get(13) == 1 && aaa.get(1) == 1
+								&& aaa.get(7) == 1
+								&& aaa.get(8) == 1
+								) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_17");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}else if (aaa.get(13) == 1 && aaa.get(1) == 1
+								&& aaa.get(8) == 1
+								) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_16d");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (aaa.get(13) == 1 && aaa.get(1) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_16c");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						} else if (aaa.get(13) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_16b");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}else {
+							CommonStaticClass.findOutNextSLNo(
+									qName,
+									CommonStaticClass.questionMap.get(
+											CommonStaticClass.currentSLNo)
+											.getQnext1());
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+					}
+					/*else if (qName.equalsIgnoreCase("q3_16")) {
+						if (aaa.get(13) == 1 && aaa.get(1) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_16c");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
 							CommonStaticClass.findOutNextSLNo(
@@ -17432,10 +17473,23 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											.getQnext1());
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						}
-					}
+					}*/
 					
 					else if (qName.equalsIgnoreCase("q3_19")) {
-						if (aaa.get(8) == 1 ) {
+						if (aaa.get(8) == 1  && aaa.get(7) == 1 && aaa.get(9) == 1
+								&& aaa.get(13) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_20");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (aaa.get(8) == 1 && aaa.get(7) == 1 && aaa.get(13) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_19d");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (aaa.get(8) == 1  && aaa.get(13) == 1) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_3_19c");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (aaa.get(8) == 1 ) {
 							CommonStaticClass.findOutNextSLNo(qName, "q_3_19b");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
@@ -21253,9 +21307,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						return;
 
 					}
-					else if (qName.equalsIgnoreCase("q_3_6a")) {
-						if (CommonStaticClass.getSkip("q3_6_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
-							|| CommonStaticClass.getSkip("q3_6_8", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+					else if (qName.equalsIgnoreCase("q_3_6b")) {
+						if (CommonStaticClass.getSkip("q3_5_8", "tblMainques", dbHelper).equalsIgnoreCase("1")
+							|| CommonStaticClass.getSkip("q3_5_9", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
 							CommonStaticClass.findOutNextSLNo(qName, "q3_10");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
@@ -21268,10 +21322,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 					}
 					else if (qName.equalsIgnoreCase("q_3_16b")) {
-						if (CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+						if (CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")
+						&& CommonStaticClass.getSkip("q3_16_7", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_17");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
 							CommonStaticClass.findOutNextSLNo(qName, "q_3_16d");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
-						} else {
+						}
+						else {
 							CommonStaticClass.findOutNextSLNo(
 									qName,
 									CommonStaticClass.questionMap.get(
@@ -21294,7 +21354,21 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 					}
 					else if (qName.equalsIgnoreCase("q_3_16a")) {
-						if (CommonStaticClass.getSkip("q3_16_13", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+						
+						if (CommonStaticClass.getSkip("q3_16_13", "tblMainques", dbHelper).equalsIgnoreCase("1")
+					&& CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")
+					&& CommonStaticClass.getSkip("q3_16_17", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_17");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else 
+							if (CommonStaticClass.getSkip("q3_16_13", "tblMainques", dbHelper).equalsIgnoreCase("1")
+									&& CommonStaticClass.getSkip("q3_16_6", "tblMainques", dbHelper).equalsIgnoreCase("1")
+									) {
+											CommonStaticClass.findOutNextSLNo(qName, "q_3_16d");
+											CommonStaticClass.nextQuestion(ParentActivity.this);
+										}
+						else if (CommonStaticClass.getSkip("q3_16_13", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
 							CommonStaticClass.findOutNextSLNo(qName, "q_3_16c");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
@@ -21307,7 +21381,19 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 					}
 					else if (qName.equalsIgnoreCase("q_3_19a")) {
-						if (CommonStaticClass.getSkip("q3_19_1", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+						if (CommonStaticClass.getSkip("q3_19_1", "tblMainques", dbHelper).equalsIgnoreCase("1")
+					&& CommonStaticClass.getSkip("q3_19_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
+					&& CommonStaticClass.getSkip("q3_19_5", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+							CommonStaticClass.findOutNextSLNo(qName, "q_20");
+							CommonStaticClass.nextQuestion(ParentActivity.this);
+						}
+						else if (CommonStaticClass.getSkip("q3_19_1", "tblMainques", dbHelper).equalsIgnoreCase("1")
+								&& CommonStaticClass.getSkip("q3_19_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
+								) {
+										CommonStaticClass.findOutNextSLNo(qName, "q_3_19d");
+										CommonStaticClass.nextQuestion(ParentActivity.this);
+									}
+						else if (CommonStaticClass.getSkip("q3_19_1", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
 							CommonStaticClass.findOutNextSLNo(qName, "q_3_19c");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
 						} else {
@@ -21323,7 +21409,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						if (CommonStaticClass.getSkip("q3_19_5", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
 							CommonStaticClass.findOutNextSLNo(qName, "q3_20");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
-						} else {
+						}
+						else {
 							CommonStaticClass.findOutNextSLNo(
 									qName,
 									CommonStaticClass.questionMap.get(
@@ -21333,10 +21420,17 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						}
 					}
 					else if (qName.equalsIgnoreCase("q_3_19b")) {
-						if (CommonStaticClass.getSkip("q3_19_7", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
-							CommonStaticClass.findOutNextSLNo(qName, "q_3_19d");
+						if (CommonStaticClass.getSkip("q3_19_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
+					&& CommonStaticClass.getSkip("q3_19_5", "tblMainques", dbHelper).equalsIgnoreCase("1")) {
+							CommonStaticClass.findOutNextSLNo(qName, "q3_20");
 							CommonStaticClass.nextQuestion(ParentActivity.this);
-						} else {
+						} 
+						if (CommonStaticClass.getSkip("q3_19_7", "tblMainques", dbHelper).equalsIgnoreCase("1")
+								) {
+										CommonStaticClass.findOutNextSLNo(qName, "q_3_19d");
+										CommonStaticClass.nextQuestion(ParentActivity.this);
+									}
+						else {
 							CommonStaticClass.findOutNextSLNo(
 									qName,
 									CommonStaticClass.questionMap.get(

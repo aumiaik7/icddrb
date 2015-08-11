@@ -1216,6 +1216,90 @@ public class CommonStaticClass {
 			}
 			return getName;
 		}
+		
+		
+		public static String Getcode2(String col1,String tableName, String col2,String name, DatabaseHelper dbHelper) {
+			// TODO Auto-generated method stub
+
+			String getCode = "";
+
+			Cursor mCursor = null;
+
+			try {
+
+				mCursor = dbHelper.getQueryCursor(String.format(
+						"Select "+col1+" from "+tableName+" where "+col2+" = '%s'",
+						name.trim()));
+
+				if (mCursor.getCount() > 0) {
+
+					if (mCursor.moveToFirst()) {
+
+//							do {
+
+						getCode = mCursor.getString(0);
+
+//							} while (mCursor.moveToNext());
+
+					}
+
+				}
+
+			} catch (Exception e) {
+
+				// TODO: handle exception
+
+			}
+			finally
+			{
+				if(mCursor != null)
+					mCursor.close();
+			}
+			return getCode;
+		}
+
+		public static String GetName2(String col1,String tableName,String col2,String code, DatabaseHelper dbHelper) {
+			// TODO Auto-generated method stub
+
+			String getName = "";
+
+			/*if(code.trim().length() ==1)
+				code = code+"  ";
+			if(code.trim().length() ==2)
+				code = code+" ";*/
+			code = code.trim();
+			Cursor mCursor = null;
+
+			try {
+
+				mCursor = dbHelper.getQueryCursor("Select "+col1+" from "+tableName+" where "+col2+" = '"+code+"'");
+
+				if (mCursor.getCount() > 0) {
+
+					if (mCursor.moveToFirst()) {
+
+//							do {
+
+						getName = mCursor.getString(0);
+
+//							} while (mCursor.moveToNext());
+
+					}
+
+				}
+
+			} catch (Exception e) {
+
+				// TODO: handle exception
+
+			}
+			finally
+			{
+				if(mCursor != null)
+					mCursor.close();
+			}
+			return getName;
+		}
 	     
 	     
 	// End

@@ -72,10 +72,17 @@
                     android:text="Where"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Spinner
+               <!--  <Spinner
                     android:id="@+id/sp1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" /> -->
+             <AutoCompleteTextView
+			   android:id="@+id/autoCompleteLocal"
+			   android:layout_width="match_parent"
+			   android:layout_height="wrap_content"
+			    android:layout_weight="1" 
+			    android:popupBackground ="#FFFFCC"
+			  />
 
                 <TextView
                     android:id="@+id/lbl1"
@@ -110,10 +117,17 @@
                     android:text="Where"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Spinner
+                <!-- <Spinner
                     android:id="@+id/sp2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" /> -->
+                <AutoCompleteTextView
+				   android:id="@+id/autoCompleteInt7"
+				   android:layout_width="match_parent"
+				   android:layout_height="wrap_content"
+				    android:layout_weight="1" 
+				    android:popupBackground ="#FFFFCC"
+				 />
 
                 <TextView
                     android:id="@+id/textView1"
@@ -162,10 +176,17 @@
                     android:text="Where"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <Spinner
+               <!--  <Spinner
                     android:id="@+id/sp3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" /> -->
+                <AutoCompleteTextView
+					   android:id="@+id/autoCompleteInt30"
+					   android:layout_width="match_parent"
+					   android:layout_height="wrap_content"
+					    android:layout_weight="1" 
+					    android:popupBackground ="#FFFFCC"
+				/>
 
                 <TextView
                     android:id="@+id/textView1"

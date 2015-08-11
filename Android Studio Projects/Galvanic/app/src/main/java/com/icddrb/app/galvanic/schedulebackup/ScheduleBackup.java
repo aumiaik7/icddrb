@@ -61,7 +61,7 @@ public class ScheduleBackup extends BroadcastReceiver {
             if (isNetworkAvailable()) {
 
                 TransferFile();
-                Toast.makeText(context, "Backup", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Backup Done", Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(context, "No Network available", Toast.LENGTH_SHORT).show();

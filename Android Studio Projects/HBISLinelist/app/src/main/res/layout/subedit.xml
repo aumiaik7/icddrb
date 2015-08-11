@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:gravity="center"
-                android:text="Edit Sections"
+                android:text="Edit Entries"
                 android:textAppearance="?android:attr/textAppearanceLarge" >
             </TextView>
 
@@ -33,122 +33,122 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
-<!-- 
+
                 <Button
                     android:id="@+id/btnEsec01"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="Clicksec1"
-                    android:text="Edit SECTION 1: RESPONDENT AND HER COMMUNITY" />
+                    android:text="SARI(Age greater than or equal to 5 )" />
 
                 <Button
                     android:id="@+id/btnEsec02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="Clicksec2"
-                    android:text="Edit SECTION 2: GENERAL HEALTH" />
+                    android:text="CVR Pneumonia (Age less than 5)" />
+                <!--
+                                <Button
+                                    android:id="@+id/btnEsec03"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec3"
+                                    android:text="Edit SECTION 3: REPRODUCTIVE HEALTH"
+                                     />
 
-                <Button
-                    android:id="@+id/btnEsec03"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec3"
-                    android:text="Edit SECTION 3: REPRODUCTIVE HEALTH"
-                     />
+                                <Button
+                                    android:id="@+id/btnEsec04"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec4"
+                                    android:text="Edit SECTION 4: CHILDREN"
+                                    />
+                                 <Button
+                                    android:id="@+id/btnEsec05"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec5"
+                                    android:text="Edit SECTION 5: STRESS AND DEPRESSION"
+                                    />
 
-                <Button
-                    android:id="@+id/btnEsec04"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec4"
-                    android:text="Edit SECTION 4: CHILDREN"
-                    />
-                 <Button
-                    android:id="@+id/btnEsec05"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec5"
-                    android:text="Edit SECTION 5: STRESS AND DEPRESSION"
-                    />
-                 
-                  <Button
-                    android:id="@+id/btnEsec06"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec6"
-                    android:text="Edit SECTION 6: GENDER NORMS AND ATTITUDES"
-                    />
-                  
-                   <Button
-                    android:id="@+id/btnEsec07"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec7"
-                    android:text="Edit SECTION 7: CURRENT OR MOST RECENT HUSBAND"
-                    />
-                   
-                    <Button
-                    android:id="@+id/btnEsec08"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec8"
-                    android:text="Edit SECTION 8: INTIMATE RELATIONSHIP"
-                    />
-                    
-                    <Button
-                    android:id="@+id/btnEsec09"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec9"
-                    android:text="Edit SECTION 9: INJURIES "
-                    />
-                     
-                    <Button
-                    android:id="@+id/btnEsec10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec10"
-                    android:text="Edit SECTION 10: IMPACT AND COPING"
-                    />
-                    
-                     <Button
-                    android:id="@+id/btnEsec11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec11"
-                    android:text="Edit SECTION 11: OTHER EXPERIENCES"
-                    />
-                     
-                    <Button
-                    android:id="@+id/btnEsec12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec12"
-                    android:text="Edit SECTION 12: WOMEN’S EMPOWERMENT AND FINANCIAL AUTONOMY"
-                    />
-                    
-                    <Button
-                    android:id="@+id/btnEsec13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="Clicksec13"
-                    android:text="Edit SECTION 13: COMPLETION OF INTERVIEW"
-                    />
+                                  <Button
+                                    android:id="@+id/btnEsec06"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec6"
+                                    android:text="Edit SECTION 6: GENDER NORMS AND ATTITUDES"
+                                    />
 
-                <Button
-                    android:id="@+id/btnHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="ClickbtnHome"
-                    android:text="Home" />
+                                   <Button
+                                    android:id="@+id/btnEsec07"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec7"
+                                    android:text="Edit SECTION 7: CURRENT OR MOST RECENT HUSBAND"
+                                    />
 
-                <Button
-                    android:id="@+id/prevButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="previous"
-                    android:visibility="gone" /> 
-                    -->
+                                    <Button
+                                    android:id="@+id/btnEsec08"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec8"
+                                    android:text="Edit SECTION 8: INTIMATE RELATIONSHIP"
+                                    />
+
+                                    <Button
+                                    android:id="@+id/btnEsec09"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec9"
+                                    android:text="Edit SECTION 9: INJURIES "
+                                    />
+
+                                    <Button
+                                    android:id="@+id/btnEsec10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec10"
+                                    android:text="Edit SECTION 10: IMPACT AND COPING"
+                                    />
+
+                                     <Button
+                                    android:id="@+id/btnEsec11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec11"
+                                    android:text="Edit SECTION 11: OTHER EXPERIENCES"
+                                    />
+
+                                    <Button
+                                    android:id="@+id/btnEsec12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec12"
+                                    android:text="Edit SECTION 12: WOMEN’S EMPOWERMENT AND FINANCIAL AUTONOMY"
+                                    />
+
+                                    <Button
+                                    android:id="@+id/btnEsec13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="Clicksec13"
+                                    android:text="Edit SECTION 13: COMPLETION OF INTERVIEW"
+                                    />
+
+                                <Button
+                                    android:id="@+id/btnHome"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:onClick="ClickbtnHome"
+                                    android:text="Home" />
+
+                                <Button
+                                    android:id="@+id/prevButton"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="previous"
+                                    android:visibility="gone" />
+                                    -->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

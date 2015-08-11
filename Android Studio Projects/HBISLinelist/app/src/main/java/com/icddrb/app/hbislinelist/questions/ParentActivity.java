@@ -68,6 +68,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -281,6 +282,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 	// frmNumeric_with_unknown_decline
 	RadioGroup radioGroup;
 	RadioButton radio1, radio2;
+
+
+	AutoCompleteTextView autoThana,autoDist;
 
 	// this activity part
 	private ViewFlipper formFlipper;
@@ -15606,6 +15610,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		CommonStaticClass.FillCombo(thisactivity, ids,
 				((Spinner) v.findViewById(R.id.sp2)));
 
+		((Spinner) v.findViewById(R.id.sp2)).setSelection(2);
+
 		/*((Spinner) v.findViewById(R.id.sp2)).setVisibility(View.INVISIBLE);
 		((TextView) v.findViewById(R.id.lblsp2)).setVisibility(View.INVISIBLE);*/
 		String sql = String
@@ -16335,7 +16341,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5UnDrink"))
 						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5UnCons"))
 						+ "," + mCursor1.getString(mCursor1.getColumnIndex("S5Vomit"))*/
-						+ "','" + CommonStaticClass.userSpecificId + "','" + entryDate + "','" + entryTime +  "','" + CommonStaticClass.AssetID + "')";
+						+ "','" + CommonStaticClass.userSpecificId + "','" + entryDate + "','" + entryTime +  "','" + CommonStaticClass.AssetID + "' )";
 
 				dbHelper.executeDMLQuery(sqlI);
 
@@ -16459,8 +16465,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						SB.append(", dt_nose= Null ");
 					}
 
-//					if (intAge >= 5) {
-						if (mCursor1.getString(mCursor1.getColumnIndex("headache"))!=null) {
+					if (Integer.parseInt(mCursor1.getString(mCursor1.getColumnIndex("AgeY"))) >= 5) {
+						if (mCursor1.getString(mCursor1.getColumnIndex("headache")).equalsIgnoreCase("1")) {
 							SB.append(", headache = 1");
 							SB.append(", dt_head= '"
 									+ mCursor1.getString(mCursor1.getColumnIndex("dt_head")) + "' ");
@@ -16468,10 +16474,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							SB.append(", headache = 2");
 							SB.append(", dt_head= Null ");
 						}
-					/*} else {
+					} else {
 						SB.append(", headache = null");
 						SB.append(", dt_head= Null ");
-					}*/
+					}
 
 					if (mCursor1.getString(mCursor1.getColumnIndex("diarrhea")).equalsIgnoreCase("1")) {
 						SB.append(", diarrhea = 1");
@@ -16490,8 +16496,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						SB.append(", chills = 2");
 						SB.append(", dt_chills= Null ");
 					}
-					/*if (intAge >= 5) {*/
-						if (mCursor1.getString(mCursor1.getColumnIndex("bodyache")) !=null) {
+				if (Integer.parseInt(mCursor1.getString(mCursor1.getColumnIndex("AgeY"))) >= 5) {
+						if (mCursor1.getString(mCursor1.getColumnIndex("bodyache")).equalsIgnoreCase("1")) {
 							SB.append(", bodyache = 1");
 							SB.append(", dt_body= '"
 									+ mCursor1.getString(mCursor1.getColumnIndex("dt_body")) + "' ");
@@ -16499,10 +16505,10 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							SB.append(", bodyache = 2");
 							SB.append(", dt_body= Null ");
 						}
-					/*} else {
+					} else {
 						SB.append(", bodyache = null");
 						SB.append(", dt_body= Null ");
-					}*/
+					}
 					if (mCursor1.getString(mCursor1.getColumnIndex("hemo")).equalsIgnoreCase("1")) {
 						SB.append(", hemo = 1");
 						SB.append(", dt_hemo='"
@@ -16598,6 +16604,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						} else {
 							SB.append(", S5Vomit = Null ");
 						}
+						SB.append(", isTransfered = 0 ");
 
 					 /*}else {
 						SB.append(", S5ChestIND = Null ");
@@ -16609,6 +16616,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					}*/
 					SB.append(" where dataid = '" + CommonStaticClass.hbisdataId + "'");
 					dbHelper.executeDMLQuery(SB.toString());
+
+				String s = String
+						.format("Insert into %s (dataid,VersionNo,assetid,EntryBy,EntryDate,isTransfered) VALUES('%s','%s','%s','%s','%s','%s')",
+								"tblMainQuesEPT", CommonStaticClass.hbisdataId,
+								CommonStaticClass.VersionNo,
+								CommonStaticClass.AssetID,
+								CommonStaticClass.userSpecificId, entryDate, '0');
+				dbHelper.executeDMLQuery(s);
 
 				/*}
 				else
@@ -17534,6 +17549,53 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						"Please input correct Fever date");
 				return false;
 			}
+
+		}
+
+		SimpleDateFormat formatter = new SimpleDateFormat(
+				"yyyy-MM-dd");
+
+		String[] d = (((EditText) v.findViewById(R.id.dtpFever))
+				.getText().toString()).split("/");
+
+		String dateInString = d[2] + "-" + d[1] + "-" + d[0];
+
+		Date date, denddate;
+		if (dateInString.length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Error",
+					"Please input date");
+			return false;
+		}
+		try {
+			date = formatter.parse(dateInString);
+
+			Calendar startdate = Calendar.getInstance();
+			Calendar enddate = Calendar.getInstance();
+
+			startdate.setTime(date);
+
+			String senddate = enddate.get(Calendar.YEAR)
+					+ "-"
+					+ CommonStaticClass.SetpadLeft(String
+							.valueOf(enddate.get(Calendar.MONTH) + 1),
+					enddate.get(Calendar.MONTH)) + "-"
+					+ enddate.get(Calendar.DAY_OF_MONTH);
+
+			denddate = formatter.parse(senddate);
+			enddate.setTime(denddate);
+
+			int x = CommonStaticClass.DayDifferenceBackwardWithMonth(
+					startdate, enddate);
+
+			if (x > 21) {
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Fever Date can not be more than 21");
+				return false;
+
+			}
+		}
+		catch(Exception e)
+		{
 
 		}
 
@@ -19087,18 +19149,54 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				+ " || " + "DistName" + ") AS " + "D"
 				+ " from District ORDER BY DistName" + "";
 
+
 		/*String occu = "SELECT '' AS occupCode UNION ALL SELECT (" + ""
 				+ "occupCode" + "" + "|| " + "" + "' : '" + " || "
 				+ "Occupation" + ") AS " + "O"
 				+ " from tblOccupation ORDER BY occupCode" + "";*/
+
+		autoDist=(AutoCompleteTextView)findViewById(R.id.autoCompleteDist);
+		autoThana=(AutoCompleteTextView)findViewById(R.id.autoCompleteThana);
+
+		String[] distList = loadAutoComplete(dist);
+		final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,distList);
+
+
+		String strSQL = String.format("SELECT ("
+				+ ""
+				+ "PSCode"
+				+ ""
+				+ "|| "
+				+ ""
+				+ "' : '"
+				+ " || "
+				+ "PSName"
+				+ ") AS "
+				+ "O"
+				+ " from PoliceStation  ORDER BY PSName"
+				+ "");
+
+					/*CommonStaticClass.FillCombo(thisactivity, dbHelper,
+					strSQL,
+							((Spinner) v.findViewById(R.id.spthana)));*/
+
+		String[] thanaList = loadAutoComplete(strSQL);
+		ArrayAdapter adapter2 = new ArrayAdapter(con,android.R.layout.simple_dropdown_item_1line,thanaList);
+
+		autoDist.setAdapter(adapter);
+		autoDist.setThreshold(1);
+
+
+		autoThana.setAdapter(adapter2);
+		autoThana.setThreshold(1);
 
 		ArrayList<String> ids = new ArrayList<String>();
 		/*ids.add("");
 		ids.add("1 : Urban");
 		ids.add("2 : Rural");*/
 
-		CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
-				((Spinner) v.findViewById(R.id.spdist)));
+	/*	CommonStaticClass.FillCombo(thisactivity, dbHelper, dist,
+				((Spinner) v.findViewById(R.id.spdist)));*/
 
 		/*String s = String.format(
 				"select DistCode from frmrHospital where HosID='%s'",
@@ -19106,9 +19204,255 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		String s = String.format(
 				"select DistCode from Hospital where HosID='%s'",
 				CommonStaticClass.userSpecificId);
-		Cursor c = dbHelper.getQueryCursor(s);
+		Cursor c = dbHelper.getQueryCursor(dist);
 
-		((Spinner) v.findViewById(R.id.spdist))
+
+
+	/*	String sqld = "Select PSCode from tblLinelist where dataid = '"
+				+ CommonStaticClass.dataId + "'";
+		Cursor curd = null;
+
+		try {
+
+			curd = dbHelper.getQueryCursor(sqld);
+
+			if (curd.getCount() > 0) {
+
+				if (curd.moveToFirst()) {
+
+
+
+						*//*CommonStaticClass.SetSpinnerValue(
+								thisactivity,
+								((Spinner) v
+										.findViewById(R.id.spthana)),
+								cur.getString(0));*//*
+
+					autoThana.setText(curd.getString(0)+" : "+CommonStaticClass.GetName(curd.getString(0),"PoliceStation",dbHelper));
+
+
+				}
+
+			}
+
+		} catch (Exception e) {
+
+			// TODO: handle exception
+
+		}
+		finally {
+			if(curd != null)
+				curd.close();
+		}*/
+
+
+		autoDist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+			public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+									long id) {
+				String val = autoDist.getText().toString();
+				if (val.length() > 0) {
+					sResCode =autoDist.getText().toString().trim()
+							.substring(
+									0,
+									(autoDist.getText().toString().trim()
+											.lastIndexOf(":")));
+
+					/*String strSQL = String
+					.format("SELECT ("
+							+ ""
+							+ "PSCode"
+							+ ""
+							+ "|| "
+							+ ""
+							+ "' : '"
+							+ " || "
+							+ "PSName"
+							+ ") AS "
+							+ "O"
+							+ " from frmrPoliceStation where DistCode = '%s' ORDER BY PSName"
+							+ "", sResCode);*/
+
+					/*String strSQL = String
+							.format("SELECT ("
+									+ ""
+									+ "PSCode"
+									+ ""
+									+ "|| "
+									+ ""
+									+ "' : '"
+									+ " || "
+									+ "PSName"
+									+ ") AS "
+									+ "O"
+									+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
+									+ "", sResCode);*/
+
+					String strSQL = String
+							.format("SELECT ("
+									+ ""
+									+ "PSCode"
+									+ ""
+									+ "|| "
+									+ ""
+									+ "' : '"
+									+ " || "
+									+ "PSName"
+									+ ") AS "
+									+ "O"
+									+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
+									+ "", sResCode);
+					/*CommonStaticClass.FillCombo(thisactivity, dbHelper,
+					strSQL,
+							((Spinner) v.findViewById(R.id.spthana)));*/
+
+					String[] thanaList = loadAutoComplete(strSQL);
+					ArrayAdapter adapter2 = new ArrayAdapter(con,android.R.layout.simple_dropdown_item_1line,thanaList);
+
+					autoThana.setAdapter(adapter2);
+					autoThana.setThreshold(1);
+
+
+					/*String sql = "Select PSCode from tblLinelist where dataid = '"
+							+ CommonStaticClass.dataId + "'";
+					Cursor cur = null;
+
+					try {
+
+						cur = dbHelper.getQueryCursor(sql);
+
+						if (cur.getCount() > 0) {
+
+							if (cur.moveToFirst()) {
+
+								do {
+
+								CommonStaticClass.SetSpinnerValue(
+									thisactivity,
+											((Spinner) v
+													.findViewById(R.id.spthana)),
+											cur.getString(0));
+
+								} while (cur.moveToNext());
+
+							}
+
+						}
+
+					} catch (Exception e) {
+
+						// TODO: handle exception
+
+					}
+					finally {
+						if(cur != null)
+							cur.close();
+					}*/
+					// String strSQL =
+					// "Select PSCode, PSName from PoliceStation where DistCode = '"
+					// + sResCode + "' Order By PSName";
+
+				}
+
+				else {
+
+				}
+
+
+			}
+		});
+
+		autoThana.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+			public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+									long id) {
+				String val = autoThana.getText().toString();
+				if (val.length() > 0) {
+					sResCode =autoThana.getText().toString().trim()
+							.substring(
+									0,
+									(autoThana.getText().toString().trim()
+											.lastIndexOf(":")));
+
+					/*String strSQL = String
+					.format("SELECT ("
+							+ ""
+							+ "PSCode"
+							+ ""
+							+ "|| "
+							+ ""
+							+ "' : '"
+							+ " || "
+							+ "PSName"
+							+ ") AS "
+							+ "O"
+							+ " from frmrPoliceStation where DistCode = '%s' ORDER BY PSName"
+							+ "", sResCode);*/
+					String code = CommonStaticClass.Getcode2("DistCode", "PoliceStation", "PSCode", sResCode, dbHelper).trim();
+
+
+					String strSQL = String
+									.format("SELECT ("
+											+ ""
+											+ "DistCode"
+											+ ""
+											+ "|| "
+											+ ""
+											+ "' : '"
+									+ " || "
+									+ "DistName"
+									+ ") AS "
+									+ "O"
+									+ " from District where DistCode = '%s'", code);
+
+
+					Cursor cur = null;
+
+					try {
+
+						cur = dbHelper.getQueryCursor(strSQL);
+
+						if (cur.getCount() > 0) {
+
+							if (cur.moveToFirst()) {
+
+
+								autoDist.setText(cur.getString(0));
+
+
+
+							}
+
+						}
+
+					} catch (Exception e) {
+
+						// TODO: handle exception
+
+					}
+					finally {
+						if(cur != null)
+							cur.close();
+					}
+					// String strSQL =
+					// "Select PSCode, PSName from PoliceStation where DistCode = '"
+					// + sResCode + "' Order By PSName";
+
+				}
+
+				else {
+
+				}
+
+
+			}
+		});
+
+
+
+		/*((Spinner) v.findViewById(R.id.spdist))
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 
@@ -19126,7 +19470,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 													.toString()
 													.lastIndexOf(":")));
 
-							/*String strSQL = String
+							*//*String strSQL = String
 									.format("SELECT ("
 											+ ""
 											+ "PSCode"
@@ -19139,7 +19483,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											+ ") AS "
 											+ "O"
 											+ " from frmrPoliceStation where DistCode = '%s' ORDER BY PSName"
-											+ "", sResCode);*/
+											+ "", sResCode);*//*
 
 							String strSQL = String
 									.format("SELECT ("
@@ -19156,9 +19500,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 											+ " from PoliceStation where DistCode = '%s' ORDER BY PSName"
 											+ "", sResCode);
 
-							CommonStaticClass.FillCombo(thisactivity, dbHelper,
+							*//*CommonStaticClass.FillCombo(thisactivity, dbHelper,
 									strSQL,
-									((Spinner) v.findViewById(R.id.spthana)));
+									((Spinner) v.findViewById(R.id.spthana)));*//*
 
 							String sql = "Select PSCode from tblLinelist where dataid = '"
 									+ CommonStaticClass.dataId + "'";
@@ -19174,11 +19518,11 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 										do {
 
-											CommonStaticClass.SetSpinnerValue(
+											*//*CommonStaticClass.SetSpinnerValue(
 													thisactivity,
 													((Spinner) v
 															.findViewById(R.id.spthana)),
-													cur.getString(0));
+													cur.getString(0));*//*
 
 										} while (cur.moveToNext());
 
@@ -19208,9 +19552,9 @@ public class ParentActivity extends BaseActivity implements FormListener {
 						// TODO Auto-generated method stub
 
 					}
-				});
+				});*/
 
-		if (c.getCount() > 0) {
+		/*if (c.getCount() > 0) {
 
 			if (c.moveToFirst()) {
 
@@ -19223,7 +19567,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				} while (c.moveToNext());
 
 			}
-		}
+		}*/
 
 		/*CommonStaticClass.FillCombo(thisactivity, dbHelper, occu,
 				((Spinner) v.findViewById(R.id.spoccupation)));
@@ -19365,13 +19709,16 @@ public class ParentActivity extends BaseActivity implements FormListener {
 								.setText(cur.getString(6));
 						((EditText) v.findViewById(R.id.txtUnion)).setText(cur
 								.getString(7));
-						CommonStaticClass.SetSpinnerValue(thisactivity,
+						/*CommonStaticClass.SetSpinnerValue(thisactivity,
 								((Spinner) v.findViewById(R.id.spthana)),
 								cur.getString(8));
 
 						CommonStaticClass.SetSpinnerValue(thisactivity,
 								((Spinner) v.findViewById(R.id.spdist)),
-								cur.getString(9));
+								cur.getString(9));*/
+
+						autoThana.setText(cur.getString(8)+ " : "+CommonStaticClass.GetName2("PSName","PoliceStation","PSCode",cur.getString(8).trim(),dbHelper));
+						autoDist.setText(cur.getString(9)+ " : "+CommonStaticClass.GetName2("DistName", "District", "DistCode", cur.getString(9).trim(), dbHelper));
 
 
 
@@ -19413,6 +19760,49 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			((TextView) v.findViewById(R.id.lblmonth)).setVisibility(View.GONE);
 		}*/
 
+	}
+
+	private String[] loadAutoComplete(String s) {
+		String[] list = null;
+		Cursor mCursor = null;
+		try {
+
+			mCursor = dbHelper.getQueryCursor(s);
+
+			if (mCursor.getCount() > 0) {
+				list = new String[mCursor.getCount()];
+				int i = 0;
+				if (mCursor.moveToFirst()) {
+
+					do {
+						list[i] = mCursor.getString(0);
+						i++;
+//							ids.add(mCursor.getString(0));
+
+					} while (mCursor.moveToNext());
+
+						/*ArrayAdapter adapterSl = new ArrayAdapter(act,
+								android.R.layout.simple_spinner_dropdown_item, ids);
+						adapterSl
+								.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+						spnr.setAdapter(adapterSl);*/
+
+				}
+
+			}
+
+
+
+		} catch (Exception e) {
+
+			// TODO: handle exception
+
+		} finally {
+			if (mCursor != null)
+				mCursor.close();
+
+		}
+		return list;
 	}
 
 	private void updateTableDataFrmAddress(ViewGroup vg) {
@@ -19519,9 +19909,14 @@ public class ParentActivity extends BaseActivity implements FormListener {
 									.getText().toString(),
 							((EditText) vg.findViewById(R.id.txtUnion))
 									.getText().toString(),
-
-							CommonStaticClass.GetSpinnerValue(((Spinner) vg
-									.findViewById(R.id.spthana))),
+							autoThana.getText().toString().substring( 0,
+									autoThana.getText().toString() .lastIndexOf(":") - 1).trim()
+							,
+							autoDist.getText().toString().substring( 0,
+									autoDist.getText().toString() .lastIndexOf(":") - 1).trim(),
+							/*CommonStaticClass.GetSpinnerValue(((Spinner) vg
+									.findViewById(R.id.spthana)))
+							,*/
 							/*
 							 * ((Spinner) vg.findViewById(R.id.spthana))
 							 * .getSelectedItem() .toString() .substring( 0,
@@ -19530,8 +19925,8 @@ public class ParentActivity extends BaseActivity implements FormListener {
 							 * - 1),
 							 */
 
-							CommonStaticClass.GetSpinnerValue(((Spinner) vg
-									.findViewById(R.id.spdist))),
+							/*CommonStaticClass.GetSpinnerValue(((Spinner) vg
+									.findViewById(R.id.spdist))),*/
 							/*
 							 * ((Spinner) vg.findViewById(R.id.spdist))
 							 * .getSelectedItem() .toString() .substring( 0,
@@ -19659,8 +20054,25 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 
 		// Checking district information given or not
-		if (((Spinner) v.findViewById(R.id.spdist)).getSelectedItem()
+		/*if (((Spinner) v.findViewById(R.id.spdist)).getSelectedItem()
 				.toString().length() <= 0) {
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select district information");
+
+			return false;
+		}*/
+
+		// Checking Police station information given or not
+		/*if (((Spinner) v.findViewById(R.id.spthana)).getSelectedItem()
+				.toString().length() <= 0) {
+
+			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
+					"Please select police station information");
+
+			return false;
+		}*/
+
+		if (autoDist.getText().toString().length() <= 0) {
 			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
 					"Please select district information");
 
@@ -19668,15 +20080,13 @@ public class ParentActivity extends BaseActivity implements FormListener {
 		}
 
 		// Checking Police station information given or not
-		if (((Spinner) v.findViewById(R.id.spthana)).getSelectedItem()
-				.toString().length() <= 0) {
+		if (autoThana.getText().toString().length() <= 0) {
 
 			CommonStaticClass.showMyAlert(thisactivity, "Missing info",
 					"Please select police station information");
 
 			return false;
 		}
-
 
 		return true;
 

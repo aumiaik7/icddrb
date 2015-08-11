@@ -9,7 +9,7 @@ android {
         minSdkVersion 8
         targetSdkVersion 15
         versionCode 1       // increment with every release
-        versionName '1.0.1'   // change with every release
+        versionName '1.0.2'   // change with every release
         archivesBaseName = "Galvanic-" + versionName
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_5

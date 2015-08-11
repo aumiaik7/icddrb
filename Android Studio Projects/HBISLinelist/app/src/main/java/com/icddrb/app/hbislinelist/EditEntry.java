@@ -188,7 +188,16 @@ public class EditEntry extends BaseActivity{
 		CommonStaticClass.isChecked = false;
 	}
 	private void loadDataToList(){
-		String sql = "Select dataid,EntryBy,EntryDate from tblLinelist";
+
+
+		String sql = "";
+		if(CommonStaticClass.subEdit.equalsIgnoreCase("sec01"))
+			sql = "Select dataid,EntryBy,EntryDate from tblLinelist where ageY >= 5";
+		else if(CommonStaticClass.subEdit.equalsIgnoreCase("sec02"))
+			sql = "Select dataid,EntryBy,EntryDate from tblLinelist where ageY < 5";
+		else
+			sql = "Select dataid,EntryBy,EntryDate from tblLinelist ";
+
 	
 		Cursor mCursor = null;
 		Cursor mCursor2 = null;

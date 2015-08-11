@@ -138,7 +138,7 @@ public class FileRead extends Activity {
 								.getColumnIndex("tbl_name"));
 
 							
-							if (table_name.startsWith("frmr")	
+							/*if (table_name.startsWith("frmr")
 									|| table_name
 											.equalsIgnoreCase("tblOptionsLList ")
 									|| table_name
@@ -146,9 +146,24 @@ public class FileRead extends Activity {
 									|| table_name.equalsIgnoreCase("tblStack")	
 									|| table_name.equalsIgnoreCase("tblUser")
 									|| table_name
-											.equalsIgnoreCase("tblVersion")) {
+											.equalsIgnoreCase("tblVersion")
+									|| !table_name
+									.equalsIgnoreCase("tblMainQues")
+									|| !table_name
+									.equalsIgnoreCase("tblMainQuesEPT")
+									|| !table_name
+									.equalsIgnoreCase("tblLinelist")) {
 								continue;
-							}
+							}*/
+						if (!(table_name
+								.equalsIgnoreCase("tblMainQues")
+								|| table_name
+								.equalsIgnoreCase("tblMainQuesEPT")
+								|| table_name
+								.equalsIgnoreCase("tblLinelist"))) {
+							continue;
+						}
+
 						 
 						
 
@@ -244,7 +259,7 @@ public class FileRead extends Activity {
 	}
 
 	///For ScheduleBackup
-	public ArrayList<TransData> MakeInsertStringSB(Context con,ScheduleBackup sb, String dbname) {
+	/*public ArrayList<TransData> MakeInsertStringSB(Context con,ScheduleBackup sb, String dbname) {
 
 
 		// List<String> dblist = GetListOfSqliteFiles();
@@ -262,9 +277,9 @@ public class FileRead extends Activity {
 			contxt = con;
 			scheduleBackup = sb;
 			//dbHelper = new DatabaseHelper(contxt);
-				/*dbHelper.openDataTransferToolDataBasesFrmList();
+				*//*dbHelper.openDataTransferToolDataBasesFrmList();
 
-				dbHelper = DatabaseHelper.getInstance();*/
+				dbHelper = DatabaseHelper.getInstance();*//*
 
 			mCursor = scheduleBackup
 					.getQueryCursor(String
@@ -351,9 +366,9 @@ public class FileRead extends Activity {
 						}
 
 					} catch (Exception e) {
-						/*CommonStaticClass.showMyAlert(con, "Error", e
+						*//*CommonStaticClass.showMyAlert(con, "Error", e
 								.getMessage().toString());
-						e.printStackTrace();*/
+						e.printStackTrace();*//*
 					}
 					finally {
 						if(!table_cursor.isClosed())
@@ -370,8 +385,8 @@ public class FileRead extends Activity {
 
 		} catch (Exception e) { // TODO: handle exception
 			// Toast.makeText(con, e.getMessage().toString(), 1000).show();
-			/*CommonStaticClass.showMyAlert(con, "Error", e.getMessage()
-					.toString());*/
+			*//*CommonStaticClass.showMyAlert(con, "Error", e.getMessage()
+					.toString());*//*
 			Log.e("cursor", "is null");
 		} finally {
 			if (mCursor != null)
@@ -383,8 +398,8 @@ public class FileRead extends Activity {
 		//}
 
 		return _trans;
-	}
-	public ArrayList<InsertStatement> MakeValueStringSB(String table_name,
+	}*/
+	/*public ArrayList<InsertStatement> MakeValueStringSB(String table_name,
 													  Context con, StringBuilder IStatement, ArrayList<String> Pklist) {
 
 		primarykeycolumlist = Pklist;// GetPrimaryKeyColumnList(PrimaryKeyCursor);
@@ -404,9 +419,12 @@ public class FileRead extends Activity {
 
 			_primarykeyColumn = new ArrayList<PrimaryClm>();
 
+			String trnsfr = "IsTransferred";
+			if(table_name.equalsIgnoreCase("tblMainQues") || table_name.equalsIgnoreCase("tblMainQuesEPT"))
+				trnsfr = "IsTransfered";
 			value_cursor =
-					scheduleBackup.getQueryCursor(String.format("select * from '%s' where IsTransferred is not '1'",
-							table_name));
+					scheduleBackup.getQueryCursor(String.format("select * from '%s' where '%s' is not '1'",
+							table_name,trnsfr));
 			//value_cursor = dbHelper.getQueryCursor(String.format(
 			//		"select * from '%s'", table_name));
 
@@ -418,9 +436,9 @@ public class FileRead extends Activity {
 						// primarykeycolumlist =
 						// GetPrimaryKeyColumnList(PrimaryKeyCursor);
 
-						/*
+						*//*
 						 * if (primarykeycolumlist.size() <= 0) { return null; }
-						 */
+						 *//*
 
 						do {
 							insertStatement = new InsertStatement();
@@ -550,7 +568,7 @@ public class FileRead extends Activity {
 		}
 
 		return _trans;
-	}
+	}*/
 
 
 	private ArrayList<String> primarykeycolumlist;
@@ -575,11 +593,14 @@ public class FileRead extends Activity {
 
 			_primarykeyColumn = new ArrayList<PrimaryClm>();
 
-			 value_cursor =
-			 dbHelper.getQueryCursor(String.format("select * from '%s' where IsTransferred is not '1'",
-			 table_name));
-			//value_cursor = dbHelper.getQueryCursor(String.format(
-			//		"select * from '%s'", table_name));
+			String trnsfr = "IsTransferred";
+			if(table_name.equalsIgnoreCase("tblMainQues") || table_name.equalsIgnoreCase("tblMainQuesEPT"))
+				trnsfr = "IsTransfered";
+			/*value_cursor =
+					scheduleBackup.getQueryCursor(String.format("select * from '%s' where '%s' is not '1'",
+							table_name,trnsfr));*/
+			value_cursor = dbHelper.getQueryCursor(String.format(
+					"select * from '%s' where '%s' is not '1'", table_name,trnsfr));
 
 			if (value_cursor != null) {
 				if (value_cursor.getCount() > 0) {
@@ -1050,8 +1071,13 @@ public class FileRead extends Activity {
 				// String TableName = transData.getTableNm();
 
 				for (InsertStatement insertStatement : iStatements) {
+					String trnsfr = "IsTransferred";
+					if(transData.getTableNm().equalsIgnoreCase("tblMainQues") || transData.getTableNm().equalsIgnoreCase("tblMainQuesEPT"))
+						trnsfr = "IsTransfered";
+
+
 					sql = "UPDATE " + transData.getTableNm()
-							+ " SET IsTransferred = '1' WHERE ";
+							+ " SET "+trnsfr+" = '1' WHERE ";
 
 					List<PrimaryClm> primarykeycolumns = insertStatement
 							.getPrimaryClmList();
@@ -1095,8 +1121,13 @@ public class FileRead extends Activity {
 				// String TableName = transData.getTableNm();
 
 				for (InsertStatement insertStatement : iStatements) {
+					String trnsfr = "IsTransferred";
+					if(transData.getTableNm().equalsIgnoreCase("tblMainQues") || transData.getTableNm().equalsIgnoreCase("tblMainQuesEPT"))
+						trnsfr = "IsTransfered";
+
+
 					sql = "UPDATE " + transData.getTableNm()
-							+ " SET IsTransferred = '1' WHERE ";
+							+ " SET "+trnsfr+" = '1' WHERE ";
 
 					List<PrimaryClm> primarykeycolumns = insertStatement
 							.getPrimaryClmList();

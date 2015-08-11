@@ -34,7 +34,7 @@ public class subedit extends BaseActivity {
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		setTheme(R.style.AppTheme);
 		
-		subEditButtonHolder = (LinearLayout) this.findViewById(R.id.buttonHolder);
+		/*subEditButtonHolder = (LinearLayout) this.findViewById(R.id.buttonHolder);
 		subEditButtonHolder.removeAllViews();
 		
 
@@ -78,7 +78,7 @@ public class subedit extends BaseActivity {
 		
 			// }
 		
-		}
+		}*/
 		
 		
 	}
@@ -139,7 +139,7 @@ public class subedit extends BaseActivity {
 		}
 		return lastSl;
 	}
-	/*public void Clicksec1(View v) {
+	public void Clicksec1(View v) {
 		CommonStaticClass.subEdit = "sec01";
 		CommonStaticClass.mode = CommonStaticClass.EDITMODE;
 		Intent i = new Intent();
@@ -158,7 +158,7 @@ public class subedit extends BaseActivity {
 		startActivity(i);
 		//finish();
 	}
-
+/*
 	public void Clicksec3(View v) {
 		CommonStaticClass.subEdit = "sec03";
 		CommonStaticClass.mode = CommonStaticClass.EDITMODE;

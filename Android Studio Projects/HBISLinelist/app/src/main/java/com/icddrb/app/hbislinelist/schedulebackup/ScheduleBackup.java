@@ -93,7 +93,7 @@ public class ScheduleBackup extends BroadcastReceiver {
             final FileRead file = new FileRead();
             //ArrayList<TransData> trans = new ArrayList<TransData>();
 
-            trans = file.MakeInsertStringSB(ctx, this, DB_NAME);
+//            trans = file.MakeInsertStringSB(ctx, this, DB_NAME);
 
 
             // file.SendRequest(trans);

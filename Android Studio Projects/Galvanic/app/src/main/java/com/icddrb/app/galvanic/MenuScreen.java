@@ -67,19 +67,19 @@ public class MenuScreen extends BaseActivity {
 		setTheme(R.style.AppTheme);
 		loadGui();
 
-		/*Intent alarmIntent = new Intent(this, ScheduleBackup.class);
+		Intent alarmIntent = new Intent(this, ScheduleBackup.class);
 		alarmIntent.putExtra("dbpath", DatabaseHelper.DB_PATH);
 		alarmIntent.putExtra("dbname", CommonStaticClass.DB);
 		alarmIntent.putExtra("dbpass", DatabaseHelper.getpw());
 		pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
 
-		startAlarm();*/
+		startAlarm();
 
 	}
 
 	public void startAlarm() {
 		manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		long interval = (24*60*60)*1000; //1 day
+		long interval = (3*60)*1000; //3 minutes
 
 		manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
 		Toast.makeText(this, "Auto Backup Started", Toast.LENGTH_SHORT).show();
@@ -283,6 +283,24 @@ public class MenuScreen extends BaseActivity {
 
 			}
 			return true;
+
+			case R.id.Alarm:
+				/*if (!alarm)
+				{
+				*//*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*//*
+
+//				new hasInternet().execute("");
+					alarm = true;
+					startAlarm();
+
+
+				}
+				else
+				{
+					alarm = false;*/
+				cancelAlarm();
+//				}
+				return true;
 
 		default:
 			return super.onOptionsItemSelected(item);

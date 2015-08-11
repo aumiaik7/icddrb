@@ -178,13 +178,13 @@ public class QListScreenForEdit extends BaseActivity {
 		String sql = "";
 		//load sections 
 		
-		if(CommonStaticClass.subEditMode == 1)
+		/*if(CommonStaticClass.subEditMode == 1)
 		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  where (SLNo >= '"+ CommonStaticClass.sectionStart+"' " +
 					"and SLNo <=" +
 					" '"+CommonStaticClass.sectionEnd+"') order by SLNo asc";
 		else
 		//load all
-			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  order by SLNo asc";
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  order by SLNo asc";*/
 		
 		/*if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
 		if (!CommonStaticClass.isMember)
@@ -259,20 +259,20 @@ public class QListScreenForEdit extends BaseActivity {
 			else
 				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where (SLNo >= 329 and SLNo <= 394) order by SLNo asc";
 			}
-		
-		if (CommonStaticClass.subEdit.equalsIgnoreCase("sec12")) {
-			if (!CommonStaticClass.isMember)
-				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where (SLNo >= 395 and SLNo <= 422)  order by SLNo asc";
-			else
-				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where (SLNo >= 395 and SLNo <= 422) order by SLNo asc";
-			}
-		
-		if (CommonStaticClass.subEdit.equalsIgnoreCase("sec13")) {
-			if (!CommonStaticClass.isMember)
-				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where  SLNo >=423   order by SLNo asc";
-			else
-				sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion where SLNo >=423 order by SLNo asc";
-			}*/
+		*/
+	/*	if (CommonStaticClass.subEdit.equalsIgnoreCase("sec01")) {
+
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where AgeY >= 5  order by SLNo asc";
+
+		}
+		else if (CommonStaticClass.subEdit.equalsIgnoreCase("sec02")) {
+
+			sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestion  where  AgeY < 5   order by SLNo asc";
+		}
+
+		else*/
+		//load all
+		sql = "Select SLNo,Qvar,Qdescbng,Qdesceng from tblQuestionLList  order by SLNo asc";
 		
 		Cursor mCursor = null;
 		try {

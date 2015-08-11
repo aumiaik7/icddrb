@@ -191,11 +191,18 @@
                 android:text="Upazilla"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/spthana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1" />-->
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteThana"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:popupBackground ="#FFFFCC"
+                />
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -204,11 +211,18 @@
                 android:text="District"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Spinner
-                android:id="@+id/spdist"
+            <!-- <Spinner
+                 android:id="@+id/spdist"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_weight="1" />-->
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteDist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:popupBackground ="#FFFFCC"
+                />
 
 
 

@@ -49,14 +49,14 @@ containing a value of this type.
         public static final int unreadborder=0x7f02000b;
     }
     public static final class id {
-        public static final int AddMenuItem=0x7f0901df;
-        public static final int Alarm=0x7f0901da;
-        public static final int BNGMenuItem=0x7f0901db;
-        public static final int DTMenuItem=0x7f0901d9;
-        public static final int ENGMenuItem=0x7f0901dc;
-        public static final int EditMenuItem=0x7f0901e0;
-        public static final int ExitItem=0x7f0901dd;
-        public static final int GotoHomeItem=0x7f0901de;
+        public static final int AddMenuItem=0x7f0901e1;
+        public static final int Alarm=0x7f0901dc;
+        public static final int BNGMenuItem=0x7f0901dd;
+        public static final int DTMenuItem=0x7f0901db;
+        public static final int ENGMenuItem=0x7f0901de;
+        public static final int EditMenuItem=0x7f0901e2;
+        public static final int ExitItem=0x7f0901df;
+        public static final int GotoHomeItem=0x7f0901e0;
         public static final int LinearLayout03=0x7f090074;
         public static final int LinearLayout04=0x7f090078;
         public static final int LinearLayout06=0x7f090079;
@@ -89,9 +89,13 @@ containing a value of this type.
         public static final int TextView12=0x7f090080;
         public static final int addButton=0x7f0901a6;
         public static final int admissiondate=0x7f090107;
+        public static final int autoCompleteDist=0x7f090017;
+        public static final int autoCompleteThana=0x7f090016;
         public static final int btnAdults=0x7f09006e;
         public static final int btnAdultsDischarge=0x7f09006f;
         public static final int btnCancel=0x7f0900ff;
+        public static final int btnEsec01=0x7f0901d6;
+        public static final int btnEsec02=0x7f0901d7;
         public static final int btnGetGPS=0x7f090198;
         public static final int btnHome=0x7f090072;
         public static final int btnIntendS=0x7f090026;
@@ -344,7 +348,7 @@ containing a value of this type.
         public static final int hourBox=0x7f090194;
         public static final int hourHolder=0x7f090192;
         public static final int hourText=0x7f090193;
-        public static final int image=0x7f0901d7;
+        public static final int image=0x7f0901d9;
         public static final int imageView1=0x7f090028;
         public static final int infoText=0x7f090024;
         public static final int layout_root=0x7f0901d0;
@@ -437,7 +441,6 @@ containing a value of this type.
         public static final int sp5=0x7f090035;
         public static final int spday=0x7f09000f;
         public static final int spdept=0x7f0900ed;
-        public static final int spdist=0x7f090017;
         public static final int spinner1=0x7f09002d;
         public static final int spinner1st=0x7f0900f5;
         public static final int spinner2=0x7f0900dd;
@@ -456,7 +459,6 @@ containing a value of this type.
         public static final int spl5=0x7f09003b;
         public static final int spmonth=0x7f09000d;
         public static final int spsex=0x7f090011;
-        public static final int spthana=0x7f090016;
         public static final int spyear=0x7f09000b;
         public static final int t1=0x7f0900d9;
         public static final int t2=0x7f0900da;
@@ -466,7 +468,7 @@ containing a value of this type.
         public static final int tableRow1=0x7f09019e;
         public static final int tableRow2=0x7f0901a0;
         public static final int tableRow3=0x7f0901a2;
-        public static final int text=0x7f0901d8;
+        public static final int text=0x7f0901da;
         public static final int text1=0x7f0901d2;
         public static final int textView1=0x7f090007;
         public static final int textView11=0x7f090018;
@@ -479,7 +481,7 @@ containing a value of this type.
         public static final int textView5=0x7f090009;
         public static final int textans=0x7f0901d4;
         public static final int textdesc=0x7f0901d3;
-        public static final int toast_layout_root=0x7f0901d6;
+        public static final int toast_layout_root=0x7f0901d8;
         public static final int top=0x7f090025;
         public static final int tvVersion=0x7f09019d;
         public static final int txtAgeday=0x7f09004c;

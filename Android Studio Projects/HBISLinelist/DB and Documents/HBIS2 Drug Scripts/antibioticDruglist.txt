@@ -1,0 +1,121 @@
+delete from tblAntioBioticDrug;
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('1  ','Oseltamivir');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('2  ','Zanamivir');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('3  ','Acyclovir');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('4  ','Adefovir');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('5  ','Lamivudine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('6  ','Zidovudine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('7  ','Amantadine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('8  ','Rimantadine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('9  ','Benzathine Penicillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('10 ','Phenoxymethyl Penicillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('11 ','Ampicillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('12 ','Amoxycillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('13 ','Cloxacillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('14 ','Flucloxacillin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('15 ','Pivmecillinam');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('16 ','Merupenam');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('17 ','Amoxycillin + Clavulanic acid');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('18 ','Ceftriaxone');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('19 ','Cefotaxime');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('20 ','Ceftazidime');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('21 ','Cefixime');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('22 ','Cefuroxime');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('23 ','Cephalexin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('24 ','Cephradine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('25 ','Cefaclor');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('26 ','Cefpodoxime');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('27 ','Gentamicin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('28 ','Erythromycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('29 ','Clarithromycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('30 ','Azithromycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('31 ','Vancomycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('32 ','Amikacin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('33 ','Ciprofloxacin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('34 ','Sparfloxacin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('35 ','Levofloxacin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('36 ','Gatifloxacine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('37 ','Nalidixic Acid');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('38 ','Doxycycline');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('39 ','Tetracycline');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('40 ','Cotrimoxazole');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('41 ','Chloramphenicol');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('42 ','Quinine sulphate');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('43 ','Chloroquine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('44 ','Sulfadoxine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('45 ','Pyrimethamine');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('46 ','Artemisinin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('47 ','Rifampin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('48 ','Isoniazid');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('49 ','Ethambutol');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('50 ','Pyrazinamide');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('51 ','Streptomycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('52 ','Albendazole');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('53 ','Mebendazole');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('54 ','Metronidazole');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('55 ','Augmentin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('56 ','Clindamycin');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('57 ','Gancyclovir');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('58 ','Aminoglycoside');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('95 ','Others');
+
+INSERT INTO [tblAntioBioticDrug] ([DrCode],[Name]) VALUES ('99 ','Treatment not given');
+

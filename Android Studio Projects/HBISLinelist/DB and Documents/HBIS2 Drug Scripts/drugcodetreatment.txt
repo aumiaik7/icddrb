@@ -1,0 +1,189 @@
+delete from DrugCodeTreatment;
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('1  ','Oseltamivir');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('2  ','Zanamivir');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('3  ','Acyclovir');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('4  ','Adefovir');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('5  ','Lamivudine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('6  ','Zidovudine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('7  ','Amantadine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('8  ','Rimantadine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('9  ','Benzathine Penicillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('10 ','Phenoxymethyl Penicillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('11 ','Ampicillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('12 ','Amoxycillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('13 ','Cloxacillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('14 ','Flucloxacillin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('15 ','Pivmecillinam');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('16 ','Merupenam');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('17 ','Amoxycillin + Clavulanic acid');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('18 ','Ceftriaxone');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('19 ','Cefotaxime`');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('20 ','Ceftazidime');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('21 ','Cefixime');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('22 ','Cefuroxime');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('23 ','Cephalexin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('24 ','Cephradine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('25 ','Cefaclor');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('26 ','Cefpodoxime');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('27 ','Gentamicin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('28 ','Erythromycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('29 ','Clarithromycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('30 ','Azithromycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('31 ','Vancomycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('32 ','Amikacin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('33 ','Ciprofloxacin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('34 ','Sparfloxacin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('35 ','Levofloxacin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('36 ','Gatifloxacine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('37 ','Nalidixic Acid');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('38 ','Doxycycline');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('39 ','Tetracycline');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('40 ','Cotrimoxazole');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('41 ','Chloramphenicol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('42 ','Quinine sulphate');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('43 ','Chloroquine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('44 ','Sulfadoxine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('45 ','Pyrimethamine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('46 ','Artemisinin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('47 ','Rifampin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('48 ','Isoniazid');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('49 ','Ethambutol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('50 ','Pyrazinamide');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('51 ','Streptomycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('52 ','Albendazole');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('53 ','Mebendazole');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('54 ','Metronidazole');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('55 ','Augmentin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('56 ','Clindamycin');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('57 ','Gancyclovir');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('58 ','Aminoglycoside');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('60 ','Paracetamol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('61 ','Paracetamol + Caffeine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('62 ','Diclofenac Sodium');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('63 ','Diclofenac Sodium + Misoprostol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('64 ','Aceclofenac');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('65 ','Ibuprofen');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('66 ','Ketoprofen');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('67 ','Dexketoprofen');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('68 ','Naproxen');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('69 ','Diphenhydramine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('70 ','Chlorpheniramine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('71 ','Ketotifen');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('72 ','Cetirizine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('73 ','Loratadine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('74 ','Levocetrizine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('75 ','Desloratadine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('76 ','Loratadine + Pseudoephedrine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('77 ','Dextromethorphan');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('78 ','Ambroxol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('79 ','Guaiphenesin + Pseudoephedrine');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('80 ','Xylometazoline');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('81 ','Xylometazoline + Sodium Cromoglicate');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('82 ','Oxymetazoline');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('83 ','Salbutamol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('84 ','Ipratropium Bromide');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('85 ','Levosalbutamol');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('86 ','Montelukast');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('87 ','Theophylline');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('88 ','Hydrocortisone');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('89 ','Prednisolone');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('90 ','Oradexon');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('95 ','Others');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('96 ','Admitted');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('97 ','Referred');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('98 ','Investigation advised');
+
+INSERT INTO [DrugCodeTreatment] ([DrCode],[Name]) VALUES ('99 ','Treatment not given');
+

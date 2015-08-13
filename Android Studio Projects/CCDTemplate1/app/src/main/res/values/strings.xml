@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, LoginActivity!</string>
-    <string name="app_name">Galvanic Skin Response Data Collection</string>
+    <string name="app_name">CCD Template</string>
     
     <string name="lblMmberIDBN">µwgK bs</string>
     <string name="lblMemeberBN">bvg</string>

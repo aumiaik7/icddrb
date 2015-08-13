@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="Clicksec2"
-                    android:text="CVR Pneumonia (Age less than 5)" />
+                    android:text="Severe Pneumonia (Age less than 5)" />
                 <!--
                                 <Button
                                     android:id="@+id/btnEsec03"

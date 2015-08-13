@@ -15305,6 +15305,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				.toString()).split("/");
 
 		String dateInString =((EditText) v.findViewById(R.id.admissiondate)).getText().toString();
+		String dateOutString =((EditText) v.findViewById(R.id.dischargedate)).getText().toString();
 				//d[0] + "-" + d[1] + "-" + d[0];
 
 		Date date = null, denddate = null;
@@ -15313,37 +15314,41 @@ public class ParentActivity extends BaseActivity implements FormListener {
 					"Please input date");
 			return false;
 		}
-		try {
-			date = formatter.parse(dateInString);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		if(dateOutString.length() > 0)
+		{
+
+			try {
+
+				date = formatter.parse(dateInString);
+				denddate = formatter.parse(dateOutString);
+
+
+			Calendar startdate = Calendar.getInstance();
+			Calendar enddate = Calendar.getInstance();
+
+			startdate.setTime(date);
+            enddate.setTime(denddate);
+
+
+			int x = CommonStaticClass.DayDifferenceBackwardWithMonth(startdate,
+					enddate);
+
+			if(x<0)
+			{
+				CommonStaticClass.showMyAlert(thisactivity, "Error",
+						"Discharge Date Should not be previous date of Admission Date");
+				return false;
+			}
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
 		}
 
-		Calendar startdate = Calendar.getInstance();
-		Calendar enddate = Calendar.getInstance();
-
-		startdate.setTime(date);
-
-		Date dt = new Date(System.currentTimeMillis());
-		String senddate = formatter.format(dt);//;
-				/*enddate.get(Calendar.YEAR)
-				+ "-"
-				+ CommonStaticClass.SetpadLeft(
-				String.valueOf(enddate.get(Calendar.MONTH) + 1),
-				enddate.get(Calendar.MONTH)) + "-"
-				+ enddate.get(Calendar.DAY_OF_MONTH);*/
-
-		try {
-			denddate = formatter.parse(senddate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		enddate.setTime(denddate);
-
-		int x = CommonStaticClass.DayDifferenceBackwardWithMonth(startdate,
-				enddate);
 
 		/*if (x > 8) {
 			CommonStaticClass.showMyAlert(thisactivity, "Error",
@@ -15352,7 +15357,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 		}*/
 
-		if (x == 1) {
+		/*if (x == 1) {
 
 			// return false;
 
@@ -15395,7 +15400,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 			validated = false;
 
 		}
-
+*/
 		return validated;
 
 		// ///////////////////////////////////////////////////////////////////////////
@@ -17391,7 +17396,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 
 			if (CommonStaticClass.IsValidHBISDate(((EditText) v.findViewById(R.id.dtpRunningnose)))) {
 				CommonStaticClass.showMyAlert(thisactivity, "Error",
-						"Please input correct running nose date");
+						"Please input correct Runny Nose date");
 				return false;
 			}
 		}
@@ -17550,54 +17555,56 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				return false;
 			}
 
-		}
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyy-MM-dd");
 
-		SimpleDateFormat formatter = new SimpleDateFormat(
-				"yyyy-MM-dd");
+			String[] d = (((EditText) v.findViewById(R.id.dtpFever))
+					.getText().toString()).split("/");
 
-		String[] d = (((EditText) v.findViewById(R.id.dtpFever))
-				.getText().toString()).split("/");
+			String dateInString = d[2] + "-" + d[1] + "-" + d[0];
 
-		String dateInString = d[2] + "-" + d[1] + "-" + d[0];
-
-		Date date, denddate;
-		if (dateInString.length() <= 0) {
-			CommonStaticClass.showMyAlert(thisactivity, "Error",
-					"Please input date");
-			return false;
-		}
-		try {
-			date = formatter.parse(dateInString);
-
-			Calendar startdate = Calendar.getInstance();
-			Calendar enddate = Calendar.getInstance();
-
-			startdate.setTime(date);
-
-			String senddate = enddate.get(Calendar.YEAR)
-					+ "-"
-					+ CommonStaticClass.SetpadLeft(String
-							.valueOf(enddate.get(Calendar.MONTH) + 1),
-					enddate.get(Calendar.MONTH)) + "-"
-					+ enddate.get(Calendar.DAY_OF_MONTH);
-
-			denddate = formatter.parse(senddate);
-			enddate.setTime(denddate);
-
-			int x = CommonStaticClass.DayDifferenceBackwardWithMonth(
-					startdate, enddate);
-
-			if (x > 21) {
+			Date date, denddate;
+			if (dateInString.length() <= 0) {
 				CommonStaticClass.showMyAlert(thisactivity, "Error",
-						"Fever Date can not be more than 21");
+						"Please input date");
 				return false;
+			}
+			try {
+				date = formatter.parse(dateInString);
+
+				Calendar startdate = Calendar.getInstance();
+				Calendar enddate = Calendar.getInstance();
+
+				startdate.setTime(date);
+
+				String senddate = enddate.get(Calendar.YEAR)
+						+ "-"
+						+ CommonStaticClass.SetpadLeft(String
+								.valueOf(enddate.get(Calendar.MONTH) + 1),
+						enddate.get(Calendar.MONTH)) + "-"
+						+ enddate.get(Calendar.DAY_OF_MONTH);
+
+				denddate = formatter.parse(senddate);
+				enddate.setTime(denddate);
+
+				int x = CommonStaticClass.DayDifferenceBackwardWithMonth(
+						startdate, enddate);
+
+				if (x > 21) {
+					CommonStaticClass.showMyAlert(thisactivity, "Error",
+							"Fever Date can not be more than 21");
+					return false;
+
+				}
+			}
+			catch(Exception e)
+			{
 
 			}
-		}
-		catch(Exception e)
-		{
 
 		}
+
+
 
 		// Checking Fever is checked or not
 		/*if (intComp != 3) {

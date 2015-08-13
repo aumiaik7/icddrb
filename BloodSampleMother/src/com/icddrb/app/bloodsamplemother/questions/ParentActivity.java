@@ -11319,6 +11319,12 @@ else {
 					
 					
 				}
+ 				else if(qName.equalsIgnoreCase("q14"))
+				{
+									
+						showUserFinishDialogFrmSingleChoice();
+				
+				}
 				else
 				{
 					CommonStaticClass.findOutNextSLNo(
@@ -13029,6 +13035,15 @@ else {
 							
 					}
 					
+					else if(qName.equalsIgnoreCase("q11") && getChoiceValue("q9") == 3)
+					{
+						Message msg = new Message();
+						msg.what = UPDATEDONE;
+						handler.sendMessage(msg);
+						
+							showUserFinishDialogFrmSingleChoice();
+						
+					}
 					
 					else if (qtoGo != null && qtoGo != ""
 							&& !nextToGo.equalsIgnoreCase("END")) {
@@ -13523,7 +13538,9 @@ else {
 									CommonStaticClass.currentSLNo).getQnext1());
 					CommonStaticClass.nextQuestion(ParentActivity.this);
 
-				} else if (CommonStaticClass.questionMap
+				} 
+				
+				else if (CommonStaticClass.questionMap
 						.get(CommonStaticClass.currentSLNo).getQnext1()
 						.equalsIgnoreCase("END")) {
 					showUserFinishDialogFrmText();

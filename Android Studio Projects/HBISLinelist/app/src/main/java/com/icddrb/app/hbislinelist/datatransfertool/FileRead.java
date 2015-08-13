@@ -886,10 +886,11 @@ public class FileRead extends Activity {
 
 		// The live one
 
-		//HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
-		HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
+		HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
 
-		// HttpPost request = new HttpPost("http://172.16.8.221:8732/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
+		//HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
+
+		//HttpPost request = new HttpPost("http://172.16.8.221:8732/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
 		// Real IP
 
 		// HttpPost request = new
@@ -973,8 +974,8 @@ public class FileRead extends Activity {
 
 		// The live one
 
-		//HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
-		HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
+		HttpPost request = new HttpPost("http://ccd-mis.icddrb.org/ccdrdupload/datatransferapp.datatransservice.svc/CCDRDUpload");
+		//HttpPost request = new HttpPost("http://172.16.10.20/DTTrans/datatransferapp.datatransservice.svc/CCDRDUpload");
 
 		// HttpPost request = new HttpPost("http://172.16.8.221:8732/Design_Time_Addresses/DataTransferApp.svc/CCDRDUpload");
 		// Real IP

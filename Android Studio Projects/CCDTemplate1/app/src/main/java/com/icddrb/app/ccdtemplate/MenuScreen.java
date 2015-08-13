@@ -246,6 +246,7 @@ public class MenuScreen extends BaseActivity {
 				/*Toast.makeText(this, "Network Has", Toast.LENGTH_LONG).show();*/
 				
 //				new hasInternet().execute("");
+				dbHelper.TransferredAt();
 				showTransDialog();
 				
 			}
@@ -261,6 +262,8 @@ public class MenuScreen extends BaseActivity {
 				new Thread() {
 
 					public void run() {
+						Looper.prepare();
+
 
 
 
@@ -270,7 +273,7 @@ public class MenuScreen extends BaseActivity {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-
+						Looper.loop();
 					}
 
 				}.start();

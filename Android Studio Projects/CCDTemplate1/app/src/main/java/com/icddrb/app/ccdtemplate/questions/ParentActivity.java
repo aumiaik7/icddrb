@@ -8184,7 +8184,7 @@ public class ParentActivity extends BaseActivity implements FormListener {
 				if(qName.equalsIgnoreCase(""))
 					edbox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				//date
-				else if(qName.equalsIgnoreCase(""))
+				else if(qName.equalsIgnoreCase("q7"))
 				{
 					edbox.setFocusable(false);
 					

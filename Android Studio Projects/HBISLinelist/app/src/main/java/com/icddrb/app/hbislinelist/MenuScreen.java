@@ -261,6 +261,9 @@ public class MenuScreen extends BaseActivity {
 
 					public void run() {
 
+						Looper.prepare();
+
+
 
 
 //						TransferFile();
@@ -269,6 +272,7 @@ public class MenuScreen extends BaseActivity {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						Looper.loop();
 
 					}
 
@@ -564,9 +568,21 @@ public class MenuScreen extends BaseActivity {
 	}*/  
 	private boolean isNetworkAvailable() {
 	    ConnectivityManager connectivityManager 
-	          = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	          = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 	    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+		/*if (connectivityManager != null)
+		{
+			NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
+			if (info != null)
+				for (int i = 0; i < info.length; i++)
+					if (info[i].getState() == NetworkInfo.State.CONNECTED)
+					{
+						return true;
+					}
+
+		}
+		return false;*/
 	}
 
 	private void startQuestion() {

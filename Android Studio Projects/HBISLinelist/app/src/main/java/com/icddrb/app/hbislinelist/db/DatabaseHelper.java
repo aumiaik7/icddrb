@@ -509,6 +509,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
 		
 	}
 
+
+
 	public String GetSingleColumnData(String column){	
 		String sql = "";	
 		if(!CommonStaticClass.isMember)

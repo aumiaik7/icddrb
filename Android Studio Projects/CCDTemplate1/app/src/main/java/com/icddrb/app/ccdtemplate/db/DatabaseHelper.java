@@ -12,6 +12,7 @@ import java.util.Date;
 
 import android.content.Context;
 import android.os.Environment;
+import android.os.Message;
 import android.util.Log;
 
 
@@ -506,6 +507,70 @@ public class DatabaseHelper extends SQLiteOpenHelper
 			myDataBase.execSQL(sq);
 		}
 		
+	}
+
+	public void TransferredAt()
+	{
+		Cursor mCursor = null;
+		try {
+		mCursor = dbHelper
+				.getQueryCursor(String
+						.format("Select * from sqlite_master where type='table'"));
+
+		if (mCursor.moveToFirst()) {
+			do {
+				String table_name = mCursor.getString(mCursor
+						.getColumnIndex("tbl_name"));
+
+
+				if (table_name.startsWith("frmr")
+						|| table_name
+						.equalsIgnoreCase("tblOptions")
+						|| table_name
+						.equalsIgnoreCase("tblQuestion")
+						|| table_name.equalsIgnoreCase("tblStack")
+						|| table_name.equalsIgnoreCase("tblUser")
+						|| table_name
+						.equalsIgnoreCase("tblVersion")) {
+					continue;
+				}
+				else
+				{
+					String trnsfrDt = "dd/mm/yyyy";
+//					String editTime = "hh:mm";
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+					Date d = new Date(System.currentTimeMillis());
+					trnsfrDt = sdf.format(d);
+					/*sdf = new SimpleDateFormat("HH:mm");
+					editTime = sdf.format(d);*/
+					String sq = "UPDATE "
+							+ table_name + " SET TransferredAt = '"+trnsfrDt+"' where IsTransferred = 0 ";
+					try{
+						myDataBase.execSQL(sq);
+						Log.e("sql",sq);
+					}
+					catch (Exception e) {
+						// TODO: handle exception
+						/*sq = "UPDATE "
+								+ tableName + " SET IsTransferred = 0 where dataid='"
+								+ CommonStaticClass.dataId + "'";
+						myDataBase.execSQL(sq);*/
+					}
+				}
+
+
+			} while (mCursor.moveToNext());
+
+		}
+
+		} catch (Exception e) { // TODO: handle exception
+		// Toast.makeText(con, e.getMessage().toString(), 1000).show();
+
+		Log.e("cursor", "is null");
+		} finally {
+			if (mCursor != null)
+				mCursor.close();
+		}
 	}
 
 	public String GetSingleColumnData(String column){	
